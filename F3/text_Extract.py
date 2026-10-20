@@ -53,7 +53,7 @@ def analisar_pasta(directory):
 
 if __name__ == "__main__":
     directory=os.path.dirname(os.path.abspath(__file__))
-    path_documentos=os.path.abspath(os.path.join(directory,"..","Documents"))
+    path_documentos=os.path.abspath(os.path.join(directory,"..","documents"))
 
     lista_documentos = analisar_pasta(path_documentos)
 
