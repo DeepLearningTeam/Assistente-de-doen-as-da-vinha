@@ -1,0 +1,17 @@
+# Via A: LLM + CNN como ferramenta + pesquisa documental.
+experimento: llm_tools_rag
+estado: rascunho
+modelo:
+  fornecedor_local: ollama
+  id: PREENCHER_MODELO_COM_TOOL_CALLING
+  temperatura: 0
+ferramentas:
+  cnn: true
+  pesquisa_documental: true
+recuperacao:
+  top_k: 5  # alinhado com Recall@5; valor inicial a confirmar
+  chunk_size: 800  # valor piloto, não requisito do guia
+  chunk_overlap: 120  # valor piloto, não requisito do guia
+avaliacao:
+  seeds: []  # preencher no protocolo
+  repeticoes: 3

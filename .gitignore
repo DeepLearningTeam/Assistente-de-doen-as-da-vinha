@@ -1,0 +1,28 @@
+# Ambientes e segredos
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dados originais e documentos de terceiros: não os enviar para o Git
+data/docs/*
+!data/docs/.gitkeep
+data/images/*
+!data/images/.gitkeep
+data/index/*
+!data/index/.gitkeep
+
+# Outputs gerados: reter os resultados finais em paper/, não checkpoints volumosos
+runs/*
+!runs/.gitkeep
+checkpoints/
+*.safetensors
+*.pt
+*.pth
+*.ckpt

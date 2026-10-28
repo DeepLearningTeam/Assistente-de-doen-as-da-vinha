@@ -1,0 +1,12 @@
+# Baseline textual prevista no Guia Tema F; confirmar que continua a ser exigida após as últimas indicações.
+experimento: baseline_llm_sem_rag
+estado: a_definir
+modelo:
+  fornecedor_local: ollama  # alternativa sem API paga; confirmar recursos
+  id: PREENCHER
+  temperatura: 0
+rag:
+  ativo: false
+avaliacao:
+  conjunto_perguntas: data/perguntas/perguntas.csv
+  repeticoes: 3  # ajustar ao protocolo final

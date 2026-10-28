@@ -1,0 +1,14 @@
+# Via B: VLM + recuperação documental.
+experimento: vlm_rag
+estado: rascunho
+modelo:
+  id: PREENCHER_MODELO_VLM
+  metodo: zero_shot
+  max_new_tokens: 256  # valor inicial, validar por modelo
+recuperacao:
+  top_k: 5
+  chunk_size: 800  # valor piloto, não requisito do guia
+  chunk_overlap: 120  # valor piloto, não requisito do guia
+avaliacao:
+  seeds: []
+  repeticoes: 3

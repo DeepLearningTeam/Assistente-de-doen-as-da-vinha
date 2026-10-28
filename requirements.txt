@@ -1,0 +1,18 @@
+# Ambiente inicial. Validar versões juntas na máquina/Colab do grupo antes de congelar o ambiente.
+# O núcleo LangChain é open-source; estes pacotes não implicam uma API paga.
+langchain>=1.0,<2.0
+langchain-community>=0.4,<1.0
+langchain-text-splitters>=1.0,<2.0
+langchain-huggingface>=0.3
+langchain-ollama>=0.3
+faiss-cpu>=1.9
+PyMuPDF>=1.24
+sentence-transformers>=3.0
+transformers>=4.51
+Pillow>=10
+PyYAML>=6
+python-dotenv>=1
+pandas>=2
+numpy>=1.26
+gradio>=5
+pytest>=8

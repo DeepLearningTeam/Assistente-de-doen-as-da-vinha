@@ -1,221 +1,300 @@
-# Assistente de Doenças da Vinha — Deep Learning Aplicado
+# P2 — Tema F: Assistente de doenças da vinha
 
-**Unidade curricular:** Deep Learning Aplicado
-**Ano letivo:** 2026/2027
-**Projeto:** P2 — Tema F: LLMs/VLMs e RAG multimodal
-**Grupo:** DL_P2_TP2-G2
-**Estado:** Em desenvolvimento
+> **Estado:** esqueleto inicial de trabalho — ainda não é uma aplicação completa nem reproduz resultados experimentais.  
+> **Grupo:** substituir `G2` pelo número real do grupo no nome da pasta/repositório.  
+> **Objetivo deste README:** orientar a preparação do ambiente local, a verificação do código inicial e os primeiros passos de desenvolvimento.
 
-## 1. Descrição do projeto
+## 1. Objetivo do projeto
 
-Este projeto tem como objetivo desenvolver um assistente multimodal de apoio à identificação de doenças da vinha, combinando análise de imagens de folhas com recuperação de informação em documentos técnicos (*Retrieval-Augmented Generation*, RAG).
+Construir e avaliar um assistente que recebe uma pergunta e, opcionalmente, uma fotografia de folha de videira. O sistema deve apoiar a identificação provável da doença, recuperar informação de documentos técnicos em português e apresentar respostas com fontes verificáveis; quando não houver evidência suficiente, deve recusar responder.
 
-O utilizador poderá fornecer uma fotografia de uma folha de videira e colocar uma pergunta em português. O sistema deverá identificar a doença provável, recuperar informação relevante de documentação técnica e produzir uma resposta fundamentada em fontes citadas.
+Explorar duas vias em paralelo:
 
-Quando a documentação disponível não for suficiente para responder, o assistente deverá recusar responder em vez de apresentar recomendações sem suporte documental.
+1. **LLM + ferramentas**, em que o LLM pode chamar uma CNN para interpretar a fotografia e uma ferramenta de pesquisa documental.
+2. **VLM + recuperação documental**, em que um modelo visão-linguagem recebe a pergunta e a fotografia e utiliza evidência documental para responder.
 
-O sistema tem fins académicos e experimentais, não substituindo o aconselhamento de técnicos especializados nem a consulta de documentação fitossanitária oficial e atualizada.
+Esta indicação deve ser conciliada pelo grupo com a baseline formal do Guia Tema F (CNN pré-treinada com fine-tuning para a imagem e LLM sem RAG para texto). A arquitetura experimental final tem de ficar registada em `PROTOCOLO.md` antes dos testes finais.
 
-## 2. Objetivos
-
-Os principais objetivos são:
-
-- Comparar uma CNN com fine-tuning e um modelo de visão-linguagem (VLM) na classificação de doenças da vinha.
-- Desenvolver um pipeline RAG sobre documentos técnicos públicos em português.
-- Produzir respostas com citações que identifiquem o documento e a página de origem.
-- Avaliar a fidelidade das respostas às fontes, a correção das respostas e a capacidade de recusa.
-- Analisar a consistência das respostas entre repetições e identificar casos de alucinação.
-- Disponibilizar uma aplicação de demonstração com envio de imagens, perguntas em texto e apresentação das fontes.
-
-## 3. Equipa e responsabilidades
-
-| Elemento                  | Papel                                         | Responsabilidades principais                                                                                       |
-| ------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Francisco Veiga (al82066) | F1 — Dados, protocolo e integração            | Organização dos dados, corpus documental, protocolo experimental, integração da aplicação e registo dos resultados |
-| João Pires (al81351)      | F2 — Classificação da folha                   | CNN com fine-tuning, avaliação por classe, Grad-CAM e comparação com VLM                                           |
-| Lucas Silva (al81362)     | F3 — Recuperação e geração com citações       | Chunking, embeddings, índice vetorial, recuperação, geração com citações e política de recusa                      |
-| Rui Teixeira (al77411)    | F4 — Perguntas, baseline sem RAG e fidelidade | Conjunto de perguntas de referência, baseline textual sem RAG e coordenação da avaliação da fidelidade             |
-| Rui Esteves (al78779)     | F5 — Consistência, recusa e incerteza         | Análise de consistência, avaliação das recusas, calibração da confiança e análise de casos difíceis                |
-
-Todos os elementos participam na implementação, na escrita do relatório e na verificação da fidelidade das respostas, de acordo com o protocolo do projeto.
-
-## 4. Arquitetura prevista
-
-O sistema será desenvolvido através dos seguintes componentes:
-
-1. **Entrada:** fotografia de uma folha de videira e/ou pergunta em texto.
-2. **Classificação da imagem:** CNN e VLM para identificação da classe provável da doença.
-3. **Recuperação documental:** pesquisa das passagens mais relevantes em documentos técnicos indexados.
-4. **Geração da resposta:** modelo de linguagem condicionado pelas passagens recuperadas.
-5. **Citações e recusa:** apresentação das fontes utilizadas e recusa quando não existe suporte documental suficiente.
-6. **Interface:** aplicação Gradio para interação com o assistente.
-
-### Modelos e tecnologias previstos
-
-- **Classificação:** CNN pré-treinada com fine-tuning.
-- **Visão-linguagem:** VLM aberto de pequena dimensão, a selecionar e validar.
-- **Embeddings:** modelo multilingue, com opções como BGE-M3 ou multilingual-e5.
-- **Recuperação vetorial:** FAISS.
-- **Processamento documental:** PyMuPDF e OCR quando necessário.
-- **Interface:** Gradio.
-- **Ambiente experimental:** Python e Google Colab, conforme a disponibilidade computacional.
-
-A seleção final dos modelos, parâmetros e configurações será documentada durante o desenvolvimento.
-
-## 5. Dados e fontes documentais
-
-### 5.1. Dataset de imagens
-
-O projeto utiliza o FieldVitis, constituído por 555 fotografias de folhas de videira, distribuídas por quatro classes:
-
-| Classe      | Número de imagens |
-| ----------- | ----------------: |
-| Saudável    |               158 |
-| Esca        |               200 |
-| Leaf blight |               158 |
-| Black rot   |                39 |
-| **Total**   |           **555** |
-
-A licença indicada para o dataset é CC BY 4.0.
-
-O conjunto de dados é pequeno e desequilibrado, particularmente na classe black rot. Além disso, as imagens provêm de datasets públicos e não representam necessariamente as condições de uma vinha portuguesa. Estas limitações serão consideradas na análise dos resultados.
-
-### 5.2. Corpus documental
-
-O RAG utilizará documentos técnicos públicos em português, incluindo materiais de entidades como DGADR, ADVID, DRAP-Norte, ISA, CCDR-N e Embrapa.
-
-Os documentos serão identificados num inventário (`data/corpus.csv`), incluindo, sempre que disponível:
-
-- Título e entidade responsável;
-- URL de origem;
-- Data de publicação e data de consulta;
-- Licença ou condições de utilização;
-- Hash do ficheiro;
-- Informação necessária para identificar páginas e passagens.
-
-Os documentos serão utilizados para indexação e recuperação, respeitando as respetivas condições de utilização. Os PDFs não serão incluídos no repositório Git.
-
-A atualidade e a cobertura documental serão consideradas na interpretação das respostas, especialmente quando estiverem em causa recomendações fitossanitárias.
-
-## 6. Metodologia e avaliação
-
-A avaliação será realizada de acordo com um protocolo experimental definido e versionado antes da avaliação final.
-
-### Classificação de imagens
-
-Serão comparados:
-
-- CNN com fine-tuning;
-- VLM em zero-shot;
-- VLM com LoRA, caso seja viável e aprovado pelo grupo.
-
-As métricas incluirão Macro-F1 e recall por classe, com análise das limitações associadas ao desequilíbrio dos dados.
-
-### Geração de respostas
-
-Serão comparadas as seguintes abordagens:
-
-- LLM sem recuperação documental (baseline);
-- LLM com RAG;
-- RAG com política de recusa.
-
-A avaliação incluirá:
-
-- Percentagem de afirmações suportadas pelas fontes citadas;
-- Correção face às respostas de referência;
-- Recall\@5 da passagem-fonte;
-- Taxa de recusa correta e de recusa indevida;
-- Consistência entre repetições;
-- Latência das respostas.
-
-A fidelidade às fontes e a correção das respostas serão avaliadas separadamente. A verificação da fidelidade será realizada por avaliadores humanos, de acordo com as regras estabelecidas no protocolo.
-
-Os resultados, as configurações e as limitações serão documentados para permitir a reprodução das experiências.
-
-## 7. Estrutura do repositório
+## 2. Estrutura do repositório
 
 ```text
-DL_P2_TP2-G<n>/
+DL_P2_TP2-G2/
 ├── README.md
 ├── AI_LOG.md
 ├── PROTOCOLO.md
 ├── requirements.txt
+├── .env.example
+├── .gitignore
 ├── configs/
+│   ├── baseline_llm_sem_rag.yaml
+│   ├── llm_tools.yaml
+│   └── vlm_rag.yaml
 ├── data/
+│   ├── README.md
 │   ├── corpus.csv
 │   ├── splits.json
+│   ├── docs/                   # PDFs: fora do Git
+│   ├── images/                 # FieldVitis: fora do Git
+│   ├── index/                  # índice gerado: fora do Git
 │   └── perguntas/
+│       └── perguntas.csv
 ├── src/
-│   ├── imagem.py
-│   ├── vlm.py
-│   ├── corpus.py
-│   ├── indice.py
-│   └── rag.py
-├── notebooks/
-├── runs/
+│   ├── __init__.py
+│   ├── imagem.py               # interface para a CNN do F2
+│   ├── vlm.py                  # interface para o VLM
+│   ├── corpus.py               # extração PDF por página e chunking
+│   ├── indice.py               # embeddings + FAISS
+│   ├── rag.py                  # recuperação e formatação de passagens/fontes
+│   ├── llm_tools.py            # agente LangChain + ferramentas
+│   └── avaliacao.py            # registo de execuções
+├── notebooks/                  # exploração; não guardar aqui os resultados finais
+├── runs/                       # respostas/checkpoints gerados; fora do Git
 ├── app/
-│   └── app.py
+│   └── app.py                  # estrutura Gradio ainda sem modelos ligados
+├── tests/
+│   └── test_corpus.py
 └── paper/
     ├── resultados.csv
     ├── fidelidade/
+    │   └── folha_verificacao.csv
     ├── leituras/
     ├── figuras/
     └── tabelas/
 ```
 
-A estrutura poderá ser ajustada durante o desenvolvimento, mantendo a separação entre dados, código, experiências, aplicação e documentação científica.
+A estrutura preserva os elementos da secção **2.4 do Guia Tema F**. `src/llm_tools.py` foi acrescentado para explicitar a responsabilidade de integração atribuída pelo professor.
 
-Os dados, documentos e checkpoints de modelos não serão adicionados ao Git sem uma verificação prévia das licenças, do tamanho e das necessidades de armazenamento.
+## 3. Preparar Python e o ambiente virtual
 
-## 8. Preparação e execução
+O Python 3.14 pode ser experimentado primeiro. Como algumas bibliotecas científicas dependem da disponibilidade de versões pré-compiladas para cada combinação de Python e sistema operativo, se a instalação de dependências falhar, usa Python 3.11 ou 3.12 num ambiente virtual novo.
 
-O ambiente de execução e as dependências ainda serão definidos e validados pelo grupo.
+### 3.1 Windows (PowerShell)
 
-Quando estiver disponível uma primeira versão funcional, esta secção será atualizada com:
+Confirma a versão instalada:
 
-1. Pré-requisitos e versão de Python;
-2. Criação e ativação do ambiente virtual;
-3. Instalação das dependências;
-4. Preparação dos dados e configuração dos modelos;
-5. Comandos para executar os módulos e a aplicação Gradio.
+```powershell
+py -3.14 --version
+```
 
-Os passos de execução serão testados num ambiente limpo antes da entrega final.
+Deverás ver algo semelhante a `Python 3.14.x`. Se o comando não existir, experimenta `python --version`. Se não tiveres Python instalado, instala-o a partir de [python.org](https://www.python.org/downloads/).
 
-## 9. Reprodutibilidade e utilização responsável
+Cria o ambiente virtual na pasta principal do projeto:
 
-Para garantir a rastreabilidade do trabalho:
+```powershell
+py -3.14 -m venv .venv
+```
 
-- O `PROTOCOLO.md` documentará as hipóteses, as divisões de dados, as métricas e as condições experimentais.
-- As seeds, os splits e as configurações serão guardados e versionados.
-- As experiências terão configurações identificáveis e resultados guardados.
-- As respostas geradas conservarão, sempre que aplicável, os parâmetros, as passagens recuperadas e as citações.
-- O `paper/resultados.csv` servirá de registo estruturado dos resultados experimentais.
-- A utilização de ferramentas de IA no desenvolvimento e na escrita será registada no `AI_LOG.md`, de acordo com as regras da unidade curricular.
-- As afirmações do relatório sobre os resultados serão sustentadas por evidência experimental.
+Ativa-o:
 
-O assistente será apresentado como uma ferramenta experimental de apoio à decisão. Não deverá inventar fontes nem apresentar produtos, doses ou recomendações fitossanitárias como oficialmente validados sem suporte documental adequado.
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-## 10. Estado atual e próximos marcos
+Se o PowerShell bloquear a ativação por política de execução, autoriza scripts apenas para esta sessão do terminal:
 
-**Estado atual:** organização inicial do projeto e preparação do protocolo experimental.
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
 
-| Marco                    | Data prevista      | Objetivo                                   |
-| ------------------------ | ------------------ | ------------------------------------------ |
-| P2-D1                    | 29/10/2026         | Proposta do projeto e apresentação inicial |
-| P2-D2                    | 24/11/2026         | Seminário sobre o método e avaliação       |
-| P2-D3                    | 10/12/2026         | Demonstração do protótipo                  |
-| P2-D4                    | 17/12/2026         | Resultados e discussão                     |
-| Relatório e documentação | 04/01/2027         | Entrega do relatório e repositório final   |
-| P2-D5                    | 05/01 e 07/01/2027 | Apresentação e defesa individual           |
+Depois volta a executar o comando de ativação. Quando estiver ativo, o início da linha do terminal deverá mostrar `(.venv)`.
 
-As datas e os entregáveis serão acompanhados pelo grupo e atualizados caso existam alterações oficiais.
+**Se o Python 3.14 causar incompatibilidades ao instalar os requisitos:**
 
-## 11. Referências e documentação
+1. Fecha o ambiente virtual, se estiver ativo, executando `deactivate`.
+2. Remove a pasta `.venv` do projeto (confirma primeiro que estás na pasta correta):
 
-As referências científicas, os artigos utilizados e os documentos técnicos serão organizados ao longo do projeto.
+```powershell
+Remove-Item -Recurse -Force .venv
+```
 
-A bibliografia final será mantida em `paper/referencias.bib`, incluindo as referências aos modelos, métodos, dataset e documentos utilizados.
+3. Instala Python 3.11 ou 3.12 a partir de [python.org](https://www.python.org/downloads/).
+4. Cria e ativa novamente o ambiente, por exemplo com Python 3.11:
 
----
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-*Projeto académico desenvolvido no âmbito da unidade curricular Deep Learning Aplicado, ano letivo 2026/2027.*
+Se `py -3.11` não for reconhecido, confirma que essa versão está instalada. Não alteres versões de bibliotecas ao acaso para contornar erros.
+
+### 3.2 macOS / Linux
+
+Confirma a versão:
+
+```bash
+python3 --version
+```
+
+Cria e ativa o ambiente virtual:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Se a versão instalada não for compatível com os requisitos, instala Python 3.11 ou 3.12 e substitui `python3` pelo comando correspondente à versão instalada.
+
+## 4. Instalar dependências
+
+Confirma que o ambiente virtual está ativo antes de instalar as bibliotecas. Atualiza o instalador de pacotes:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+Instala as dependências listadas no repositório:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+O processo pode demorar e descarregar vários pacotes. Os pacotes Python listados são gratuitos/open-source; os pesos dos modelos são descarregados separadamente e a execução depende dos recursos do computador ou do ambiente de computação.
+
+Se a instalação falhar:
+
+1. Lê as últimas linhas do erro e identifica qual pacote falhou.
+2. Confirma que o ambiente `.venv` está ativo e que o VS Code utiliza esse mesmo interpretador.
+3. Se o erro estiver relacionado com a disponibilidade de uma versão pré-compilada (por exemplo, uma biblioteca científica no Python 3.14), considera recriar `.venv` com Python 3.11 ou 3.12.
+4. Não instales pacotes extra nem alteres `requirements.txt` sem registar e compreender a razão.
+
+## 5. Verificar o esqueleto inicial
+
+Executa os comandos seguintes a partir da pasta principal do projeto e com o ambiente virtual ativo.
+
+### 5.1 Verificar a sintaxe dos ficheiros Python
+
+```powershell
+python -m compileall -q src app tests
+```
+
+Se o comando terminar sem mensagens de erro, a sintaxe dos ficheiros selecionados foi compilada com sucesso. Isto **não** demonstra que os modelos ou a aplicação estejam funcionalmente integrados.
+
+### 5.2 Executar os testes iniciais
+
+```powershell
+python -m pytest -q
+```
+
+Os testes iniciais verificam aspetos como a divisão do texto em fragmentos (*chunks*) e a preservação de metadados das fontes. Se aparecer um erro, guarda a mensagem completa, em especial as últimas linhas, antes de alterar o código.
+
+## 6. Abrir a interface Gradio
+
+O Gradio permite criar uma interface web com código Python. O ficheiro `app/app.py` contém uma interface inicial, ainda sem o backend integrado.
+
+Executa:
+
+```powershell
+python app/app.py
+```
+
+O terminal deverá mostrar um endereço local, geralmente semelhante a `http://127.0.0.1:7860`. Abre esse endereço num navegador.
+
+Nesta fase, a interface apresenta campos para pergunta e imagem e permite selecionar uma das abordagens experimentais. **É esperado que ainda indique que o backend não está ligado.** Não apresentes a interface como protótipo funcional até ligares e testares a CNN, a pesquisa documental e o LLM/VLM.
+
+Para parar a aplicação, volta ao terminal e prime `Ctrl+C`.
+
+## 7. Configurar um LLM local com Ollama (opcional, recomendado para evitar APIs pagas)
+
+A via LLM + ferramentas está preparada para utilizar um modelo servido localmente pelo [Ollama](https://ollama.com/download). A biblioteca Python LangChain e o Ollama não exigem uma API comercial para esta configuração local, mas a execução continua a depender do hardware disponível.
+
+### 7.1 Instalar e verificar Ollama
+
+1. Instala o Ollama através de [ollama.com/download](https://ollama.com/download).
+2. Abre um novo terminal e verifica a instalação:
+
+```powershell
+ollama --version
+```
+
+3. Escolhe um modelo depois de consultar a licença, o tamanho, a capacidade de responder em português e o suporte a **tool calling** (chamadas de ferramentas). Não assumas que qualquer modelo consegue usar ferramentas de forma fiável.
+4. Descarrega o modelo escolhido, substituindo `<nome-do-modelo>` pelo identificador real:
+
+```powershell
+ollama pull <nome-do-modelo>
+```
+
+5. Confirma que aparece na lista local:
+
+```powershell
+ollama list
+```
+
+O nome tem de corresponder ao identificador apresentado pelo Ollama.
+
+### 7.2 Criar e preencher o `.env`
+
+Cria o ficheiro local a partir do exemplo:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Abre `.env` no VS Code e substitui o valor provisório de `OLLAMA_MODEL` pelo nome exato do modelo descarregado. Confirma também o endereço local:
+
+```text
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=nome-exato-do-modelo
+```
+
+Os outros valores de `.env.example` são configurações provisórias para os embeddings, o VLM, o índice e os PDFs; deverão ser confirmados quando o grupo escolher os modelos e as localizações.
+
+**Não envies `.env` para o Git nem coloques segredos nesse ficheiro.** O `.gitignore` já exclui `.env`.
+
+### 7.3 Testar apenas a geração de texto
+
+Com o Ollama disponível, o modelo descarregado e `.env` preenchido, executa na pasta principal do projeto:
+
+```powershell
+python -c "from dotenv import load_dotenv; load_dotenv(); from src.llm_tools import criar_llm_local; llm = criar_llm_local(); print(llm.invoke('Responde apenas com a palavra OK.').content)"
+```
+
+Este teste verifica apenas se o LLM local responde a uma mensagem. **Não** verifica chamadas às ferramentas, recuperação documental, citações ou recusa. Estes comportamentos exigem testes adicionais antes de executar as experiências.
+
+## 8. Orientação sobre os ficheiros
+
+| Ficheiro/pasta | Para que serve |
+|---|---|
+| `README.md` | Instalação, execução, estrutura e estado do projeto. |
+| `AI_LOG.md` | Registo obrigatório da utilização de IA por todos os elementos: pedido, o que foi aproveitado e como foi verificado. |
+| `PROTOCOLO.md` | Protocolo experimental. As decisões ainda em aberto devem ser confirmadas com o grupo e fechadas antes de avaliar o conjunto de teste. |
+| `configs/` | Configurações YAML por experiência: modelos, prompts, parâmetros e sementes. Os valores atuais são provisórios. |
+| `src/llm_tools.py` | Estrutura LangChain para ligar um LLM a ferramentas. |
+| `src/imagem.py` | Interface que deverá ser ligada à CNN do F2. |
+| `src/vlm.py` | Ponto de entrada para escolher e executar o VLM. |
+| `src/corpus.py` | Extração de texto dos PDFs por página e divisão em fragmentos. |
+| `src/indice.py` | Embeddings e índice FAISS. |
+| `src/rag.py` | Recuperação, preparação do contexto e formatação de fontes. |
+| `src/avaliacao.py` | Estrutura inicial para registar execuções. |
+| `data/perguntas/perguntas.csv` | Perguntas de teste, resposta de referência e localização da evidência. |
+| `paper/fidelidade/folha_verificacao.csv` | Registo da avaliação humana das afirmações das respostas. |
+| `runs/` | Outputs experimentais, por exemplo JSON por pergunta e repetição; os resultados finais a reportar também devem ser organizados em `paper/`. |
+
+## 9. Dados e documentação
+
+- Colocar os PDFs localmente em `data/docs/` e as imagens FieldVitis em `data/images/`; ambos ficam ignorados pelo Git.
+- Manter `data/corpus.csv` no Git com URL, entidade, data, licença e SHA-256 de cada PDF.
+- **Confirmar URL, data e licença na fonte original.** “Disponível publicamente” não significa automaticamente que um documento tem licença aberta.
+- Não incluir PDFs de terceiros no repositório. O Guia Tema F indica que os documentos são indexados e citados, não redistribuídos.
+- Guardar as perguntas de avaliação em `data/perguntas/perguntas.csv`, com resposta de referência e passagem/página que a suporta.
+- Guardar os outputs experimentais em `runs/`, não apenas em notebooks.
+
+## 10. Próximos passos recomendados
+
+1. Confirmar com o grupo a arquitetura experimental decorrente das indicações mais recentes do professor.
+2. Preencher e validar `data/corpus.csv` com URLs, licenças, datas e hashes reais.
+3. Alinhar com F2 a interface da CNN e com F3 a interface do retriever.
+4. Escolher/testar o LLM local que suporte chamadas a ferramentas; não assumir que qualquer modelo as suporta bem.
+5. Implementar primeiro um caminho mínimo e controlado antes de adotar um agente com decisões autónomas.
+6. Escolher e testar o VLM de forma independente, antes de o integrar no fluxo RAG.
+7. Atualizar `PROTOCOLO.md` e os YAMLs antes de executar experiências finais.
+8. Registar a utilização de IA em `AI_LOG.md` e verificar cada bloco de código antes de o usar.
+
+## Fontes técnicas
+
+- Guia Tema F, secção 2.4 (estrutura do repositório), secção 3 (papéis) e secções 4–6 (métodos e avaliação).
+- Documentação oficial LangChain: https://docs.langchain.com/oss/python/langchain/agents e https://docs.langchain.com/oss/python/langchain/tools
+- Documentação oficial ChatOllama: https://docs.langchain.com/oss/python/integrations/chat/ollama
+- Visual Studio Code — ambientes Python: https://code.visualstudio.com/docs/python/environments
+- Python — transferências: https://www.python.org/downloads/
+- Ollama — transferências: https://ollama.com/download
+- Git: https://git-scm.com/

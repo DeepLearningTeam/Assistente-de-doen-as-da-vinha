@@ -1,0 +1,12 @@
+{
+  "estado": "PENDENTE — preencher depois de verificar os ficheiros FieldVitis reais",
+  "estrategia": "estratificada_por_classe",
+  "proporcoes_propostas": {
+    "treino": 0.7,
+    "validacao": 0.15,
+    "teste": 0.15
+  },
+  "seeds": [],
+  "divisoes": [],
+  "nota": "O guia pede 3 seeds e pelo menos 6 imagens black rot no teste. Não inventar caminhos nem índices: gerar a partir do dataset confirmado."
+}
