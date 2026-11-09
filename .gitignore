@@ -10,17 +10,14 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
-# Dados originais e documentos de terceiros: não os enviar para o Git
-data/docs/*
-!data/docs/.gitkeep
+# Documentos/imagens de terceiros e dados brutos: manter localmente, fora do Git
+data/docs/*.pdf
+data/docs/*.PDF
 data/images/*
 !data/images/.gitkeep
-data/index/*
-!data/index/.gitkeep
 
-# Outputs gerados: reter os resultados finais em paper/, não checkpoints volumosos
-runs/*
-!runs/.gitkeep
+# Índices e checkpoints derivados/volumosos
+data/index/
 checkpoints/
 *.safetensors
 *.pt

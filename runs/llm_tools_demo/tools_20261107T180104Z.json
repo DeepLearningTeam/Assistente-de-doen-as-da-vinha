@@ -1,0 +1,35 @@
+{
+  "experimento": "llm_tools_demo",
+  "timestamp_utc": "2026-11-07T18:01:04.735828+00:00",
+  "model_id": "qwen3:4b-instruct-2507-q4_K_M",
+  "pergunta": "Recebi uma folha com sintomas. Usa as duas ferramentas de demonstração e explica o que devo verificar.",
+  "chamadas_solicitadas_pelo_modelo": [
+    {
+      "nome": "classificar_folha_demo",
+      "args": {}
+    },
+    {
+      "nome": "pesquisar_documentacao_demo",
+      "args": {
+        "consulta": "sintomas comuns em folhas de plantas"
+      }
+    }
+  ],
+  "ferramentas_executadas": [
+    "classificar_folha_demo",
+    "pesquisar_documentacao_demo"
+  ],
+  "resultados_ferramentas": [
+    {
+      "nome": "classificar_folha_demo",
+      "resultado": "RESULTADO SIMULADO, NÃO É UMA PREVISÃO REAL: {\"classe\":\"esca\",\"probabilidades\":{\"saudavel\":0.05,\"esca\":0.75,\"leaf_blight\":0.10,\"black_rot\":0.10}}"
+    },
+    {
+      "nome": "pesquisar_documentacao_demo",
+      "resultado": "PASSAGEM DE DEMONSTRAÇÃO — não utilizar como fonte real. D02, p. 8: a descrição da esca refere necrose das margens das folhas que avança para o centro e manchas entre nervuras."
+    }
+  ],
+  "ferramentas_em_falta": [],
+  "resposta_final": "Com base nas ferramentas de demonstração, aqui está a análise simulada e não oficial dos seus sintomas:\n\n1. **Classificação da folha**:  \n   A imagem foi classificada como \"esca\" com uma probabilidade de 75%. Isso indica que os sintomas observados são compatíveis com a infecção por esca. A probabilidade de outras condições (como leaf blight ou black rot) é baixa (10% cada).  \n\n2. **Documentação sobre sintomas**:  \n   A passagem simulada indica que a esca se caracteriza por necrose nas margens das folhas, que se espalha para o centro, e por manchas entre os nervos. Esses sinais podem estar presentes na sua folha.\n\n**O que você deve verificar**:  \n- Verifique se as margens das folhas estão amareladas ou murchas, com uma progressão para o centro da folha.  \n- Observe se há manchas escuras ou irregulares entre os nervos da folha.  \n- Se a infecção for confirmada, considere isolamento da planta e aplicação de tratamentos específicos para esca, como produtos biológicos ou fungicidas recomendados.\n\n⚠️ **Importante**: Os resultados acima são apenas demonstrações simuladas e não representam uma avaliação real ou diagnóstico médico/agricultural. Para uma avaliação confiável, consulte um especialista ou use ferramentas de diagnóstico reais.",
+  "aviso": "As ferramentas devolvem dados simulados. Não usar como evidência nem como resultado experimental."
+}

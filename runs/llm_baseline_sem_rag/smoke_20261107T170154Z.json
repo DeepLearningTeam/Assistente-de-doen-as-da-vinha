@@ -1,0 +1,12 @@
+{
+  "experimento": "smoke_test_llm_sem_rag",
+  "timestamp_utc": "2026-11-07T17:01:54.515305+00:00",
+  "pergunta": "O que é o míldio da videira e que sinais podem ser observados nas folhas?",
+  "model_id": "qwen3:1.7b-q4_K_M",
+  "temperature": 0.0,
+  "tools": false,
+  "rag": false,
+  "resposta": "O míldio da videira (ou *Plasmopara viticola*) é uma doença fungípara que afeta as folhas e as frutos da videira, causando danos significativos à produção. As principais características são:  \n\n1. **Sinais observados nas folhas**:  \n   - **Papilas brancas ou grifuladas**: Formam-se em áreas afetadas, especialmente nas margens das folhas.  \n   - **Cicatrização da folha**: A infecção pode levar à morte da folha, com o tecido seco e descolado.  \n   - **Crescimento de fungos**: A infecção é caracterizada por uma cobertura de fungos esféricos, com uma camada de espuma (míldio) em camadas alternadas, especialmente nas folhas mais baixas.  \n\n2. **Causa**: A doença é provocada por *Plasmopara viticola*, uma espécie de fungo que se reproduz em ambientes úmidos e com alta umidade relativa.  \n\n**Nota**: A informação fornecida é baseada em conhecimentos gerais sobre a doença, sem referências específicas. Para ações de prevenção ou tratamento, é recomendável consultar fontes documentadas atualizadas.",
+  "latencia_s": 116.2706,
+  "modo": "sem_rag_sem_ferramentas"
+}

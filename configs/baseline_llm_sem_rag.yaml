@@ -1,12 +1,18 @@
-# Baseline textual prevista no Guia Tema F; confirmar que continua a ser exigida após as últimas indicações.
 experimento: baseline_llm_sem_rag
-estado: a_definir
+estado: pronto_para_teste_de_validacao
 modelo:
-  fornecedor_local: ollama  # alternativa sem API paga; confirmar recursos
-  id: PREENCHER
-  temperatura: 0
+  fornecedor: ollama
+  id: qwen3:1.7b
+  temperatura: 0.0
+  max_tokens: 512
 rag:
   ativo: false
-avaliacao:
-  conjunto_perguntas: data/perguntas/perguntas.csv
-  repeticoes: 3  # ajustar ao protocolo final
+ferramentas: []
+perguntas:
+  caminho: data/perguntas/perguntas.csv
+  split_padrao: validacao
+  repeticoes: 3
+outputs:
+  diretorio: runs/llm_baseline_sem_rag
+  formato: jsonl
+nota: "Não executar split=teste antes do PROTOCOLO.md ser aprovado e commitado."

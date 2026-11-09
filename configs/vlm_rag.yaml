@@ -1,14 +1,16 @@
-# Via B: VLM + recuperação documental.
-experimento: vlm_rag
-estado: rascunho
+experimento: vlm_zero_shot
+estado: pronto_para_teste_com_imagem_local_ou_colab
 modelo:
-  id: PREENCHER_MODELO_VLM
+  id: Qwen/Qwen2.5-VL-3B-Instruct
   metodo: zero_shot
-  max_new_tokens: 256  # valor inicial, validar por modelo
-recuperacao:
-  top_k: 5
-  chunk_size: 800  # valor piloto, não requisito do guia
-  chunk_overlap: 120  # valor piloto, não requisito do guia
-avaliacao:
-  seeds: []
-  repeticoes: 3
+  max_new_tokens: 180
+  temperatura: 0.0
+  classes:
+    - saudavel
+    - esca
+    - leaf_blight
+    - black_rot
+    - inconclusivo
+outputs:
+  diretorio: runs/vlm_zero_shot
+nota: "O VLM faz classificação/descrição visual; a resposta técnica final deve ser apoiada no RAG e gerada pelo LLM textual, conforme o desenho do Guia Tema F."

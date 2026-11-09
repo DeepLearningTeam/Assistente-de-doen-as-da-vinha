@@ -1,43 +1,28 @@
-"""Agente LangChain com ferramentas CNN e pesquisa documental.
-
-O LLM precisa de suportar tool calling. A chamada da CNN só é disponibilizada quando a
-pergunta atual inclui uma imagem, evitando que o agente peça uma imagem inexistente.
-"""
+"""Agente LangChain com ferramentas CNN (F2) e RAG (F3)."""
 from __future__ import annotations
 import json
+import os
 from typing import Any, Callable
 from PIL import Image
+from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain.tools import tool
-from langchain_core.documents import Document
-
+from src.prompts import TOOLS_SYSTEM_PROMPT
 from src.rag import formatar_contexto
-
-SYSTEM_PROMPT = """És um assistente técnico de apoio à vinha. Responde em português de Portugal.
-Usa pesquisar_documentacao antes de fazer recomendações técnicas. Se houver uma imagem
-anexada, usa classificar_folha para obter uma hipótese visual, mas não trates a classificação
-como confirmação clínica. Baseia as recomendações nas passagens recuperadas; cita os IDs
-[S1], [S2], etc. Não inventes fontes, produtos autorizados, doses ou datas. Se não houver
-suporte documental suficiente, recusa a recomendação específica e explica que falta evidência.
-"""
 
 
 def criar_llm_local(model_name: str | None = None, base_url: str | None = None):
-    """Inicializa um LLM servido pelo Ollama, sem API comercial.
-
-    Requer: Ollama instalado/em execução e um modelo descarregado que suporte tool calling.
-    O facto de um modelo abrir não significa que chame ferramentas corretamente; testar antes.
-    """
-    import os
+    """Inicializa um LLM local no Ollama; o modelo tem de suportar tool calling."""
+    load_dotenv()
     from langchain_ollama import ChatOllama
-
-    nome = model_name or os.getenv("OLLAMA_MODEL", "")
-    if not nome or nome.startswith("ESCOLHER") or nome.startswith("PREENCHER"):
-        raise RuntimeError(
-            "Define OLLAMA_MODEL no .env depois de escolher/testar um modelo local com tool calling."
-        )
-    url = base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    return ChatOllama(model=nome, base_url=url, temperature=0)
+    nome = model_name or os.getenv('OLLAMA_MODEL', 'qwen3:1.7b')
+    if not nome or nome.startswith(('PREENCHER', 'ESCOLHER')):
+        raise RuntimeError('Define OLLAMA_MODEL no ficheiro .env.')
+    return ChatOllama(
+        model=nome,
+        base_url=base_url or os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434'),
+        temperature=0.0,
+    )
 
 
 def criar_agente_llm_tools(
@@ -46,38 +31,37 @@ def criar_agente_llm_tools(
     imagem: Image.Image | None = None,
     classificador: Callable[[Image.Image], dict[str, Any]] | None = None,
 ):
-    """Cria um agente por pedido, com ferramentas disponíveis para esse pedido.
+    """Cria um agente por pedido. A ferramenta CNN só existe se houver imagem.
 
-    `llm`: modelo LangChain que suporte chamadas de ferramentas.
-    `retriever`: recuperador do F3/FAISS.
-    `classificador`: função real ligada à CNN do F2.
+    Contrato esperado do classificador (F2):
+      {'classe': 'esca', 'probabilidades': {'saudavel': 0.1, 'esca': 0.7, ...}}
 
-    Nota: as imagens não são passadas como argumentos JSON do agente; a função mantém a
-    imagem do pedido no seu âmbito. Não guardar a imagem em logs, salvo decisão explícita.
+    Contrato esperado do retriever (F3): retriever.invoke(texto) -> list[Document],
+    com metadata: doc_id, titulo, entidade, data, pagina e url.
     """
     ferramentas = []
 
     @tool
     def pesquisar_documentacao(consulta: str) -> str:
-        """Pesquisa passagens dos documentos técnicos de vinha relevantes para a consulta.
+        """Pesquisa passagens dos documentos técnicos indexados em português.
 
         Args:
-            consulta: pergunta ou tema a procurar nos documentos indexados.
+            consulta: pergunta, doença ou tema a procurar no corpus do grupo.
         """
         documentos = list(retriever.invoke(consulta))
         if not documentos:
-            return "Não foram recuperadas passagens documentais para esta consulta."
+            return 'SEM EVIDÊNCIA: a pesquisa não devolveu passagens.'
         return formatar_contexto(documentos)
 
     ferramentas.append(pesquisar_documentacao)
 
     if imagem is not None:
         if classificador is None:
-            raise ValueError("Foi fornecida uma imagem, mas não foi ligada a função CNN do F2.")
+            raise ValueError('Foi fornecida uma imagem, mas a CNN do F2 não foi ligada.')
 
         @tool
         def classificar_folha() -> str:
-            """Classifica a imagem de folha anexada ao pedido usando a CNN do projeto."""
+            """Classifica a imagem anexada ao pedido através da CNN do projeto."""
             resultado = classificador(imagem)
             return json.dumps(resultado, ensure_ascii=False, default=str)
 
@@ -86,8 +70,16 @@ def criar_agente_llm_tools(
     return create_agent(
         model=llm,
         tools=ferramentas,
-        system_prompt=SYSTEM_PROMPT,
+        system_prompt=TOOLS_SYSTEM_PROMPT,
     )
+
+
+def _conteudo_texto(content: Any) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return '\n'.join(str(x.get('text', x)) if isinstance(x, dict) else str(x) for x in content)
+    return str(content)
 
 
 def responder_com_agente(
@@ -97,15 +89,18 @@ def responder_com_agente(
     imagem: Image.Image | None = None,
     classificador: Callable[[Image.Image], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """Executa o agente e devolve mensagens para inspeção/avaliação posterior."""
     agente = criar_agente_llm_tools(llm, retriever, imagem, classificador)
-    resultado = agente.invoke({"messages": [{"role": "user", "content": pergunta}]})
-    mensagens = resultado.get("messages", [])
-    texto_final = ""
+    resultado = agente.invoke({'messages': [{'role': 'user', 'content': pergunta}]})
+    mensagens = resultado.get('messages', [])
+    final = ''
     for msg in reversed(mensagens):
-        if getattr(msg, "type", "") == "ai" and getattr(msg, "content", None):
-            texto_final = msg.content
-            if isinstance(texto_final, list):
-                texto_final = "\n".join(str(x) for x in texto_final)
+        if getattr(msg, 'type', '') == 'ai' and getattr(msg, 'content', None):
+            final = _conteudo_texto(msg.content)
             break
-    return {"resposta": texto_final, "mensagens": mensagens}
+    chamadas = []
+    for msg in mensagens:
+        for chamada in getattr(msg, 'tool_calls', []) or []:
+            chamadas.append(chamada.get('name', 'ferramenta_desconhecida'))
+        if getattr(msg, 'type', '') == 'tool':
+            chamadas.append(getattr(msg, 'name', 'ferramenta'))
+    return {'resposta': final, 'ferramentas_invocadas': chamadas, 'mensagens': mensagens}

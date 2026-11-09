@@ -1,0 +1,12 @@
+{
+  "experimento": "smoke_test_llm_sem_rag",
+  "timestamp_utc": "2026-11-07T17:09:00.632336+00:00",
+  "pergunta": "O que é o míldio da videira e que sinais podem ser observados nas folhas?",
+  "model_id": "qwen3:4b-instruct-2507-q4_K_M",
+  "temperature": 0.0,
+  "tools": false,
+  "rag": false,
+  "resposta": "O míldio da videira é uma doença causada pelo fungo *Oidium vitis*, que afeta as folhas, ramos e frutos da videira. É uma das principais doenças fitossanitárias que afectam a produtividade e a qualidade dos frutos, especialmente em condições de umidade elevada e em ambientes com pouca ventilação.\n\nOs sinais mais comuns observados nas folhas incluem:\n\n- **Manchas brancas ou prateadas** nas faces superiores das folhas, que podem ser mais evidentes em áreas expostas ao sol ou em folhas mais jovens.\n- **Aparecimento de manchas com bordas irregulares**, que podem se espalhar rapidamente, especialmente em folhas mais velhas.\n- **Perda de folhas** em fases avançadas da doença, podendo ocorrer uma queda parcial ou total de folhas, especialmente em plantas com pouca resistência.\n- **Folhas com aspecto \"pálido\" ou \"esbranquiçado\"**, o que pode levar a uma redução da fotossíntese.\n\nÉ importante notar que, embora o míldio possa ser facilmente identificado visualmente, a confirmação do diagnóstico exige análise microscópica ou laboratorial, pois os sintomas podem ser semelhantes a outras doenças fúngicas ou condições ambientais.\n\nNo entanto, **não há suporte documental disponível neste momento para confirmar a presença de evidências específicas sobre o míldio da videira ou os seus sinais em folhas**, como descrições detalhadas em fontes oficiais ou regulamentares.\n\nPortanto, a resposta acima é baseada em conhecimentos gerais da fitossanidade, mas **não está sustentada por evidências documentais recuperadas** no bloco de evidência fornecido.\n\n[SEM DOCUMENTOS RECUPERADOS — condição sem RAG]  \nFIM DO BLOCO DE EVIDÊNCIA.",
+  "latencia_s": 58.7759,
+  "modo": "sem_rag_sem_ferramentas"
+}

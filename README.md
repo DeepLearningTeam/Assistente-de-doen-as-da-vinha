@@ -33,11 +33,14 @@ DL_P2_TP2-G2/
 │   ├── README.md
 │   ├── corpus.csv
 │   ├── splits.json
-│   ├── docs/                   # PDFs: fora do Git
+│   ├── splits.csv              # template do pipeline de imagens; preencher com F1/F2
+│   ├── docs/                   # PDFs: fora do Git; mapa_ficheiros_locais.csv no Git
 │   ├── images/                 # FieldVitis: fora do Git
 │   ├── index/                  # índice gerado: fora do Git
 │   └── perguntas/
-│       └── perguntas.csv
+│       ├── perguntas.csv
+│       ├── README.md
+│       └── holdout_audit.md
 ├── src/
 │   ├── __init__.py
 │   ├── imagem.py               # interface para a CNN do F2
@@ -45,14 +48,23 @@ DL_P2_TP2-G2/
 │   ├── corpus.py               # extração PDF por página e chunking
 │   ├── indice.py               # embeddings + FAISS
 │   ├── rag.py                  # recuperação e formatação de passagens/fontes
-│   ├── llm_tools.py            # agente LangChain + ferramentas
+│   ├── llm_tools.py            # agente LangChain + CNN/retriever do grupo
+│   ├── llm_baseline.py         # execução do LLM sem RAG/ferramentas
+│   ├── tools_teste.py          # ferramentas simuladas para testar tool calling
+│   ├── prompts.py              # prompts comuns e prompt de visão
 │   └── avaliacao.py            # registo de execuções
+├── scripts/                    # validação CSV/PDF, baseline, agente demo, VLM e índice
+├── docs/                       # contratos de componentes e runbook PL09
 ├── notebooks/                  # exploração; não guardar aqui os resultados finais
-├── runs/                       # respostas/checkpoints gerados; fora do Git
+├── runs/                       # JSON/JSONL leves de experiências; checkpoints volumosos ignorados
+├── scripts/                    # execução e validação para a PL09
+├── docs/                       # contratos de componentes e runbook
 ├── app/
 │   └── app.py                  # estrutura Gradio ainda sem modelos ligados
 ├── tests/
-│   └── test_corpus.py
+│   ├── test_corpus.py
+│   ├── test_questions.py
+│   └── test_vlm_and_prompts.py
 └── paper/
     ├── resultados.csv
     ├── fidelidade/
@@ -238,7 +250,7 @@ OLLAMA_MODEL=nome-exato-do-modelo
 
 Os outros valores de `.env.example` são configurações provisórias para os embeddings, o VLM, o índice e os PDFs; deverão ser confirmados quando o grupo escolher os modelos e as localizações.
 
-**Não envies `.env` para o Git nem coloques segredos nesse ficheiro.** O `.gitignore` já exclui `.env`.
+**Não envies `.env` para o Git nem coloques segredos nesse ficheiro.** O `.gitignore` já exclui `.env`. Os JSON/JSONL leves em `runs/` são versionáveis para permitir reproduzir e auditar as experiências; checkpoints pesados e índices FAISS ficam fora do Git.
 
 ### 7.3 Testar apenas a geração de texto
 
@@ -267,7 +279,7 @@ Este teste verifica apenas se o LLM local responde a uma mensagem. **Não** veri
 | `src/avaliacao.py` | Estrutura inicial para registar execuções. |
 | `data/perguntas/perguntas.csv` | Perguntas de teste, resposta de referência e localização da evidência. |
 | `paper/fidelidade/folha_verificacao.csv` | Registo da avaliação humana das afirmações das respostas. |
-| `runs/` | Outputs experimentais, por exemplo JSON por pergunta e repetição; os resultados finais a reportar também devem ser organizados em `paper/`. |
+| `runs/` | Outputs experimentais leves (JSON/JSONL) por pergunta/repetição; os resultados finais a reportar também devem ser organizados em `paper/`. Checkpoints grandes ficam fora do Git. |
 
 ## 9. Dados e documentação
 
@@ -298,3 +310,120 @@ Este teste verifica apenas se o LLM local responde a uma mensagem. **Não** veri
 - Python — transferências: https://www.python.org/downloads/
 - Ollama — transferências: https://ollama.com/download
 - Git: https://git-scm.com/
+
+
+## Estado dos objetivos para a PL09
+
+| Objetivo | O que fica preparado nesta versão | O que ainda falta demonstrar no teu computador/grupo |
+|---|---|---|
+| 40 perguntas de referência | CSV com 40 propostas, respostas, páginas e split 20/20 | Revisão humana das respostas e auditoria de exclusividade dos 10 holdouts |
+| LLM sem RAG | Código para smoke test e execução das 20 perguntas de validação × 3 repetições | Configurar/iniciar Ollama, descarregar o modelo e executar os scripts |
+| LLM + ferramentas | Agente LangChain real com interfaces para CNN/RAG e agente de demonstração com duas ferramentas simuladas | Executar o agente com um modelo que faça tool calling; depois substituir as tools demo pelas funções reais F2/F3 |
+| VLM | Interface Qwen2.5-VL e script zero-shot com registo JSON | Instalar PyTorch/Transformers e executar com uma imagem real FieldVitis, idealmente em GPU T4/Colab |
+| Comunicação entre componentes | Documento com contratos de entrada/saída CNN, retriever, VLM e resposta | Validar os contratos com F2, F3 e F1 |
+| Protocolo fechado e commitado | `PROTOCOLO.md` v0.9, com decisões em aberto e salvaguarda para não correr o teste | Aprovação do grupo/docente, resolver pendências, fechar v1.0 e fazer commit no repositório real |
+
+Esta distinção é intencional: os artefactos e os scripts ficam preparados, mas nenhuma inferência com Ollama/VLM nem qualquer commit remoto é declarado como realizado nesta sessão.
+
+## 11. Preparação para a PL09 — tarefas F4 e integração técnica
+
+Esta versão acrescenta uma implementação inicial dos primeiros objetivos definidos para a PL09. Distingue sempre **código preparado** de **experiências efetivamente executadas**: a inferência com Ollama e VLM só fica demonstrada depois de correr os comandos no teu ambiente e guardar os respetivos JSON/JSONL.
+
+### 11.1. Validar o conjunto de 40 perguntas
+
+O ficheiro `data/perguntas/perguntas.csv` contém 40 perguntas propostas, com resposta de referência, documento, página PDF, tipo, doença, ação esperada e split. A distribuição é:
+
+- 30 perguntas respondíveis por documentos que são candidatos ao índice;
+- 10 perguntas cuja resposta de referência está nos holdouts D10–D12 e cuja ação esperada no sistema RAG é recusar;
+- 20 perguntas de validação (15 respondíveis + 5 holdout) e 20 de teste (15 respondíveis + 5 holdout).
+
+Executa:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/validar_perguntas.py
+.\.venv\Scripts\python.exe scripts/verificar_referencias_perguntas.py --docs data/docs
+```
+
+O segundo comando confirma que os PDFs e as páginas referenciadas existem e contêm texto extraível. **Nenhum dos dois comandos valida cientificamente, por si só, a resposta de referência nem prova exclusividade dos holdouts.** A equipa deve ler as passagens e aprovar o conteúdo. A auditoria preliminar está em `data/perguntas/holdout_audit.md`.
+
+A Circular n.º 11/2026 (D09) contém, nas páginas PDF 11–12, uma tabela de tratamentos para Arouca e Barcelos e as categorias de 1, 2 e 3 tratamentos. Por isso, as perguntas holdout preliminares sobre estes detalhes foram substituídas por perguntas sobre inclusão total/parcial e freguesias no Anexo I de D10.
+
+**Lacuna de cobertura:** o conjunto atual não inclui perguntas respondíveis específicas de `leaf_blight`/mancha-das-folhas. O D07 fornecido é um excerto incompleto e não contém a secção pretendida; o D08 descreve a mancha-das-folhas, mas a licença CC BY-NC-ND 4.0 carece de confirmação do docente antes da indexação. Não inventar perguntas para preencher a classe enquanto não houver uma fonte utilizável e aprovada.
+
+### 11.2. Confirmar o corpus e as licenças
+
+Coloca localmente os PDFs em `data/docs/`, seguindo `data/docs/mapa_ficheiros_locais.csv`. Depois executa:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verificar_corpus.py
+```
+
+A verificação com os PDFs que acompanham esta entrega confirmou os 12 SHA-256. D07 e D08 ficam marcados como `condicional`: D07 é um excerto incompleto e não contém a secção pretendida sobre leaf blight; D08 indica CC BY-NC-ND 4.0 e requer confirmação do docente antes da indexação. D10–D12 são holdouts e nunca entram no índice.
+
+O ficheiro local que se chama `Avisos_Agricolas-Circular_05-2026(1).pdf` contém a Circular n.º 08/2026, de 21/05/2026 (D06). As citações devem usar a identificação interna correta D06 / Circular 08/2026.
+
+### 11.3. Testar o LLM sem RAG (smoke test)
+
+Com Ollama em execução e `OLLAMA_MODEL=qwen3:1.7b` (ou o modelo realmente escolhido) no `.env`:
+
+```powershell
+ollama list
+.\.venv\Scripts\python.exe scripts/testar_llm_baseline.py
+```
+
+Este teste faz uma pergunta única ao LLM sem acesso a ferramentas ou documentos e guarda um JSON em `runs/llm_baseline_sem_rag/`. Só depois de o smoke test funcionar, executa as 20 perguntas de validação três vezes:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/run_baseline_sem_rag.py --split validacao --repeticoes 3 --temperatura 0
+```
+
+Para uma condição de amostragem, podes executar separadamente `--temperatura 0.7`, desde que esta condição seja aprovada e registada no protocolo. O script guarda o prompt de sistema, modelo, temperatura, pergunta, resposta, latência, repetição e commit em JSONL. Não usa CNN, retriever ou ferramentas.
+
+**Não abrir o split `teste` antes da aprovação e commit do protocolo.** O script bloqueia `--split teste` e `--split todos` sem a opção explícita `--confirmar-protocolo-fechado`. Há uma tensão entre a execução de 40 perguntas × 3 repetições descrita na fase 2 do Guia Tema F e a divisão 20 validação + 20 teste, com teste fechado até ao protocolo commitado. Perguntar ao docente na PL09 e manter a opção conservadora até resposta.
+
+### 11.4. Testar LLM + ferramentas LangChain
+
+```powershell
+.\.venv\Scripts\python.exe scripts/testar_agente_demo.py
+```
+
+Este teste usa `classificar_folha_demo` e `pesquisar_documentacao_demo`, ferramentas simuladas, para verificar o ciclo LLM → ferramenta → resultado → LLM. Guarda um JSON em `runs/llm_tools_demo/`. Os resultados são fictícios, não constituem evidência agronómica e não podem ser usados nos resultados do projeto. Se o modelo não executar as duas ferramentas, repete ou testa outro modelo com tool calling.
+
+A integração real está em `src/llm_tools.py`: receberá a CNN do F2 como função Python e o retriever do F3 como objeto com `.invoke(consulta)`. Os contratos estão em `docs/CONTRATOS_COMPONENTES.md`.
+
+### 11.5. Testar o VLM zero-shot numa imagem
+
+O VLM inicial é `Qwen/Qwen2.5-VL-3B-Instruct`. Para a inferência, instala `requirements-vlm.txt` e PyTorch apropriado ao hardware (o Colab com GPU T4 é a opção prevista no Guia Tema F). Consulta o seletor oficial de instalação do PyTorch: https://pytorch.org/get-started/locally/.
+
+Coloca uma fotografia real do FieldVitis ou outra imagem autorizada em `data/images/` e executa:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-vlm.txt
+.\.venv\Scripts\python.exe -m scripts.testar_vlm --imagem data/images/EXEMPLO.jpg
+```
+
+O script guarda um JSON em `runs/vlm_zero_shot/`, com classe, descrição, limitações, modelo, dispositivo, precisão e latência. `confidence` fica nulo porque texto livre não é uma probabilidade calibrada. Não usar o VLM para recomendar tratamentos; a resposta técnica deve ser fundamentada no RAG e no LLM textual, salvo decisão diferente do professor.
+
+### 11.6. Contratos, protocolo e commit
+
+Consulta `docs/CONTRATOS_COMPONENTES.md` para alinhar entradas/saídas da CNN (F2), retriever (F3), VLM e resposta final; e `docs/PL09_RUNBOOK.md` para a sequência prática.
+
+O `PROTOCOLO.md` está em **v0.9 — proposta**, não em versão fechada. Não é correto marcar como fechado antes de a equipa/docente resolver, pelo menos:
+
+- se o VLM só classifica/descreve ou também gera a resposta final;
+- se D07/D08 podem entrar no índice e com que condições;
+- como compatibilizar 40 perguntas × 3 repetições com o teste reservado;
+- parâmetros de geração, recuperação, recusa e condições de custo;
+- contrato de saída da CNN e do retriever;
+- divisão efetiva das imagens, sem inventar IDs de planta/parcela.
+
+Depois de o grupo aprovar, atualiza `PROTOCOLO.md` para v1.0, regista a data, faz o commit e guarda o hash:
+
+```powershell
+git status
+git add PROTOCOLO.md data/perguntas/perguntas.csv data/perguntas/holdout_audit.md configs docs AI_LOG.md
+git commit -m "Fecha protocolo experimental P2 Tema F v1.0"
+git rev-parse HEAD
+```
+
+**Não executar a avaliação final no teste antes desse commit.** O commit deve ser feito localmente no repositório do grupo; esta entrega não publica nada no Git remoto.

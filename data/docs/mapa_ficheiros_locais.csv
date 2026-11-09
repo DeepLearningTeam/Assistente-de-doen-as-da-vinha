@@ -1,0 +1,20 @@
+﻿doc_id,nome_ficheiro_local,indexacao,nota
+D01,Manual_de_Proteccao_Fitossanitaria_para_Proteccao_Integrada_e_Agricultura_Biologica_da_Vinha.pdf,sim,"126 páginas físicas. Candidato a indexação segundo o corpus; o PDF declara direitos reservados à DGADR, pelo que os termos de utilização devem ser confirmados."
+D02,Doencas_do_Lenho_da _Videira-Eutipiose_e_Esca.pdf,sim,16 páginas físicas. O PDF declara autorização de reprodução com referência à fonte; preservar a atribuição.
+D03,Podridao_Negra_(Black-Rot).pdf,sim,2 páginas físicas. Licença não identificada; confirmar os termos de utilização antes da indexação/redistribuição.
+D04,Doencas_da_Videira-Mildio.pdf,sim,"70 páginas físicas. Apresentação do ISA, 2019. Licença não identificada; confirmar os termos de utilização."
+D05,Avisos_Agricolas-Circular_04-2026.pdf,sim,15 páginas físicas no PDF; circular principal datada de 07/04/2026. Informação regional e datada; licença não identificada.
+D06,Avisos_Agricolas-Circular_05-2026.pdf,sim,"20 páginas físicas. ATENÇÃO: apesar do nome local “Circular_05-2026”, o conteúdo é a Circular n.º 08/2026, de 21/05/2026. Usar D06/Circular 08/2026 nas citações."
+D07,Frutas_do_Brasil_35-Uva_Fitossanidade.pdf,condicional,9 páginas físicas de um excerto da obra “Frutas do Brasil 35”. O excerto não contém a secção necessária de doenças fúngicas/mancha-das-folhas; não usar para perguntas sobre leaf blight. Direitos reservados.
+D08,D08-Manejo_integrado_das_doencas_da_videira.pdf,condicional,2 páginas físicas. A Infoteca-e indica CC BY-NC-ND 4.0. O folheto é curto; confirmar com o docente a adequação da indexação RAG.
+D09,D09-AvisosAgricolas-Circular11-2026.pdf,sim,"15 páginas físicas. Circular n.º 11/2026, de 17/07/2026. A tabela de tratamentos da flavescência dourada nas pp. PDF 11–13 foi considerada na auditoria de holdouts."
+D10,D10-Edital_2-2025-FD_ST.pdf,não,"6 páginas físicas. Documento holdout; não colocar no índice, retriever, contexto de resposta nem dados de validação."
+D11,D11-Edital_1-2026-FD_ST.pdf,não,"21 páginas físicas. Documento holdout; não colocar no índice, retriever, contexto de resposta nem dados de validação."
+D12,D12-Despacho_n_69-G-2026.pdf,não,"25 páginas físicas. Documento holdout; não colocar no índice, retriever, contexto de resposta nem dados de validação."
+D13,D13-Manual-Doencas-Fungicas-Videira.pdf,condicional,"103 páginas físicas. Embrapa, 2014. A licença indicada no repositório é CC BY-NC-ND 4.0; confirmar autorização/adequação da indexação antes de incluir."
+D14,D14-Boletim-Tecnico-33-Doencas-Pragas-Videira.pdf,condicional,"147 páginas físicas. Instituto Biológico, novembro de 2022. O PDF declara que a reprodução não autorizada viola direitos de autor; obter autorização antes da indexação."
+D15,D15-Eficacia-Fungicidas-Mancha-Folhas.pdf,condicional,"15 páginas físicas. Embrapa, 2016. A ficha do repositório indica open access, mas o regime CC BY-NC-ND 4.0 deve ser confirmado para este item; não usar ensaios brasileiros como autorização de produtos em Portugal."
+D16,D16-Caderno-Tecnico-6-Mildio-Videira.pdf,condicional,"27 páginas físicas. Caderno Técnico ADVID n.º 6, 2025. Não foi identificada licença aberta explícita; pedir confirmação à ADVID antes da indexação."
+D17,D17-Caderno-Tecnico-5-Oidio-Videira.pdf,condicional,"16 páginas físicas. Caderno Técnico ADVID n.º 5, 2012. Não foi identificada licença aberta explícita; pedir confirmação à ADVID antes da indexação."
+D18,D18-Diagnostico-Doencas-Lenho-Videira.pdf,condicional,"27 páginas físicas. Apresentação ADVID/CoLAB, 10/12/2021. Resultados de prospeção no Douro e Trás-os-Montes; não foi identificada licença aberta explícita."
+D19,D19-Orientacoes-Producao-Integrada-Viticultura.pdf,condicional,"14 páginas físicas. Orientações OILB/IOBC-WPRS, 5.ª edição de 2020, tradução CoLAB VINES&WINES/ADVID. Não foi identificada licença aberta explícita."

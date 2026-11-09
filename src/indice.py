@@ -1,19 +1,23 @@
 """Criação/carregamento de índice FAISS com embeddings locais."""
+
 from __future__ import annotations
 from pathlib import Path
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+import os
+from dotenv import load_dotenv
+from langchain_ollama import OllamaEmbeddings
 
-DEFAULT_EMBEDDING_MODEL = "BAAI/bge-m3"  # sugerido no Guia Tema F; testar memória/tempo.
+DEFAULT_EMBEDDING_MODEL = "bge-m3"
 
 
-def criar_embeddings(model_name: str = DEFAULT_EMBEDDING_MODEL) -> HuggingFaceEmbeddings:
-    """Carrega embeddings localmente; descarrega os pesos na primeira utilização."""
-    return HuggingFaceEmbeddings(
-        model_name=model_name,
-        encode_kwargs={"normalize_embeddings": True},
+def criar_embeddings(model_name: str = DEFAULT_EMBEDDING_MODEL) -> OllamaEmbeddings:
+    load_dotenv()
+
+    return OllamaEmbeddings(
+        model=model_name,
+        base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
     )
 
 
@@ -42,7 +46,9 @@ def carregar_indice(
     """
     caminho = Path(diretorio)
     if not caminho.exists():
-        raise FileNotFoundError(f"Índice não encontrado: {caminho}. Executa criar_indice primeiro.")
+        raise FileNotFoundError(
+            f"Índice não encontrado: {caminho}. Executa criar_indice primeiro."
+        )
     return FAISS.load_local(
         str(caminho),
         criar_embeddings(model_name),

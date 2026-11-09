@@ -1,17 +1,16 @@
-# Via A: LLM + CNN como ferramenta + pesquisa documental.
 experimento: llm_tools_rag
-estado: rascunho
+estado: prototipo_com_ferramentas_demo_e_interfaces_reais
 modelo:
-  fornecedor_local: ollama
-  id: PREENCHER_MODELO_COM_TOOL_CALLING
-  temperatura: 0
+  fornecedor: ollama
+  id: qwen3:1.7b
+  temperatura: 0.0
 ferramentas:
-  cnn: true
-  pesquisa_documental: true
+  classificar_folha: true
+  pesquisar_documentacao: true
 recuperacao:
-  top_k: 5  # alinhado com Recall@5; valor inicial a confirmar
-  chunk_size: 800  # valor piloto, não requisito do guia
-  chunk_overlap: 120  # valor piloto, não requisito do guia
-avaliacao:
-  seeds: []  # preencher no protocolo
-  repeticoes: 3
+  top_k: 5
+  chunk_size: 800
+  chunk_overlap: 120
+outputs:
+  diretorio: runs/llm_tools_demo
+nota: "O agente só terá a ferramenta CNN quando uma imagem for fornecida."
