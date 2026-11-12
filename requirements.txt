@@ -1,18 +1,15 @@
-# Ambiente inicial. Validar versões juntas na máquina/Colab do grupo antes de congelar o ambiente.
-# O núcleo LangChain é open-source; estes pacotes não implicam uma API paga.
-langchain>=1.0,<2.0
-langchain-community>=0.4,<1.0
-langchain-text-splitters>=1.0,<2.0
-langchain-huggingface>=0.3
-langchain-ollama>=0.3
-faiss-cpu>=1.9
-PyMuPDF>=1.24
-sentence-transformers>=3.0
-transformers>=4.51
-Pillow>=10
-PyYAML>=6
-python-dotenv>=1
-pandas>=2
-numpy>=1.26
-gradio>=5
-pytest>=8
+# Python 3.14
+gradio==6.31.0
+langchain-core==1.8.0
+langchain-ollama==1.1.0
+langchain-text-splitters==1.1.3
+ollama==0.6.3
+httpx[socks]==0.28.1
+faiss-cpu==1.15.1
+numpy==2.5.4
+PyMuPDF==1.26.6
+Pillow==12.2.0
+PyYAML==6.0.3
+pydantic==2.14.3
+
+# Só para a CNN em ONNX: python -m pip install onnxruntime==1.31.1

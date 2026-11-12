@@ -1,1 +1,1 @@
-experimento,modelo,config_id,seed,pergunta_id,repeticao,resposta,latencia_s,recusou,fontes,notas
+execucao,split,via,modelo,config,seed,repeticao,id_pergunta_ou_imagem,temperatura,metrica,valor,data,commit

@@ -1,25 +1,16 @@
-# Ambientes e segredos
 .venv/
-venv/
-.env
-.env.*
-!.env.example
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-
-# Documentos/imagens de terceiros e dados brutos: manter localmente, fora do Git
-data/docs/*.pdf
-data/docs/*.PDF
-data/images/*
-!data/images/.gitkeep
-
-# Índices e checkpoints derivados/volumosos
-data/index/
-checkpoints/
-*.safetensors
-*.pt
-*.pth
-*.ckpt
+.DS_Store
+gradio/
+*.zip
+data/docs/*
+!data/docs/.gitkeep
+data/imagens/*
+!data/imagens/.gitkeep
+data/indice.npz
+runs/*
+!runs/.gitkeep
+!runs/checkpoints/
+runs/checkpoints/*
+!runs/checkpoints/README.md

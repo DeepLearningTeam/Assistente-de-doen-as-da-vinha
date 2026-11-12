@@ -1,0 +1,4 @@
+# O Qwen2.5-VL analisa a fotografia, quando existe, e gera a resposta.
+gerador: vlm
+rag: false
+recusa_reforcada: false

@@ -1,0 +1,4 @@
+# Baseline textual. A CNN só intervém quando há fotografia.
+gerador: llm
+rag: false
+recusa_reforcada: false
