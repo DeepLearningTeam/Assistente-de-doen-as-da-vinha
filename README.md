@@ -28,7 +28,7 @@ DL_P2_TP2-G2/
 
 ## 3. Preparar o ambiente
 
-Descompacta o projeto e abre um terminal na pasta `DL_P2_TP2-G2`. Instala o [Python 3.14](https://www.python.org/downloads/) e o [Ollama](https://ollama.com/download).
+Descompacta o projeto e abre um terminal na pasta raiz do projeto. Instala o [Python 3.14](https://www.python.org/downloads/) e o [Ollama](https://ollama.com/download).
 
 **Windows PowerShell**
 
@@ -37,7 +37,7 @@ py -3.14 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Os comandos Python para PowerShell usam diretamente o executável do ambiente virtual. Executa-os a partir da pasta `DL_P2_TP2-G2`.
+Os comandos Python para PowerShell usam diretamente o executável do ambiente virtual. Executa-os a partir da pasta raiz do projeto.
 
 **Ativação opcional no PowerShell**
 
@@ -48,7 +48,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
 ```
 
-O âmbito `Process` limita o bypass à sessão atual. A alteração termina quando fechas essa sessão. [Políticas de execução do PowerShell](https://learn.microsoft.com/pt-br/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5)
+O âmbito `Process` limita o bypass à sessão atual. A alteração termina quando fechas essa sessão.
 
 **macOS ou Linux**
 
@@ -71,7 +71,7 @@ ollama list
 
 ### 4.1. Importar os PDF
 
-Coloca `docs do corpus.zip` na raiz da pasta descompactada `DL_P2_TP2-G2`, ao lado de `README.md` e `requirements.txt`. Mantém o ficheiro em formato ZIP. O comando de importação extrai os PDF para `data/docs/` e identifica-os pelo SHA-256. Se o ZIP estiver noutro local, podes indicar o caminho completo entre aspas.
+Coloca `docs do corpus.zip` na raiz do projeto, ao lado de `README.md` e `requirements.txt`. Mantém o ficheiro em formato ZIP. O comando de importação extrai os PDF para `data/docs/` e identifica-os pelo SHA-256. Se o ZIP estiver noutro local, podes indicar o caminho completo entre aspas.
 
 **Windows PowerShell**
 
@@ -154,7 +154,7 @@ python -m src.indice info
 python -m app.app
 ```
 
-Abre o endereço local indicado no terminal se o navegador não abrir. Escreve uma pergunta, anexa uma fotografia JPG ou PNG, ou combina as duas entradas.
+Abre o endereço local indicado no terminal. Escreve uma pergunta, anexa uma fotografia JPG ou PNG, ou combina as duas entradas.
 
 | Modo | Quem analisa a fotografia | Quem responde | Consulta ao corpus |
 |---|---|---|---|
@@ -165,9 +165,7 @@ Abre o endereço local indicado no terminal se o navegador não abrir. Escreve u
 
 Sem fotografia, os quatro modos aceitam texto. Até ligares a CNN, escolhe **VLM** ou **VLM + RAG** para analisar fotografias. Para voltar a analisar a imagem anterior, seleciona **Voltar a usar a última fotografia**. O modelo recebe até seis turnos relevantes de histórico. Por baixo do seletor de modo aparecem o nome e a variante do modelo de resposta, o modelo de embeddings quando há RAG e o checkpoint da CNN quando aplicável.
 
-As conversas são guardadas automaticamente após cada resposta em `runs/chats/`. Podes preencher **Nome da conversa** e premir **Aplicar nome** ou Enter para nomear ou renomear; **Guardar** também aplica o nome indicado. Sem nome, é usado o início da primeira pergunta. O separador **Histórico · investigação** permite pesquisar pelo nome, texto, modo ou modelo, selecionar uma linha para pré-visualizar a conversa e premir **Continuar esta conversa** para a retomar, mesmo após reiniciar a aplicação.
-
-**Copiar conversa completa** copia todos os turnos, com os modelos registados em cada um, as fontes, os estados das respostas e a análise visual, para poderes partilhar uma conversa ao investigar problemas. As fotografias e os mapas de atenção não são incluídos na cópia. O texto também está disponível em **Texto para partilhar** e no registo completo do histórico. Conversas antigas continuam a abrir; quando o modelo não foi registado na altura, isso é indicado em vez de inferir o modelo a partir da configuração atual.
+As conversas são guardadas automaticamente após cada resposta em `runs/chats/`.
 
 Nos modos RAG, as citações junto à resposta abrem a página do PDF. O painel lateral mostra o título, a entidade, a data e um excerto curto. A hipótese visual aparece em separado.
 
