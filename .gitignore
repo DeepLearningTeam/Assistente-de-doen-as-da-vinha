@@ -1,0 +1,13 @@
+.env
+__pycache__
+F3
+documents
+log_*.txt
+*_rr.csv
+testar_*.py
+diagnostico*.py
+pdfs_cache
+venv
+fieldvitis
+base_dados*.faiss
+metadados_chunks.pkl
