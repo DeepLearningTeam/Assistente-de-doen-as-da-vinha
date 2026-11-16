@@ -1,0 +1,4 @@
+# Controlo experimental de texto. A geração continua a exigir citações válidas.
+gerador: llm
+rag: true
+recusa_reforcada: false

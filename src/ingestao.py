@@ -114,6 +114,7 @@ def limpar_pagina(texto: str, repetidas: set) -> str:
     # 1. Marcadores de texto extraído de imagens (OCR) — mantém o conteúdo, tira os marcadores
     texto = re.sub(r"<!--\s*(Start|End) of picture text\s*-->", "", texto)
     texto = texto.replace("<br>", "\n")
+    texto = re.sub(r"</?mark>", "", texto)
 
     # 2. Markdown/HTML residual do pymupdf4llm
     texto = re.sub(r"</?u>", "", texto)                       # <u>...</u> → remove as tags

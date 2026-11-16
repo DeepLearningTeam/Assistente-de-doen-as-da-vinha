@@ -1,0 +1,318 @@
+/* A estrutura e os controlos são Gradio; aqui estão apenas o aspeto e a adaptação ao ecrã. */
+:root {
+  color-scheme: light;
+  background: #f3f5ed;
+}
+body, .gradio-container {
+  --vinha-escuro: #203527;
+  --vinha-verde: #315c42;
+  --vinha-secundario: #526558;
+  --vinha-linha: #d9e1d4;
+  --vinha-fundo: #f3f5ed;
+  --vinha-branco: #fffefa;
+  background: var(--vinha-fundo) !important;
+  color: var(--vinha-escuro) !important;
+}
+.gradio-container {
+  --body-background-fill: var(--vinha-fundo);
+  --body-text-color: var(--vinha-escuro);
+  --block-background-fill: var(--vinha-branco);
+  --block-border-color: var(--vinha-linha);
+  --block-label-text-color: var(--vinha-secundario);
+  --input-background-fill: #fff;
+  --input-border-color: #d1dccd;
+  --input-border-color-focus: #497858;
+  --input-text-color: #263b2c;
+  --background-fill-primary: #fffefa;
+  --background-fill-secondary: #eef3e9;
+  --border-color-primary: var(--vinha-linha);
+  --color-accent: #497858;
+  --body-text-color-subdued: #526558;
+  --button-primary-background-fill: #294f36;
+  --button-primary-background-fill-hover: #21432d;
+  --button-primary-border-color: #294f36;
+  --button-primary-text-color: #fff;
+  --button-secondary-background-fill: #edf2e9;
+  --button-secondary-background-fill-hover: #e3ecdf;
+  --button-secondary-border-color: #dce5d7;
+  --button-secondary-text-color: #284333;
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 26px 32px 18px !important;
+}
+.gradio-container .vinha-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 23px 28px 25px;
+  border: 1px solid #d5dfd1;
+  border-radius: 22px;
+  background: linear-gradient(111deg, #fbfcf6 30%, #e8efe1 100%);
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.marca-grafismo {
+  display: block;
+  position: relative;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #315c42;
+}
+.marca-grafismo::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 27px;
+  border: 1.8px solid #f2f7ed;
+  border-radius: 72% 0 72% 0;
+  position: absolute;
+  top: 9px;
+  left: 14px;
+  transform: rotate(19deg);
+}
+.marca-grafismo::after {
+  content: "";
+  position: absolute;
+  width: 1.5px;
+  height: 25px;
+  top: 14px;
+  left: 23px;
+  border-radius: 20px;
+  background: #f2f7ed;
+  transform: rotate(42deg);
+}
+.vinha-header h1 {
+  margin: 0 0 4px;
+  font-size: clamp(27px, 4vw, 41px);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+  color: #203527;
+}
+.vinha-header p {
+  margin: 0;
+  color: var(--vinha-secundario);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.vinha-header .local {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid #ceddcc;
+  border-radius: 100px;
+  background: #f5f8ef;
+  color: #385640;
+  font-size: 12px;
+  font-weight: 650;
+}
+.local span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #588d64;
+}
+#grelha {
+  gap: 18px !important;
+  margin: 4px 0 0;
+  align-items: flex-start !important;
+}
+#coluna-lateral {
+  gap: 14px !important;
+}
+.gradio-container .cartao {
+  min-width: 0;
+  border: 1px solid var(--vinha-linha) !important;
+  border-radius: 17px !important;
+  background: var(--vinha-branco) !important;
+  box-shadow: 0 5px 18px #1c3f2808;
+}
+#cartao-chat, #painel-chats {
+  padding: 16px !important;
+  gap: 10px !important;
+}
+#painel-visual, #painel-fontes {
+  padding: 9px 12px 12px !important;
+}
+#painel-visual > *, #painel-fontes > * {
+  color: var(--vinha-escuro);
+}
+.gradio-container .titulo-painel {
+  margin: 0 0 2px;
+  color: var(--vinha-escuro);
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: 0.004em;
+}
+#conversa {
+  border-radius: 12px !important;
+  border: 1px solid #e0e7db !important;
+  background: #f7f9f3 !important;
+}
+.chat-vazio {
+  text-align: center;
+  color: #32543e;
+  padding: 16px;
+}
+.chat-vazio strong {
+  font-size: 17px;
+  font-weight: 700;
+}
+.chat-vazio p {
+  color: #53685a;
+  margin-top: 7px;
+  font-size: 13px;
+}
+#exemplos {
+  gap: 8px;
+  justify-content: flex-start;
+}
+#exemplos button {
+  flex: 0 1 auto;
+  min-width: 0;
+  border-radius: 99px;
+  padding-inline: 13px;
+  font-weight: 620;
+}
+#compositor {
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+#modo-enviar {
+  gap: 6px !important;
+}
+.modelos-modo {
+  padding: 2px 3px 5px;
+  color: var(--vinha-secundario);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+#editar-nome {
+  gap: 6px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+#editar-nome button {
+  min-height: 37px;
+}
+#foto-upload {
+  border: 1px dashed #a8bba6 !important;
+  border-radius: 12px !important;
+  background: #f7f9f3 !important;
+}
+#enviar {
+  min-height: 37px;
+  border-radius: 8px;
+}
+#repetir-foto {
+  padding-block: 4px;
+}
+#aviso:has(.mensagem-estado:empty) {
+  display: none;
+}
+.mensagem-estado {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #edf4e8;
+  color: #365640;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.mensagem-estado:empty { padding: 0; }
+.estado-erro, .erro-visual {
+  background: #f9eee7;
+  color: #873e26;
+}
+.erro-visual {
+  padding: 10px 12px;
+  border-radius: 9px;
+}
+.painel-vazio, .descricao-visual {
+  margin: 0;
+  padding: 4px 2px;
+  line-height: 1.5;
+  font-size: 13px;
+  color: var(--vinha-secundario);
+}
+.motor, .confianca, .meta-fonte, .excerto, .notas-fonte {
+  margin: 4px 0;
+  color: var(--vinha-secundario);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.hipotese {
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 3px 0 6px;
+}
+.confianca {
+  display: flex;
+  justify-content: space-between;
+}
+.barra-visual {
+  width: 100%;
+  height: 7px;
+  accent-color: #467452;
+}
+.distribuicao {
+  margin: 5px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.distribuicao li {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid #ebefe7;
+  font-size: 12px;
+}
+.fonte {
+  padding: 8px 2px 10px;
+  border-bottom: 1px solid #e9eee4;
+}
+.fonte:last-child { border-bottom: none; }
+.fonte h3 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.fonte a, .vinha-rodape a {
+  color: #2a5d3b;
+  font-weight: 700;
+  text-underline-offset: 2px;
+}
+.fonte a { font-size: 12px; }
+.notas-fonte { color: #745120; }
+#novo-chat { margin-top: 1px; }
+.vinha-rodape {
+  padding: 10px 15px;
+  margin-top: 3px;
+  border: 1px solid #ebdab6;
+  border-radius: 11px;
+  background: #fcf2df;
+  color: #634a27;
+  font-size: 12px;
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .gradio-container { padding: 13px 12px 16px !important; }
+  .gradio-container .vinha-header { padding: 17px; }
+  .vinha-header .local { display: none; }
+  .marca { gap: 13px; }
+  #grelha { gap: 12px !important; }
+  #coluna-chat, #coluna-lateral { min-width: 0 !important; flex-basis: 100% !important; }
+  #cartao-chat { padding: 12px !important; }
+  #modo-enviar { min-width: 150px !important; }
+}

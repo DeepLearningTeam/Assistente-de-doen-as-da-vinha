@@ -1,0 +1,16 @@
+# Formato de integração. Consulta runs/checkpoints/README.md antes de alterar.
+backend: onnx                         # onnx ou python
+checkpoint: runs/checkpoints/cnn.onnx
+adaptador: src.cnn_colega:prever        # usado apenas com backend: python
+
+# Os valores abaixo são exemplos. Copia o pré-processamento usado no treino.
+largura: 224
+altura: 224
+redimensionamento: direto             # direto ou centro
+layout: NCHW                          # NCHW ou NHWC
+escala: 255.0                         # divide os valores RGB 0–255 por este valor
+media: [0.485, 0.456, 0.406]
+desvio: [0.229, 0.224, 0.225]
+saida: logits                         # logits ou probabilidades
+classes: [saudavel, esca, leaf_blight, black_rot]  # ordem real das saídas da CNN
+limiar: 0.65

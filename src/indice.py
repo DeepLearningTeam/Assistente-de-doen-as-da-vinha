@@ -116,7 +116,6 @@ def pesquisar_query_qdrant(pergunta: str, client: QdrantClient,
 
 def recuperar(config, consulta: str) -> list[dict]:
     """Interface esperada pela conversa: devolve passagens já filtradas e ordenadas."""
-    limiar = getattr(config, "similaridade_minima", None)
     resultados = pesquisar_query_qdrant(consulta, obter_cliente())
     return [
         {

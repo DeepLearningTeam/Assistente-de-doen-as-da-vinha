@@ -1,0 +1,4 @@
+# Via textual com classificação CNN se houver fotografia e consulta ao corpus.
+gerador: llm
+rag: true
+recusa_reforcada: true
