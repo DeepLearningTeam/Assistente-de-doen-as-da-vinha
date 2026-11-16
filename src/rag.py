@@ -21,7 +21,6 @@ from pymupdf4llm.ocr import rapidocr_onnx_backend
 from tqdm import tqdm
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer, CrossEncoder
-import ollama
 
 load_dotenv()
 
@@ -352,7 +351,7 @@ def recuperar_candidatos(pergunta: str, client: QdrantClient,
             query=FusionQuery(fusion=Fusion.RRF),
             limit=k,
         )
-    return [{**h.payload, "score_pesquisa": h.score} for h in resposta.points]
+    return [{**h.payload, "id": h.id, "score_pesquisa": h.score} for h in resposta.points]
 
 def reranquear(pergunta: str, candidatos: list[dict]) -> list[dict]:
     """Fase 2 (Python): o cross-encoder lê (pergunta, chunk) em conjunto e reordena."""
@@ -385,55 +384,6 @@ def pesquisar_query_qdrant(pergunta: str, client: QdrantClient,
     return candidatos[:TOP_K]
  
 
-# ── Geração ────────────────────────────────────────────────────────────────
-def gerar_resposta_llm(pergunta_utilizador: str, client: QdrantClient):
-    resultados = pesquisar_query_qdrant(pergunta_utilizador, client)
-
-    print("\n--- DEBUG QDRANT: O que foi extraído da base de dados? ---")
-    for i, chunk in enumerate(resultados):
-        print(f"Resultado {i+1} (Pág {chunk['pagina']}, score {chunk['score']:.3f}): "
-              f"{chunk['texto'][:100]}...")
-    print("---------------------------------------------------\n")
-
-    # Abstenção decidida em código (hoje só dispara com coleção vazia;
-    # passa a ser útil quando houver limiar de score).
-    if not resultados:
-        yield MSG_SEM_INFO
-        return
-
-    contexto_formatado = "\n\n---\n\n".join(
-        f"Documento: {c['nome_documento']} (Pág. {c['pagina']})\nInformação: {c['texto']}"
-        for c in resultados
-    )
-
-    instrucao_sistema = (
-        "És um assistente técnico agrícola especializado em viticultura.\n"
-        "A tua tarefa é extrair a resposta à pergunta do utilizador utilizando APENAS os documentos fornecidos no contexto.\n\n"
-        "Diretrizes:\n"
-        "- Sintetiza os factos presentes no contexto de forma clara e direta.\n"
-        "- Inclui o 'nome_documento' de onde retiraste a resposta no final.\n"
-        f"- Caso a informação fornecida no contexto não tenha absolutamente nenhuma relação com a pergunta, e apenas nesse caso, deves responder com: '{MSG_SEM_INFO}'"
-    )
-
-    prompt_utilizador = (
-        f"Contexto extraído da base de dados:\n{contexto_formatado}\n\n"
-        f"Pergunta do viticultor: {pergunta_utilizador}"
-    )
-
-    print(f"\nA consultar o {MODELO_LLM} para a pergunta: '{pergunta_utilizador}'...")
-    resposta = ollama.chat(
-        model=MODELO_LLM,
-        messages=[
-            {"role": "system", "content": instrucao_sistema},
-            {"role": "user", "content": prompt_utilizador},
-        ],
-        stream=True,
-        options=LLM_OPCOES,
-    )
-    for parte in resposta:
-        yield parte["message"]["content"]
-
-
 # ── Execução direta ────────────────────────────────────────────────────────
 if __name__ == "__main__":
     diretoria_script = Path(__file__).parent.parent / "data"
@@ -453,10 +403,3 @@ if __name__ == "__main__":
         print(f"Corpus → chunks: {time.perf_counter() - t0:.0f}s "
               f"({len(chunks)} chunks)")
         construir_base_qdrant(chunks, cliente)
-
-    pergunta_teste = "Como resolvo oídio na vinha?"
-
-    print("\n=== RESPOSTA DO ASSISTENTE ===")
-    for palavra in gerar_resposta_llm(pergunta_teste, cliente):
-        print(palavra, end="", flush=True)
-    print("\n==============================\n")
