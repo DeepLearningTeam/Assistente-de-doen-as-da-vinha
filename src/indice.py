@@ -297,42 +297,6 @@ def pesquisar_query_base_de_dados(query: str, indice_faiss):
 
     return resposta
 
-# def testar_recall_at_5(indice_faiss, perguntas_teste):
-    """
-    Executa uma bateria de perguntas e calcula a percentagem de vezes
-    que o documento alvo aparece no Top 5 de resultados (Recall@5).
-    """
-    sucessos = 0
-    total = len(perguntas_teste)
-
-    print("A iniciar testes de Recall@5...\n")
-
-    for item in perguntas_teste:
-        query = item["pergunta"]
-        alvo_esperado = item["documento_alvo"]
-
-        # Chama a tua função que extrai os 5 chunks
-        # (Garante que a tua variável RECALL = 5 na função original)
-        resultados = pesquisar_query_base_de_dados(query, indice_faiss)
-
-        # Verifica se o documento correto está entre os 5 resultados
-        acertou = False
-        for chunk in resultados:
-            if chunk["nome_documento"] == alvo_esperado:
-                acertou = True
-                break
-        
-        if acertou:
-            sucessos += 1
-            print(f"[SUCESSO] '{query}' -> Encontrou {alvo_esperado}.")
-        else:
-            print(f"[FALHA]   '{query}' -> Falhou em encontrar {alvo_esperado}.")
-
-    recall = (sucessos / total) * 100
-    print(f"\nResultado Final Recall@5: {recall:.2f}% ({sucessos}/{total})")
-    
-    return recall
-
 import ollama
 
 def gerar_resposta_llm(pergunta_utilizador, indice_faiss):
@@ -410,7 +374,7 @@ if __name__ == "__main__":
     #     pickle.dump(lista_chunks, f)
 
     # Teste de Produção (RAG Completo)
-    pergunta_teste = "Qual é a causa do aparecimento de Míldio na vinha?"
+    pergunta_teste = "O que é uma uva?"
     resposta_final = gerar_resposta_llm(pergunta_teste, indice_faiss)
 
     print("\n=== RESPOSTA DO ASSISTENTE ===")
