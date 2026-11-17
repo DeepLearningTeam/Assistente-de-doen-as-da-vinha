@@ -12,7 +12,7 @@ from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256
 from .config import EXPERIENCIAS, carregar_config
 from .corpus import CSV_CORPUS, ler_corpus, selecionadas
 from .imagem import analisar_cnn, config_cnn, ler_imagem
-from .indice import FICHEIRO_INDICE, abrir_validado
+from .indice import descrever_colecao
 from .modelos import ErroFormato, digest_modelo
 from .rag import responder
 from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
@@ -103,12 +103,17 @@ def avaliar_texto(args):
         linhas = linhas[:args.limite]
     configs = {modo: carregar_config(modo) for modo in args.condicoes}
     pesos = {}
-    indice_hash = None
+    indice_info = None
     for modo, cfg in configs.items():
         pesos[modo] = digest_modelo(cfg, cfg.modelo)
         if cfg.rag:
-            abrir_validado(cfg)
-            indice_hash = sha256(FICHEIRO_INDICE)
+            if indice_info is None:
+                try:
+                    indice_info = descrever_colecao(cfg)
+                except ErroProjeto:
+                    raise
+                except Exception:
+                    raise ErroProjeto("Não foi possível validar o Qdrant. Executa src.indice info.") from None
 
     pasta = preparar_execucao(args.execucao, {
         "tipo": "texto", "split": args.split, "ids": [p["id"] for p in linhas],
@@ -116,7 +121,7 @@ def avaliar_texto(args):
         "itens_previstos": len(linhas) * len(configs) * len(args.temperaturas) * args.repeticoes,
         "configuracoes": {m: c.model_dump() for m, c in configs.items()}, "modelos_digest": pesos,
         "perguntas_sha256": sha256(PERGUNTAS), "corpus_sha256": sha256(CSV_CORPUS),
-        "indice_sha256": indice_hash,
+        "indice_qdrant": indice_info,
     })
     for modo, cfg in configs.items():
         for temp in args.temperaturas:
@@ -207,11 +212,41 @@ def mostrar_dados():
     print(f"Documentos para o índice: {', '.join(selecionadas(ler_corpus()))}")
 
 
+def avaliar_respostas_imagem(args):
+    """Par VLM/VLM+RAG com a mesma fotografia/pergunta e histórico vazio."""
+    imagem = ler_imagem(args.foto)
+    configs = {m: carregar_config(m) for m in ("vlm", "vlm_rag")}
+    try:
+        indice = descrever_colecao(configs["vlm_rag"])
+    except ErroProjeto:
+        raise
+    except Exception:
+        raise ErroProjeto("Não foi possível validar o Qdrant. Executa src.indice info.") from None
+    pasta = preparar_execucao(args.execucao, {
+        "tipo": "resposta_imagem", "pergunta": args.pergunta,
+        "imagem_sha256": sha256(args.foto), "imagem": args.foto.name,
+        "configuracoes": {m: c.model_dump() for m, c in configs.items()},
+        "modelo_digest": digest_modelo(configs["vlm"], configs["vlm"].modelo),
+        "indice_qdrant": indice, "itens_previstos": 2,
+    })
+    for modo, config in configs.items():
+        dados = {
+            "tipo": "resposta_imagem", "modo": modo, "pergunta": args.pergunta,
+            "imagem_sha256": sha256(args.foto), "historico": [],
+            "imagem_na_geracao_final": not config.rag,
+        }
+        def calcular():
+            return responder(args.pergunta, modo, imagem=imagem, historico=(),
+                             config=config, registar=True).model_dump()
+        gravar_item(pasta, modo, dados, calcular)
+    print(f"Respostas guardadas em {pasta}; comparar por avaliação humana.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="acao", required=True)
     texto = sub.add_parser("texto", help="Executar perguntas, sem mostrar referências ao modelo.")
-    texto.add_argument("--condicoes", choices=EXPERIENCIAS, nargs="+", default=list(CONDICOES_TEXTO))
+    texto.add_argument("--condicoes", choices=EXPERIENCIAS, nargs="+", default=["llm_cnn", "llm_cnn_rag"])
     texto.add_argument("--repeticoes", type=int, default=3)
     texto.add_argument("--temperaturas", nargs="+", type=float, default=[0.0, 0.7])
     imagem = sub.add_parser("imagem", help="Comparar CNN e VLM no mesmo split de imagens.")
@@ -220,6 +255,10 @@ def main():
     imagem.add_argument("--imagens", type=Path, default=PASTA_IMAGENS)
     imagem.add_argument("--seeds", type=int, nargs="+")
     imagem.add_argument("--cnn-checkpoint", help="Caminho dos pesos, com {seed} se houver um modelo por seed.")
+    respostas = sub.add_parser("respostas-imagem", help="Comparar qualidade das respostas VLM e VLM+RAG.")
+    respostas.add_argument("--foto", type=Path, required=True)
+    respostas.add_argument("--pergunta", required=True)
+    respostas.add_argument("--execucao", required=True)
     for cmd in (texto, imagem):
         cmd.add_argument("--split", choices=["validacao", "teste"], default="validacao")
         cmd.add_argument("--execucao", required=True, help="Nome da pasta em runs/. Repete para retomar.")
@@ -242,6 +281,8 @@ def main():
             avaliar_texto(args)
         elif args.acao == "imagem":
             avaliar_imagem(args)
+        elif args.acao == "respostas-imagem":
+            avaliar_respostas_imagem(args)
         else:
             mostrar_dados()
     except (ErroProjeto, OSError, ValueError) as erro:

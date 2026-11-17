@@ -313,6 +313,8 @@ def resumir(nomes, destino, bootstrap):
     resultados, texto, imagem = [], [], []
     for nome in nomes:
         manifesto, itens = carregar(nome)
+        if manifesto["parametros"]["tipo"] == "resposta_imagem":
+            raise ErroProjeto("A comparação de respostas com fotografia exige revisão humana dos JSON; não é classificação.")
         for item in itens:
             resultados.extend(resultados_item(manifesto, item))
         if manifesto["parametros"]["tipo"] == "texto":

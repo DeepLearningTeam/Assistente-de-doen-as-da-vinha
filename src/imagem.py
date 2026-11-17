@@ -107,7 +107,7 @@ def sessao_onnx(caminho, modificacao_ns):
     try:
         import onnxruntime
     except ImportError as erro:
-        raise ErroProjeto("Instala a dependência da CNN com: python -m pip install onnxruntime==1.31.1") from erro
+        raise ErroProjeto("Instala a dependência da CNN com: python -m pip install onnxruntime==1.32.0") from erro
     try:
         return onnxruntime.InferenceSession(str(caminho), providers=["CPUExecutionProvider"])
     except Exception as erro:

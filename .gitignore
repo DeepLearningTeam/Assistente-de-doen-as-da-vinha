@@ -1,4 +1,9 @@
 .venv/
+.env
+.env.*
+!.env.example
+data/qdrant_local/
+src/pdfs_cache/
 __pycache__/
 *.py[cod]
 .DS_Store

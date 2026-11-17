@@ -1,7 +1,12 @@
 # Configuração comum. Cada ficheiro de experiência substitui apenas os campos indicados.
 llm_modelo: "qwen3:1.7b-q4_K_M"
 vlm_modelo: "qwen2.5vl:3b-q4_K_M"
-embeddings_modelo: "bge-m3"
+embeddings_modelo: "BAAI/bge-m3"  # SentenceTransformers; não usa o Ollama
+reranker_modelo: "BAAI/bge-reranker-v2-m3"
+pesquisa: hibrida
+k_candidatos: 30
+limiar_reranker: 0.60
+qdrant_colecao: videira_fitossanidade
 ollama_url: "http://127.0.0.1:11434"
 timeout_segundos: 240
 contexto_tokens: 8192
@@ -12,9 +17,8 @@ historico_turnos: 6
 
 # As passagens nunca atravessam páginas do PDF.
 top_k: 5
-chunk_carateres: 1150
-sobreposicao: 180
-similaridade_minima: 0.43
+chunk_carateres: 1200
+sobreposicao: 200
 confianca_visual_minima: 0.55
 
 prompt: |

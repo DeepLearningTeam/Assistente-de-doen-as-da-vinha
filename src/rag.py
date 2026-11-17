@@ -459,7 +459,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
             recuperadas = recuperar(config, consulta)
             candidatos = {
                 numero: p for numero, p in enumerate(recuperadas, 1)
-                if not config.recusa_reforcada or p["similaridade"] >= config.similaridade_minima
+                if not config.recusa_reforcada or p["similaridade"] >= config.limiar_reranker
             }
 
     def resultado(estado, texto, **dados):

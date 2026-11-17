@@ -5,7 +5,7 @@ Pede ao teu colega o ficheiro do modelo, a ordem das classes, o pré-processamen
 ## Modelo ONNX
 
 1. Coloca o ficheiro em `runs/checkpoints/cnn.onnx` ou muda `checkpoint` em `configs/cnn.yaml`.
-2. Instala `python -m pip install onnxruntime==1.31.1` no ambiente virtual.
+2. Instala `python -m pip install onnxruntime==1.32.0` no ambiente virtual.
 3. Ajusta os campos de imagem ao treino. `largura` e `altura` definem a resolução, `escala`, `media` e `desvio` definem a normalização RGB, e `layout` define a ordem dos canais. `direto` redimensiona a fotografia inteira. `centro` recorta ao centro para o rácio do modelo. Para outra transformação, usa o adaptador Python.
 4. Em `classes`, escreve a ordem real das saídas. Usa `saudavel`, `esca`, `leaf_blight` e `black_rot`. Se existir uma saída treinada para outras imagens, usa `outra` na posição correspondente.
 5. Escolhe `saida: logits` se o modelo devolver valores antes de softmax, ou `saida: probabilidades` se já devolver probabilidades. Se o modelo tiver várias saídas, indica `nome_saida`.

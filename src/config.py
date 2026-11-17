@@ -3,6 +3,7 @@ import os
 from typing import Literal
 
 import yaml
+from dotenv import load_dotenv
 from pydantic import BaseModel, Field, model_validator
 
 from .apoio import ErroProjeto, RAIZ
@@ -33,7 +34,11 @@ class Config(BaseModel):
     top_k: int = Field(ge=1, le=10)
     chunk_carateres: int = Field(gt=0)
     sobreposicao: int = Field(ge=0)
-    similaridade_minima: float = Field(ge=-1, le=1)
+    reranker_modelo: str = "BAAI/bge-reranker-v2-m3"
+    pesquisa: Literal["denso", "hibrida"] = "hibrida"
+    k_candidatos: int = Field(default=30, ge=1)
+    limiar_reranker: float = Field(default=0.60, ge=0, le=1)
+    qdrant_colecao: str = "videira_fitossanidade"
     confianca_visual_minima: float = Field(ge=0, le=1)
     prompt: str
 
@@ -49,6 +54,9 @@ class Config(BaseModel):
 
 
 def carregar_config(modo="llm_cnn_rag", **alteracoes):
+    # Caminho explícito: o arranque não depende da pasta onde o terminal estava.
+    # As variáveis da sessão têm prioridade sobre o ficheiro local.
+    load_dotenv(RAIZ / ".env", override=False)
     if modo not in EXPERIENCIAS:
         raise ErroProjeto(f"Modo desconhecido: {modo}")
     pasta = RAIZ / "configs"
@@ -57,6 +65,7 @@ def carregar_config(modo="llm_cnn_rag", **alteracoes):
         via = yaml.safe_load((pasta / f"{modo}.yaml").read_text(encoding="utf-8"))
         valores = {**base, **via, **alteracoes}
         valores["ollama_url"] = os.environ.get("OLLAMA_BASE_URL", valores["ollama_url"])
+        valores["qdrant_colecao"] = os.environ.get("QDRANT_COLECAO", valores["qdrant_colecao"])
         return Config.model_validate(valores)
     except (OSError, ValueError, TypeError, yaml.YAMLError) as erro:
         raise ErroProjeto(f"Revê os YAML em configs/. {erro}") from erro

@@ -1,0 +1,26 @@
+{
+  "colecao": "videira_fitossanidade",
+  "pontos": 989,
+  "documentos": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D08",
+    "D09",
+    "D13",
+    "D15",
+    "D16",
+    "D17",
+    "D18",
+    "D19"
+  ],
+  "documentos_em_falta": [
+    "D07",
+    "D14"
+  ],
+  "payloads_sha256": "508335824f06281c6192dcab88afcb9ef301769b878ae8c8a282b62aec0f89c0",
+  "proveniencia": "Confirmar com o autor pesos BGE-M3, revisão, BM25 português e extração; o esquema não prova a proveniência."
+}
