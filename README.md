@@ -144,11 +144,11 @@ Os modos sem RAG funcionam sem credenciais Qdrant. Sem fotografia, a CNN não é
 
 O código conserva a pesquisa do colega: `BAAI/bge-m3` por SentenceTransformers, vetores densos normalizados com 1024 dimensões, `Qdrant/bm25` em português, fusão RRF de 30 candidatos, `BAAI/bge-reranker-v2-m3` e cinco passagens finais. Estes modelos são descarregados do Hugging Face na primeira consulta e executados localmente; não usam o `bge-m3` do Ollama. A primeira execução exige Internet e pode demorar e ocupar vários GB.
 
-A coleção deve ter os vetores nomeados `vetor_denso` (1024, Cosine) e `bm25` (IDF), e os payloads documentais do colega. `info` verifica o esquema, páginas, campos e documentos reservados; mostra também documentos em falta. Isso não prova quais os pesos/revisões usados originalmente: confirma essa proveniência com o colega. Na verificação de 16/11, a coleção tinha 989 passagens e 14 documentos; faltavam D07 e D14 face aos 16 previstos. Não foi reconstruída nem alterada. Consulta [INTEGRACAO.md](INTEGRACAO.md).
+A coleção deve ter os vetores nomeados `vetor_denso` (1024, Cosine) e `bm25` (IDF), e os payloads documentais do colega. `info` verifica o esquema, páginas, campos e documentos reservados; mostra também documentos em falta. Isso não prova quais os pesos/revisões usados originalmente: confirma essa proveniência com o colega. Na verificação de 16/11, a coleção tinha 989 passagens e 14 documentos. A seleção em `corpus.csv` foi ajustada para esses 14 documentos, com D07 e D14 marcados como `não` em `indexar`. A coleção não foi reconstruída nem alterada nesta atualização. Consulta [INTEGRACAO.md](INTEGRACAO.md).
 
 ### 4.3. Construir uma coleção local nova
 
-Só precisas deste passo para reconstruir/testar o índice. A construção reutiliza a extração Markdown por página, limpeza, divisão por cabeçalhos e chunks de 1200 carateres com sobreposição de 200 do colega. Usa os PDF importados em `data/docs/`, confirmados por SHA-256, e exclui D10–D12. Não há escrita no serviço partilhado neste comando.
+Só precisas deste passo para reconstruir/testar o índice. A construção reutiliza a extração Markdown por página, limpeza, divisão por cabeçalhos e chunks de 1200 carateres com sobreposição de 200 do colega. Usa os PDF importados em `data/docs/`, confirmados por SHA-256, e exclui D07, D10–D12 e D14. Não há escrita no serviço partilhado neste comando.
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.ingestao --local .\data\qdrant_local --colecao videira_teste --ocr por
@@ -358,8 +358,8 @@ O ficheiro tem de existir. Cada condição começa sem histórico e guarda o has
 ## 8. Dados e referências
 
 - **FieldVitis v2** · 555 fotografias, licença CC BY 4.0. A classe podridão-negra tem 39 imagens e o conjunto não foi recolhido especificamente em vinhas portuguesas. [Dataset e citação](https://doi.org/10.5281/zenodo.17307846)
-- **Corpus** · `data/corpus.csv` conserva os 19 registos, incluindo as licenças e os URLs. A configuração inclui os 16 candidatos, contando com os condicionais, e reserva D10–D12 para a avaliação da recusa. Os PDF e as imagens são ficheiros locais; o índice pode ser a coleção partilhada ou uma coleção local nova.
-- **Perguntas** · `data/perguntas/perguntas.csv` conserva as 40 perguntas fornecidas, com referência, página e indicação de validação humana. As referências bibliográficas estão em [paper/referencias.bib](paper/referencias.bib).
+- **Corpus** · `data/corpus.csv` conserva os 19 registos, incluindo as licenças e os URLs. A configuração inclui 14 documentos, contando com os sete condicionais mantidos. D07 e D14 ficam excluídos da indexação; D10–D12 ficam reservados para a avaliação da recusa. Os PDF e as imagens são ficheiros locais; o índice pode ser a coleção partilhada ou uma coleção local nova.
+- **Perguntas** · `data/perguntas/perguntas.csv` contém 40 perguntas, com referência, página e indicação de validação humana. Q023 foi substituída por uma pergunta sobre as consequências da desfolha precoce, suportada por D15, página 1, mantendo 15 perguntas respondíveis e cinco de recusa em cada split. As referências bibliográficas estão em [paper/referencias.bib](paper/referencias.bib).
 - **Documentação técnica** · [ChatOllama](https://docs.langchain.com/oss/python/integrations/chat/ollama) · [OllamaEmbeddings](https://docs.langchain.com/oss/python/integrations/embeddings/ollama) · [Gradio](https://www.gradio.app/docs/gradio/blocks)
 
 **Apoio técnico experimental.** Confirma produtos e doses na DGAV ou com um técnico. [Consulta SIFITO](https://www.dgav.pt/medicamentos/conteudo/produtos-fitofarmaceuticos/divulgacao/)
