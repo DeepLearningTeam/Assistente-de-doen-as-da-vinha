@@ -1,0 +1,7 @@
+﻿execucao,split,condicao,modelo,seed,temperatura,metrica,valor,ic95_inf,ic95_sup,n_unidades,unidade
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,macro_f1,0.8571428571428571,0.4,1.0,4,imagem
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,acuracia,0.75,0.25,1.0,4,imagem
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,cobertura,1.0,1.0,1.0,4,imagem
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,latencia_media_s,89.09160887500911,77.39136594999582,100.79185180002241,4,imagem
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,ece_aceites,0.23414365947246552,0.005333211272954941,0.7196376770734787,4,imagem
+cnn-validacao-final,validacao,cnn,resnet50_seed1.keras,1,,recall_black_rot,0.75,0.25,1.0,4,imagem

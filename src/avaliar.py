@@ -14,6 +14,7 @@ from .corpus import CSV_CORPUS, ler_corpus, selecionadas
 from .imagem import analisar_cnn, config_cnn, ler_imagem
 from .indice import descrever_colecao
 from .modelos import ErroFormato, digest_modelo
+from .preparar_cnn import validar_manifesto
 from .rag import responder
 from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
 from .vlm import analisar_vlm
@@ -154,6 +155,7 @@ def avaliar_imagem(args):
     seeds = args.seeds or manifesto["seeds"]
     if len(set(seeds)) != len(seeds) or not set(seeds) <= set(manifesto["seeds"]):
         raise ErroProjeto("As seeds escolhidas devem ser distintas e estar em splits.json.")
+    validar_manifesto(manifesto, seeds)
     imagens = {}
     for seed in seeds:
         itens = [i for i in manifesto["imagens"] if i["splits"][str(seed)] == args.split]
@@ -166,13 +168,18 @@ def avaliar_imagem(args):
     if "cnn" in args.modelos:
         cfg_cnn = config_cnn()
         for seed in seeds:
+            if seed != cfg_cnn.seed_treino:
+                raise ErroProjeto("A seed das divisões deve coincidir com a seed de treino do checkpoint CNN.")
             caminho = checkpoint_cnn(args.cnn_checkpoint or cfg_cnn.checkpoint, seed)
             if not caminho.is_file():
                 raise ErroProjeto(f"Falta o checkpoint da CNN para a seed {seed}: {caminho}.")
             checkpoints[seed] = caminho
+            if sha256(caminho) != manifesto.get("proveniencia", {}).get("checkpoint_sha256"):
+                raise ErroProjeto("O checkpoint não corresponde ao modelo recebido e registado no manifesto.")
         modelos["cnn"] = {str(s): sha256(c) for s, c in checkpoints.items()}
     pasta = preparar_execucao(args.execucao, {
-        "tipo": "imagem", "split": args.split, "seeds": seeds, "modelos_digest": modelos,
+        "tipo": "imagem", "split": args.split, "seeds": seeds, "seeds_treino": seeds,
+        "seeds_amostragem": None, "modelos_digest": modelos,
         "config_vlm": config.model_dump() if "vlm" in args.modelos else None,
         "config_cnn": cfg_cnn.model_dump(mode="json") if "cnn" in args.modelos else None,
         "splits_sha256": sha256(args.splits), "limite": args.limite,
@@ -188,6 +195,7 @@ def avaliar_imagem(args):
                 chave = f"{motor}_s{seed}_{item['sha256'][:12]}_{Path(item['id']).stem}"
                 dados = {
                     "tipo": "imagem", "split": args.split, "modo": motor, "seed": seed,
+                    "seed_treino_cnn": seed, "seed_geracao_vlm": config.seed if motor == "vlm" else None,
                     "imagem": item["id"], "classe_ref": item["classe"],
                     "modelo": config.modelo if motor == "vlm" else checkpoints[seed].name,
                 }
@@ -260,13 +268,13 @@ def main():
     respostas.add_argument("--pergunta", required=True)
     respostas.add_argument("--execucao", required=True)
     for cmd in (texto, imagem):
-        cmd.add_argument("--split", choices=["validacao", "teste"], default="validacao")
+        cmd.add_argument("--split", choices=["validacao", "teste", "holdout"] if cmd is imagem else ["validacao", "teste"], default="validacao")
         cmd.add_argument("--execucao", required=True, help="Nome da pasta em runs/. Repete para retomar.")
         cmd.add_argument("--limite", type=int, help="Número de itens para um ensaio curto de validação.")
     sub.add_parser("dados", help="Validar IDs, páginas e divisão das perguntas.")
     args = parser.parse_args()
     if args.acao in {"texto", "imagem"} and args.limite is not None:
-        if args.limite < 1 or args.split == "teste":
+        if args.limite < 1 or args.split != "validacao":
             parser.error("--limite exige um número positivo e o split de validação.")
     if args.acao == "texto" and (
         args.repeticoes < 1 or any(not 0 <= t <= 2 for t in args.temperaturas)

@@ -1,0 +1,169 @@
+"""Contrato da CNN e prevenção de fuga na avaliação; serviços externos simulados."""
+import copy
+import importlib.util
+import json
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+import numpy as np
+from PIL import Image
+
+from src import cnn_colega, rag
+from src.apoio import ErroProjeto, RAIZ, ler_json
+from src.config import carregar_config
+from src.imagem import analisar_cnn, config_cnn
+from src.preparar_cnn import divisoes_originais, validar_manifesto
+
+
+class ContratoCNN(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec("keras"), "Requer requirements.txt")
+    def test_preprocessamento_rgb_bgr_float32_sem_dividir_255(self):
+        imagem = Image.new("RGB", (20, 30), (10, 20, 30))
+        x = cnn_colega.preparar_imagem(imagem)
+        self.assertEqual(x.shape, (1, 224, 224, 3))
+        self.assertEqual(x.dtype, np.float32)
+        np.testing.assert_allclose(x[0, 0, 0], [30 - 103.939, 20 - 116.779, 10 - 123.68], atol=1e-5)
+
+    @unittest.skipUnless(importlib.util.find_spec("keras"), "Requer requirements.txt")
+    def test_exif_e_conversao_rgb(self):
+        imagem = Image.new("L", (20, 10), 30)
+        for y in range(5):
+            for x in range(20):
+                imagem.putpixel((x, y), 210)
+        imagem.getexif()[274] = 3  # rotação 180 graus
+        tensor = cnn_colega.preparar_imagem(imagem)
+        np.testing.assert_allclose(tensor[0, 0, 0], [30-103.939, 30-116.779, 30-123.68], atol=1e-5)
+        np.testing.assert_allclose(tensor[0, -1, -1], [210-103.939, 210-116.779, 210-123.68], atol=1e-5)
+
+    def test_ordem_neuronios_e_probabilidades_sem_segunda_softmax(self):
+        valores = np.array([[0.1, 0.2, 0.3, 0.4]], dtype=np.float32)
+        with patch.object(cnn_colega, "carregar_modelo") as modelo, \
+             patch.object(cnn_colega, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3))):
+            modelo.return_value.return_value = valores
+            resultado = cnn_colega.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
+        probs = resultado["probabilidades"]
+        self.assertEqual(list(probs), ["black_rot", "esca", "saudavel", "leaf_blight"])
+        np.testing.assert_allclose(list(probs.values()), valores[0])
+        self.assertEqual(max(probs, key=probs.get), "leaf_blight")
+        self.assertEqual(config_cnn().classes, list(probs))
+
+    def test_nao_inventa_limiar_nem_rejeicao(self):
+        probs = dict(zip(config_cnn().classes, [0.24, 0.25, 0.25, 0.26]))
+        with tempfile.NamedTemporaryFile() as f, \
+             patch("src.imagem.prever_python", return_value={"probabilidades": probs}):
+            resultado = analisar_cnn(Image.new("RGB", (4, 4)), f.name)
+        self.assertEqual(resultado.estado, "ok")
+        self.assertEqual(resultado.classe, "leaf_blight")
+        self.assertEqual(resultado.confianca, 0.26)
+
+    def test_cache_carrega_apenas_uma_vez(self):
+        cnn_colega._carregar_modelo.cache_clear()
+        self.addCleanup(cnn_colega._carregar_modelo.cache_clear)
+        with tempfile.NamedTemporaryFile() as f, patch.object(cnn_colega, "obter_keras") as keras:
+            modelo = keras.return_value.models.load_model.return_value
+            modelo.input_shape, modelo.output_shape = (None, 224, 224, 3), (None, 4)
+            modelo.layers[-1].get_config.return_value = {"activation": "softmax"}
+            self.assertIs(cnn_colega.carregar_modelo(Path(f.name)), cnn_colega.carregar_modelo(Path(f.name)))
+            keras.return_value.models.load_model.assert_called_once()
+
+    def test_ficheiro_ausente_e_dependencia_ausente_dao_mensagem_util(self):
+        with self.assertRaisesRegex(ErroProjeto, "Falta o modelo CNN"):
+            cnn_colega.carregar_modelo(Path("modelo_inexistente.keras"))
+        with patch.dict("sys.modules", {"keras": None}), self.assertRaisesRegex(ErroProjeto, "requirements.txt"):
+            cnn_colega.obter_keras()
+
+    def test_probabilidades_invalidas_sao_rejeitadas(self):
+        for valores in ([[float("nan"), 0, 0, 1]], [[0.1, 0.1, 0.1, 0.1]], [[1, 2]]):
+            with self.subTest(valores=valores), patch.object(cnn_colega, "carregar_modelo") as m, \
+                 patch.object(cnn_colega, "preparar_imagem"), self.assertRaises(ErroProjeto):
+                m.return_value.return_value = np.array(valores)
+                cnn_colega.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
+
+
+class DivisoesCNN(unittest.TestCase):
+    def setUp(self):
+        self.manifesto = ler_json(RAIZ / "data/splits.json")
+
+    def test_divisoes_coincidem_com_treino_e_holdout_fica_separado(self):
+        validar_manifesto(self.manifesto, [1])
+        self.assertEqual({k: len(v) for k, v in divisoes_originais(1).items()},
+                         {"treino": 352, "validacao": 76, "teste": 77, "holdout": 50})
+        self.assertEqual(self.manifesto["seeds"], [1])
+
+    def test_manifesto_antigo_nao_pode_avaliar_modelo_recebido(self):
+        antigo = ler_json(RAIZ / "data/originais/splits_projeto_seed42_43_44.json")
+        with self.assertRaisesRegex(ErroProjeto, "seed de treino 1"):
+            validar_manifesto(antigo, [42])
+
+    def test_trocar_treino_por_teste_ou_repetir_imagem_falha(self):
+        adulterado = copy.deepcopy(self.manifesto)
+        item = next(i for i in adulterado["imagens"] if i["splits"]["1"] == "treino")
+        item["splits"]["1"] = "teste"
+        with self.assertRaisesRegex(ErroProjeto, "não corresponde"):
+            validar_manifesto(adulterado, [1])
+        adulterado = copy.deepcopy(self.manifesto)
+        adulterado["imagens"].append(adulterado["imagens"][0])
+        with self.assertRaisesRegex(ErroProjeto, "duplicados"):
+            validar_manifesto(adulterado, [1])
+
+
+class LigacaoAssistenteCNN(unittest.TestCase):
+    def setUp(self):
+        self.imagem = Image.new("RGB", (10, 10))
+        self.visual = rag.Visual(motor="CNN", estado="ok", classe="leaf_blight", confianca=0.7,
+                                 probabilidades={"black_rot": 0.1, "esca": 0.1, "saudavel": 0.1, "leaf_blight": 0.7})
+
+    def test_cnn_chega_ao_llm_e_consulta_rag_mesmo_sem_flag_usa_imagem(self):
+        ambito = rag.Ambito(tema="viticultura", seguimento=False, usa_imagem=False, consulta="Que sinais devo confirmar?")
+        for modo in ("llm_cnn", "llm_cnn_rag"):
+            cfg = carregar_config(modo)
+            with self.subTest(modo=modo), patch.object(rag, "decidir_ambito", return_value=ambito), \
+                 patch.object(rag, "analisar_cnn", return_value=self.visual), \
+                 patch.object(rag, "recuperar", return_value=[]) as recuperar, \
+                 patch.object(rag, "gerar_partes", return_value=([rag.Parte("É uma hipótese.", [])], "")) as gerar:
+                r = rag.responder("Que sinais devo confirmar?", modo, imagem=self.imagem, config=cfg)
+            if cfg.rag:
+                self.assertIn("Mancha-das-folhas (leaf blight)", recuperar.call_args.args[1])
+                self.assertNotIn("míldio", r.consulta.lower())
+            else:
+                texto = gerar.call_args.args[1][-1].content
+                self.assertIn('"confianca_softmax": 0.7', texto)
+                self.assertIn('"leaf_blight": 0.7', texto)
+                recuperar.assert_not_called()
+
+    def test_nova_foto_substitui_cnn_e_sem_foto_nao_reutiliza_resultado(self):
+        anterior = self.visual.model_copy(update={"classe": "esca"})
+        historico = [{"pergunta": "Folha anterior?", "modo": "llm_cnn_rag", "resposta": rag.Resposta(
+            estado="resposta", texto="Hipótese de esca.", visual=anterior).model_dump()}]
+        ambito = rag.Ambito(tema="viticultura", seguimento=True, usa_imagem=True, consulta="Sinais na folha?")
+        for imagem in (None, self.imagem):
+            with self.subTest(com_foto=imagem is not None), patch.object(rag, "decidir_ambito", return_value=ambito), \
+                 patch.object(rag, "analisar_cnn", return_value=self.visual) as cnn, \
+                 patch.object(rag, "recuperar", return_value=[]) as recuperar:
+                r = rag.responder("E nesta?", "llm_cnn_rag", historico, imagem)
+            self.assertNotIn("Esca", recuperar.call_args.args[1])
+            if imagem is None:
+                self.assertIsNone(r.visual)
+                cnn.assert_not_called()
+            else:
+                self.assertEqual(r.visual.classe, "leaf_blight")
+                self.assertIn("leaf blight", r.consulta)
+
+    def test_vlm_e_texto_nao_dependem_da_cnn(self):
+        ambito = rag.Ambito(tema="viticultura", seguimento=False, usa_imagem=True, consulta="Folha?")
+        for modo in ("llm_cnn", "llm_cnn_rag", "vlm", "vlm_rag"):
+            imagens = (None, self.imagem) if modo.startswith("vlm") else (None,)
+            for imagem in imagens:
+                with self.subTest(modo=modo, foto=imagem is not None), \
+                     patch.object(rag, "decidir_ambito", return_value=ambito), \
+                     patch.object(rag, "analisar_cnn", side_effect=AssertionError("CNN chamada")), \
+                     patch.object(rag, "analisar_vlm", return_value=self.visual.model_copy(update={"motor": "VLM"})), \
+                     patch.object(rag, "recuperar", return_value=[]), \
+                     patch.object(rag, "gerar_partes", return_value=([rag.Parte("Resposta.", [])], "")):
+                    rag.responder("Folha?", modo, imagem=imagem)
+
+
+if __name__ == "__main__":
+    unittest.main()

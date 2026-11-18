@@ -110,7 +110,7 @@ def html_visual(visual):
     valor = visual["confianca"]
     confianca = ""
     if valor is not None:
-        legenda = "Confiança declarada" if visual["motor"] == "VLM" else "Confiança da CNN"
+        legenda = "Confiança declarada" if visual["motor"] == "VLM" else "Valor softmax da CNN"
         confianca = (
             f'<p class="confianca">{legenda} <strong>{valor:.0%}</strong></p>'
             f'<progress class="barra-visual" aria-label="{legenda}" value="{valor}" max="1"></progress>'
@@ -304,11 +304,15 @@ def criar_app():
         def enviar_turno(chat, texto, caminho_foto, modo_escolhido, reutilizar):
             yield {estado_ui: aviso_html("A preparar a resposta no Ollama…")}
             try:
-                imagem_b64 = codificar_imagem(ler_imagem(caminho_foto)) if caminho_foto else None
+                imagem_original = ler_imagem(caminho_foto) if caminho_foto else None
+                imagem_b64 = codificar_imagem(imagem_original) if imagem_original is not None else None
                 if not imagem_b64 and reutilizar:
                     imagem_b64 = chats.ultima_foto(chat)
                 imagem = descodificar_imagem(imagem_b64) if imagem_b64 else None
                 config = carregar_config(modo_escolhido)
+                # CNN recebe os píxeis originais; VLM mantém o JPEG existente.
+                if config.gerador == "llm" and imagem_original is not None:
+                    imagem = imagem_original
                 modelos = modelos_modo(modo_escolhido, config)
                 resposta = responder(texto, modo_escolhido, chat["turnos"], imagem, config=config)
                 dados = resposta.model_dump(exclude={"chamadas", "recuperadas", "consulta"})

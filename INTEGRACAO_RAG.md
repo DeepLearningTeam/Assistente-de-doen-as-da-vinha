@@ -1,3 +1,5 @@
+> Relatório histórico da integração RAG de 16/11. Para o estado atual da CNN, consulta [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md).
+
 # Integração RAG — revisão e verificação
 
 Data: 16/11/2026. Base: versão atual do Rui. Resultado local em `integrado/`; entrega em `integrado_final.zip`.

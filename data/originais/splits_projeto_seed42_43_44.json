@@ -1,0 +1,6189 @@
+{
+  "dataset": "FieldVitis v2",
+  "doi": "10.5281/zenodo.17307846",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "proporcoes_treino_validacao_teste": [
+    0.7,
+    0.15,
+    0.15
+  ],
+  "contagens": {
+    "42": {
+      "black_rot": {
+        "teste": 6,
+        "validacao": 6,
+        "treino": 27
+      },
+      "esca": {
+        "teste": 30,
+        "validacao": 30,
+        "treino": 140
+      },
+      "leaf_blight": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      },
+      "saudavel": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      }
+    },
+    "43": {
+      "black_rot": {
+        "teste": 6,
+        "validacao": 6,
+        "treino": 27
+      },
+      "esca": {
+        "teste": 30,
+        "validacao": 30,
+        "treino": 140
+      },
+      "leaf_blight": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      },
+      "saudavel": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      }
+    },
+    "44": {
+      "black_rot": {
+        "teste": 6,
+        "validacao": 6,
+        "treino": 27
+      },
+      "esca": {
+        "teste": 30,
+        "validacao": 30,
+        "treino": 140
+      },
+      "leaf_blight": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      },
+      "saudavel": {
+        "teste": 24,
+        "validacao": 24,
+        "treino": 110
+      }
+    }
+  },
+  "imagens": [
+    {
+      "id": "Black_rot/Black_rot_0.jpg",
+      "classe": "black_rot",
+      "sha256": "6a533d1522f11d875eea8af68ef6f9ec3ee4f8297f4b79a295a90c7561e922a9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_0.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_1.jpg",
+      "classe": "black_rot",
+      "sha256": "5cfe01bb88277e49aa4c6c68d3622d3f17a9d60d0611d272ef319284185dbe67",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_1.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_10.jpg",
+      "classe": "black_rot",
+      "sha256": "433fd5337cc13fa463d59f228d4fe86bf7ad1f0d6a9f0925b13b91424d27824b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_10.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_11.jpg",
+      "classe": "black_rot",
+      "sha256": "a25bfd16a43a5aeddb23f2138dfc26196849ae3b1e4d680d16797a3c36ea5f22",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_11.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_12.jpg",
+      "classe": "black_rot",
+      "sha256": "7919935f392e81a566b30b3eb120c1f0622d20e60488782d19a6b502a7e018e2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_12.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_13.jpg",
+      "classe": "black_rot",
+      "sha256": "c180035a4874b4bcec1218ab9e0a27f7b3a01b4426c8d783e53217591a68962c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_13.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_14.jpg",
+      "classe": "black_rot",
+      "sha256": "9eb3770654a5797e46598d962600990a76777b9d04aa75b993c4af5f49947a28",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_14.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_15.jpg",
+      "classe": "black_rot",
+      "sha256": "2474c25adac84528d789ada39d7cda1e99e28e5ce3e2f24ddd02463b397d58e9",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_15.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_16.jpg",
+      "classe": "black_rot",
+      "sha256": "a09bc77f43485b7af5429d3579772c0e066444c70e39fe04e77329f8927a3ffd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_16.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_17.jpg",
+      "classe": "black_rot",
+      "sha256": "ccd8b6e5898af6002c5dc096584c127b871a476f4f2734efa7eaaa0a5098b323",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_17.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_18.jpg",
+      "classe": "black_rot",
+      "sha256": "220d372f2d230ff23fdf5dbeb73063461c516bd21d789ddf0cda4b4c61c34924",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_18.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_19.jpg",
+      "classe": "black_rot",
+      "sha256": "3cb32ef84707ec2de5a21f13dce49168f54ebfb80e13438a057d7398f3ace04b",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_19.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_2.jpg",
+      "classe": "black_rot",
+      "sha256": "d20cc643fdfbb07db3616a50de0a2280383e134fa8f06ca5522e07c0cfc25aa9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_2.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_20.jpg",
+      "classe": "black_rot",
+      "sha256": "995229257f3077a50d9038a8935899f77ed1c3f6624b0118466d8ed7e9305441",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_20.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_21.jpg",
+      "classe": "black_rot",
+      "sha256": "e35d4ec4c79f5ddfa612cde2c76adf7fca6146c16d6ad833c77a7af8ffd0149c",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_21.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_22.jpg",
+      "classe": "black_rot",
+      "sha256": "e194cf217d0da81a2a2232710ece87513fa1a9365f8dec7c5e0a498c649f93cc",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_22.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_23.jpg",
+      "classe": "black_rot",
+      "sha256": "869f73d5f820252eab964321fa541d0e7fd4731cacfd47528e794c863941573d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_23.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_24.jpg",
+      "classe": "black_rot",
+      "sha256": "99c0a3a63c127e376a4120007fcc81797ec8248cf95a8020510e46f602590335",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_24.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_25.jpg",
+      "classe": "black_rot",
+      "sha256": "455951f7073dd7ff16522617352c612fddcfe09a2b26da1a594fcb8010bf215e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_25.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_26.jpg",
+      "classe": "black_rot",
+      "sha256": "b3bbc4dee85a0103fcc554c67fcb8dc870ee80c60aa5bcd205bc2000fe1de7cd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_26.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_27.jpg",
+      "classe": "black_rot",
+      "sha256": "b723ebc8b8be7b9f616c0f5be18988dab8898ebe8859a614723b8a2ca5d965ff",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_27.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_28.jpg",
+      "classe": "black_rot",
+      "sha256": "e55af8b081dab8fe84978dc01a972cd25dbb2666f79b5a8762e4bbc317c23da0",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_28.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_29.jpg",
+      "classe": "black_rot",
+      "sha256": "5a123eada6b0d97bd40f3db4393575e30e3b92d9b66495005f08ac1bf723609e",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_29.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_3.jpg",
+      "classe": "black_rot",
+      "sha256": "327ba2c8a497e552e41dc793760920e1804801b6e13c88004ea456a88b9a4d4c",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_3.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_30.jpg",
+      "classe": "black_rot",
+      "sha256": "e64969c324e6981d478bfff5c9099da715e0bdd974b2ea7a7acd62fa8ee63af0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_30.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_31.jpg",
+      "classe": "black_rot",
+      "sha256": "437383944a9c0d7dfed39438ec24e1ea2c523aeee83f6dee488c9e94d180fbc6",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_31.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_32.jpg",
+      "classe": "black_rot",
+      "sha256": "8ff645f78c4ff863c61cbcd80f4955a1bf7ee18c9e80301ef79c8e2877c8829c",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_32.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_33.jpg",
+      "classe": "black_rot",
+      "sha256": "dec23e8d95f300f1c1e4479f50d3b5c4ae1359ff16e80f1cba214d9c5041a317",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_33.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_34.jpg",
+      "classe": "black_rot",
+      "sha256": "6fe8bcc12af5809ca164caed504725a48b44c8a3bcf221201a833fdc9418bac0",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_34.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_35.jpg",
+      "classe": "black_rot",
+      "sha256": "64a85fc092aa49bbe0e53b544fdf50af53afa5eaaa02b2f1ce91632510440343",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_35.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_36.jpg",
+      "classe": "black_rot",
+      "sha256": "01255b2dbf4604b06eb088d1497ec65a1f4d4676f30ce0770cc6ced5fef7b1bc",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_36.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_37.jpg",
+      "classe": "black_rot",
+      "sha256": "bcb710c06a56f5cab5538ef6208853f037180906abab4b93de16c538db265c19",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_37.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_38.png",
+      "classe": "black_rot",
+      "sha256": "08244acf864282c4e2b4ba770766b3b513695b18fe2031c92e2a7f1023365672",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Black_rot/Black_rot_38.png"
+    },
+    {
+      "id": "Black_rot/Black_rot_4.jpg",
+      "classe": "black_rot",
+      "sha256": "2b636bd9bebf2ed43111b8920f3998bfcc3ccd7cc3fd33b634decc82554c5d67",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_4.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_5.jpg",
+      "classe": "black_rot",
+      "sha256": "e5cd92b99019418c099e86dad1c7e49ed45d6e88739cd3bd3b0e4a117eb5d409",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_5.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_6.jpg",
+      "classe": "black_rot",
+      "sha256": "8f0f6db33cc273d4e1f6aae9343b7f83393858f6ac6a6fe04b735fc9034dc7c5",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_6.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_7.jpg",
+      "classe": "black_rot",
+      "sha256": "405a750bd60f12f7d787f4c8aa3be5280f5d3a316878ddaa1c602953bdba4890",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_7.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_8.jpg",
+      "classe": "black_rot",
+      "sha256": "7317bf5f2be1edfdafc77164f8607c172f73a30eb091c706cab3f40a51e5a305",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Black_rot/Black_rot_8.jpg"
+    },
+    {
+      "id": "Black_rot/Black_rot_9.jpg",
+      "classe": "black_rot",
+      "sha256": "88ce95acdab368ff001072da0a8ee1888e8f5342f42d80f2a9dc0fce3c2dc366",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Black_rot/Black_rot_9.jpg"
+    },
+    {
+      "id": "Esca/Esca_0.jpg",
+      "classe": "esca",
+      "sha256": "6627154394003ac2a1b274f9dc042496f5c2669719c76378338244e47cd10926",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_0.jpg"
+    },
+    {
+      "id": "Esca/Esca_1.jpg",
+      "classe": "esca",
+      "sha256": "4a8e2749e5ccab6837a3f7b955071df7ecf34ee67614cc0b9e78ee9cd3441edb",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_1.jpg"
+    },
+    {
+      "id": "Esca/Esca_10.jpg",
+      "classe": "esca",
+      "sha256": "b74a4094abd024d530c179b97c67a28a80bbac4808c7f64ea21a232e82f614aa",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_10.jpg"
+    },
+    {
+      "id": "Esca/Esca_100.jpg",
+      "classe": "esca",
+      "sha256": "481686f59393d7415544adf55d5f771b69e9970ef2f652fdd5d27b4c2f6fdeec",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_100.jpg"
+    },
+    {
+      "id": "Esca/Esca_101.jpg",
+      "classe": "esca",
+      "sha256": "f5722f27b00b6de27689acd94918f265beb543ca246022a38080e2c3091e8592",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_101.jpg"
+    },
+    {
+      "id": "Esca/Esca_102.jpg",
+      "classe": "esca",
+      "sha256": "32b03701f9f9b4400eb40c7e13284f5e3bd4ea91535eeb53da20744e1f6aebba",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_102.jpg"
+    },
+    {
+      "id": "Esca/Esca_103.jpg",
+      "classe": "esca",
+      "sha256": "9c82810de463795779bf3db499fcbaae1565a789b8ce85eda6071cfc6e065783",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_103.jpg"
+    },
+    {
+      "id": "Esca/Esca_104.jpg",
+      "classe": "esca",
+      "sha256": "f0715135966c910f6b2404b85ec3cb74d81d21f25e2657dc7fe57b5140c87eea",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_104.jpg"
+    },
+    {
+      "id": "Esca/Esca_105.jpg",
+      "classe": "esca",
+      "sha256": "0f5ca4bf15a73b2086abb14d1fdbf13288bba3208af41fea7049eaa82106f904",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_105.jpg"
+    },
+    {
+      "id": "Esca/Esca_106.jpg",
+      "classe": "esca",
+      "sha256": "5000a2b164a6f35e9212894691c141aacbf555449fda227452bc21a3d6fdec87",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_106.jpg"
+    },
+    {
+      "id": "Esca/Esca_107.jpg",
+      "classe": "esca",
+      "sha256": "cc4c846c7e727d291ace820db8bbcef51cf20f13dff40abffeddc202fedc415b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_107.jpg"
+    },
+    {
+      "id": "Esca/Esca_108.jpg",
+      "classe": "esca",
+      "sha256": "63d1fce3f965505d3ab643492804dd9bdf3fa633945cce42b33924c6c537877b",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_108.jpg"
+    },
+    {
+      "id": "Esca/Esca_109.jpg",
+      "classe": "esca",
+      "sha256": "26c21ec127d62905fe4cd5a99a56b770a740bd6bd93c3931363e3743cf14240b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_109.jpg"
+    },
+    {
+      "id": "Esca/Esca_11.jpg",
+      "classe": "esca",
+      "sha256": "a2a0b5c40049c17df85588ecc1079bec31b90544e8348795e5d2a3b3d54fdfbd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_11.jpg"
+    },
+    {
+      "id": "Esca/Esca_110.jpg",
+      "classe": "esca",
+      "sha256": "c0f0d30a8e67943d8c3fce894c5794fe3e26fea1e7c8b7f7db3285c0a3d2ce42",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_110.jpg"
+    },
+    {
+      "id": "Esca/Esca_111.jpg",
+      "classe": "esca",
+      "sha256": "bc81e5d671ba07f17f8ea591bbe2238bff2c8936d9ca027b0003d5ee31a21841",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_111.jpg"
+    },
+    {
+      "id": "Esca/Esca_112.jpg",
+      "classe": "esca",
+      "sha256": "fc7632a5e08eeb0b5865c93c50964051f1d33c6664054e0e072b8bf8454346e1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_112.jpg"
+    },
+    {
+      "id": "Esca/Esca_113.jpg",
+      "classe": "esca",
+      "sha256": "2ed2236d1dc7ac1fe73d4ef3cce42a84749c6cfdcc31518b0b6cbffecab93d6d",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_113.jpg"
+    },
+    {
+      "id": "Esca/Esca_114.jpg",
+      "classe": "esca",
+      "sha256": "828493d2e4cf3e5dddde4343fd4f018640fefa8f5a58dc2fc081597106167d11",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_114.jpg"
+    },
+    {
+      "id": "Esca/Esca_115.jpg",
+      "classe": "esca",
+      "sha256": "7eb1f743b023ee8035cc9749976d3fba4405a943f522bb780fc80ee0496eadfc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_115.jpg"
+    },
+    {
+      "id": "Esca/Esca_116.jpg",
+      "classe": "esca",
+      "sha256": "ec3d5b74db09cf9eca5c80b2c9477d5ea4e448d63baddc8dceb352e17604a309",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_116.jpg"
+    },
+    {
+      "id": "Esca/Esca_117.jpg",
+      "classe": "esca",
+      "sha256": "b69dcaee92f09ed1e66dc39da9701222752adbb22cf9f33c7a4fb734d571144f",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_117.jpg"
+    },
+    {
+      "id": "Esca/Esca_118.jpg",
+      "classe": "esca",
+      "sha256": "6053e54980ab259057c1ac649eb256c485a1e74fc70953e29c426229ab3c7af2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_118.jpg"
+    },
+    {
+      "id": "Esca/Esca_119.jpg",
+      "classe": "esca",
+      "sha256": "4135b44a2a29a03a825e4e1281c4dd864fac8abdc421c3f86a015f70021cee30",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_119.jpg"
+    },
+    {
+      "id": "Esca/Esca_12.jpg",
+      "classe": "esca",
+      "sha256": "1b4a77032e832d259399e1d9831237a9c649977d24bdd19e50e7fe4637e7b96f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_12.jpg"
+    },
+    {
+      "id": "Esca/Esca_120.jpg",
+      "classe": "esca",
+      "sha256": "4191f0ba5e0d8fab692ee35f1acaf0458d3c5ccd9176b38fdd4430c0cc35a4d2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_120.jpg"
+    },
+    {
+      "id": "Esca/Esca_121.jpg",
+      "classe": "esca",
+      "sha256": "41a74b9ed960235581586e55b3a8b7aa51c1217ef65709c4c58989e049946daa",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_121.jpg"
+    },
+    {
+      "id": "Esca/Esca_122.jpg",
+      "classe": "esca",
+      "sha256": "c326d969a88e469ebab698ee8d7d28063be3c7842e57c3869eda0c8273f0730e",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_122.jpg"
+    },
+    {
+      "id": "Esca/Esca_123.jpg",
+      "classe": "esca",
+      "sha256": "c8f6fb27508d49232543cd657e0f357d4a2c4a361247d915e9c050c20dc3a1a8",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_123.jpg"
+    },
+    {
+      "id": "Esca/Esca_124.jpg",
+      "classe": "esca",
+      "sha256": "1dc242b2d997e6164baf2ce18b2eb8452a57528c3bd56175b66caf394db59a83",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_124.jpg"
+    },
+    {
+      "id": "Esca/Esca_125.jpg",
+      "classe": "esca",
+      "sha256": "b065126bddc2676d5b5e9adde4de8bf1fd764bf45e6be907a849657be80eb0dc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_125.jpg"
+    },
+    {
+      "id": "Esca/Esca_126.jpg",
+      "classe": "esca",
+      "sha256": "2b27bde6ee2b35d030e2e4857e423f687546b559be6cf3c08eef83cefec4fb7b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_126.jpg"
+    },
+    {
+      "id": "Esca/Esca_127.jpg",
+      "classe": "esca",
+      "sha256": "9093eb7ab8a11d9b7d0257180e21b41789ca7f80f8d859542f4111b6bece5ddc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_127.jpg"
+    },
+    {
+      "id": "Esca/Esca_128.jpg",
+      "classe": "esca",
+      "sha256": "75d28aab2bc5bfbc96724b0686d4fb8ff118dab71d74b98ca5d5376acb7ed764",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_128.jpg"
+    },
+    {
+      "id": "Esca/Esca_129.jpg",
+      "classe": "esca",
+      "sha256": "c86e3a4314a133827674b9cfdd86167d78f24ea1e8e0e5eeaddbdb52545a4a67",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_129.jpg"
+    },
+    {
+      "id": "Esca/Esca_13.jpg",
+      "classe": "esca",
+      "sha256": "dd88e5aee768c26c6439e94a271e498c31749e802a6a8bbba48c5d7e0ad7a512",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_13.jpg"
+    },
+    {
+      "id": "Esca/Esca_130.jpg",
+      "classe": "esca",
+      "sha256": "8e4ccc232bfb3061afa71095a3c5fd255d019b3ca65c5cab9c69f55baf9f4ca2",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_130.jpg"
+    },
+    {
+      "id": "Esca/Esca_131.jpg",
+      "classe": "esca",
+      "sha256": "d1cd7126bf12f7e07c9a736a8cae5a840a0bb101fa34320e95ba2af0a6f341c9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_131.jpg"
+    },
+    {
+      "id": "Esca/Esca_132.jpg",
+      "classe": "esca",
+      "sha256": "d05b17d8b84c6d24752dcea348da75a557fca819673f07d1fc27c07ba79e3d64",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_132.jpg"
+    },
+    {
+      "id": "Esca/Esca_133.jpg",
+      "classe": "esca",
+      "sha256": "c034403dd91f77f1f4aaf6763e6bcb19610d559d054632d750ae6b15a5a06c67",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_133.jpg"
+    },
+    {
+      "id": "Esca/Esca_134.jpg",
+      "classe": "esca",
+      "sha256": "45739d40bd7503c19e95939f7bf63affc17ebe1664c07d004d5db8179239fcc5",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_134.jpg"
+    },
+    {
+      "id": "Esca/Esca_135.jpg",
+      "classe": "esca",
+      "sha256": "d6a4fa0cb7d6857b3f78815df7732439a600addcfa940534dfa72c3ccc9960ea",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_135.jpg"
+    },
+    {
+      "id": "Esca/Esca_136.jpg",
+      "classe": "esca",
+      "sha256": "c5352777a5c2124fe6b6ba7895db40cf6ec9271babd977475bff684ee468c0a4",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_136.jpg"
+    },
+    {
+      "id": "Esca/Esca_137.jpg",
+      "classe": "esca",
+      "sha256": "15dd949a660084d5e15af8982cc0292858ba3e8f689a0443e4d07e07bffccc79",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_137.jpg"
+    },
+    {
+      "id": "Esca/Esca_138.jpg",
+      "classe": "esca",
+      "sha256": "1fc9bb1bbb7c99c86078b2221fc064405021b8c1654cea13893f7c3494724d07",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_138.jpg"
+    },
+    {
+      "id": "Esca/Esca_139.jpg",
+      "classe": "esca",
+      "sha256": "5bdf0de34230f312432e9655336a3ab14708a5ec165033dded4514d3ffc78956",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_139.jpg"
+    },
+    {
+      "id": "Esca/Esca_14.jpg",
+      "classe": "esca",
+      "sha256": "ce692ac3bc92ca1d22d4771e97737438f57835e88d1ac736f14c04eadca6dddc",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_14.jpg"
+    },
+    {
+      "id": "Esca/Esca_140.jpg",
+      "classe": "esca",
+      "sha256": "0c86c9dbd6a33eb5ee80513a37a8973226cfe93ea1022ab9f0eb4d0cc46bd313",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_140.jpg"
+    },
+    {
+      "id": "Esca/Esca_141.jpg",
+      "classe": "esca",
+      "sha256": "0dfe81442f7992e2326a9a6212d142e32f201848632a581786b1143fe60d29c2",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_141.jpg"
+    },
+    {
+      "id": "Esca/Esca_142.jpg",
+      "classe": "esca",
+      "sha256": "a0efa42000017fcf20ed3c965068f5b18535d43b7657464b65df438394d18948",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_142.jpg"
+    },
+    {
+      "id": "Esca/Esca_143.jpg",
+      "classe": "esca",
+      "sha256": "7e5ccbf537d12db3f4045d61a57d11ebff88e100344f36727a2c8853c7b63251",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_143.jpg"
+    },
+    {
+      "id": "Esca/Esca_144.jpg",
+      "classe": "esca",
+      "sha256": "f7fa4697d1f2c12efa5c7a9aa54cd52295592192d33ca6baf050e6e3ff4baaa3",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_144.jpg"
+    },
+    {
+      "id": "Esca/Esca_145.jpg",
+      "classe": "esca",
+      "sha256": "fdf71bd6c4542cdb0f8f9eb1d7997a0e8edb4035f5daffb2b84e63438143c47a",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_145.jpg"
+    },
+    {
+      "id": "Esca/Esca_146.jpg",
+      "classe": "esca",
+      "sha256": "748f7ac75a970e74e8fbb31188fe2caf55f079f7a071fe8e58fc776d31060a25",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_146.jpg"
+    },
+    {
+      "id": "Esca/Esca_147.jpg",
+      "classe": "esca",
+      "sha256": "c38598a378dea619c1ec4016eae48442248d06dc238bd309413f85aed0939609",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_147.jpg"
+    },
+    {
+      "id": "Esca/Esca_148.jpg",
+      "classe": "esca",
+      "sha256": "a23d426c5d688dbb053d39252d49fbb3d06c789169239cedb0a51fe160b8af93",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_148.jpg"
+    },
+    {
+      "id": "Esca/Esca_149.jpg",
+      "classe": "esca",
+      "sha256": "a51264bed6e8247b9c1e30edd87117444c76d09a5adc804dde5bdfed89c93a70",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_149.jpg"
+    },
+    {
+      "id": "Esca/Esca_15.jpg",
+      "classe": "esca",
+      "sha256": "16b99caec7664d52be787f753e9b4a302be0345de2ae34dc96655ddf6e2d3a77",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_15.jpg"
+    },
+    {
+      "id": "Esca/Esca_150.jpg",
+      "classe": "esca",
+      "sha256": "f39689e4516ae8c49ce898d74a76c471ab79d1d7fdfc1d7bf69eb3d0445ed6d2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_150.jpg"
+    },
+    {
+      "id": "Esca/Esca_151.jpg",
+      "classe": "esca",
+      "sha256": "2068beb5c0e72ab68ae0266420b56b03eb2f1fd3d0cce13dcc9a4519ed5ff9df",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_151.jpg"
+    },
+    {
+      "id": "Esca/Esca_152.jpg",
+      "classe": "esca",
+      "sha256": "a9ad00613ad2f23027fd441ef9d3ec76f99dc715f862c5b6b5be20599ebb10ad",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_152.jpg"
+    },
+    {
+      "id": "Esca/Esca_153.jpg",
+      "classe": "esca",
+      "sha256": "eb75a2d8b6d8bb041f8470dec7bc797db55125614bde9eea085f1b1c192450bb",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_153.jpg"
+    },
+    {
+      "id": "Esca/Esca_154.jpg",
+      "classe": "esca",
+      "sha256": "dcd6f731a8017483aaef57b993efb03d568cc8a29e953520f5e0ec0ab78e05c1",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_154.jpg"
+    },
+    {
+      "id": "Esca/Esca_155.jpg",
+      "classe": "esca",
+      "sha256": "0cfbec4347c0c741aacaabaa509ba0efb8e3d34f553c217374f4b41850410fab",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_155.jpg"
+    },
+    {
+      "id": "Esca/Esca_156.jpg",
+      "classe": "esca",
+      "sha256": "2b4795de9f12b10e924fbbd3e8995f7796e6941833badfc6bdaf558a741e9a33",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_156.jpg"
+    },
+    {
+      "id": "Esca/Esca_157.jpg",
+      "classe": "esca",
+      "sha256": "f01989c653b6f6fd945303120e931030588c1d8fcf619e7e8ccafaceefbe42cf",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_157.jpg"
+    },
+    {
+      "id": "Esca/Esca_158.jpg",
+      "classe": "esca",
+      "sha256": "1200cd9e2e7b652ee7097aa61996319677e221f91ec67b3c336395da202e10b6",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_158.jpg"
+    },
+    {
+      "id": "Esca/Esca_159.jpg",
+      "classe": "esca",
+      "sha256": "41a9fd2f3bcea92be5a88d1c280ef3dca2bcd66f8033f065b49ea38c8fd24142",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_159.jpg"
+    },
+    {
+      "id": "Esca/Esca_16.jpg",
+      "classe": "esca",
+      "sha256": "cc62f523176503e2a2643bf98bf432d0c585d765512190e40cb4dfd28640c064",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_16.jpg"
+    },
+    {
+      "id": "Esca/Esca_160.jpg",
+      "classe": "esca",
+      "sha256": "3bd6a6b2bbdfe06651a088c4c061eb2679e18751a07660884734bd50d2a96408",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_160.jpg"
+    },
+    {
+      "id": "Esca/Esca_161.jpg",
+      "classe": "esca",
+      "sha256": "bea65b3cf27d7a8bd5475148020d97ceab27769adb5f10505f7038559640be64",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_161.jpg"
+    },
+    {
+      "id": "Esca/Esca_162.jpg",
+      "classe": "esca",
+      "sha256": "8db057ade665cc58ff0ad481beaa9238e2f663e12d43b3839101a4bf00282cd1",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_162.jpg"
+    },
+    {
+      "id": "Esca/Esca_163.jpg",
+      "classe": "esca",
+      "sha256": "7a2f67799acd99a800fa23321917379aaf64f7c29207d82a0ac6744217bc0d9a",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_163.jpg"
+    },
+    {
+      "id": "Esca/Esca_164.jpg",
+      "classe": "esca",
+      "sha256": "243093089cdffb93b8224f31a055cac8f8ef6e943e3d9ffd299fc24be6aa378f",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_164.jpg"
+    },
+    {
+      "id": "Esca/Esca_165.jpg",
+      "classe": "esca",
+      "sha256": "758efd9196b9ffa5422b753d91221d734db9412c8f45da6b869d80d4b9c42f3a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_165.jpg"
+    },
+    {
+      "id": "Esca/Esca_166.jpg",
+      "classe": "esca",
+      "sha256": "0d73b8fe108005b90e45f107ab6015120d15623ff3459662a93b108889967830",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_166.jpg"
+    },
+    {
+      "id": "Esca/Esca_167.jpg",
+      "classe": "esca",
+      "sha256": "ecf07edc9a0851370061dfa51691166bddf9037069025057138939e294308168",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_167.jpg"
+    },
+    {
+      "id": "Esca/Esca_168.jpg",
+      "classe": "esca",
+      "sha256": "17be6c3931466e728dab2f6463ae912dca5168def524fac98abd636cbc0f6a72",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_168.jpg"
+    },
+    {
+      "id": "Esca/Esca_169.jpg",
+      "classe": "esca",
+      "sha256": "0a82ee1c4fff8961335c729b9502d0c96f6931343650eff71ad4699d5960546a",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_169.jpg"
+    },
+    {
+      "id": "Esca/Esca_17.jpg",
+      "classe": "esca",
+      "sha256": "96a9e2c69829df0800d3085e1cd2adce41bdf539b953a0f110d2b3c8e0d25f87",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_17.jpg"
+    },
+    {
+      "id": "Esca/Esca_170.jpg",
+      "classe": "esca",
+      "sha256": "92ebfd0a3dba0c4abce2d25692e9368ffb26455c8457c37e17d979819037c462",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_170.jpg"
+    },
+    {
+      "id": "Esca/Esca_171.jpg",
+      "classe": "esca",
+      "sha256": "761ad9d605e578bbcdc53f683dec501c982a67a7573be4b8b652299eaa5bda2c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_171.jpg"
+    },
+    {
+      "id": "Esca/Esca_172.jpg",
+      "classe": "esca",
+      "sha256": "20c748c0879e95716804df86ced3da6bb3403eb4e71c16bc77b0d1e8caf5bed0",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_172.jpg"
+    },
+    {
+      "id": "Esca/Esca_173.jpg",
+      "classe": "esca",
+      "sha256": "9607a22032c79a3bf4abcab80a9beb1817faf4df72c005d2eaab30cb5bbecf7a",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_173.jpg"
+    },
+    {
+      "id": "Esca/Esca_174.jpg",
+      "classe": "esca",
+      "sha256": "71289c5643aee60744ead10ce754503aaa611bb1f6c512ee86da0aa28bb97c53",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_174.jpg"
+    },
+    {
+      "id": "Esca/Esca_175.jpg",
+      "classe": "esca",
+      "sha256": "050ded15df8349099184423e2ffc43e5df60437b58eaa8e0ca72b6c25d5f7de5",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_175.jpg"
+    },
+    {
+      "id": "Esca/Esca_176.jpg",
+      "classe": "esca",
+      "sha256": "d2e444c441f379c63ee48ba930254ddee87b1bb54acd23931774a13542a66287",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_176.jpg"
+    },
+    {
+      "id": "Esca/Esca_177.jpg",
+      "classe": "esca",
+      "sha256": "b23fd3e954da46e6100072f301c456eb38beb22a8fbb428074de7b3bd976e5f0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_177.jpg"
+    },
+    {
+      "id": "Esca/Esca_178.jpg",
+      "classe": "esca",
+      "sha256": "5748de8a32c59de0e151d316b3aeb01bd45dd3557bcee95169ea55b0b7061a7c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_178.jpg"
+    },
+    {
+      "id": "Esca/Esca_179.jpg",
+      "classe": "esca",
+      "sha256": "3933ba5f2a57076133de4e1853261599d504576a1d63b9589657c18800250640",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_179.jpg"
+    },
+    {
+      "id": "Esca/Esca_18.jpg",
+      "classe": "esca",
+      "sha256": "86587a019038421576558c50df2b9b117afc709fb11dfb498c70e2d0f2e11e47",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_18.jpg"
+    },
+    {
+      "id": "Esca/Esca_180.jpg",
+      "classe": "esca",
+      "sha256": "ec33fdd350e439510ac5d13b7315850ddcd12557b60bfa1722e4e6464081e208",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_180.jpg"
+    },
+    {
+      "id": "Esca/Esca_181.jpg",
+      "classe": "esca",
+      "sha256": "06e9dc5e32ee489eda606fbe789399fc80c19655c82c0b9a95525dc8fc7c6e7d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_181.jpg"
+    },
+    {
+      "id": "Esca/Esca_182.jpg",
+      "classe": "esca",
+      "sha256": "bb65f8e77e0d252d3946d62dc02547709de046072f378e30b571e21a1b6c2eac",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_182.jpg"
+    },
+    {
+      "id": "Esca/Esca_183.jpg",
+      "classe": "esca",
+      "sha256": "5762b2cbc4143460eb369bafce761d16d335ae48f8ac79ef4f7e6b58bd4a5daa",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_183.jpg"
+    },
+    {
+      "id": "Esca/Esca_184.jpg",
+      "classe": "esca",
+      "sha256": "915887e5c7f4c9a864565ec608a2aed9a89a4ad198b14aca7932ebc6b9238ef2",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_184.jpg"
+    },
+    {
+      "id": "Esca/Esca_185.jpg",
+      "classe": "esca",
+      "sha256": "80addb8b3c5f6a25c5858fe7ab5d8b00fa9e340b5407cd744cafd94e0773e253",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_185.jpg"
+    },
+    {
+      "id": "Esca/Esca_186.jpg",
+      "classe": "esca",
+      "sha256": "2f7eb3e5fcb873564e05b3a8b7a95e56c04cc67a0801a97dfc79ea340df351a8",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_186.jpg"
+    },
+    {
+      "id": "Esca/Esca_187.jpg",
+      "classe": "esca",
+      "sha256": "6926c96f352f936648ae0b41f4645e9938ef305ded4e1bc2345dd8ec3655ddb9",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_187.jpg"
+    },
+    {
+      "id": "Esca/Esca_188.jpg",
+      "classe": "esca",
+      "sha256": "866fd9154c02c8e3358987b365fdedd54296612b728168ef86b1490a52094773",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_188.jpg"
+    },
+    {
+      "id": "Esca/Esca_189.jpg",
+      "classe": "esca",
+      "sha256": "99b102007dbdda2b86bbdb2724026572a8fdc06e3dbf3e34fa3c7ac12dd577eb",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_189.jpg"
+    },
+    {
+      "id": "Esca/Esca_19.jpg",
+      "classe": "esca",
+      "sha256": "1867da09db220884a69ea5c4c3d96a497baea078a66f35f3ba97821f690cae3f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_19.jpg"
+    },
+    {
+      "id": "Esca/Esca_190.jpg",
+      "classe": "esca",
+      "sha256": "f700489ef0a8701649be05a9c2b9a882e7155f867d70949d346294d79a8a9bdb",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_190.jpg"
+    },
+    {
+      "id": "Esca/Esca_191.jpg",
+      "classe": "esca",
+      "sha256": "52a7b65da5a4f1be1076440f7d39c7e4fa79d310779c147cc48de932240fec55",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_191.jpg"
+    },
+    {
+      "id": "Esca/Esca_192.jpg",
+      "classe": "esca",
+      "sha256": "346a583792db4f6a7616cc3e0751cbca233f378bb328b821039dec110246650b",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_192.jpg"
+    },
+    {
+      "id": "Esca/Esca_193.jpg",
+      "classe": "esca",
+      "sha256": "61b7a91bb9d01900addd32b12810d555a95ceba34b884ba8201e5fbea6b30aab",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_193.jpg"
+    },
+    {
+      "id": "Esca/Esca_194.jpg",
+      "classe": "esca",
+      "sha256": "7a6ee36e30932f6b72567922e28d692718de4a36f81b7248c761a9d7805a5c08",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_194.jpg"
+    },
+    {
+      "id": "Esca/Esca_195.jpg",
+      "classe": "esca",
+      "sha256": "f8fa047dfe7bba6f1bba0e647d79ca1203ab24aad073af63f9bcc1ea65a3b157",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_195.jpg"
+    },
+    {
+      "id": "Esca/Esca_196.jpg",
+      "classe": "esca",
+      "sha256": "e81d0dde95203a322bb826bc337391261f89615f14a11d86be579cfe4668b2df",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_196.jpg"
+    },
+    {
+      "id": "Esca/Esca_197.jpg",
+      "classe": "esca",
+      "sha256": "b62e63845474aff2d22bdbdfa4ec5ba5ab886f7dcdc881eefb67577dbc4bcbf0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_197.jpg"
+    },
+    {
+      "id": "Esca/Esca_198.jpg",
+      "classe": "esca",
+      "sha256": "81d9ca43bac5e1f6f99fd4d564ca927e6aeeafd5d5bdccdf7cb068cf71dcd6bb",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_198.jpg"
+    },
+    {
+      "id": "Esca/Esca_199.jpg",
+      "classe": "esca",
+      "sha256": "fed569fe328449189d167d0f4419786f6d725bc00faa2e5703285b820a77b58c",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_199.jpg"
+    },
+    {
+      "id": "Esca/Esca_2.jpg",
+      "classe": "esca",
+      "sha256": "5e96ba09a7fbea8e9742bae4eca2d839641efede15a2bbad1e2beafbbfd7099f",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_2.jpg"
+    },
+    {
+      "id": "Esca/Esca_20.jpg",
+      "classe": "esca",
+      "sha256": "3b16dc758aab167064f5fe261d613b1d5aaf703e38650b25385283f8864c2dd9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_20.jpg"
+    },
+    {
+      "id": "Esca/Esca_21.jpg",
+      "classe": "esca",
+      "sha256": "6d50240efab2b9721683067b4c7f9c5d78084b5c241d56529a6d1060ad892d16",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_21.jpg"
+    },
+    {
+      "id": "Esca/Esca_22.jpg",
+      "classe": "esca",
+      "sha256": "351fc32893a7a711ec4d462d3fb31c8ebdf35ed6681c4e72ec639730cda1a00a",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_22.jpg"
+    },
+    {
+      "id": "Esca/Esca_23.jpg",
+      "classe": "esca",
+      "sha256": "6545145cf8e31b9abda8390dcccf3314152100260d1440a0709b6a0862e280ab",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_23.jpg"
+    },
+    {
+      "id": "Esca/Esca_24.jpg",
+      "classe": "esca",
+      "sha256": "95866da1c432d7a428ebf1a11ad3c8b69c49a98b797925c64fa1b2dab049fe41",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_24.jpg"
+    },
+    {
+      "id": "Esca/Esca_25.jpg",
+      "classe": "esca",
+      "sha256": "9817dd55dbec56b065d822672b8a749b55a4aea8b9e0e847f44c4b5ed56eb1a3",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_25.jpg"
+    },
+    {
+      "id": "Esca/Esca_26.jpg",
+      "classe": "esca",
+      "sha256": "580c58684ea940a9b30988361f561cfa537bc8e0de97a892c480c4ed7808f3d3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_26.jpg"
+    },
+    {
+      "id": "Esca/Esca_27.jpg",
+      "classe": "esca",
+      "sha256": "9e4fffc662e2544cb2618ad4d0f3b08b79fba72af128588e41dd33c1afe2aa26",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_27.jpg"
+    },
+    {
+      "id": "Esca/Esca_28.jpg",
+      "classe": "esca",
+      "sha256": "c7fe749443d8e41ff305ff10efab2aa9b54578abc574b4a6f99d8e667f4d417b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_28.jpg"
+    },
+    {
+      "id": "Esca/Esca_29.jpg",
+      "classe": "esca",
+      "sha256": "2c41418e010119f05eb6fb58e5473725e946753b5ca8a9e119e176912a91eb1f",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_29.jpg"
+    },
+    {
+      "id": "Esca/Esca_3.jpg",
+      "classe": "esca",
+      "sha256": "7f3de6a9a18e557842c369cbc109ee8dfec938925cc74f5108c5e614e56bbc48",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_3.jpg"
+    },
+    {
+      "id": "Esca/Esca_30.jpg",
+      "classe": "esca",
+      "sha256": "65c492cc59565222930dc24da731d280eece61b55bf5c2e3448e70c5b1176a93",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_30.jpg"
+    },
+    {
+      "id": "Esca/Esca_31.jpg",
+      "classe": "esca",
+      "sha256": "1268f70dddd0640bf8167c985b5edc17a06a92daae9f3ffcc1c773371c412f57",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_31.jpg"
+    },
+    {
+      "id": "Esca/Esca_32.jpg",
+      "classe": "esca",
+      "sha256": "57b48241778130ffdc2f2f7362d0369c700e8c32f545ed8da990862318435c49",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_32.jpg"
+    },
+    {
+      "id": "Esca/Esca_33.jpg",
+      "classe": "esca",
+      "sha256": "d69f2095f714a929a6877414e9178f1f8bcffcda314f887e0e62f4623f9bb566",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_33.jpg"
+    },
+    {
+      "id": "Esca/Esca_34.jpg",
+      "classe": "esca",
+      "sha256": "343479e204569c9696b316f36a57034a5d66a65ab38891d71aef6154949238fd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_34.jpg"
+    },
+    {
+      "id": "Esca/Esca_35.jpg",
+      "classe": "esca",
+      "sha256": "61190aef1b1b624c306541fd4116bb7bd5017593dbb5e7c226711c5239fb5330",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_35.jpg"
+    },
+    {
+      "id": "Esca/Esca_36.jpg",
+      "classe": "esca",
+      "sha256": "1cde277566b41a44df92df5c5e5dce59ac3e93e717577700440cf8da04d8b418",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_36.jpg"
+    },
+    {
+      "id": "Esca/Esca_37.jpg",
+      "classe": "esca",
+      "sha256": "c42d57290da4e7339e0cead849a81f2ed0dceb9280c1093f3f4c726ae1fa88be",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_37.jpg"
+    },
+    {
+      "id": "Esca/Esca_38.jpg",
+      "classe": "esca",
+      "sha256": "292d298983579afac924c7f37c28b3f93568838858bbda436326ba62b20dd1ec",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_38.jpg"
+    },
+    {
+      "id": "Esca/Esca_39.jpg",
+      "classe": "esca",
+      "sha256": "1831f7c85cc330a1993efb66ec27258df146e76343f7d9d91933659413f6ac36",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_39.jpg"
+    },
+    {
+      "id": "Esca/Esca_4.jpg",
+      "classe": "esca",
+      "sha256": "b87170a1e30bea77fbbae811128b2138e9a354d20a6a4bf1648a6485e0442bb2",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_4.jpg"
+    },
+    {
+      "id": "Esca/Esca_40.jpg",
+      "classe": "esca",
+      "sha256": "06e1dc5f22734db490d1a7916b2a95f4b51919acc0ad38aae2dcefbaff7f8648",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_40.jpg"
+    },
+    {
+      "id": "Esca/Esca_41.jpg",
+      "classe": "esca",
+      "sha256": "aa49af8e5f0ac40a4a511fcf9be03f64606d53102d530f378cd2a2b9929b9c6a",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_41.jpg"
+    },
+    {
+      "id": "Esca/Esca_42.jpg",
+      "classe": "esca",
+      "sha256": "a5e920eb3013c5eaa105212ed2375925d402649b33f75d29f18fefa29c0c9238",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_42.jpg"
+    },
+    {
+      "id": "Esca/Esca_43.jpg",
+      "classe": "esca",
+      "sha256": "81078ad420e6c853503a5a778cc96ec2f4aba87cbb77e77cc2ce77b85ba4b0a7",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_43.jpg"
+    },
+    {
+      "id": "Esca/Esca_44.jpg",
+      "classe": "esca",
+      "sha256": "6fc20937f266151e5437b3ad513cca09a76d749f71b7a8a0eb652a49c39a42c2",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_44.jpg"
+    },
+    {
+      "id": "Esca/Esca_45.jpg",
+      "classe": "esca",
+      "sha256": "360aaa27f1f6319ecd7ee0ffc0ac3c7253fae3dc5f3c697ae4c46417fae297d6",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_45.jpg"
+    },
+    {
+      "id": "Esca/Esca_46.jpg",
+      "classe": "esca",
+      "sha256": "44ee77338918fb19356b8f55215bf8b07289928224f338a66fb4bb5f3c321030",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_46.jpg"
+    },
+    {
+      "id": "Esca/Esca_47.jpg",
+      "classe": "esca",
+      "sha256": "e3aa01fbd51d9c4e747f5faf7e91b692ae53ffd3dcb48340f2835a4bbe6a0ade",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_47.jpg"
+    },
+    {
+      "id": "Esca/Esca_48.jpg",
+      "classe": "esca",
+      "sha256": "746cb08f9d8165b870c8d3bb5731182260243ba6901d5cdcbc06bc0b97b9800c",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_48.jpg"
+    },
+    {
+      "id": "Esca/Esca_49.jpg",
+      "classe": "esca",
+      "sha256": "66612480a427835201a6a4db0b31be01e43d2f31c7960cabca726b56e3822f6b",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_49.jpg"
+    },
+    {
+      "id": "Esca/Esca_5.jpg",
+      "classe": "esca",
+      "sha256": "cc521105171d5b739e555cfc8468938282cffe8c0003925ea308a04e76d5194d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_5.jpg"
+    },
+    {
+      "id": "Esca/Esca_50.jpg",
+      "classe": "esca",
+      "sha256": "0ecbdf510e6b5994b84c01d43dab24a7fa3e99ce9b0aeedbe057c92ba2e6b3d9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_50.jpg"
+    },
+    {
+      "id": "Esca/Esca_51.jpg",
+      "classe": "esca",
+      "sha256": "91ebe7595a078b502344c1cb08cbafc8356a6cca9c120cb2e0fd40fe35eba3df",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_51.jpg"
+    },
+    {
+      "id": "Esca/Esca_52.jpg",
+      "classe": "esca",
+      "sha256": "192803b7cc7d77ecd6cb0b29bcfec7bec762a27055e82e6df8f573aa54897716",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_52.jpg"
+    },
+    {
+      "id": "Esca/Esca_53.jpg",
+      "classe": "esca",
+      "sha256": "a32b72a522a9f0658fe379742ff2b3bf46103edd6f2599142b27f127a878b272",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_53.jpg"
+    },
+    {
+      "id": "Esca/Esca_54.jpg",
+      "classe": "esca",
+      "sha256": "5826e34d53c1e6feb7a242388144dc0eb43a06b33f41e8acca2898b0009dd4b8",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_54.jpg"
+    },
+    {
+      "id": "Esca/Esca_55.jpg",
+      "classe": "esca",
+      "sha256": "164e0daccbd95e7f8180b9caa73d94b160c6fa209f45ed8c1bb93177e4ace967",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_55.jpg"
+    },
+    {
+      "id": "Esca/Esca_56.jpg",
+      "classe": "esca",
+      "sha256": "2c80bc3dfe618a3f115658b8a468846191e2ff1f6963c491cd534903ab9ebc1a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_56.jpg"
+    },
+    {
+      "id": "Esca/Esca_57.jpg",
+      "classe": "esca",
+      "sha256": "e529a58d21bdfd867a673d79a17eaa3ab587b51e708adeba30972dd1aedeccb8",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_57.jpg"
+    },
+    {
+      "id": "Esca/Esca_58.jpg",
+      "classe": "esca",
+      "sha256": "5b00e934126d382477a8cf9d94773444ff22d88953f9c4f13b533acaadf24e19",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_58.jpg"
+    },
+    {
+      "id": "Esca/Esca_59.jpg",
+      "classe": "esca",
+      "sha256": "412b654b24ad6103a1ec015f17ea333dc5e83d415391cf845f9ff5a9fb149e05",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_59.jpg"
+    },
+    {
+      "id": "Esca/Esca_6.jpg",
+      "classe": "esca",
+      "sha256": "9b87408adcb1101cb0b35432d2bb7e99b495bbb198fc84080f600dff02d0c6dc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_6.jpg"
+    },
+    {
+      "id": "Esca/Esca_60.jpg",
+      "classe": "esca",
+      "sha256": "72de10986167f3d3d0033994c8f374d4bf7e1dad9991c3ba53f30a455271cee7",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_60.jpg"
+    },
+    {
+      "id": "Esca/Esca_61.jpg",
+      "classe": "esca",
+      "sha256": "d0f1608ce20e78f57d8990f2260feb2016e20e4ce25c08554541ef0151468aa5",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_61.jpg"
+    },
+    {
+      "id": "Esca/Esca_62.jpg",
+      "classe": "esca",
+      "sha256": "fdbb8f39ad77902d3f5676e7346cd9f4ef5ced22898c5d01982f83a4a9fe74e1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_62.jpg"
+    },
+    {
+      "id": "Esca/Esca_63.jpg",
+      "classe": "esca",
+      "sha256": "33d1f4354d29aaab3bdc194b727de2c36e65e0f7c70a1baff4f8b9511a6b5abe",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_63.jpg"
+    },
+    {
+      "id": "Esca/Esca_64.jpg",
+      "classe": "esca",
+      "sha256": "ca42b7c2ce131feec1189556d4019e8bf8067b9d8cc232db62b3264a348d0d1f",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_64.jpg"
+    },
+    {
+      "id": "Esca/Esca_65.jpg",
+      "classe": "esca",
+      "sha256": "d71e0de3bdc678d03a3dcf90768d4fd42f7a5df909c8ebc1793d98d67b9877a7",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_65.jpg"
+    },
+    {
+      "id": "Esca/Esca_66.jpg",
+      "classe": "esca",
+      "sha256": "928c105c0cf4974381d4403cc2f6d4a7af45523cc9dbd724e7a09e4da3f750ad",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_66.jpg"
+    },
+    {
+      "id": "Esca/Esca_67.jpg",
+      "classe": "esca",
+      "sha256": "666103b65515afa10709d34d94cf54a1d1dd85d93bff5644ca5f08b319f471b3",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_67.jpg"
+    },
+    {
+      "id": "Esca/Esca_68.jpg",
+      "classe": "esca",
+      "sha256": "9637f55b4fd39a740546cebccf080d04ae27007d39457dbc1f5e8c4f6a61e5f2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_68.jpg"
+    },
+    {
+      "id": "Esca/Esca_69.jpg",
+      "classe": "esca",
+      "sha256": "ec61d802e8c0c05b5d3de1f1a1185f8458bc6bc1ef62398ccfc25b4d87cd7577",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_69.jpg"
+    },
+    {
+      "id": "Esca/Esca_7.jpg",
+      "classe": "esca",
+      "sha256": "edc5bc9f0e1f85dce41fa5799a4ee0831ce39efe103e8527e79b5be64977b683",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_7.jpg"
+    },
+    {
+      "id": "Esca/Esca_70.jpg",
+      "classe": "esca",
+      "sha256": "5f859deaf5b4e8187c901f6b84d8052dcb621c256bbd2e7bbd5a8f0bc985fef0",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_70.jpg"
+    },
+    {
+      "id": "Esca/Esca_71.jpg",
+      "classe": "esca",
+      "sha256": "5c8f073b573289daf37b5d856a9b755d95baeba361164c6fecc498590f9de6d3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_71.jpg"
+    },
+    {
+      "id": "Esca/Esca_72.jpg",
+      "classe": "esca",
+      "sha256": "5cd5ee3a241ebb144593200004ac56fbc9e2295b7a769fcf90afe347d8ba217d",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_72.jpg"
+    },
+    {
+      "id": "Esca/Esca_73.jpg",
+      "classe": "esca",
+      "sha256": "441fb8d88ae399a791d35b8762dd13f00c15b5720c76d35ef25be2535b57709e",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_73.jpg"
+    },
+    {
+      "id": "Esca/Esca_74.jpg",
+      "classe": "esca",
+      "sha256": "6510e4147c4c79a73367d448021367f8b56f8b1b9392eccd8a8ab586fb45b923",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_74.jpg"
+    },
+    {
+      "id": "Esca/Esca_75.jpg",
+      "classe": "esca",
+      "sha256": "025b71c4082648ad13825bd1144524c6d7d55a632612a456802dba4fbba02d25",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_75.jpg"
+    },
+    {
+      "id": "Esca/Esca_76.jpg",
+      "classe": "esca",
+      "sha256": "e4ce66d54210434201e9a35ff66fe0515812337767abab3a532f3ec1c694a904",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_76.jpg"
+    },
+    {
+      "id": "Esca/Esca_77.jpg",
+      "classe": "esca",
+      "sha256": "f51c5caad80b9145a71734392cfb0a78bccd1ac187bb762ebcf6cd9a511f420c",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_77.jpg"
+    },
+    {
+      "id": "Esca/Esca_78.jpg",
+      "classe": "esca",
+      "sha256": "3b1e49718e43929c4f42a83814bf533dcc7cb4c0a23cb2f2a133b4d9329c9503",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_78.jpg"
+    },
+    {
+      "id": "Esca/Esca_79.jpg",
+      "classe": "esca",
+      "sha256": "ae7c0edac0b1d4a39772709880610b0cd10e50496e606dd657bb9c67df7f218e",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_79.jpg"
+    },
+    {
+      "id": "Esca/Esca_8.jpg",
+      "classe": "esca",
+      "sha256": "0082c51ae124ba1bc7579b7695246a9841d7dc8740c7090084e1d1ec301fa93c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_8.jpg"
+    },
+    {
+      "id": "Esca/Esca_80.jpg",
+      "classe": "esca",
+      "sha256": "8285e6567acf636fc20eca476d0bf7c98d502d0614915ff41591ebbc82848596",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_80.jpg"
+    },
+    {
+      "id": "Esca/Esca_81.jpg",
+      "classe": "esca",
+      "sha256": "77d988c6a96c8691251aa38f490a2c42ff55bb63c93c9def417399ce7d7c1309",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_81.jpg"
+    },
+    {
+      "id": "Esca/Esca_82.jpg",
+      "classe": "esca",
+      "sha256": "013b2daf3362d1fc8b5844f191e164d1f3907f59125645e0a0032826cb48e168",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_82.jpg"
+    },
+    {
+      "id": "Esca/Esca_83.jpg",
+      "classe": "esca",
+      "sha256": "aa025a53eb6fff055982ac9dedcd90106f496289fe0cd8008253c55d0f53be6f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_83.jpg"
+    },
+    {
+      "id": "Esca/Esca_84.jpg",
+      "classe": "esca",
+      "sha256": "10da7bea6d3334c75d7cf8b8e3051510e4a558a9d5ef7e5bc1f49074ecdbbfe3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_84.jpg"
+    },
+    {
+      "id": "Esca/Esca_85.jpg",
+      "classe": "esca",
+      "sha256": "52001fcad08fca01992bc73b1ff44bf15fbbad4425300b1d4a213715822e70e6",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_85.jpg"
+    },
+    {
+      "id": "Esca/Esca_86.jpg",
+      "classe": "esca",
+      "sha256": "69a7fc044f4b790ab17f6f58e7f5765afe1b0622ea5f0f830cce53b08f05f525",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_86.jpg"
+    },
+    {
+      "id": "Esca/Esca_87.jpg",
+      "classe": "esca",
+      "sha256": "ab7ad3f14f2c2def9a93284658de884dba23a6d8e4907b33db0187342aef4c3a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_87.jpg"
+    },
+    {
+      "id": "Esca/Esca_88.jpg",
+      "classe": "esca",
+      "sha256": "b5a6bd4c2fee5ff634ccefbe0a33726d44f82c4783072143b0f0bbc095c6ac98",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_88.jpg"
+    },
+    {
+      "id": "Esca/Esca_89.jpg",
+      "classe": "esca",
+      "sha256": "dcd6bf23d7c363664a5ee4096c08a0035096140e8e6efd597f97daa7e5223ca6",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_89.jpg"
+    },
+    {
+      "id": "Esca/Esca_9.jpg",
+      "classe": "esca",
+      "sha256": "3517f01970ec423c1aa22d7a9b0d97ba257cc7be77efe755747045e0b64e7402",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_9.jpg"
+    },
+    {
+      "id": "Esca/Esca_90.jpg",
+      "classe": "esca",
+      "sha256": "7d035a34e42b40124e2cee07aa29168f95deb001b4e48651279c9d6c0086f6ec",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_90.jpg"
+    },
+    {
+      "id": "Esca/Esca_91.jpg",
+      "classe": "esca",
+      "sha256": "f6070ba8f048a4e9e96f656862b3cdf70efb239dc7a8f77dd98b67684c39e60b",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_91.jpg"
+    },
+    {
+      "id": "Esca/Esca_92.jpg",
+      "classe": "esca",
+      "sha256": "a718fed2c13e271a6e4224f68ed65512f5450839059388f4401e90c0a8b6e224",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Esca/Esca_92.jpg"
+    },
+    {
+      "id": "Esca/Esca_93.jpg",
+      "classe": "esca",
+      "sha256": "46510fb946a9308278080f2a970bb1af8d015543a974903b0b597e786c52e2bf",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_93.jpg"
+    },
+    {
+      "id": "Esca/Esca_94.jpg",
+      "classe": "esca",
+      "sha256": "bb68a6a826f0b40126130309ed5e55ce73dc39a3f6c327fd9fb8ea73aef00ca3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_94.jpg"
+    },
+    {
+      "id": "Esca/Esca_95.jpg",
+      "classe": "esca",
+      "sha256": "1ceae8b0bb8f772656c399c917ce5089a9c51b40550eff94b8231cae6180107f",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_95.jpg"
+    },
+    {
+      "id": "Esca/Esca_96.jpg",
+      "classe": "esca",
+      "sha256": "e0b6acbc4350aed8a5dfb97d7004c74d47bc973f21b101e7db2d90cfc1690d2f",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Esca/Esca_96.jpg"
+    },
+    {
+      "id": "Esca/Esca_97.jpg",
+      "classe": "esca",
+      "sha256": "84ec40eced9520a760d076dea2e31c49d371f402bbaf9eb5f968fad72d7c1b0e",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_97.jpg"
+    },
+    {
+      "id": "Esca/Esca_98.jpg",
+      "classe": "esca",
+      "sha256": "46ad496492978f59eb577132d671cb71b34fd49d1448eaddb3fe2efce5007712",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_98.jpg"
+    },
+    {
+      "id": "Esca/Esca_99.jpg",
+      "classe": "esca",
+      "sha256": "be6c64ed3dff7facc1cd42e7d33a4e754033ffdb0157d29cde8321e30ee79e8f",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Esca/Esca_99.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_0.jpg",
+      "classe": "saudavel",
+      "sha256": "bb69ddcb2f1d910fdea310afcbdde47bbf0e90e940e5cd44bc62a01cc2cac2c4",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_0.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_1.jpg",
+      "classe": "saudavel",
+      "sha256": "0b99c9adaa94fe3864194f218cc592c3ef3b56c87bfabc9dd6a036118774e4d6",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_1.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_10.jpg",
+      "classe": "saudavel",
+      "sha256": "14df3c84f08f08272cbf9a326b041ece1130167f6f70961bcee3879d3fca6d8e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_10.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_100.jpg",
+      "classe": "saudavel",
+      "sha256": "3c02e5e4ffd0ea8b60975fd4d508a9e7261bae05e614b53538a29d002334df3f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_100.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_101.jpg",
+      "classe": "saudavel",
+      "sha256": "4cb5c8e57a53b485579a92af5b5c504fe73bff5687324fb8212c332d71b255de",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_101.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_102.jpg",
+      "classe": "saudavel",
+      "sha256": "05f12b144ff74744dfa1805aaa654a0098eb7eca4ceee0dada280e211bc13dc1",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_102.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_103.jpg",
+      "classe": "saudavel",
+      "sha256": "351470b825ce732f2cac5b4f7bc189b093d7d7fd3796445423fb284cc69a8ec7",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_103.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_104.jpg",
+      "classe": "saudavel",
+      "sha256": "b40281288f94c44c015686be80b8b6c14e3891dab2132914d49c2bbe4f438d38",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_104.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_105.jpg",
+      "classe": "saudavel",
+      "sha256": "b306a46546647655d09a1b30d70d4b656c5dd8a6777b26d56f19a43be7e3b10f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_105.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_106.jpg",
+      "classe": "saudavel",
+      "sha256": "accb1435afcb36c82ad737a586ec822761d073bba56c01e2ed3398fc85250652",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_106.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_107.jpg",
+      "classe": "saudavel",
+      "sha256": "38e947634308747aa3786529cd57204dce1862b56f5ad5f02f1d48b262edd7b6",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_107.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_108.jpg",
+      "classe": "saudavel",
+      "sha256": "5e404d70a5ba7c3eb8ba17510b962010bab3ee908f83549adc9aa3b8ae44f638",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_108.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_109.jpg",
+      "classe": "saudavel",
+      "sha256": "d104a1acba9e0dfd2b5f3ead4fb9b97e30c4bb9cfeefd3748326df9127a12a17",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_109.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_11.jpg",
+      "classe": "saudavel",
+      "sha256": "270fb6a868b005d0ade714a7b4309a12320c0fd96b6d69a09e914fee75dd19c0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_11.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_110.jpg",
+      "classe": "saudavel",
+      "sha256": "d358cd83e437f9ab5ccefa461c232b7fcdf433ae4d0d8bf0bcfe9b406bfddab7",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_110.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_111.jpg",
+      "classe": "saudavel",
+      "sha256": "0a02ebcc2da717f89b8f769eed018efa15102ec6df3f4944138591148d806967",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_111.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_112.jpg",
+      "classe": "saudavel",
+      "sha256": "4a0dbfb3c51e7c6d82aa16f15ec8bc8f1be0dc21389467c2bec12b92d1d1e2e0",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_112.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_113.jpg",
+      "classe": "saudavel",
+      "sha256": "7dd40b63ca9636192c6c55d454ca9996824153c409c17e6a5dad0a0f43499b77",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_113.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_114.jpg",
+      "classe": "saudavel",
+      "sha256": "08b8e6150ed5d09f2881afa1f62735fc8095a04e419b175d92e4c951c3f6d313",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_114.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_115.jpg",
+      "classe": "saudavel",
+      "sha256": "68ff1119811ebe1dd2264b40d6da21220b52b0b657992979ac3733a9bc2bb8b7",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_115.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_116.jpg",
+      "classe": "saudavel",
+      "sha256": "d0ccf3a812be5c078302d60405026a03227206a00f809700eb1fb7af8c3b2dfe",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_116.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_117.jpg",
+      "classe": "saudavel",
+      "sha256": "6b740398abc078342e7c8b4562f433b7a2395b5e2517bab9588ac227fa6b582f",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_117.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_118.jpg",
+      "classe": "saudavel",
+      "sha256": "7a26bed71c3fc2a90cf16895210233209dbff9c520b0a563a24032ee0ed1d757",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_118.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_119.jpg",
+      "classe": "saudavel",
+      "sha256": "07e86a8ef2c7a5b8ab12c4362dca4cce51a7e41146c386898d7a37c48c186426",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_119.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_12.jpg",
+      "classe": "saudavel",
+      "sha256": "fc64ee32ede774c945bdb49630ae263ea683070ca3843626dd91a20582b2288e",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_12.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_120.jpg",
+      "classe": "saudavel",
+      "sha256": "fde708322b88cefb0973eb62a3ff580d1211b75b0f1d19da1e8ccea06b3b5859",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_120.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_121.jpg",
+      "classe": "saudavel",
+      "sha256": "ef521ff8fb3a799ddc22ebe8d1a24fb8405487fc099b01d423acfd6528c74040",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_121.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_122.jpg",
+      "classe": "saudavel",
+      "sha256": "317f26e7668aadbc8487441173fbb1a7cbde2f0df14eeab4b8015d18b4198adf",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_122.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_123.jpg",
+      "classe": "saudavel",
+      "sha256": "c72a0b66bd2ce2b2203fff0a2cec03191a252eae85511ed19f43d2d13ff7d2e8",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_123.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_124.jpg",
+      "classe": "saudavel",
+      "sha256": "9f25db0c15424ba33673540f7ec9eefd5c73cc1c08a78ef961ff9fce05d2e2c6",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_124.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_125.jpg",
+      "classe": "saudavel",
+      "sha256": "43c0c3e2b28a160970b888641cfa9ebe23bbf5f7287255c6a2a56e5df14cc4e7",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_125.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_126.jpg",
+      "classe": "saudavel",
+      "sha256": "01d6903610408c80bb3c615e50ba9afcfdb352ba8f622dd39b505cc7097ed664",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_126.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_127.jpg",
+      "classe": "saudavel",
+      "sha256": "bd8231382cb5e6b84e4afd642bd8ea432ad2724823f25ae3f64e2b7aa88a036d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_127.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_128.jpg",
+      "classe": "saudavel",
+      "sha256": "0b541db344b3b29ce304d3a0cfb3a5494eef8b5b585e33b964351727dcbd5ba9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_128.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_129.jpg",
+      "classe": "saudavel",
+      "sha256": "ab946a7fbcb8eb610df9359cec2839a8b4ec5b386860110d78c5b69860031290",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_129.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_13.jpg",
+      "classe": "saudavel",
+      "sha256": "fbcf50dcf684196681e5b4fc65fde94845687db5cb89b57ecda0ab71656072fa",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_13.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_130.jpg",
+      "classe": "saudavel",
+      "sha256": "29e120e4bd4439d78ce6c9158cd16d0dbbbd828248412fdb3d463ca698fec3b9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_130.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_131.jpg",
+      "classe": "saudavel",
+      "sha256": "80cfc5cf4c3756e95b63f2635c7543b5c31f902f6d8adb16ead2292ec5f109c7",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_131.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_132.jpg",
+      "classe": "saudavel",
+      "sha256": "4e8fed4ba0c8a2f734d62417e2ee617668a54d9ad85c9a492db074f070743ed7",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_132.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_133.jpg",
+      "classe": "saudavel",
+      "sha256": "5cd0d346c0a43d81cb61097c9cac556fdbbdad8866db65c29a35770b03398ee6",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_133.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_134.jpg",
+      "classe": "saudavel",
+      "sha256": "b52b90a5dfb6298924efaa5cb40b3e9d9038f5e32d7f54f13ee12a0f9d820a5f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_134.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_135.jpg",
+      "classe": "saudavel",
+      "sha256": "2b0f43ed4d0abc1b5175e7dfdb5227a2e11eed0b63ea4d299e250b2bdd0d2c91",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_135.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_136.jpg",
+      "classe": "saudavel",
+      "sha256": "4a0c69ec1a09df666e296f6241d5e22194b77fa23c3f553f45e7f98027b210be",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_136.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_137.jpg",
+      "classe": "saudavel",
+      "sha256": "38b198f216f3cd2bd8fad0d604fbe18365fb8f5073414fc6010c274a33528c06",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_137.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_138.jpg",
+      "classe": "saudavel",
+      "sha256": "3cae3baac7ab9f5f3ec7c41642245ba68d35dcf519db3b695b910198f5ca0fcf",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_138.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_139.jpg",
+      "classe": "saudavel",
+      "sha256": "502e03b4c48292ef57cb18ef8ee487eb37f1484a539bafec24fe6ac9e001d87e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_139.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_14.jpg",
+      "classe": "saudavel",
+      "sha256": "6094763792d729af7f92397596196a5f9ea5e5f19a2a7a02fd15e2d9224c97e7",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_14.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_140.jpg",
+      "classe": "saudavel",
+      "sha256": "30c21e87222ada1a010bc92f588add2df053cb7c59b0eb797cc347063bb2e3a9",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_140.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_141.jpg",
+      "classe": "saudavel",
+      "sha256": "8bcba076cbc0832fbc907bdbab67f60be8f5485a1772a5d04d3cf9b432e9e364",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_141.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_142.jpg",
+      "classe": "saudavel",
+      "sha256": "49d9a0363cb6c990534cde6a0a772651fed0d052f94f94363a6bea88ed4a68f1",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_142.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_143.jpg",
+      "classe": "saudavel",
+      "sha256": "3df696cfc26164d5dfda663d84369eb8f74dd06201489ace2e6e86cef2b4338b",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_143.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_144.jpg",
+      "classe": "saudavel",
+      "sha256": "b45d86e6e4490a8d6e8e46973a9ad7618dbed69bdec091a8d8ca79246051c4d7",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_144.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_145.jpg",
+      "classe": "saudavel",
+      "sha256": "a78d3b7640e392364c856500fa9208ca9a90c6e0dbd0c76c86decddbebd5f820",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_145.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_146.jpg",
+      "classe": "saudavel",
+      "sha256": "153967479f6165723883b2bd866fc642e68ce4aa1852da13622e4c063c5f04ac",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_146.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_147.jpg",
+      "classe": "saudavel",
+      "sha256": "c495bf708136d883917bae01367a248c9303e9ca5fd6943b2dc92b42f0324844",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_147.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_148.jpg",
+      "classe": "saudavel",
+      "sha256": "b689fe983e8b2e09ef5bd8f844f897fb5ea77786e029c6e50ea97f7a326315d3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_148.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_149.jpg",
+      "classe": "saudavel",
+      "sha256": "212d9113ea7594e345fbfccd652f5a7bdfff8a0dacd529e60869dfe9d2f6780c",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_149.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_15.jpg",
+      "classe": "saudavel",
+      "sha256": "f0860c1aa206cd46e8eb0e3f224d2d28081edd90282c459276312824dffc386d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_15.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_150.jpg",
+      "classe": "saudavel",
+      "sha256": "306b8c13e6871c8215fc253aebf12d46049a98c4a6486df8bf76f72d01997f98",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_150.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_151.jpg",
+      "classe": "saudavel",
+      "sha256": "d7713b357c5830c2570b944eeb0f1ec54f3be9e2540d4db91402160e0bc80d68",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_151.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_152.jpg",
+      "classe": "saudavel",
+      "sha256": "2409dfa9aba7fb12ba2ffd170572841ed5d4180ff174806f43f2b335c1301748",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_152.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_153.jpg",
+      "classe": "saudavel",
+      "sha256": "74c5095b39835302255307f3d28caddeb2f4fd9f1931d9411edc57775407b669",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_153.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_154.jpg",
+      "classe": "saudavel",
+      "sha256": "48e2906c41705c28d25ab565c5d559a55b996715f7042f53a6812cb701782ea7",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_154.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_155.jpg",
+      "classe": "saudavel",
+      "sha256": "b5d7fbc4c214c0a5e01bdd7357e5f4ef85e1d95fca6af68f6a018985b51928a3",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_155.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_156.jpg",
+      "classe": "saudavel",
+      "sha256": "be55f0d15d4f96bcd82c0e08fc7ecf32c3866cce51a99106a6b9855b946c137e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_156.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_157.jpg",
+      "classe": "saudavel",
+      "sha256": "80d0178d73c572cdf348292624843393e6ea2710629a4376eecfe364c4539600",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_157.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_16.jpg",
+      "classe": "saudavel",
+      "sha256": "e814945ab523960398da0d60b7826bb54ced0bb219c76c5cf268dd0619f9a783",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_16.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_17.jpg",
+      "classe": "saudavel",
+      "sha256": "65492b72c9ead55e1d06ac8dffce74ca8cdd712ee1b5ed375c42a28e9119e87c",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_17.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_18.jpg",
+      "classe": "saudavel",
+      "sha256": "dc1d825fd15f9073df38c148a6540889e256d8a7cb200cb0624aa70d134c1a69",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_18.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_19.jpg",
+      "classe": "saudavel",
+      "sha256": "c3609f73cb2c8cb5c3eec0bf19bc762cde184cfc0a45fce3f09edc58259de6df",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_19.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_2.jpg",
+      "classe": "saudavel",
+      "sha256": "32cfa826f123292fddfeb6096c52400934c54f88136366166d0f1ee6e6654f31",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_2.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_20.jpg",
+      "classe": "saudavel",
+      "sha256": "b52c2b3b0dd755e5a95dca133368b577cc4b3061441c8adc54e16e79ae608e46",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_20.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_21.jpg",
+      "classe": "saudavel",
+      "sha256": "a6dec378e65702222ac181585d9f65a8d8bff4c7460f581e895792581d046a27",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_21.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_22.jpg",
+      "classe": "saudavel",
+      "sha256": "8345dd2f8b8bf84fee3f6f3a9b8b558a3fcc9cb67636fcaa5613f284b0189ed0",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_22.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_23.jpg",
+      "classe": "saudavel",
+      "sha256": "1bdba39bb86c6a5df52ee13ed209a4933ba591677d4a70c334734a9bf5de7928",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_23.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_24.jpg",
+      "classe": "saudavel",
+      "sha256": "b71eb5e806fb0b00deeb4bf9389804557947a7e0d4499171a08c9f05496e825e",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_24.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_25.jpg",
+      "classe": "saudavel",
+      "sha256": "f8cbd7014c054668aac6fba26289ef90ca190f133545817a833e5b36ab1786dc",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_25.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_26.jpg",
+      "classe": "saudavel",
+      "sha256": "6a864f692071cde7cb313500a1b50eca57887bdf4e0c722ac32b50941be7727c",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_26.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_27.jpg",
+      "classe": "saudavel",
+      "sha256": "5073d34c7f8ac9d91e91f33f542df08d25da086bd607d00d45c24b2174db82c1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_27.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_28.jpg",
+      "classe": "saudavel",
+      "sha256": "74fca439df009bb882cc6a31f5043bcc94271271114dffef922894bd7c1eaa00",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_28.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_29.jpg",
+      "classe": "saudavel",
+      "sha256": "973428536330919dd7a3cfd3cf5e1afe106dc612fe3b607419890dbbf0fce699",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_29.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_3.jpg",
+      "classe": "saudavel",
+      "sha256": "da8e9805b6df3e86f84f2a13ffc8fd2f9107c9308753d6582eead227c04162af",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_3.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_30.jpg",
+      "classe": "saudavel",
+      "sha256": "e20fc1e678d707d5c8cbd0ec7265e383d6994ea30cb026c824bfa630e0e162c9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_30.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_31.jpg",
+      "classe": "saudavel",
+      "sha256": "d16f5274a54a60edec19589e56b1a234387f8088e0f44577e334ecd80f7d9cca",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_31.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_32.jpg",
+      "classe": "saudavel",
+      "sha256": "f1db1cf04d9507d8ab59e2dfaa3fe562f1ab8157d7cfbf8e851dd0632f2ea6ba",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_32.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_33.jpg",
+      "classe": "saudavel",
+      "sha256": "b8b789512fc58d8da60b4a8427a0778ff908165587262b7fe0eaef44e47eaef1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_33.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_34.jpg",
+      "classe": "saudavel",
+      "sha256": "b04beca4a9fbde95899021ee52a496947f65e98423e81b4ae76bd674bed17b4d",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_34.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_35.jpg",
+      "classe": "saudavel",
+      "sha256": "08a0e5b861005755e8a9fd46100fa94ddc242f0eaa731fd12e7f021de4b4073a",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_35.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_36.jpg",
+      "classe": "saudavel",
+      "sha256": "9fa25d10b886a31d4c1edc3313a53a6ead61019ad20f303c5faae66054929cdd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_36.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_37.jpg",
+      "classe": "saudavel",
+      "sha256": "0f4b234f227da291ded6d12e8ed82ab9c6da2c6311c9437d96b942de0f8664d2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_37.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_38.jpg",
+      "classe": "saudavel",
+      "sha256": "70b9516a88dc0e6d3b320994891c1ff8f7d285020d9834f41a0bc4e40778eb47",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_38.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_39.jpg",
+      "classe": "saudavel",
+      "sha256": "bf4ffb85109cf6d2b263528b76cf31962ecb77b273ded314c462baae12459ec3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_39.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_4.jpg",
+      "classe": "saudavel",
+      "sha256": "7b0679d6e7c96c371135370779e4bb7ed7fd7db933b525e1f6464f4fc311d5d4",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_4.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_40.jpg",
+      "classe": "saudavel",
+      "sha256": "9885729cb4c36f339398edbc15d4b8c0214040d220f7d3dff065024808afa2dc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_40.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_41.jpg",
+      "classe": "saudavel",
+      "sha256": "23c9273384c430a4b7dce31bcd17e39e4c51c62d016f20450a489ca7177499d6",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_41.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_42.jpg",
+      "classe": "saudavel",
+      "sha256": "1a79a7a56e57657ec87ed9d6c91e9f85cdfcfc274f9f01bd948c515f4d695eea",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_42.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_43.jpg",
+      "classe": "saudavel",
+      "sha256": "ef2f6420bdbbed32221c445786abbab65f5150a13d92bc96d94e561a48235e77",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_43.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_44.jpg",
+      "classe": "saudavel",
+      "sha256": "82442a2e33a0b26916b340356f4095205f4420d71b5e3962a627939af7b99c2c",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_44.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_45.jpg",
+      "classe": "saudavel",
+      "sha256": "fefba85294eec3784d9b4fc713e581d1af97fbe3a14e74c25a99238b8d0a5a50",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_45.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_46.jpg",
+      "classe": "saudavel",
+      "sha256": "3dcee3701638511e567763ea43b32e5e2cf02bdb306537bc41fe8a797493c571",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_46.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_47.jpg",
+      "classe": "saudavel",
+      "sha256": "2a12088e30c6e39b66cf2b4d12ebcce395bc812e35467afea793da0680e50321",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_47.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_48.jpg",
+      "classe": "saudavel",
+      "sha256": "28b16a76560c5a386f1c255c51ba0c14ddc87a8e02f2154cb70e8080e169e7fc",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_48.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_49.jpg",
+      "classe": "saudavel",
+      "sha256": "0e8833fd536a4e08b7eb797e591ea58e50adae660024368f1c461b367feab72e",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_49.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_5.jpg",
+      "classe": "saudavel",
+      "sha256": "31ec9c8f14d57d3c0f4c98eb66cbcf0074952dd90bcabe3d87a0262f067d57c3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_5.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_50.jpg",
+      "classe": "saudavel",
+      "sha256": "d3e36b32c8389f1627e8d5dd936e15698a83a4526f7e975af093162401284b69",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_50.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_51.jpg",
+      "classe": "saudavel",
+      "sha256": "aa81df9c4f152ee5820ac9c07b024d1a5c28a44431aa6df0177f1810e0e43014",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_51.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_52.jpg",
+      "classe": "saudavel",
+      "sha256": "fa4d9da5b0870410d95301a4e39e52d88aee919ec91b57d76d178354f6779cd5",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_52.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_53.jpg",
+      "classe": "saudavel",
+      "sha256": "010a4104ec143d4b4cec363656a4fdff8eaa4daa3f6554b698ff63663afcb1b5",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_53.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_54.jpg",
+      "classe": "saudavel",
+      "sha256": "67fe579de6029ea2a114a5a62e9ab940a3cf9a6590e75449aed75fc522fe5159",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_54.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_55.jpg",
+      "classe": "saudavel",
+      "sha256": "65870a3bc0ddfbfe49db46f8faf167496bbabfc51e5e838a4690341d7e78f00c",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_55.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_56.jpg",
+      "classe": "saudavel",
+      "sha256": "4bd703c4833f33118302b8a8afbdee5beb32193cdb31d21b1199df14088b6560",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_56.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_57.jpg",
+      "classe": "saudavel",
+      "sha256": "b69bb3262301d7db08e159f0cd5bbbb3d428fc0a6ae81718731c10c785372b91",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_57.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_58.jpg",
+      "classe": "saudavel",
+      "sha256": "47694f1fd11e6b21b7c1f4336d2b68f014b35bef0f7696bccfc9ae7c28108e68",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_58.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_59.jpg",
+      "classe": "saudavel",
+      "sha256": "64485c875da7caef940d25b5985d37c38fa7822b74cd78f7d5e6007279c19aaa",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_59.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_6.jpg",
+      "classe": "saudavel",
+      "sha256": "b021eb1d6d6a4a82d00b886bf58903ea71fffb318896a2915dde49b832aff67c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_6.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_60.jpg",
+      "classe": "saudavel",
+      "sha256": "2faf48fa9d62bbe96af16b09dc5200366f387d8e3c03f52ea5d540d437651a73",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_60.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_61.jpg",
+      "classe": "saudavel",
+      "sha256": "c366711c448a455b47aefe390896c84a2a58e4aa72b4a796de7701013f5cf606",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_61.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_62.jpg",
+      "classe": "saudavel",
+      "sha256": "f8d80768c2f05160f9b870bfc7d33e73425017f3733332102510d71b7955905d",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_62.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_63.jpg",
+      "classe": "saudavel",
+      "sha256": "83fa452198eef1033522a5e3dface38bc7db23b2902a5e23f1b06dbcda3aad5c",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_63.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_64.jpg",
+      "classe": "saudavel",
+      "sha256": "107bfd1ae5359cb36b4e6daad2bae4c8bdb71158bfba7547def9b2cd692a2f6b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_64.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_65.jpg",
+      "classe": "saudavel",
+      "sha256": "7fc9483ec228fd056921477fed6d43ee24ca09148fdabc742a1178398d02d4f5",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_65.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_66.jpg",
+      "classe": "saudavel",
+      "sha256": "5c7c01f21264bc56328a53853cce8e779854eaceb35faaa7cd10be43a71b71a0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_66.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_67.jpg",
+      "classe": "saudavel",
+      "sha256": "8fa881981ddf8b9d7a4ab7104b03ffde4ff4b16964a141fed6f836e2a6d5219f",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_67.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_68.jpg",
+      "classe": "saudavel",
+      "sha256": "6300d60eb0b0e0c3caecea295f4de8e1b4dbadb8018749ded4b4e5d632e42e3e",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_68.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_69.jpg",
+      "classe": "saudavel",
+      "sha256": "d5af6d360691a8b52c1c50d9fecc1910ca7b4560da4a8657f7ce06541d751fb9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_69.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_7.jpg",
+      "classe": "saudavel",
+      "sha256": "5faa3f02efbc59bc647369df06df72724cc3d918113fd33782d4fecc1886e4f0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_7.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_70.jpg",
+      "classe": "saudavel",
+      "sha256": "c150df2bdeac07e1cac60128b71480b29786babb54baf3a630b4c555bb714568",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_70.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_71.jpg",
+      "classe": "saudavel",
+      "sha256": "5edb43c849dccd594ae12f440dc456256bc689ff7516e3c6b8ec73c45c2141c6",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_71.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_72.jpg",
+      "classe": "saudavel",
+      "sha256": "8c32270d045a3d27bedb9c8ec96090c4e018c8474703fa57fe05c4bc4314056d",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_72.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_73.jpg",
+      "classe": "saudavel",
+      "sha256": "d5ec4e57ed0a58fa57757eb0b277131068cdebde31d4fb11b2d4926be0273496",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_73.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_74.jpg",
+      "classe": "saudavel",
+      "sha256": "b1c4c0eacb36c1d5ef15329e8a90f3f08a5e1a01ea537625724566e94b4b6199",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_74.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_75.jpg",
+      "classe": "saudavel",
+      "sha256": "d3122276ac2968cde6fd8e51aa6a811f0ad00de02eaaec5a19c04496228534ec",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_75.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_76.jpg",
+      "classe": "saudavel",
+      "sha256": "29772ee97160c836883546b6910d70f5a0b02b3c21a17f2a7bb373aafd70bbd0",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_76.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_77.jpg",
+      "classe": "saudavel",
+      "sha256": "9537c90a6235e1de2011e802d304186acd3e596470e9f01c52e83b73d106062e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_77.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_78.jpg",
+      "classe": "saudavel",
+      "sha256": "066a517aa16d18f102e356ae712da7250de5f48e9d1f1baccebb9ca52dac5688",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_78.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_79.jpg",
+      "classe": "saudavel",
+      "sha256": "63f231d6403602ce76e381f2cab988bab8bd4e5b3953ed80b66dc9ffab24b6da",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_79.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_8.jpg",
+      "classe": "saudavel",
+      "sha256": "a48a6dfbb25d212b7819bb8cec9330c93ab75ef3d600d65d4841478cc10930c8",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_8.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_80.jpg",
+      "classe": "saudavel",
+      "sha256": "bac4b43794112242524bbe7bcf66997947259d68feb72afec3238193c94af49a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_80.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_81.jpg",
+      "classe": "saudavel",
+      "sha256": "41c5fcc300baf488071d1ef912879ca0b064785b6025dea0306e7ac6a55ac392",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_81.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_82.jpg",
+      "classe": "saudavel",
+      "sha256": "92a058ffddcf692942f8edccda5b19318a74abd35ba53eb8ded54f6d291c2efc",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_82.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_83.jpg",
+      "classe": "saudavel",
+      "sha256": "1168aca3bf5bd78cb9c600f1a8c0ec26ee7874d3fc959ad5e9de4691103e3fe5",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_83.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_84.jpg",
+      "classe": "saudavel",
+      "sha256": "433860c1e07010c936d7fd16a75a6ee65b8a5637a4b802e65301e59b23178a53",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_84.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_85.jpg",
+      "classe": "saudavel",
+      "sha256": "f3de10607481784be088ee5e70ac248214095ccfa7669d3e94903f2c624ac4f9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_85.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_86.jpg",
+      "classe": "saudavel",
+      "sha256": "d2ccd4529ea5e24c33c28557c0783ac52bf28aa91b0e38006afef82cd5ec429f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_86.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_87.jpg",
+      "classe": "saudavel",
+      "sha256": "ddbdfcc612613a4de5c7dbbe8fc5f9c04755560a8c5dcb41e2f149140dbd9476",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_87.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_88.jpg",
+      "classe": "saudavel",
+      "sha256": "7d82c39c29a2cc830c11c35d46c19b4c8fbdb1a594b8017c5f73f3c03f6735f3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_88.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_89.jpg",
+      "classe": "saudavel",
+      "sha256": "b77a46113d84483ce7b443ae0c2a45b4b15e4fc1d4d0f95889fadc082e290f4b",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_89.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_9.jpg",
+      "classe": "saudavel",
+      "sha256": "8f8bd7efdbea25571a17e99927a4d0a43e82196343beb7599a26a4fb10f29825",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_9.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_90.jpg",
+      "classe": "saudavel",
+      "sha256": "93fd0718afdda1b16dc50384d1ef35bccc9d29178605f1740b8f8796044a010b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_90.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_91.jpg",
+      "classe": "saudavel",
+      "sha256": "7e03900b53ae19fb85d2a6a466fa0d579c1c16f8a66c6069889179d96d725325",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_91.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_92.jpg",
+      "classe": "saudavel",
+      "sha256": "80395303d520dedb0df8f25262642ab553cd23d160ca17b35c74200b88546c7a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_92.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_93.jpg",
+      "classe": "saudavel",
+      "sha256": "156124d1c2a095698f3e8c8fe215b64bed53a9ba1cdb4880433b441fc6427bf6",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_93.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_94.jpg",
+      "classe": "saudavel",
+      "sha256": "9c59cdc2386a5f7f4473a7d7fd2494dc242b01eee19f9dce93544d54dd2fb9db",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Healthy/Healthy_94.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_95.jpg",
+      "classe": "saudavel",
+      "sha256": "d3155a01984b99291d1bf74dc79f890624aef0868525cc6b70f8c871dfd6cae2",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_95.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_96.jpg",
+      "classe": "saudavel",
+      "sha256": "ec69410d1f95b19fb8b7bbccaca6a91a208726fadcad8621c5ca06d7bc2fe075",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_96.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_97.jpg",
+      "classe": "saudavel",
+      "sha256": "96bbeebc3c87f705e999611a05bf2b29816940b9d256ecaadbba5efb66a9283d",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Healthy/Healthy_97.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_98.jpg",
+      "classe": "saudavel",
+      "sha256": "28e8a2a62cb7d885aeb9a47a0036efe9b43aaab2925418d9174cacde88d9306e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_98.jpg"
+    },
+    {
+      "id": "Healthy/Healthy_99.jpg",
+      "classe": "saudavel",
+      "sha256": "4b8673b4dc03c7b6d867867eff370b262fe85002ac8d2c26d985ae0e9e09acf6",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Healthy/Healthy_99.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_0.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d611ec1bc5e1a157a618f7f1d780769e26c6cef641293a662cbba532b77bbe3e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_0.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_1.jpg",
+      "classe": "leaf_blight",
+      "sha256": "5d06f57b6c725eb32da8e597c0ccee94cd9c8ce5578da340484dded8cd85b5bf",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_1.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_10.jpg",
+      "classe": "leaf_blight",
+      "sha256": "cc6e410b2b880f14a9025a451ac9a708600f94d72e10faa363a757b9fdb5d23b",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_10.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_100.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c6d9d0ee445dcf57dc136d6e6b8706ec62e64682db50d5676169560f7ecc0c1b",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_100.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_101.jpg",
+      "classe": "leaf_blight",
+      "sha256": "60e428068de0bdefd897f9834ac2f6b1a12e8c257b0e80582b6812d8584532a2",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_101.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_102.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ad42f345d00707dbdbaf26679a9820c8fe1f665802425a7e9ac3184ce57fee3b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_102.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_103.jpg",
+      "classe": "leaf_blight",
+      "sha256": "bf2712e79e667bbebe22d1fca70ac131cb7dbe81089aabb1caaa37fb7e902b40",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_103.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_104.jpg",
+      "classe": "leaf_blight",
+      "sha256": "cc9b9542549ef647dfc1bcf830e7002c7ce1c7aa8841ab28470d38f94650d7da",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_104.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_105.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e82014fe06a145de68f10dd9ecd25a836ca8559c9e08cbe54b7f6a59c46afcb9",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_105.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_106.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1a5b1d3d4c0825c96936d8fcca45dcde22e676ce659b7fe9259d182ae6dfeb33",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_106.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_107.jpg",
+      "classe": "leaf_blight",
+      "sha256": "72e0e796ee267e7f7fdca92b09bd5d162e63d33afadd480dcc6f9e3cb6368c47",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_107.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_108.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d82c3c3447ca7200b074c5fd5912866e39139daa7d50394650a370588dbcd97b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_108.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_109.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ab9ecea0b14774cd91d717fd09ca4c831ac22476c96a8628a08d50c4ae603931",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_109.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_11.jpg",
+      "classe": "leaf_blight",
+      "sha256": "8eecc78519145f033b95086f701320734ba5540e997cdd4bd5c7b3e369a0f800",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_11.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_110.jpg",
+      "classe": "leaf_blight",
+      "sha256": "9d765609b7318ef49b88fd4fe72f7eace526b55a6665a5bbc6936bccc11b641f",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_110.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_111.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2e904cf5ba21acb13457bc0da2f65cbd8b4f651068bd7b69f0a25669d1b96219",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_111.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_112.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e610badd697220dccb457cde31caafd95f4928e8a4f66b85a3e8b140b1a886c4",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_112.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_113.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1f6a56eef21066bafd6e160a074642ac291041452753e5164bc1e83cba2408c6",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_113.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_114.jpg",
+      "classe": "leaf_blight",
+      "sha256": "38101b9db737a95e1b8cabd8de0b43a65b609da94704351bf397a3315dfbbd5c",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_114.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_115.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0c2810b072b5ce0a45520e15c640711ec2621882810754dddf2ffcbba7ba9c1f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_115.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_116.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a9f17ddc9e9b68557698e31291a9c71ef06b8a92e4c5a1ce87ba79fabb21433e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_116.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_117.jpg",
+      "classe": "leaf_blight",
+      "sha256": "86635dbb80fe59aa051747b7fb0c6482ddab3334b46601ada2c0d47cefea44df",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_117.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_118.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e68b753abd5985a225bd1f15ee21decc7df069e64faf5a8ba29c8eb9d8a6a615",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_118.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_119.jpg",
+      "classe": "leaf_blight",
+      "sha256": "54a1de3c0bab4a6af673cef8c234dd02802241a51fc3dba25017eab046af8313",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_119.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_12.jpg",
+      "classe": "leaf_blight",
+      "sha256": "4906a8fbdf4c615d7839d40da93b78dc478680086a32990786b18e2ffcdec5f0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_12.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_120.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2f7f871d6824287705530f51a3ca6fae5a2c6754f75b74b6d94c3dd5ca6a4498",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_120.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_121.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e66c59a7c01d1bef3d08c0e518280ae04a8efc2da5d0a933f0d79d65719a930b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_121.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_122.jpg",
+      "classe": "leaf_blight",
+      "sha256": "da30d2b12a57b6c6e41ba288a6dab02f4be718c5b6441c8bc9f77348e448248e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_122.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_123.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1e84c5e7f8c2b209f4a3589c3bb950f96aa04c64e3b64ce728358e98f6ea7614",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_123.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_124.jpg",
+      "classe": "leaf_blight",
+      "sha256": "35aaea3c487977f34a965651c2d2a54c51ccee5bcf3bf09cc2fad4afa39bbf53",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_124.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_125.jpg",
+      "classe": "leaf_blight",
+      "sha256": "cfafed900838981ad07bc009dee17dc4e9efe266956d6501796bf5eb470d3e48",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_125.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_126.jpg",
+      "classe": "leaf_blight",
+      "sha256": "663f31b63101987e6cab585cc81fd0f8aab69c6b9d4943d5810107ed24c98b84",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_126.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_127.jpg",
+      "classe": "leaf_blight",
+      "sha256": "77e5f3858d1b9c50960bc14810cc6607758caacfcaddf0c5ac33fdfc4adabb0f",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_127.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_128.jpg",
+      "classe": "leaf_blight",
+      "sha256": "4dee8f40b1b9f66aad85191201dbb1b7cbb4c1db56a094ee4b6032270d88e14e",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_128.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_129.jpg",
+      "classe": "leaf_blight",
+      "sha256": "433971c2cec47b47cfecda6f62ce013d76afbedf8666e1a400ea91d919351a26",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_129.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_13.jpg",
+      "classe": "leaf_blight",
+      "sha256": "8ecfd5bad290cf5ecbfd3153f6c99250d0a518f67a1e62c17c3f7ff301eebfe5",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_13.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_130.jpg",
+      "classe": "leaf_blight",
+      "sha256": "af984c25626aac085224f070e943d60c1c260126f92c23ea129eace6dfe42ea2",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_130.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_131.jpg",
+      "classe": "leaf_blight",
+      "sha256": "aebddce8cea695bbb7b24d03c986d414f469d0055f3e46aa834ac0a14bc93618",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_131.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_132.jpg",
+      "classe": "leaf_blight",
+      "sha256": "3bf52cab189dcad840b7171ad8a55f5d71fbdd09362a503d3225347826b6099a",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_132.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_133.jpg",
+      "classe": "leaf_blight",
+      "sha256": "09d4c882a809874dced9954d73482e91d10eb022c7e8a3fc3eb9bf7ffb2c3b3d",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_133.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_134.jpg",
+      "classe": "leaf_blight",
+      "sha256": "b1b3f92ae2b12226e28fdaa73af11f3a61ec7c8ed2e5e81af1d10d669ef0aa40",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_134.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_135.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a73ee10596e377dfd4ac9c8f45c61e7615dc4828fb5257ec2356ee7cfda7500d",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_135.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_136.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ae5ef463f2c1aed604dd6322076e5a6c8ca12d28e246b3508ff24e68f144ff0a",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_136.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_137.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c04872f160c0b5dac415199f83fa37931c464fce33b68a38d42af3cab7b6bce9",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_137.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_138.jpg",
+      "classe": "leaf_blight",
+      "sha256": "467522f266a744f43d05495916e4d6372e2a115fcbf70660072d155faa10ae38",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_138.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_139.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c2bbb0c9bee0c540f47f52a3c5aee6cc653ed06880e2b03c40dddd14c9e1710a",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_139.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_14.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0728b3f1de907878660e3c21917f53c49a56790099ea455ecb5a00f6edb2f384",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_14.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_140.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a670e9683f08d2184c834ca78e53762deab9fca8e8c9dadf3e9ea319690f739b",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_140.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_141.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fbdd8f53692f3c480d92dc4fdb5a00113419e79b23f6a2d11382e310f88f94d3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_141.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_142.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2b55c21e94c86d791827b27304cd83dd48cc3611a0641717a2684642ed324e6f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_142.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_143.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2dd4b58df4b69195a64e4e4924352256cf5b3fd711f0125c5ba74ae9b02a6aa3",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_143.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_144.jpg",
+      "classe": "leaf_blight",
+      "sha256": "98c639cb47914cfec8526e298eba76d599e18c54982b398a3bb8a8ae163c51da",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_144.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_145.jpg",
+      "classe": "leaf_blight",
+      "sha256": "31ffcf4d977992001d6dc48df89937aa7eaaf5bb582e8a91606d23008481e917",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_145.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_146.jpg",
+      "classe": "leaf_blight",
+      "sha256": "f9d68038ddb10ee3e45c7c5bdb225475682931a2ada921e655434c8893072e9c",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_146.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_147.jpg",
+      "classe": "leaf_blight",
+      "sha256": "5b4dd1530f82aff07b37f7ff7b6c2857dbeff2ca692bf26208f4095aab227cb3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_147.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_148.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c184897ac281a5f2c086fac031557acc9164c21426e703fc518196e4eeaa5d9e",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_148.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_149.jpg",
+      "classe": "leaf_blight",
+      "sha256": "10cb626b0e8b0a3875a4686e2cea0123f8fc11032a749e8e0c57b34df67afebf",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_149.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_15.jpg",
+      "classe": "leaf_blight",
+      "sha256": "f53254c0df4139c9042709f6aa7e89cbc015b53446e68e803fc02c89f5fb88ff",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_15.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_150.jpg",
+      "classe": "leaf_blight",
+      "sha256": "274faed403a3ab33713d74e0b9e01c1d9f190485a4753816a4e9b7fe8847d8be",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_150.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_151.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c15366d025b96cf9a6187bc2a4b4555ba03bca8459d9b8f9a57fab687dfcd5ad",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_151.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_152.jpg",
+      "classe": "leaf_blight",
+      "sha256": "8d9ceb32529f5db11486b4758ae3a42a1d7ae52c37c9382682f80bb0a33c4906",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_152.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_153.jpg",
+      "classe": "leaf_blight",
+      "sha256": "93a3782f28e9cd7e01e4799de051a5484306fd7df2aaee786be54a3ed4f21dec",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_153.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_154.jpg",
+      "classe": "leaf_blight",
+      "sha256": "dffaed8dd25bd24f4126cc63eb1caedf66bce429b67ea08491d462c05c87cee5",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_154.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_155.jpg",
+      "classe": "leaf_blight",
+      "sha256": "05db490620f36fac657f4d37122cefe4228d9d9e0b5a266d7a0bfdb6a7460c76",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_155.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_156.jpg",
+      "classe": "leaf_blight",
+      "sha256": "9d771beae727dd9523c8b4e9fa8febc1629228baf30428baec5b796dc91148a1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_156.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_157.jpg",
+      "classe": "leaf_blight",
+      "sha256": "67cbd0e68c245a00867849101d41066cd6c67eb6f3bf7c045479144b8db2645d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_157.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_16.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0d0c5bc2927296f09bb34200cf3d3776b211ccfadb0dc33d0148084d5068d419",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_16.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_17.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2392c333ae1bdb0f6aee736524358bc3147b33346ac2cc5cf603f2240550639d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_17.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_18.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2e5b335b7530a3fe792722dd67671520f352b67966867d6244541fc06c8242dd",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_18.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_19.jpg",
+      "classe": "leaf_blight",
+      "sha256": "6ecc4c22ba09610a52fed2c8c2cc76f47f02405318328321854693da559d37bf",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_19.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_2.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a474daa9232503264297fc3b12961330636bb85edbe0adcc8147aca08d3cf2cb",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_2.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_20.jpg",
+      "classe": "leaf_blight",
+      "sha256": "79d1a7141e089e6e9373444e8251c107f07a4936bbcce46e88d79237a4e028cb",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_20.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_21.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a98c1d27d5d19dddd8ab83139facd8607ed8b8920d81cec36bb94c8cbab373b2",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_21.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_22.jpg",
+      "classe": "leaf_blight",
+      "sha256": "adbac676fd2d10466479e61dd2735a0a1260be5e0c8b087673b58f6b896c3fed",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_22.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_23.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e408bc410141c4d0ddb8fd494b60df7f3c213582c2aec4650f69b7f97a61eb67",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_23.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_24.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fc7512241e25146189ca0f547f234e810871bad663207c1786f7d2ba5be92e74",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_24.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_25.jpg",
+      "classe": "leaf_blight",
+      "sha256": "3f502667be9271392ac5fd0f68cfedb9594635544d36f8279f74b8e25f2c894b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_25.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_26.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ef7088624858c12fd580fe26c176018911c2b78bd092b73126a18fc0f29a6a34",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_26.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_27.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c08bcba06dd4529350a541db1ed94f8b37f9704116adac18605eccc256aba3dd",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_27.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_28.jpg",
+      "classe": "leaf_blight",
+      "sha256": "9c0bfe8c057cac6b5c3965af8bb6f802270f22b0666d78ae1a187de0c89c5ce9",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_28.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_29.jpg",
+      "classe": "leaf_blight",
+      "sha256": "332d7ebf1f0167db6212ea9cd0a95b9a822ad53157687a73ba6f8f3760d7bb38",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_29.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_3.jpg",
+      "classe": "leaf_blight",
+      "sha256": "efafafc150c925c8474e06277f8cd0cd7ce45e3927fa014a4c90b744b02f8ce2",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_3.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_30.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1691ad14d305cf31ae023796bbb94f8d2a95365bb6444ee76700ead39cbe2bac",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_30.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_31.jpg",
+      "classe": "leaf_blight",
+      "sha256": "f14cce67d8a7fef63074d6f51b7a716f094d7de0b9956f39add7358a2d7bfe0f",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_31.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_32.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c4cd648c8a516849a578b90b3a2b6f5f7ce8dd5439068680895181607ed8fd2a",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_32.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_33.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a8379cd23696d5dcdfef9ff7118c3753f12fcf9a1d9026ac5e5794de370c5e9b",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_33.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_34.jpg",
+      "classe": "leaf_blight",
+      "sha256": "42ff891d095c050ef36b1cd3be61e0b9b35aec035f5cc583c4ceee9ab11655b9",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_34.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_35.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c352b8dfd985591ea0779ceac110ccf6fa89c28b24b8ac0604cb913552c83dcc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_35.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_36.jpg",
+      "classe": "leaf_blight",
+      "sha256": "021b2ce78c95481c624e73c3c28581fe50b4bbbed13db0fedd137a729bc59e9d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_36.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_37.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0097c7d2985f7e02a7de4e1cc6a12a8dab68183166ce7e9fe19cc95b9a54c27d",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_37.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_38.jpg",
+      "classe": "leaf_blight",
+      "sha256": "a0071630456430be21aae2d077db819126263c89db5f1cd9e61a23ec0ca92bfb",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_38.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_39.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c67d589d8c8ffa5a2e6501736895f448fd1f4da3c41bb2d7f9821db91f8a6325",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_39.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_4.jpg",
+      "classe": "leaf_blight",
+      "sha256": "5b578f0fc8634cd03ea1270f7c6bf118a8209882fa8129ea47770a79074503bb",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_4.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_40.jpg",
+      "classe": "leaf_blight",
+      "sha256": "257842eaf090153f9750de185143edb53cdb94bea537657343038214f56f3ffa",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_40.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_41.jpg",
+      "classe": "leaf_blight",
+      "sha256": "98da9130e91d6855b8d7588b033651b8a126319911acd9f0a6ef075e0c8cb8fd",
+      "splits": {
+        "42": "teste",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_41.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_42.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fedaf96b6273b4626c4064c5773dbd22e78fc64602beaff6fa574461090761d9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_42.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_43.jpg",
+      "classe": "leaf_blight",
+      "sha256": "512705f4dab0004aafdc4ab728d4e1b2b38e76f39ec8e280270cb1aabf310923",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_43.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_44.jpg",
+      "classe": "leaf_blight",
+      "sha256": "f51279f62e349f2b66f99b87487fb79c98f6f0d7bbb683b060b17ab77a68c265",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_44.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_45.jpg",
+      "classe": "leaf_blight",
+      "sha256": "82d213a2ab43ce85dba78176e6022107b4289d7b1800381e40b1036a73d685cb",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_45.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_46.jpg",
+      "classe": "leaf_blight",
+      "sha256": "b52a83c8d39d4f8b9247f6cc164c9a040e5c35545a7c4ca5f8c05e64ad8d805f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_46.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_47.jpg",
+      "classe": "leaf_blight",
+      "sha256": "00ec1c3b2fc1f029fea7a659862c74c43bb07293e3e2e037ccef9342c07d24b9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_47.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_48.jpg",
+      "classe": "leaf_blight",
+      "sha256": "82c787db8f5a39a69eebd426aeaac86edf5a62f9d43cf77f2c03f5fd5cf5a49d",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_48.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_49.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1020b9ae6928e7b12e76b2b2297ce30357f0faca61e2c020f5bba94cdf9ccd75",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_49.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_5.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d0607b92c2a52685b257cb867aa9e2815741994d9687fca8e35f71348ac798b9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_5.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_50.jpg",
+      "classe": "leaf_blight",
+      "sha256": "312948fae8714560556eb85864c12f8f37032a4e1d21e68865bf1bf41fcd476f",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_50.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_51.jpg",
+      "classe": "leaf_blight",
+      "sha256": "51f0d51c45a7a7960af52cd58c84bbfd8ce554c2dcd937c9e6513f4f8f6739ec",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_51.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_52.jpg",
+      "classe": "leaf_blight",
+      "sha256": "57cd1962029f846a2cf2baf6b76b0719195f736f739f136d216d84e6c62502b4",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_52.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_53.jpg",
+      "classe": "leaf_blight",
+      "sha256": "53a41eaf9e4c9e199e51f673ec1661392c5f5023a546e6736af991eadc6d325b",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_53.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_54.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1a8eddb4dbb470c56889783fa4bf07436be98349a6a677e077b2eef64c074490",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_54.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_55.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0b24bb01a3f7b7fa3409a1ba0dc9ebb64b7fae93cbb11a95b9921273528c6238",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_55.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_56.jpg",
+      "classe": "leaf_blight",
+      "sha256": "7df0992bf84eef166d7e7225cf973a970582b8410cb8f4b577b909c22c3e96d1",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_56.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_57.jpg",
+      "classe": "leaf_blight",
+      "sha256": "5f299eaf8e508f9e88924c2abea5efcc1083ca01b7ca318cd1850bc552d1ab1a",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_57.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_58.jpg",
+      "classe": "leaf_blight",
+      "sha256": "bb46620ab7c0c29ca3c314d28798f518353c983caf9e9b72d5cd1f65d5aa7c2d",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_58.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_59.jpg",
+      "classe": "leaf_blight",
+      "sha256": "38e4857bd9411bb6ab28351446e8f6d46afc8a3f7530119259d9efee591902f9",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_59.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_6.jpg",
+      "classe": "leaf_blight",
+      "sha256": "3ccb890aae78db81398f952e09384fb7d317af89abaa0f26ce7796026ec6cb16",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_6.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_60.jpg",
+      "classe": "leaf_blight",
+      "sha256": "7ec6498efdbbb7f07977e82a2939ba2724d82d58beac9f3629ac7b56dc86a9b7",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_60.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_61.jpg",
+      "classe": "leaf_blight",
+      "sha256": "7b69bc08a0d3b2ae71539e2192c1d1a2ab268a7012db2a79dae074bf6a04021f",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_61.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_62.jpg",
+      "classe": "leaf_blight",
+      "sha256": "350410d31198de15df8e7bac962975356122c71460a2012762deaeff4f3b6495",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_62.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_63.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d1ca69dbf7bb87895823c6d40c3ea431bb101eed9af437c7454ffb8a7c18b31d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_63.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_64.jpg",
+      "classe": "leaf_blight",
+      "sha256": "6c1d7d8fdee8166be54e51c532bf2ed536732451abb449d6e5b8dc891e63325c",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_64.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_65.jpg",
+      "classe": "leaf_blight",
+      "sha256": "8f6e109daab811566b559442ca6261c194d68323d0ecdec5032cd9d492deabfc",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_65.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_66.jpg",
+      "classe": "leaf_blight",
+      "sha256": "90490b4553ec19d0dcae81fd1112f4637e912a6ef5bff8ef819ca33701b32341",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_66.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_67.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fcb7511581f505dd246593ff2f0a4ae0c0c27d53eaa7f2e9f05688f8fa5a1c15",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_67.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_68.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ca11c100605162f9134643cffd90f819e94a3a6dde6f11c4fe5dbfe41f22372d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_68.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_69.jpg",
+      "classe": "leaf_blight",
+      "sha256": "9c47c8e5d655f15bd36dd55cfa02fbf11c3451df63240869cdf7c5e1a91f8be8",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_69.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_7.jpg",
+      "classe": "leaf_blight",
+      "sha256": "049a1d13126be9503f6609e77e4cbaad3abd27967a9bc0f2aaddd6f0bcba1f34",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_7.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_70.jpg",
+      "classe": "leaf_blight",
+      "sha256": "7e68c8aedd560978439ce0f264853a38e4d6f846d02c81da57054eb7fc80a91d",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_70.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_71.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ec426e3d8f4cf9af59868184372223725e176fd0899c81f79d08038be88a6ade",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_71.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_72.jpg",
+      "classe": "leaf_blight",
+      "sha256": "756fd33bfed57a6227d3fbc2aa8cfcc37d62866ffd2833630bddf9b7082e2cf0",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_72.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_73.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fba6b6d1abd16b926ad17e0ba4fea9faa97ea070a62411915b326c555b2a4819",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_73.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_74.jpg",
+      "classe": "leaf_blight",
+      "sha256": "e98e47bcf65e946e211ea68e34238ea655829d5edec92ab5e27aced77f100b70",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_74.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_75.jpg",
+      "classe": "leaf_blight",
+      "sha256": "be4202df2212e9527d9c60780a3558c432d67fc2f63033dd2583a50507f15fc4",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_75.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_76.jpg",
+      "classe": "leaf_blight",
+      "sha256": "3ebfaa3f4644ed359b403ed6d7611c479585001dca48ac81ffc02d1b7cfba9b3",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_76.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_77.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fcfb54be54a44e85f3e68463b2d064735cdcd862fbfde847b66228c2871469d4",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_77.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_78.jpg",
+      "classe": "leaf_blight",
+      "sha256": "483f7c22740c60cd96ea2b3f822c91823b2e183e41f658d62527dcefb65a8373",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_78.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_79.jpg",
+      "classe": "leaf_blight",
+      "sha256": "11a94f31eef55e6e0ad6e3141fb880d948ebe2d640b82ffc42c169ae68e5b696",
+      "splits": {
+        "42": "teste",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_79.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_8.jpg",
+      "classe": "leaf_blight",
+      "sha256": "18677afcbb4cf1140190ab32e5d23c72e20b4c8e2f2e4d7c37df41f5522ef3b4",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_8.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_80.jpg",
+      "classe": "leaf_blight",
+      "sha256": "fc4fc8e4a688a87071c6b8b9bff21d43a691f461a1ad8ea080192c3bbcdb6e41",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_80.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_81.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0bd0fb6ef7ef4bbe14b1e4d711bcc4570aa0bfe8d52b1b4bb0b206af262faf19",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_81.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_82.jpg",
+      "classe": "leaf_blight",
+      "sha256": "76ae8a325b8bb9d4f6a7fd33662307946f4902882853062c7ded9e1ba1c06a83",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_82.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_83.jpg",
+      "classe": "leaf_blight",
+      "sha256": "acbffc89a6511f1a1650aaec5e19af0ccd655dd896599f78a4391840591131cd",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_83.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_84.jpg",
+      "classe": "leaf_blight",
+      "sha256": "179e9bc4af0509ad79145a34c54d4f26bd2467542697acf81ecd15ca8344d383",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_84.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_85.jpg",
+      "classe": "leaf_blight",
+      "sha256": "bc85f4c25e2d75b896209fa3c4f52094a4832b916082980ae1159dc61c4fc744",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_85.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_86.jpg",
+      "classe": "leaf_blight",
+      "sha256": "ddac8a620270227d3920a63daf9a13ce73eafbf8c5a0ca5ce7bf2508e1310160",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_86.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_87.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2d2dce15b86b7095f7fa6b346e8166ff5ce78be1871b4095db4d2dc76c3a66fd",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_87.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_88.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d44cff6953703e92f2e2c1183afd063f3a62291626093464ef867cce8ffe4164",
+      "splits": {
+        "42": "teste",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_88.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_89.jpg",
+      "classe": "leaf_blight",
+      "sha256": "36bf0a2e91d44911bc3800d4427fe1026e91d9af01bee36a995a0c7cf05417b3",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_89.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_9.jpg",
+      "classe": "leaf_blight",
+      "sha256": "7124dd05d5b18c66e6715c2f9932d448823bd6b78658f8b0c3a9d872a9010d51",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_9.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_90.jpg",
+      "classe": "leaf_blight",
+      "sha256": "2367fc2787fa45a67214e5e09f8a74086fd7ecd560e20f52486703aa6745e840",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_90.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_91.jpg",
+      "classe": "leaf_blight",
+      "sha256": "bf80a137190944b1b123c78cbaa8e9ed477c6a734e633290de466a35566e5bdd",
+      "splits": {
+        "42": "validacao",
+        "43": "teste",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_91.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_92.jpg",
+      "classe": "leaf_blight",
+      "sha256": "4918131d2ae9d1dbc8c337d7e46d8ed07bfc954edb4644e9fb2bb131f0cfe77c",
+      "splits": {
+        "42": "validacao",
+        "43": "validacao",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_92.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_93.jpg",
+      "classe": "leaf_blight",
+      "sha256": "b1c192d0ce5b2dea6b541f533f968d40d5ed5a3a9232f415f708e5bacc3a07a0",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_93.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_94.jpg",
+      "classe": "leaf_blight",
+      "sha256": "d8743abb1921c384d4dbee046f7cf9de974f03a62f68da8214839b814dda7969",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_94.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_95.jpg",
+      "classe": "leaf_blight",
+      "sha256": "0426f73b0ce89f4b256850ecba169c734d515c02aac30c0faa1e69e7cc80a855",
+      "splits": {
+        "42": "treino",
+        "43": "teste",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_95.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_96.jpg",
+      "classe": "leaf_blight",
+      "sha256": "c033c93f1962047707a98aedfc43883952ea49f6d6cf8d9df7b612f2f2ef9d44",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_96.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_97.jpg",
+      "classe": "leaf_blight",
+      "sha256": "1350db8d0965e2dc6f6f07a5de020bc3a53479099bde209545cb0d55b998a6cb",
+      "splits": {
+        "42": "treino",
+        "43": "validacao",
+        "44": "validacao"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_97.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_98.jpg",
+      "classe": "leaf_blight",
+      "sha256": "88b88ebaa669d2760df9fb0f5334ca4e972defcd1e7abcfe58cdbfe17d4f3c60",
+      "splits": {
+        "42": "treino",
+        "43": "treino",
+        "44": "treino"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_98.jpg"
+    },
+    {
+      "id": "Leaf_blight/Leaf_blight_99.jpg",
+      "classe": "leaf_blight",
+      "sha256": "5c625fde841fe5d92f2426fe02dbd995d800250255b2ca0ceb767aedb1a142a1",
+      "splits": {
+        "42": "validacao",
+        "43": "treino",
+        "44": "teste"
+      },
+      "grupo": "Leaf_blight/Leaf_blight_99.jpg"
+    }
+  ]
+}

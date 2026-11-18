@@ -1,0 +1,11 @@
+{
+  "manifesto_antigo": {
+    "returncode": 1,
+    "mensagem": "Só foram integrados pesos da seed de treino 1; não uses as seeds 42/43/44 ou outros pesos."
+  },
+  "holdout_parcial": {
+    "returncode": 2,
+    "mensagem": "usage: python.exe -m src.avaliar [-h]\n                                 {texto,imagem,respostas-imagem,dados} ...\npython.exe -m src.avaliar: error: --limite exige um número positivo e o split de validação."
+  },
+  "import_app_sem_tensorflow_keras": true
+}

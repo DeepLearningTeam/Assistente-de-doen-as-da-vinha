@@ -8,7 +8,7 @@ Identificar hipóteses numa folha de videira e responder a perguntas de viticult
 
 ## 2. Dados e corpus
 
-- **Imagens.** FieldVitis v2, CC BY 4.0, com 158 saudáveis, 200 esca, 158 mancha-das-folhas e 39 podridão-negra. Divisão estratificada próxima de 70/15/15, com três seeds e pelo menos seis fotografias de podridão-negra no teste por seed. A unidade disponível é a imagem. Ficheiros com o mesmo SHA-256 ficam no mesmo split. Para comparar com a CNN, o manifesto tem de corresponder ao que foi usado no treino. [FieldVitis v2](https://doi.org/10.5281/zenodo.17307846)
+- **Imagens.** FieldVitis v2, CC BY 4.0, com 158 saudáveis, 200 esca, 158 mancha-das-folhas e 39 podridão-negra. O colega reservou 50 imagens (seed de amostragem 2026) e dividiu as restantes 505 nas seeds de treino 0/1/2: 352 treino, 76 validação e 77 teste interno, com pelo menos seis fotografias de podridão-negra no teste interno. Só foram entregues pesos da ResNet50 seed 1. O manifesto ativo adapta essa divisão, sem novo sorteio; os originais ficam em `data/originais/`. A unidade disponível é a imagem. Na auditoria desta entrega não houve duplicados exatos de ficheiros ou píxeis nem sobreposições entre treino, validação, teste e holdout, nas três seeds. Não se demonstrou separação por videira/local ou ausência de quase duplicados. O antigo teste da seed 42 continha 53/84 imagens usadas no treino recebido e não serve como teste independente. [FieldVitis v2](https://doi.org/10.5281/zenodo.17307846)
 - **Documentos.** `corpus.csv` conserva o título, a entidade, a data, o URL, a licença e o SHA-256. Indexam-se 16 documentos, incluindo os nove assinalados como condicionais. D10, D11 e D12 ficam reservados. D07 é o excerto de nove páginas fornecido. Os PDF e o índice ficam fora do Git.
 - **Perguntas.** 20 de validação e 20 de teste. Cada conjunto tem 15 perguntas respondíveis pelo índice e cinco cuja resposta de referência está num documento reservado. Confirma por revisão humana a referência, a página e a ausência de evidência equivalente no índice para as perguntas de recusa.
 
@@ -65,7 +65,7 @@ Dois anotadores fazem a revisão independente de cada resposta, um por folha, e 
 
 ## 7. Repetições, seeds e registo
 
-Texto com três repetições a temperatura 0 e três a 0,7 por condição e por pergunta. Seeds de geração 42, 43 e 44. Âmbito, observação visual e verificação de fontes correm a temperatura 0. Visão usa as três divisões do manifesto. O bootstrap usa 1 000 amostras com IC de 95%, por pergunta ou imagem, mantendo juntas as repetições da mesma unidade.
+Texto com três repetições a temperatura 0 e três a 0,7 por condição e por pergunta. Seeds de geração 42, 43 e 44. Âmbito, observação visual e verificação de fontes correm a temperatura 0. Visão usa apenas a divisão correspondente ao treino da CNN seed 1. A seed de geração VLM é 42, distinta da seed de treino e da seed de amostragem do holdout (2026). Os pesos das seeds 0 e 2 continuam em falta; não se reproduzem três modelos com um checkpoint. O bootstrap usa 1 000 amostras com IC de 95%, por pergunta ou imagem, mantendo juntas as repetições da mesma unidade.
 
 Cada item guarda estado, parâmetros, latência e, quando aplicável, passagens recuperadas antes do corte, prompts e resposta. O manifesto inclui nome/contagem/documentos/hash dos payloads da coleção, incluindo documentos em falta. O hash dos payloads não certifica os vetores nem impede alterações concorrentes; o grupo deve congelar a coleção durante os ensaios. As revisões de pesos do Hugging Face da coleção original precisam de confirmação do autor; conservam-se os identificadores do colega. O manifesto regista versões dos dados e pesos por hash e o commit se o projeto estiver em Git. Uma falha de formato é registada separadamente. As métricas só abrangem os itens executados ou anotados indicados nas tabelas.
 
@@ -92,14 +92,20 @@ O prompt geral de `base.yaml` é partilhado e foi preservado. As instruções es
 
 A coleção real lida em 16/11/2026 tinha 989 passagens de 14 documentos; D07 e D14 estavam em falta face aos 16 selecionados no CSV. D10–D12 não estavam presentes. Não foi alterada. Antes dos ensaios oficiais, o grupo deve decidir e registar se congela essa coleção de 14 documentos ou constrói uma nova de 16. Não misturar resultados das duas coleções. Uma reconstrução com a versão de extração fixada nesta entrega pode produzir passagens diferentes das originais.
 
-Os YAML são a referência dos parâmetros. Regista o ambiente, dispositivo, versões, revisões dos modelos, documentos e tempos da máquina da experiência. A CNN final e o pré-processamento/ordem de classes precisam de confirmação do responsável; o adaptador existente foi preservado.
+Os YAML são a referência dos parâmetros. Regista o ambiente, dispositivo, versões, revisões dos modelos, documentos e tempos da máquina da experiência. A CNN recebida é ResNet50, seed 1, modelo completo `.keras`, entrada NHWC float32 `(1,224,224,3)`, EXIF/RGB/resize bilinear e `preprocess_input` ResNet50 (BGR e médias ImageNet, sem dividir por 255). A saída já é softmax; a ordem Black_rot, Esca, Healthy, Leaf_blight é mapeada para black_rot, esca, saudavel, leaf_blight. Leaf_blight mantém o nome mancha-das-folhas (leaf blight), sem o equiparar a míldio. Não se aplica um limiar de abstenção não validado. O estado `ok` confirma o contrato técnico da saída, não um diagnóstico. As probabilidades e a hipótese chegam ao LLM; a classe atual acrescenta contexto à consulta RAG. Sem nova fotografia, não se reinjeta a CNN anterior como análise visual.
 
 ## 10. Trabalho humano pendente
 
 1. Validar as 40 referências, páginas e ações; verificar se os documentos indexados contêm evidência equivalente para perguntas de recusa.
 2. Confirmar com o colega a proveniência da coleção e decidir os documentos/extração definitivos apenas na validação.
-3. Confirmar pesos, classes, pré-processamento e splits da CNN treinada; correr a classificação no FieldVitis real.
+3. Obter pesos das CNN seeds 0 e 2 se o grupo pretender reproduzir três treinos. A integração da seed 1 foi verificada em imagens de validação; executar as comparações oficiais nos 77 testes internos e/ou nas 50 imagens finais após fechar as condições.
 4. Executar as condições fixadas, preencher as duas folhas de anotação e resolver divergências por consenso. Não confundir testes de funcionamento com resultados do projeto.
 5. Comparar os pares de respostas VLM/VLM + RAG quanto a adequação à fotografia/pergunta, correção, prudência do diagnóstico, suporte e páginas das citações. Os JSON de `respostas-imagem` destinam-se a revisão humana separada e não às métricas de classificação.
 
 As verificações efetivamente realizadas e os comandos repetíveis estão em `INTEGRACAO.md`.
+
+## 11. Integração CNN e proteção da avaliação final
+
+`src.preparar_cnn` verifica o FieldVitis real e adapta as partições do colega. `src.avaliar imagem` verifica as partições e o hash do checkpoint. A comparação CNN/VLM usa as mesmas imagens da seed de treino 1: `--split teste` seleciona 77 testes internos; `--split holdout` seleciona as 50 imagens reservadas. `--limite` é exclusivo da validação. Os ficheiros originais e as identificações de cada imagem são preservados. As 50 imagens não foram classificadas nesta integração: apenas se verificaram disponibilidade, identidade e duplicados por conteúdo. Não se alteraram prompts nem configurações com base nesse conjunto.
+
+O TensorFlow 2.22.0rc1 e keras-nightly fixado permitem executar os pesos Keras 3.15.1 no Windows/Python 3.14 desta entrega. Consultar `requirements.txt` e `INTEGRACAO_CNN.md` para o ambiente e as verificações efetivas. A infraestrutura RAG foi usada só por leitura; não se reconstruiu a coleção. As definições de fidelidade e correção da secção 6 e as condições textuais permanecem as anteriores.

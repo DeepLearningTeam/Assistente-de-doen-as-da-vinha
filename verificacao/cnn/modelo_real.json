@@ -1,0 +1,151 @@
+{
+  "data": "2026-11-18T09:25:40+00:00",
+  "python": "3.14.0",
+  "plataforma": "Windows-11-10.0.26300-SP0",
+  "tensorflow": "2.22.0rc1",
+  "keras_distribuicao": "3.16.0.dev2026111703",
+  "keras_runtime": "3.16.0.dev2026111703",
+  "checkpoint_sha256": "091ddac1e9b075cdc09b3338e13cc084955ca77483e98663d7f8ed0c5376571c",
+  "classes_originais": [
+    "Black_rot",
+    "Esca",
+    "Healthy",
+    "Leaf_blight"
+  ],
+  "entrada": [
+    null,
+    224,
+    224,
+    3
+  ],
+  "saida": [
+    null,
+    4
+  ],
+  "ativacao": "softmax",
+  "parametros": 23595908,
+  "camadas": [
+    "input_layer_1",
+    "sequential",
+    "resnet50",
+    "dropout",
+    "dense"
+  ],
+  "cache": {
+    "hits": 5,
+    "misses": 1,
+    "maxsize": 1,
+    "currsize": 1
+  },
+  "casos_validacao": [
+    {
+      "imagem": "Black_rot/Black_rot_26.jpg",
+      "classe_ref": "black_rot",
+      "entrada": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "float32",
+      "paridade_preprocessamento_original": true,
+      "paridade_model_predict_original": true,
+      "visual": {
+        "motor": "CNN",
+        "estado": "ok",
+        "classe": "black_rot",
+        "confianca": 0.9864567518234253,
+        "probabilidades": {
+          "black_rot": 0.9864567518234253,
+          "esca": 0.0007229140028357506,
+          "saudavel": 0.011545762419700623,
+          "leaf_blight": 0.0012745024869218469
+        },
+        "descricao": "Hipótese entre quatro classes do FieldVitis. As probabilidades softmax não são certeza de diagnóstico; o modelo não tem rejeição validada de imagens fora destas classes.",
+        "mapa_atencao": null
+      }
+    },
+    {
+      "imagem": "Esca/Esca_0.jpg",
+      "classe_ref": "esca",
+      "entrada": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "float32",
+      "paridade_preprocessamento_original": true,
+      "paridade_model_predict_original": true,
+      "visual": {
+        "motor": "CNN",
+        "estado": "ok",
+        "classe": "esca",
+        "confianca": 0.9999096393585205,
+        "probabilidades": {
+          "black_rot": 6.042553124530059e-09,
+          "esca": 0.9999096393585205,
+          "saudavel": 6.547935110789993e-11,
+          "leaf_blight": 9.032776142703369e-05
+        },
+        "descricao": "Hipótese entre quatro classes do FieldVitis. As probabilidades softmax não são certeza de diagnóstico; o modelo não tem rejeição validada de imagens fora destas classes.",
+        "mapa_atencao": null
+      }
+    },
+    {
+      "imagem": "Healthy/Healthy_100.jpg",
+      "classe_ref": "saudavel",
+      "entrada": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "float32",
+      "paridade_preprocessamento_original": true,
+      "paridade_model_predict_original": true,
+      "visual": {
+        "motor": "CNN",
+        "estado": "ok",
+        "classe": "saudavel",
+        "confianca": 0.9999973773956299,
+        "probabilidades": {
+          "black_rot": 9.160725085166632e-07,
+          "esca": 1.6336800854332978e-06,
+          "saudavel": 0.9999973773956299,
+          "leaf_blight": 1.3090170725149619e-08
+        },
+        "descricao": "Hipótese entre quatro classes do FieldVitis. As probabilidades softmax não são certeza de diagnóstico; o modelo não tem rejeição validada de imagens fora destas classes.",
+        "mapa_atencao": null
+      }
+    },
+    {
+      "imagem": "Leaf_blight/Leaf_blight_1.jpg",
+      "classe_ref": "leaf_blight",
+      "entrada": [
+        1,
+        224,
+        224,
+        3
+      ],
+      "dtype": "float32",
+      "paridade_preprocessamento_original": true,
+      "paridade_model_predict_original": true,
+      "visual": {
+        "motor": "CNN",
+        "estado": "ok",
+        "classe": "leaf_blight",
+        "confianca": 0.9996641874313354,
+        "probabilidades": {
+          "black_rot": 0.0001264775200979784,
+          "esca": 0.0002054854267043993,
+          "saudavel": 3.855491286230972e-06,
+          "leaf_blight": 0.9996641874313354
+        },
+        "descricao": "Hipótese entre quatro classes do FieldVitis. As probabilidades softmax não são certeza de diagnóstico; o modelo não tem rejeição validada de imagens fora destas classes.",
+        "mapa_atencao": null
+      }
+    }
+  ],
+  "holdout_executado": false
+}

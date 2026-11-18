@@ -151,6 +151,9 @@ def resumo_visual(visual):
     info = {"descricao": visual.descricao, "estado": visual.estado}
     if visual.estado == "ok":
         info["hipotese"] = CLASSES.get(visual.classe)
+    if visual.motor == "CNN":
+        info["confianca_softmax"] = visual.confianca
+        info["probabilidades"] = visual.probabilidades
     return info
 
 
@@ -413,14 +416,15 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
                 motivo="imagem_fora", visual=visual, chamadas=chamadas or [],
             )
 
-    # Um seguimento pode usar uma hipótese anterior sem voltar a carregar a foto.
+    # Preserva o seguimento VLM existente. CNN exige fotografia neste turno
+    # (ou reutilização explícita na interface), sem reinjetar resultados antigos.
     visual_contexto = visual
     if visual is None and ambito.seguimento:
         for turno in reversed(contexto):
             if turno["resposta"].get("correcao"):
                 break
             anterior = turno["resposta"].get("visual")
-            if anterior and turno["modo"] == modo:
+            if anterior and anterior.get("motor") != "CNN" and turno["modo"] == modo:
                 visual_contexto = Visual.model_validate(anterior)
                 break
 
@@ -444,7 +448,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
                 # mesmo que a reescrita do modelo a tenha perdido.
                 consulta = f"{pergunta}\nAssunto indicado pelo utilizador: {correcao}"
         pedido_contextual = consulta
-        if visual_contexto and (ambito.usa_imagem or pergunta == PERGUNTA_FOTO):
+        if visual_contexto and (visual_contexto.motor == "CNN" or ambito.usa_imagem or pergunta == PERGUNTA_FOTO):
             info = resumo_visual(visual_contexto)
             if info.get("hipotese"):
                 consulta = f"{consulta} {info['hipotese']}"
@@ -475,7 +479,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
 
     if config.rag and not candidatos:
         return resultado("recusa", RECUSA, motivo="documento_ausente" if fonte_ausente else "similaridade")
-    usa_imagem = ambito.usa_imagem or pergunta == PERGUNTA_FOTO
+    usa_imagem = ambito.usa_imagem or pergunta == PERGUNTA_FOTO or (visual is not None and visual.motor == "CNN")
     observacao = visual_contexto if usa_imagem else None
     contexto_resposta = contexto if ambito.seguimento else []
     mensagens = mensagens_resposta(config, pergunta, contexto_resposta, observacao, imagem, candidatos, pedido_contextual)

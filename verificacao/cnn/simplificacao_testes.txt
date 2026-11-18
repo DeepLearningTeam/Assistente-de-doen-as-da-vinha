@@ -1,0 +1,18 @@
+test_cache_carrega_apenas_uma_vez (test_cnn.ContratoCNN.test_cache_carrega_apenas_uma_vez) ... ok
+test_exif_e_conversao_rgb (test_cnn.ContratoCNN.test_exif_e_conversao_rgb) ... ok
+test_ficheiro_ausente_e_dependencia_ausente_dao_mensagem_util (test_cnn.ContratoCNN.test_ficheiro_ausente_e_dependencia_ausente_dao_mensagem_util) ... ok
+test_nao_inventa_limiar_nem_rejeicao (test_cnn.ContratoCNN.test_nao_inventa_limiar_nem_rejeicao) ... ok
+test_ordem_neuronios_e_probabilidades_sem_segunda_softmax (test_cnn.ContratoCNN.test_ordem_neuronios_e_probabilidades_sem_segunda_softmax) ... ok
+test_preprocessamento_rgb_bgr_float32_sem_dividir_255 (test_cnn.ContratoCNN.test_preprocessamento_rgb_bgr_float32_sem_dividir_255) ... ok
+test_probabilidades_invalidas_sao_rejeitadas (test_cnn.ContratoCNN.test_probabilidades_invalidas_sao_rejeitadas) ... ok
+test_divisoes_coincidem_com_treino_e_holdout_fica_separado (test_cnn.DivisoesCNN.test_divisoes_coincidem_com_treino_e_holdout_fica_separado) ... ok
+test_manifesto_antigo_nao_pode_avaliar_modelo_recebido (test_cnn.DivisoesCNN.test_manifesto_antigo_nao_pode_avaliar_modelo_recebido) ... ok
+test_trocar_treino_por_teste_ou_repetir_imagem_falha (test_cnn.DivisoesCNN.test_trocar_treino_por_teste_ou_repetir_imagem_falha) ... ok
+test_cnn_chega_ao_llm_e_consulta_rag_mesmo_sem_flag_usa_imagem (test_cnn.LigacaoAssistenteCNN.test_cnn_chega_ao_llm_e_consulta_rag_mesmo_sem_flag_usa_imagem) ... ok
+test_nova_foto_substitui_cnn_e_sem_foto_nao_reutiliza_resultado (test_cnn.LigacaoAssistenteCNN.test_nova_foto_substitui_cnn_e_sem_foto_nao_reutiliza_resultado) ... ok
+test_vlm_e_texto_nao_dependem_da_cnn (test_cnn.LigacaoAssistenteCNN.test_vlm_e_texto_nao_dependem_da_cnn) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 3.484s
+
+OK

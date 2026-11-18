@@ -14,7 +14,8 @@ DL_P2_TP2-G2/
 ├── configs/                  Modos, modelos, prompts e parâmetros
 ├── data/
 │   ├── corpus.csv            Metadados, licenças, URLs e SHA-256
-│   ├── splits.json           Divisões de referência do FieldVitis v2
+│   ├── splits.json           Divisão adaptada da CNN seed 1 e holdout separado
+│   ├── originais/            Divisões e manifestos recebidos, preservados
 │   ├── perguntas/perguntas.csv
 │   ├── docs/                 Pasta local dos PDF
 │   └── imagens/              Pasta local do FieldVitis
@@ -150,7 +151,7 @@ A coleção deve ter os vetores nomeados `vetor_denso` (1024, Cosine) e `bm25` (
 Só precisas deste passo para reconstruir/testar o índice. A construção reutiliza a extração Markdown por página, limpeza, divisão por cabeçalhos e chunks de 1200 carateres com sobreposição de 200 do colega. Usa os PDF importados em `data/docs/`, confirmados por SHA-256, e exclui D10–D12. Não há escrita no serviço partilhado neste comando.
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.ingestao --local .\data\qdrant_local --colecao videira_teste --ocr auto
+.\.venv\Scripts\python.exe -m src.ingestao --local .\data\qdrant_local --colecao videira_teste --ocr por
 ```
 
 O comando recusa reutilizar uma coleção já existente e não apaga dados. Para outra construção, escolhe um caminho/coleção novos. Guarda a configuração da ingestão junto do índice local. Fecha a aplicação antes de abrir o mesmo armazenamento local noutro processo.
@@ -166,7 +167,7 @@ Depois executa `src.indice info` e arranca a aplicação. Para voltar à coleç�
 
 ### 4.4. OCR e Tesseract no Windows
 
-`--ocr auto` mantém a seleção automática do PyMuPDF4LLM/RapidOCR. `--ocr off` usa só o texto extraível dos PDF. Para exigir Tesseract em português, instala o Tesseract e `por.traineddata`, e confirma os caminhos:
+O procedimento principal é `--ocr por`, com Tesseract em português. Configura-o antes de executar a construção local da secção 4.3. Como alternativas, `--ocr auto` mantém a seleção automática do PyMuPDF4LLM/RapidOCR e `--ocr off` usa só o texto extraível dos PDF. Instala o Tesseract e `por.traineddata`, e confirma os caminhos:
 
 ```powershell
 $tess = 'C:\Program Files\Tesseract-OCR'
@@ -203,17 +204,34 @@ Abre o endereço local indicado no terminal. Escreve uma pergunta, anexa uma fot
 | VLM | Qwen2.5-VL | Qwen2.5-VL | Não |
 | VLM + RAG | Qwen2.5-VL | Qwen2.5-VL | Sim |
 
-Sem fotografia, os quatro modos aceitam texto. Até ligares a CNN, escolhe **VLM** ou **VLM + RAG** para analisar fotografias. Para voltar a analisar a imagem anterior, seleciona **Voltar a usar a última fotografia**. **Mudar de modo mantém o histórico. Para comparar condições, escolhe Nova conversa por condição e volta a selecionar o modo pretendido** (Nova conversa repõe LLM + CNN + RAG). O modelo recebe até seis turnos relevantes de histórico. Por baixo do seletor de modo aparecem o nome e a variante do modelo de resposta, o modelo de embeddings quando há RAG e o checkpoint da CNN quando aplicável.
+Sem fotografia, os quatro modos aceitam texto e não carregam a CNN. A ResNet50 recebida já está ligada nos dois modos LLM. Para voltar a analisar a imagem anterior, seleciona **Voltar a usar a última fotografia**. **Mudar de modo mantém o histórico. Para comparar condições, escolhe Nova conversa por condição e volta a selecionar o modo pretendido** (Nova conversa repõe LLM + CNN + RAG). O modelo recebe até seis turnos relevantes de histórico. Por baixo do seletor de modo aparecem o nome e a variante do modelo de resposta, o modelo de embeddings quando há RAG e o checkpoint da CNN quando aplicável.
 
 As conversas são guardadas automaticamente após cada resposta em `runs/chats/`.
 
 Nos modos RAG, as citações junto à resposta abrem a página do PDF. O painel lateral mostra o título, a entidade, a data e um excerto curto. A hipótese visual aparece em separado.
 
-## 6. Ligar a CNN do grupo
+## 6. CNN integrada: ResNet50, seed de treino 1
 
-Se receberes um modelo ONNX, coloca-o em `runs/checkpoints/cnn.onnx` e instala a dependência. No PowerShell, usa `.\.venv\Scripts\python.exe -m pip install onnxruntime==1.32.0`. Em macOS ou Linux, usa `python -m pip install onnxruntime==1.32.0`.
+O modelo completo está em `runs/checkpoints/resnet50_seed1.keras`, incluído nesta entrega. O original `resnet50_seed1.keras.zip` já é internamente um arquivo Keras: foi **copiado com extensão `.keras`**, sem o extrair, converter ou voltar a treinar. `configs/cnn.yaml` centraliza o caminho, o adaptador e a seed de treino.
 
-Confirma com o teu colega o pré-processamento e a ordem das classes em `configs/cnn.yaml`. Para outros formatos, usa `src/cnn_colega.py`. O contrato e a configuração estão em [runs/checkpoints/README.md](runs/checkpoints/README.md).
+Reaproveitou-se `inference/predict.py` do colega em `src/cnn_colega.py`: correção EXIF, RGB, resize bilinear 224 × 224, float32 NHWC e `keras.applications.resnet50.preprocess_input`. Este último troca RGB por BGR e subtrai as médias ImageNet; **não divide por 255**. A camada final já aplica softmax. O modelo é carregado uma vez por processo, com `compile=False` e inferência sem augmentation/dropout. A implementação original e os notebooks estão arquivados em `referencia_cnn/` para rastreabilidade; a aplicação só executa o adaptador central.
+
+| Índice | Classe do treino | Identificador na aplicação/avaliação | Nome apresentado e usado na pesquisa |
+|---|---|---|---|
+| 0 | `Black_rot` | `black_rot` | Podridão-negra (black rot) |
+| 1 | `Esca` | `esca` | Esca |
+| 2 | `Healthy` | `saudavel` | Saudável |
+| 3 | `Leaf_blight` | `leaf_blight` | Mancha-das-folhas (leaf blight) |
+
+A ordem é lida de `data/originais/cnn/splits.json`. `Leaf_blight` mantém a designação do dataset: **não é traduzida para míldio**. Os materiais recebidos não permitem atribuir um agente causal específico a cada fotografia. A pesquisa usa o nome apresentado, sem alterar o índice ou inventar sinónimos de doenças.
+
+O classificador escolhe sempre uma das quatro classes. Não existe nesta entrega limiar de confiança, calibração ou rejeição validada de imagens fora do domínio. `estado=ok` significa saída válida do classificador, não diagnóstico confirmado. O painel e o LLM recebem a hipótese e as quatro probabilidades softmax. No RAG, a classe atual acrescenta contexto à consulta; as probabilidades chegam ao gerador e não alteram os scores ou o corte documental. A CNN anterior não volta a ser fornecida como análise de uma pergunta sem fotografia. O histórico textual continua disponível para a conversa; para analisar de novo a imagem, usa a opção explícita de reutilização.
+
+A CNN recebe os píxeis da nova fotografia antes da compressão JPEG usada no histórico. O percurso VLM existente é preservado. A ausência dos pesos ou de TensorFlow/Keras só bloqueia pedidos que precisem da CNN; os modos VLM e perguntas sem fotografia continuam independentes dela.
+
+**Ambiente verificado nesta entrega:** Windows x64, Python 3.14.0 e TensorFlow 2.22.0rc1 (CPU). Esta RC tem distribuição oficial para CPython 3.14/Windows. Os metadados do modelo indicam Keras 3.15.1; a inferência usa `keras-nightly==3.16.0.dev2026111703`, dependência do TensorFlow RC, fixada no único `requirements.txt` do projeto, juntamente com as restantes dependências. Não instales também a distribuição `keras`: ambas escrevem no mesmo módulo. A compatibilidade é verificada pela carga real e comparação numérica com o pré-processamento/predict original. Não foi necessário mudar de Python nem as versões das dependências RAG. É uma combinação de pré-lançamento, não um ambiente TensorFlow estável.
+
+Fontes: [TensorFlow 2.22.0rc1 no PyPI](https://pypi.org/project/tensorflow/2.22.0rc1/) e [instalação oficial](https://www.tensorflow.org/install/pip). O extra `and-cuda` do colega não é usado no Windows nativo desta entrega. GPU não foi validada. Uma futura migração para TensorFlow estável/Python diferente exige voltar a resolver e testar as dependências, incluindo OCR, Torch e Gradio; não é condição para executar esta versão.
 
 ## 7. Avaliação
 
@@ -262,21 +280,23 @@ Os testes e os ensaios curtos com serviços reais repetem-se com:
 
 ### 7.2. Preparar o FieldVitis e avaliar imagens
 
-Para seguir os comandos abaixo, guarda `fieldvitis.zip` na raiz de `DL_P2_TP2-G2`, ao lado de `README.md`. Extrai-o para `data/imagens/`.
+Na pasta de trabalho entregue as imagens já estão extraídas. O ZIP final não inclui o FieldVitis. Para preparar uma nova cópia, coloca `fieldvitis.zip` na raiz do projeto, ao lado de `README.md` e `requirements.txt`, e extrai-o para `data/imagens/`. Executa os comandos a partir dessa raiz:
 
 **Windows PowerShell**
 
 ```powershell
 Expand-Archive -LiteralPath ".\fieldvitis.zip" -DestinationPath ".\data\imagens"
+.\.venv\Scripts\python.exe -m src.preparar_cnn
 ```
 
 **macOS ou Linux**
 
 ```bash
 unzip ./fieldvitis.zip -d ./data/imagens
+python -m src.preparar_cnn
 ```
 
-As quatro pastas das classes ficam diretamente dentro de `data/imagens/`. Se a extração criar uma pasta exterior chamada `fieldvitis`, abre-a e move as quatro pastas para `data/imagens/`. Mantém estes nomes, que correspondem aos caminhos do `data/splits.json` incluído.
+As quatro pastas das classes ficam diretamente dentro de `data/imagens/`, sem uma pasta `fieldvitis/` adicional. Preserva os originais; se outro arquivo tiver uma pasta exterior, copia as classes para estes destinos. A preparação confere MD5 com o manifesto do colega, calcula SHA-256 e duplicados exatos de píxeis, verifica as partições e adapta os IDs sem voltar a sortear imagens.
 
 ```text
 data/imagens/Black_rot/
@@ -287,28 +307,50 @@ data/imagens/Leaf_blight/
 
 Por exemplo, `Healthy_10.jpg` fica em `data/imagens/Healthy/Healthy_10.jpg`.
 
-Usa as divisões com que o teu colega treinou a CNN. O manifesto incluído é uma referência reproduzível para o FieldVitis v2. Se os pesos do grupo seguirem outro manifesto, indica-o com `--splits`, no formato de `data/splits.json`.
+`data/splits.json` adapta apenas a **seed de treino 1**: 352 treino, 76 validação, 77 teste interno e 50 `holdout`. As divisões originais do colega (0/1/2) e o antigo manifesto da aplicação (42/43/44) ficam em `data/originais/`. **Não uses o manifesto antigo para estes pesos:** 53 das suas 84 imagens de teste da seed 42 foram usadas no treino recebido. O avaliador rejeita essa combinação.
+
+Ensaiar a implementação e comparar CNN/VLM na validação:
 
 **Windows PowerShell**
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-validacao --modelos cnn vlm --cnn-checkpoint "runs/checkpoints/cnn_{seed}.onnx"
-.\.venv\Scripts\python.exe -m src.metricas resumir --execucoes texto-validacao visao-validacao
+.\.venv\Scripts\python.exe -m src.verificar_cnn
+.\.venv\Scripts\python.exe -m src.verificar_cnn --servicos
+.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao cnn-ensaio-rui --modelos cnn --seeds 1 --split validacao --limite 4
+.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-validacao-rui --modelos cnn vlm --seeds 1 --split validacao
+.\.venv\Scripts\python.exe -m src.metricas resumir --execucoes visao-validacao-rui
 ```
 
 **macOS ou Linux**
 
 ```bash
-python -m src.avaliar imagem --execucao visao-validacao --modelos cnn vlm --cnn-checkpoint "runs/checkpoints/cnn_{seed}.onnx"
-python -m src.metricas resumir --execucoes texto-validacao visao-validacao
+python -m src.avaliar imagem --execucao visao-validacao-rui --modelos cnn vlm --seeds 1 --split validacao
+python -m src.metricas resumir --execucoes visao-validacao-rui
 ```
+
+O avaliador verifica o hash do checkpoint, a correspondência das partições com o treino e os hashes das imagens executadas. A seed `1` identifica o treino CNN e a sua divisão; a seed de geração do VLM continua a ser `42`. As seeds `42/43/44` das repetições de texto não representam novos treinos CNN. Só recebemos pesos da seed 1: não é possível reproduzir três modelos. `src.splits` guarda novas amostragens noutro ficheiro e não substitui as divisões da CNN.
+
+Depois de fixares as condições, compara **classificação** no teste interno de 77 imagens:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-teste-seed1 --modelos cnn vlm --seeds 1 --split teste
+```
+
+As 50 imagens finais ficaram reservadas nesta integração. Só quando o grupo fechar o protocolo, executa uma vez por condição, guarda os resultados e não os uses para afinação:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-final-50 --modelos cnn vlm --seeds 1 --split holdout
+.\.venv\Scripts\python.exe -m src.metricas resumir --execucoes visao-final-50
+```
+
+`--limite` só é aceite na validação. O teste interno já consta das análises do colega; não substitui as 50 imagens reservadas. As métricas de classificação não medem correção ou fidelidade das respostas. A auditoria de hashes não deteta quase duplicados nem demonstra separação por videira/local de recolha.
 
 ### 7.3. Comparar respostas VLM com e sem RAG
 
 O comando `imagem` anterior mede **classificação**, não a qualidade da resposta à pergunta. Para comparar respostas, fornece a mesma fotografia e a mesma pergunta aos dois modos:
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.avaliar respostas-imagem --execucao respostas-foto-validacao --foto ".\data\imagens\Healthy\Healthy_10.jpg" --pergunta "Que sinais se veem nesta folha de videira?"
+.\.venv\Scripts\python.exe -m src.avaliar respostas-imagem --execucao respostas-foto-validacao --foto ".\data\imagens\Esca\Esca_0.jpg" --pergunta "Que sinais se veem nesta folha de videira?"
 ```
 
 O ficheiro tem de existir. Cada condição começa sem histórico e guarda o hash da mesma imagem, os prompts e a resposta em `runs/`. No VLM, a foto chega à análise visual e à geração final. No VLM + RAG, a foto chega à análise visual; a geração final recebe a hipótese visual e os excertos documentais, sem voltar a receber os bytes da imagem. Este percurso preserva o código do Rui. Avalia os JSON por revisão humana; este ensaio não entra nas métricas automáticas de classificação de `src.metricas`.
@@ -322,4 +364,4 @@ O ficheiro tem de existir. Cada condição começa sem histórico e guarda o has
 
 **Apoio técnico experimental.** Confirma produtos e doses na DGAV ou com um técnico. [Consulta SIFITO](https://www.dgav.pt/medicamentos/conteudo/produtos-fitofarmaceuticos/divulgacao/)
 
-O detalhe da comparação de versões, das alterações e das verificações está em [INTEGRACAO.md](INTEGRACAO.md).
+O relatório da CNN desta entrega está em [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md). A comparação e verificação anterior do RAG permanece em [INTEGRACAO.md](INTEGRACAO.md).

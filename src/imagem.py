@@ -42,17 +42,19 @@ class ConfigCNN(BaseModel):
     backend: Literal["onnx", "python"]
     checkpoint: str
     adaptador: str
-    largura: PositiveInt
-    altura: PositiveInt
-    redimensionamento: Literal["direto", "centro"]
-    layout: Literal["NCHW", "NHWC"]
-    escala: float = Field(gt=0)
-    media: tuple[float, float, float]
-    desvio: tuple[float, float, float]
-    saida: Literal["logits", "probabilidades"]
+    seed_treino: int | None = None
+    # Campos ONNX existentes; o adaptador Python faz o seu pré-processamento.
+    largura: PositiveInt = 224
+    altura: PositiveInt = 224
+    redimensionamento: Literal["direto", "centro"] = "direto"
+    layout: Literal["NCHW", "NHWC"] = "NHWC"
+    escala: float = Field(default=1.0, gt=0)
+    media: tuple[float, float, float] = (0, 0, 0)
+    desvio: tuple[float, float, float] = (1, 1, 1)
+    saida: Literal["logits", "probabilidades"] = "probabilidades"
     nome_saida: str | None = None
     classes: list[str]
-    limiar: float = Field(ge=0, le=1)
+    limiar: float | None = Field(default=None, ge=0, le=1)
 
     @model_validator(mode="after")
     def validar_config(self):
@@ -185,7 +187,8 @@ def analisar_cnn(imagem, checkpoint=None):
     confianca = probabilidades[classe]
     if classe == "outra":
         return Visual(motor="CNN", estado="rejeitada", descricao="A CNN identificou uma imagem fora das classes da videira.")
-    estado = "ok" if confianca >= config.limiar else "incerta"
+    # Sem limiar validado, conservar argmax e probabilidades como hipótese.
+    estado = "ok" if config.limiar is None or confianca >= config.limiar else "incerta"
     descricao = resultado.get("descricao") or "Classificação baseada nos padrões da folha."
     mapa = resultado.get("mapa_atencao")
     return Visual(

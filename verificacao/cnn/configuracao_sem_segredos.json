@@ -1,0 +1,10 @@
+{
+  "nomes_presentes": [
+    "QDRANT_API_KEY",
+    "QDRANT_URL"
+  ],
+  "variaveis_obrigatorias_presentes": true,
+  "mecanismo": "load_dotenv(RAIZ / .env, override=False), configuração normal da aplicação",
+  "git_ignore_verificado_antes_da_copia": true,
+  "excluir_env_do_zip": true
+}

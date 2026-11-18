@@ -1,0 +1,119 @@
+{
+  "imagens": 555,
+  "classes": {
+    "black_rot": 39,
+    "esca": 200,
+    "saudavel": 158,
+    "leaf_blight": 158
+  },
+  "seeds_originais": {
+    "0": {
+      "contagens": {
+        "treino": 352,
+        "validacao": 76,
+        "teste": 77,
+        "holdout": 50
+      },
+      "sobreposicoes_sha256": {
+        "treino/validacao": 0,
+        "treino/teste": 0,
+        "treino/holdout": 0,
+        "validacao/teste": 0,
+        "validacao/holdout": 0,
+        "teste/holdout": 0
+      }
+    },
+    "1": {
+      "contagens": {
+        "treino": 352,
+        "validacao": 76,
+        "teste": 77,
+        "holdout": 50
+      },
+      "sobreposicoes_sha256": {
+        "treino/validacao": 0,
+        "treino/teste": 0,
+        "treino/holdout": 0,
+        "validacao/teste": 0,
+        "validacao/holdout": 0,
+        "teste/holdout": 0
+      }
+    },
+    "2": {
+      "contagens": {
+        "treino": 352,
+        "validacao": 76,
+        "teste": 77,
+        "holdout": 50
+      },
+      "sobreposicoes_sha256": {
+        "treino/validacao": 0,
+        "treino/teste": 0,
+        "treino/holdout": 0,
+        "validacao/teste": 0,
+        "validacao/holdout": 0,
+        "teste/holdout": 0
+      }
+    }
+  },
+  "duplicados_bytes": [],
+  "duplicados_pixels_rgb_exif": [],
+  "teste_antigo_seed42": 84,
+  "intersecao_treino_seed1": [
+    "Black_rot/Black_rot_18.jpg",
+    "Black_rot/Black_rot_19.jpg",
+    "Black_rot/Black_rot_3.jpg",
+    "Black_rot/Black_rot_6.jpg",
+    "Esca/Esca_100.jpg",
+    "Esca/Esca_106.jpg",
+    "Esca/Esca_111.jpg",
+    "Esca/Esca_121.jpg",
+    "Esca/Esca_138.jpg",
+    "Esca/Esca_144.jpg",
+    "Esca/Esca_15.jpg",
+    "Esca/Esca_153.jpg",
+    "Esca/Esca_163.jpg",
+    "Esca/Esca_176.jpg",
+    "Esca/Esca_188.jpg",
+    "Esca/Esca_21.jpg",
+    "Esca/Esca_29.jpg",
+    "Esca/Esca_30.jpg",
+    "Esca/Esca_37.jpg",
+    "Esca/Esca_64.jpg",
+    "Esca/Esca_67.jpg",
+    "Esca/Esca_72.jpg",
+    "Esca/Esca_80.jpg",
+    "Esca/Esca_93.jpg",
+    "Esca/Esca_99.jpg",
+    "Healthy/Healthy_1.jpg",
+    "Healthy/Healthy_111.jpg",
+    "Healthy/Healthy_114.jpg",
+    "Healthy/Healthy_142.jpg",
+    "Healthy/Healthy_143.jpg",
+    "Healthy/Healthy_34.jpg",
+    "Healthy/Healthy_43.jpg",
+    "Healthy/Healthy_48.jpg",
+    "Healthy/Healthy_60.jpg",
+    "Healthy/Healthy_63.jpg",
+    "Healthy/Healthy_74.jpg",
+    "Healthy/Healthy_94.jpg",
+    "Healthy/Healthy_99.jpg",
+    "Leaf_blight/Leaf_blight_10.jpg",
+    "Leaf_blight/Leaf_blight_110.jpg",
+    "Leaf_blight/Leaf_blight_132.jpg",
+    "Leaf_blight/Leaf_blight_148.jpg",
+    "Leaf_blight/Leaf_blight_2.jpg",
+    "Leaf_blight/Leaf_blight_22.jpg",
+    "Leaf_blight/Leaf_blight_27.jpg",
+    "Leaf_blight/Leaf_blight_28.jpg",
+    "Leaf_blight/Leaf_blight_31.jpg",
+    "Leaf_blight/Leaf_blight_41.jpg",
+    "Leaf_blight/Leaf_blight_49.jpg",
+    "Leaf_blight/Leaf_blight_58.jpg",
+    "Leaf_blight/Leaf_blight_7.jpg",
+    "Leaf_blight/Leaf_blight_72.jpg",
+    "Leaf_blight/Leaf_blight_82.jpg"
+  ],
+  "holdout_inferencia_executada": false,
+  "limite_auditoria": "Hashes exatos; não deteta quase duplicados, a mesma folha ou a mesma videira."
+}

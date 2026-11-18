@@ -1,4 +1,8 @@
-﻿# Python 3.14. Dependências diretas usadas e verificadas nesta integração.
+# Python 3.14. Dependências diretas usadas e verificadas nesta integração.
+# CNN em Windows x64 / Python 3.14, sem o extra CUDA.
+tensorflow==2.22.0rc1
+# Esta RC depende de keras-nightly; não instalar também a distribuição keras.
+keras-nightly==3.16.0.dev2026111703
 gradio==6.31.0
 langchain-core==1.8.1
 langchain-ollama==1.1.0

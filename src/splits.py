@@ -75,9 +75,11 @@ def dividir(pasta, seeds):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--imagens", type=Path, default=PASTA_IMAGENS)
-    parser.add_argument("--saida", type=Path, default=FICHEIRO_SPLITS)
+    parser.add_argument("--saida", type=Path, default=RAIZ / "data/splits_amostragem.json")
     parser.add_argument("--seeds", type=int, nargs=3, default=SEEDS)
     args = parser.parse_args()
+    if args.saida.resolve() == FICHEIRO_SPLITS.resolve():
+        parser.error("Para a CNN recebida usa src.preparar_cnn; não substituas as divisões de treino por nova amostragem.")
     if len(set(args.seeds)) != 3:
         parser.error("Indica três seeds distintas.")
     try:
