@@ -241,7 +241,7 @@ Fontes: [TensorFlow 2.22.0rc1 no PyPI](https://pypi.org/project/tensorflow/2.22.
 
 ### 7.1. Avaliar respostas de texto
 
-A comparação principal do F4 inclui `llm_cnn`, `llm_rag_sem_limiar` e `llm_cnn_rag`, com as mesmas perguntas, sem fotografia e com histórico vazio em cada item. A CNN não intervém. O CSV de referência fica no registo e não entra no prompt. Para um ensaio curto e para a execução de referência, utilizar nomes diferentes em `--execucao`.
+A comparação textual principal inclui `llm_cnn`, `llm_rag_sem_limiar` e `llm_cnn_rag`, com as mesmas perguntas, sem fotografia e com histórico vazio em cada item. A CNN não intervém. O CSV de referência fica no registo e não entra no prompt. Para um ensaio curto e para a execução de referência, utilizar nomes diferentes em `--execucao`.
 
 **Windows PowerShell**
 
@@ -383,7 +383,7 @@ O relatório da CNN desta entrega está em [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md
 
 ## 9. Correções e análise dos resultados guardados
 
-A lista por F_, os excertos de referência e os testes desta revisão estão em [CORRECOES.md](CORRECOES.md). Os CSV de corpus e perguntas foram preservados. `src.avaliar dados` mostra também fontes condicionais, distribuição das imagens e cobertura estática da regra de recusa por documento ausente. Essa regra abrange 9/10 perguntas de recusa atuais; isto não é um resultado experimental. As métricas de recusa são discriminadas por motivo. O Recall existente é de **documento/página**, não de passagem exata.
+O [protocolo experimental](PROTOCOLO.md) descreve as condições de avaliação e o trabalho pendente. `src.avaliar dados` mostra fontes condicionais, distribuição das imagens e cobertura estática da regra de recusa por documento ausente. Essa regra abrange 9/10 perguntas de recusa atuais; isto não é um resultado experimental. As métricas de recusa são discriminadas por motivo. O Recall existente é de **documento/página**, não de passagem exata.
 
 A anotação opcional `classe_resposta` acrescenta consistência da classe expressa no texto, sem a substituir pela classe visual. Consultar as instruções em [paper/fidelidade/README.md](paper/fidelidade/README.md). Os limites de geração e o percurso VLM/RAG mantêm-se: comparar os sistemas completos não isola o efeito de adicionar documentos.
 

@@ -60,7 +60,7 @@ O schema e os payloads não comprovam a revisão dos pesos, o motor/OCR ou o pro
 
 A passagem esperada de Q001 foi recuperada em primeiro lugar: D02 p. 6, sobre a entrada de Eutypa lata por feridas recentes/de poda, score do reranker 0,99677354. A resposta final citou D02 p. 6 e também p. 7. A presença da passagem/citação foi verificada; a correção integral de todas as frases continua a exigir avaliação humana.
 
-## Condições efetivas do F4
+## Condições efetivas da avaliação textual
 
 - `llm_cnn` sem imagem é a baseline textual: não chama CNN, embeddings ou Qdrant. `llm_cnn_rag` responde às mesmas perguntas com recuperação integrada. Cada item começa com histórico vazio.
 - A linha completa do CSV fica em `referencia`, no JSON; só `pergunta` é passada a `responder`. Os testes e o registo real verificam esta separação.

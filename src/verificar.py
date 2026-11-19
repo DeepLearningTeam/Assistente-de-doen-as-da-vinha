@@ -1,4 +1,4 @@
-"""Ensaios curtos com modelos reais. Não substituem a avaliação humana do F4."""
+"""Ensaios curtos com modelos reais. Não substituem a avaliação humana das respostas."""
 import argparse
 import os
 import sys

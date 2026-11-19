@@ -4,7 +4,7 @@
 
 ## 1. Problema e objetivo
 
-Identificar hipóteses numa folha de videira e responder a perguntas de viticultura. A avaliação mede a qualidade da classificação, o suporte documental das afirmações e a capacidade de recusar pedidos sem evidência. F4 acompanha as perguntas, o baseline textual, a integração do LLM e do VLM e a avaliação de fidelidade.
+Identificar hipóteses numa folha de videira e responder a perguntas de viticultura. A avaliação mede a qualidade da classificação, o suporte documental das afirmações e a capacidade de recusar pedidos sem evidência. O protocolo abrange as perguntas de referência, a comparação das condições textuais e visuais e a avaliação humana das respostas.
 
 ## 2. Dados e corpus
 
@@ -30,7 +30,7 @@ flowchart TD
 
 Nos modos CNN, a fotografia é classificada antes de o Qwen3 receber a hipótese visual. Nos modos VLM, o Qwen2.5-VL faz a observação e gera a resposta. Em **VLM + RAG**, a descrição visual alimenta a geração documental pelo mesmo VLM. Sem fotografia, a resposta é textual. A decisão de usar visão e RAG segue o modo escolhido na interface.
 
-A comparação principal do F4 usa as mesmas perguntas, sem fotografias, com histórico vazio em cada corrida e o mesmo Qwen3 em três condições: `llm_cnn` (baseline sem RAG; a CNN não intervém), `llm_rag_sem_limiar` (RAG com citações válidas, sem corte nem verificação de suporte) e `llm_cnn_rag` (RAG, corte e verificação). Estas três condições são agora a predefinição do avaliador, conforme a comparação sem RAG/RAG/RAG+recusa do D1. Os dois modos VLM também podem ser avaliados nas mesmas perguntas de texto. A condição intermédia ainda pode recusar se não recuperar passagens ou se a geração falhar; não significa ausência absoluta de recusa.
+A comparação textual principal utiliza as mesmas perguntas, sem fotografias, com histórico vazio em cada corrida e o mesmo Qwen3 em três condições: `llm_cnn` (baseline sem RAG; a CNN não intervém), `llm_rag_sem_limiar` (RAG com citações válidas, sem corte nem verificação de suporte) e `llm_cnn_rag` (RAG, corte e verificação). Estas três condições são agora a predefinição do avaliador, conforme a comparação sem RAG/RAG/RAG+recusa do D1. Os dois modos VLM também podem ser avaliados nas mesmas perguntas de texto. A condição intermédia ainda pode recusar se não recuperar passagens ou se a geração falhar; não significa ausência absoluta de recusa.
 
 O comando `avaliar imagem` compara **classificação** CNN/VLM no mesmo split, não qualidade de respostas. O comando `avaliar respostas-imagem` compara por predefinição os quatro modos com a mesma pergunta, fotografia e hash, sem histórico; `--condicoes` permite selecionar um subconjunto. Nos modos LLM, o gerador recebe apenas a classe e as probabilidades da CNN, sem sinais observados: deve apresentar eventuais sintomas como sinais gerais a confirmar. Em VLM, a fotografia é enviada à observação e à geração final. Em VLM + RAG, é enviada à observação; a geração final recebe a hipótese/estado visual e as passagens. A descrição contribui para a consulta quando a pergunta usa a imagem. Os bytes da fotografia não chegam à geração documental final. Esta diferença é parte das condições, preservada da versão anterior da aplicação; não atribuir todos os efeitos observados apenas à presença de documentos.
 
@@ -104,7 +104,7 @@ Os YAML são a referência dos parâmetros. Registar o ambiente, dispositivo, ve
 4. Executar as condições fixadas, preencher as duas folhas de anotação e resolver divergências por consenso. Não confundir testes de funcionamento com resultados do projeto.
 5. Comparar as respostas dos quatro modos quanto a adequação à fotografia/pergunta, correção, prudência do diagnóstico, suporte e páginas das citações. `src.metricas anotar` exporta as folhas; `resumir` guarda estas métricas em `tabelas/respostas_imagem.csv`, separadas da classificação. Sem anotações não se publicam fidelidade ou correção fictícias. Cada execução corresponde a uma pergunta/fotografia e não declara automaticamente pertença à validação ou ao teste; selecionar as imagens do split adequado.
 
-As verificações anteriores estão em `INTEGRACAO_RAG.md` e `INTEGRACAO_CNN.md`; as desta revisão e a lista atualizada de pendências estão em `CORRECOES.md`.
+As verificações das integrações estão documentadas em `INTEGRACAO_RAG.md` e `INTEGRACAO_CNN.md`. As pendências da avaliação estão reunidas nesta secção.
 
 ## 11. Integração CNN e proteção da avaliação final
 
