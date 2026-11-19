@@ -79,9 +79,9 @@ def main():
     parser.add_argument("--seeds", type=int, nargs=3, default=SEEDS)
     args = parser.parse_args()
     if args.saida.resolve() == FICHEIRO_SPLITS.resolve():
-        parser.error("Para a CNN recebida usa src.preparar_cnn; não substituas as divisões de treino por nova amostragem.")
+        parser.error("Para a CNN recebida utilizar src.preparar_cnn; não substituir as divisões de treino por nova amostragem.")
     if len(set(args.seeds)) != 3:
-        parser.error("Indica três seeds distintas.")
+        parser.error("Indicar três seeds distintas.")
     try:
         dados = dividir(args.imagens, args.seeds)
         gravar_json(args.saida, dados)

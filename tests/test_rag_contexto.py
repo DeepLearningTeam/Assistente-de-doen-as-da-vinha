@@ -17,7 +17,7 @@ def historico_com_correcao():
             estado="resposta", texto="Hipótese de esca.", visual=visual,
         ).model_dump()},
         {"pergunta": "Fui confirmar e estás errado. É black rot.", "modo": "vlm_rag", "resposta": Resposta(
-            estado="correcao", texto="Vou usar a identificação que indicaste: black rot.", correcao="black rot",
+            estado="correcao", texto="Vou usar a identificação indicada: black rot.", correcao="black rot",
         ).model_dump()},
     ]
 
@@ -49,7 +49,7 @@ class ContextoTest(unittest.TestCase):
             resposta = responder("Fui confirmar. É black rot.", "vlm_rag", historico_com_correcao()[:1])
         self.assertEqual(resposta.estado, "correcao")
         self.assertEqual(resposta.correcao, "black rot")
-        self.assertIn("identificação que indicaste", resposta.texto)
+        self.assertIn("identificação indicada", resposta.texto)
         self.assertEqual(resposta.fontes, [])
         pesquisa.assert_not_called()
         turno = {"pergunta": "É black rot.", "modo": "vlm_rag", "resposta": resposta.model_dump()}

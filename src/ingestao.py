@@ -266,7 +266,7 @@ def main():
         # Fecha os ficheiros locais mesmo se ocorrer uma falha de extração.
         with closing(QdrantClient(path=str(args.local))) as client:
             if client.collection_exists(args.colecao):
-                raise ErroProjeto("A coleção já existe. Usa outro --local ou --colecao; não há apagamento automático.")
+                raise ErroProjeto("A coleção já existe. Utilizar outro --local ou --colecao; não há apagamento automático.")
             chunks = processar_corpus(entradas, config=config, ocr=args.ocr)
             if {c["doc_id"] for c in chunks} != {e["doc_id"] for e in entradas}:
                 raise ErroProjeto("Extração incompleta: nem todos os documentos produziram passagens.")
@@ -277,7 +277,7 @@ def main():
                 "pdfs": {e["doc_id"]: e["sha256"] for e in entradas},
             })
     except Exception as erro:
-        sys.exit(str(erro) if isinstance(erro, ErroProjeto) else "Falhou a extração/indexação local. Confirma as dependências e os PDF.")
+        sys.exit(str(erro) if isinstance(erro, ErroProjeto) else "Falhou a extração/indexação local. Verificar as dependências e os PDF.")
 
 
 if __name__ == "__main__":

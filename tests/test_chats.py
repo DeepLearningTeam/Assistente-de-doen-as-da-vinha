@@ -190,7 +190,7 @@ class InterfaceTest(PastaConversasTest):
         chat = chats.guardar(conversa_exemplo())
         evento = self.eventos["aplicar_nome"]
         resultado = evento.fn(chats.novo_chat(), chat["id"], "  ")
-        self.assertIn("Escreve o novo nome", resultado[evento.outputs[-1]])
+        self.assertIn("Introduzir o novo nome", resultado[evento.outputs[-1]])
         self.assertEqual(chats.abrir(chat["id"]), chat)
 
 

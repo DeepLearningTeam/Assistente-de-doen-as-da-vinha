@@ -21,7 +21,7 @@ def verificar_sem_rag():
          patch.object(indice, "obter_cliente", side_effect=AssertionError("Modo sem RAG tentou usar Qdrant")):
         resultado = responder(PERGUNTA, "llm_cnn", historico=(), registar=True)
     if resultado.estado != "resposta" or resultado.fontes:
-        raise ErroProjeto("O ensaio sem RAG não produziu uma resposta livre. Consulta o JSON/modelo.")
+        raise ErroProjeto("O ensaio sem RAG não produziu uma resposta livre. Consultar o JSON/modelo.")
     gravar_json(RAIZ / "runs/verificacao/sem_rag.json", resultado.model_dump())
     print(f"Sem RAG e sem credenciais: {resultado.estado} — {resultado.texto}")
 
@@ -33,18 +33,18 @@ def verificar_rag():
     passagens = indice.recuperar(config, PERGUNTA)
     gravar_json(RAIZ / "runs/verificacao/recuperacao.json", passagens)
     if not any(p["doc"] == "D02" and p["pagina"] == 6 for p in passagens):
-        raise ErroProjeto("A passagem esperada D02 p. 6 não entrou no top-k; consulta recuperacao.json.")
+        raise ErroProjeto("A passagem esperada D02 p. 6 não entrou no top-k; consultar recuperacao.json.")
     resultado = responder(PERGUNTA, "llm_cnn_rag", historico=(), config=config, registar=True)
     gravar_json(RAIZ / "runs/verificacao/suportada.json", resultado.model_dump())
     if resultado.estado != "resposta" or not any(
         f["doc"] == "D02" and f["pagina"] == 6 for f in resultado.fontes
     ):
-        raise ErroProjeto("A geração não citou D02 p. 6. Consulta suportada.json; não basta recuperar a passagem.")
+        raise ErroProjeto("A geração não citou D02 p. 6. Consultar suportada.json; não basta recuperar a passagem.")
     print(f"Suportada, D02 p. 6: {resultado.texto}")
     sem_suporte = responder(SEM_SUPORTE, "llm_cnn_rag", historico=(), config=config, registar=True)
     gravar_json(RAIZ / "runs/verificacao/sem_suporte.json", sem_suporte.model_dump())
     if sem_suporte.estado != "recusa":
-        raise ErroProjeto("O modelo não recusou a pergunta sem suporte; consulta sem_suporte.json.")
+        raise ErroProjeto("O modelo não recusou a pergunta sem suporte; consultar sem_suporte.json.")
     print(f"Sem suporte: {sem_suporte.estado} ({sem_suporte.motivo}) — {sem_suporte.texto}")
 
 
@@ -79,7 +79,7 @@ def main():
     parser.add_argument("--indice-local", action="store_true")
     args = parser.parse_args()
     if not args.sem_rag and not args.rag and not args.indice_local:
-        parser.error("Escolhe --sem-rag, --rag e/ou --indice-local.")
+        parser.error("Selecionar --sem-rag, --rag e/ou --indice-local.")
     try:
         if args.sem_rag:
             verificar_sem_rag()

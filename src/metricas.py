@@ -19,6 +19,7 @@ COLUNAS_ANOTACAO = (
     "id_afirmacao", "chave_resposta", "id_pergunta", "condicao", "temperatura", "repeticao",
     "pergunta", "afirmacao", "fonte_citada", "trechos_no_json", "resposta_ref",
     "suportada", "correta_face_referencia", "resposta_correta", "tipo_erro", "anotador",
+    "classe_resposta", "imagem_sha256",
 )
 COLUNAS_RESULTADOS = (
     "execucao", "split", "via", "modelo", "config", "seed", "repeticao",
@@ -62,20 +63,23 @@ def carregar(nome):
 
 def preparar_anotacao(nome, destino=PAPER / "fidelidade"):
     manifesto, itens = carregar(nome)
-    if manifesto["parametros"]["tipo"] != "texto":
-        raise ErroProjeto("A anotação de afirmações exige uma execução de texto.")
+    tipo = manifesto["parametros"]["tipo"]
+    if tipo not in {"texto", "resposta_imagem"}:
+        raise ErroProjeto("A anotação de afirmações exige uma execução de respostas.")
     linhas = []
     for item in itens:
         if item["estado"] != "resposta":
             continue
-        ref = item["referencia"]
+        ref = item.get("referencia") or {
+            "id": item["imagem_sha256"], "pergunta": item["pergunta"], "resposta_ref": "",
+        }
         for numero, parte in enumerate(item["partes"], 1):
             linhas.append({
                 "id_afirmacao": f"{item['chave']}:{numero}", "chave_resposta": item["chave"],
-                "id_pergunta": ref["id"], "condicao": item["modo"], "temperatura": item["temperatura"],
-                "repeticao": item["repeticao"], "pergunta": ref["pergunta"], "afirmacao": parte["texto"],
+                "id_pergunta": ref["id"], "condicao": item["modo"], "temperatura": item.get("temperatura", 0),
+                "repeticao": item.get("repeticao", 1), "pergunta": ref["pergunta"], "afirmacao": parte["texto"],
                 "fonte_citada": " | ".join(parte["fontes"]), "trechos_no_json": " | ".join(parte["trechos"]),
-                "resposta_ref": ref["resposta_ref"],
+                "resposta_ref": ref["resposta_ref"], "imagem_sha256": item.get("imagem_sha256", ""),
             })
     pasta = destino / nome
     for nome_csv in ("anotador_1.csv", "anotador_2.csv", "consenso.csv"):
@@ -126,7 +130,7 @@ def linha_tabela(base, metrica, valor, n, unidade, limites=(None, None)):
 def atingiu_pagina(item):
     ref = item["referencia"]
     return any(p["doc"] == ref["doc_id"] and p["pagina"] == int(ref["pagina_pdf"])
-               for p in item.get("recuperadas", []))
+               for p in item.get("recuperadas", [])[:item["top_k"]])
 
 
 def kappa(a, b):
@@ -142,11 +146,18 @@ def kappa(a, b):
 def pontuacoes_texto(grupos, anotacoes, k):
     por_metrica = defaultdict(list)
     fidelidade = {}
+    motivos = sorted({i.get("motivo") or "nao_registado" for itens in grupos.values()
+                      for i in itens if i["estado"] == "recusa"})
     for identificador, itens in grupos.items():
         for acao, nome in (("recusar", "recusa_correta"), ("responder", "recusa_indevida")):
             relevantes = [i for i in itens if i["referencia"]["expected_action"] == acao]
             if relevantes:
                 por_metrica[nome].append((sum(i["estado"] == "recusa" for i in relevantes), len(relevantes)))
+                for motivo in motivos:
+                    por_metrica[f"{nome}_motivo_{motivo}"].append((
+                        sum(i["estado"] == "recusa" and (i.get("motivo") or "nao_registado") == motivo
+                            for i in relevantes), len(relevantes),
+                    ))
         com_fonte = [i for i in itens if i["rag"] and i["referencia"]["expected_action"] == "responder"]
         if com_fonte:
             por_metrica[f"recall_pagina@{k}"].append((sum(map(atingiu_pagina, com_fonte)), len(com_fonte)))
@@ -162,6 +173,30 @@ def pontuacoes_texto(grupos, anotacoes, k):
                 sum(decisao(a) == decisao(b) for a, b in pares), len(pares),
             ))
         rotulos = anotacoes.get(identificador, [])
+        classes = {}
+        for chave, linhas in agrupar(rotulos, lambda r: r["chave_resposta"]).items():
+            nomes = {r.get("classe_resposta", "").strip().casefold() for r in linhas}
+            nomes.discard("")
+            if len(nomes) > 1:
+                raise ErroProjeto(f"{chave}: classe_resposta contraditória na folha de consenso.")
+            if nomes:
+                classes[chave] = nomes.pop()
+        if rotulos:
+            por_metrica["cobertura_anotacao_classe"].append((
+                sum(i["chave"] in classes for i in itens), len(itens),
+            ))
+        pares_classe = [
+            (a, b) for a, b in pares
+            if all(classes.get(i["chave"]) not in {None, "sem_classe", "indeterminada"} for i in (a, b))
+        ]
+        if pares_classe:
+            por_metrica["consistencia_classe"].append((
+                sum(classes[a["chave"]] == classes[b["chave"]] for a, b in pares_classe), len(pares_classe),
+            ))
+            por_metrica["consistencia_classe_acao_fontes"].append((
+                sum(classes[a["chave"]] == classes[b["chave"]] and decisao(a) == decisao(b)
+                    for a, b in pares_classe), len(pares_classe),
+            ))
         suportes = [r["suportada"] for r in rotulos if r["suportada"] in VALIDAS]
         if suportes:
             par = (suportes.count("S"), len(suportes))
@@ -225,6 +260,21 @@ def previsao(item):
     return visual.get("classe") if item["estado"] == "ok" else None
 
 
+def calibracao_imagem(itens):
+    """Dez intervalos fixos; a mesma população de previsões aceites usada no ECE."""
+    pares = [
+        (i["visual"]["confianca"], previsao(i) == i["classe_ref"])
+        for i in itens if previsao(i) and i["visual"]["confianca"] is not None
+    ]
+    grupos = agrupar(pares, lambda par: min(9, int(par[0] * 10)))
+    return [{
+        "bin": n, "limite_inf": n / 10, "limite_sup": (n + 1) / 10,
+        "n": len(grupos[n]),
+        "confianca_media": mean(p[0] for p in grupos[n]) if grupos[n] else None,
+        "acuracia": mean(p[1] for p in grupos[n]) if grupos[n] else None,
+    } for n in range(10)]
+
+
 def valores_imagem(itens):
     """Uma abstenção conta como falha para a classe real; a cobertura é publicada."""
     confusao = Counter((i["classe_ref"], previsao(i)) for i in itens)
@@ -236,17 +286,10 @@ def valores_imagem(itens):
         if reais:
             f1[classe] = 2 * verdadeiros / (reais + previstos)
             recall[f"recall_{classe}"] = verdadeiros / reais
-    com_confianca = [
-        (i["visual"]["confianca"], previsao(i) == i["classe_ref"])
-        for i in itens if previsao(i) and i["visual"]["confianca"] is not None
-    ]
-    bins = agrupar(com_confianca, lambda par: min(9, int(par[0] * 10)))
-    ece = None
-    if com_confianca:
-        ece = sum(
-            len(grupo) * abs(mean(p[0] for p in grupo) - mean(p[1] for p in grupo))
-            for grupo in bins.values()
-        ) / len(com_confianca)
+    bins = calibracao_imagem(itens)
+    n_confianca = sum(b["n"] for b in bins)
+    ece = (sum(b["n"] * abs(b["confianca_media"] - b["acuracia"]) for b in bins if b["n"])
+           / n_confianca) if n_confianca else None
     return {
         "macro_f1": mean(f1.values()), "acuracia": sum(confusao[c, c] for c in CLASSES) / len(itens),
         "cobertura": sum(n for (_, prev), n in confusao.items() if prev is not None) / len(itens),
@@ -297,7 +340,7 @@ def resultados_item(manifesto, item):
         "temperatura": item.get("temperatura"), "data": item["data"],
         "commit": manifesto["parametros"]["commit"],
     }
-    valores = {"estado": item["estado"], "latencia_s": item["latencia_s"]}
+    valores = {"estado": item["estado"], "latencia_s": item["latencia_s"], "motivo": item.get("motivo", "")}
     if texto:
         valores["recusou"] = int(item["estado"] == "recusa")
         if item["rag"] and ref["expected_action"] == "responder":
@@ -309,23 +352,59 @@ def resultados_item(manifesto, item):
     return [{**base, "metrica": chave, "valor": valor} for chave, valor in valores.items()]
 
 
+def tabela_respostas_imagem(manifesto, itens, pasta_anotacoes):
+    """Qualidade anotada das respostas; não calcula acurácia de classificação."""
+    consenso = csv_ler(pasta_anotacoes / manifesto["execucao"] / "consenso.csv")
+    tabela = []
+    for modo, grupo in agrupar(itens, lambda i: i["modo"]).items():
+        chaves = {i["chave"] for i in grupo}
+        anotacoes = [r for r in consenso if r["chave_resposta"] in chaves]
+        base = {
+            "execucao": manifesto["execucao"], "split": "fotografia_sem_split_declarado", "condicao": modo,
+            "modelo": manifesto["parametros"]["configuracoes"][modo]["vlm_modelo" if modo.startswith("vlm") else "llm_modelo"],
+        }
+        tabela.append(linha_tabela(base, "latencia_media_s", mean(i["latencia_s"] for i in grupo),
+                                   len(grupo), "resposta"))
+        tabela.append(linha_tabela(base, "proporcao_recusas", sum(i["estado"] == "recusa" for i in grupo) / len(grupo),
+                                   len(grupo), "resposta"))
+        suportes = [r["suportada"] for r in anotacoes if r["suportada"] in VALIDAS]
+        if suportes:
+            tabela.append(linha_tabela(base, "fidelidade", suportes.count("S") / len(suportes),
+                                       len(suportes), "afirmacao"))
+        por_resposta = agrupar(anotacoes, lambda r: r["chave_resposta"])
+        corretas = []
+        for chave, linhas in por_resposta.items():
+            decisoes = {r["resposta_correta"] for r in linhas if r["resposta_correta"] in {"S", "N"}}
+            if len(decisoes) > 1:
+                raise ErroProjeto(f"{chave}: resposta_correta contraditória no consenso.")
+            corretas.extend(decisoes)
+        if corretas:
+            tabela.append(linha_tabela(base, "correcao_humana", corretas.count("S") / len(corretas),
+                                       len(corretas), "resposta"))
+    return tabela
+
+
 def resumir(nomes, destino, bootstrap):
-    resultados, texto, imagem = [], [], []
+    resultados, texto, imagem, respostas_imagem = [], [], [], []
     for nome in nomes:
         manifesto, itens = carregar(nome)
         if manifesto["parametros"]["tipo"] == "resposta_imagem":
-            raise ErroProjeto("A comparação de respostas com fotografia exige revisão humana dos JSON; não é classificação.")
+            respostas_imagem.extend(tabela_respostas_imagem(manifesto, itens, PAPER / "fidelidade"))
+            continue
         for item in itens:
             resultados.extend(resultados_item(manifesto, item))
         if manifesto["parametros"]["tipo"] == "texto":
             texto.extend(tabela_texto(manifesto, itens, bootstrap, PAPER / "fidelidade"))
         else:
             imagem.extend(tabela_imagem(manifesto, itens, bootstrap))
-    csv_gravar(destino / "resultados.csv", COLUNAS_RESULTADOS, resultados)
+    if resultados:
+        csv_gravar(destino / "resultados.csv", COLUNAS_RESULTADOS, resultados)
     if imagem:
         csv_gravar(destino / "tabelas/tabela1.csv", COLUNAS_TABELA, imagem)
     if texto:
         csv_gravar(destino / "tabelas/tabela2.csv", COLUNAS_TABELA, texto)
+    if respostas_imagem:
+        csv_gravar(destino / "tabelas/respostas_imagem.csv", COLUNAS_TABELA, respostas_imagem)
     print(f"Resultados em {destino}.")
 
 

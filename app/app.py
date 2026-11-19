@@ -1,4 +1,4 @@
-"""Aplicação Gradio. Executa com python -m app.app na raiz do projeto."""
+"""Aplicação Gradio. Executar com python -m app.app na raiz do projeto."""
 import argparse
 import html
 import logging
@@ -216,7 +216,7 @@ def criar_app():
                         buttons=["copy", "copy_all"], feedback_options=[], allow_tags=False,
                         placeholder=(
                             '<div class="chat-vazio"><strong>Como te posso ajudar com a vinha?</strong>'
-                            '<p>Escreve uma pergunta ou envia uma fotografia para começar.</p></div>'
+                            '<p>Introduzir uma pergunta ou enviar uma fotografia para iniciar.</p></div>'
                         ),
                     )
                     with gr.Row(elem_id="exemplos"):
@@ -224,7 +224,7 @@ def criar_app():
                             botao = gr.Button(rotulo, size="sm", variant="secondary")
                             exemplos.append((botao, exemplo))
                     pergunta = gr.Textbox(
-                        label="Pergunta", placeholder="Escreve a tua pergunta…",
+                        label="Pergunta", placeholder="Introduzir uma pergunta…",
                         lines=2, max_lines=6, elem_id="pergunta",
                     )
                     with gr.Row(elem_id="compositor"):
@@ -276,7 +276,7 @@ def criar_app():
                     novo = gr.Button("Nova conversa", size="sm", elem_id="novo-chat")
         gr.HTML(
             f'<footer class="vinha-rodape"><strong>Apoio técnico experimental.</strong> '
-            f'Confirma produtos e doses na <a href="{DGAV}" target="_blank" rel="noopener noreferrer">'
+            f'Verificar produtos e doses na <a href="{DGAV}" target="_blank" rel="noopener noreferrer">'
             'DGAV</a> ou com um técnico.</footer>',
             elem_id="rodape",
         )
@@ -360,7 +360,7 @@ def criar_app():
             try:
                 titulo = chats.normalizar_titulo(titulo)
                 if not titulo:
-                    raise ErroProjeto("Escreve o novo nome da conversa.")
+                    raise ErroProjeto("Introduzir o novo nome da conversa.")
                 # Uma seleção no histórico pode ser diferente da conversa em curso.
                 alvo = chats.abrir(identificador) if identificador and identificador != chat["id"] else chat
                 alvo = {**alvo, "titulo": titulo}

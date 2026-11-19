@@ -7,7 +7,7 @@ from importlib.metadata import version
 import numpy as np
 
 from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256
-from .cnn_colega import _carregar_modelo, carregar_classes, carregar_modelo, preparar_imagem
+from .cnn_resnet import _carregar_modelo, carregar_classes, carregar_modelo, preparar_imagem
 from .config import MODOS, carregar_config
 from .imagem import analisar_cnn, config_cnn, ler_imagem
 from .indice import descrever_colecao
@@ -97,7 +97,7 @@ def verificar_servicos():
                 print(f"{chave}: {r.estado}; recuperadas={len(r.recuperadas)}; motivo={r.motivo or '-'}", flush=True)
             except ErroProjeto as erro:
                 resultados.append({"modo": modo, "com_foto": com_foto, "estado": "erro", "mensagem": str(erro)})
-                print(f"{chave}: falhou; consulta o relatório sem credenciais.", flush=True)
+                print(f"{chave}: falhou; consultar o relatório sem credenciais.", flush=True)
             gravar_json(DESTINO / "percursos_reais.json", resultados)
 
 

@@ -74,12 +74,12 @@ def ler_imagem(caminho):
             raise FotoInvalida("A fotografia excede o limite de 12 MB.")
         with Image.open(caminho) as imagem:
             if imagem.format not in {"JPEG", "PNG"}:
-                raise FotoInvalida("Seleciona uma fotografia em JPG ou PNG.")
+                raise FotoInvalida("Selecionar uma fotografia em JPG ou PNG.")
             if imagem.width * imagem.height > 40_000_000:
                 raise FotoInvalida("A fotografia é demasiado grande. Reduz a resolução.")
             return ImageOps.exif_transpose(imagem).convert("RGB")
     except (UnidentifiedImageError, Image.DecompressionBombError, OSError, ValueError) as erro:
-        raise FotoInvalida("Não foi possível abrir a fotografia. Seleciona um JPG ou PNG válido.") from erro
+        raise FotoInvalida("Não foi possível abrir a fotografia. Selecionar um JPG ou PNG válido.") from erro
 
 
 def codificar_imagem(imagem, lado_maximo=1400):
@@ -109,7 +109,7 @@ def sessao_onnx(caminho, modificacao_ns):
     try:
         import onnxruntime
     except ImportError as erro:
-        raise ErroProjeto("Instala a dependência da CNN com: python -m pip install onnxruntime==1.32.0") from erro
+        raise ErroProjeto("Instalar a dependência da CNN com: python -m pip install onnxruntime==1.32.0") from erro
     try:
         return onnxruntime.InferenceSession(str(caminho), providers=["CPUExecutionProvider"])
     except Exception as erro:
@@ -145,12 +145,12 @@ def prever_onnx(imagem, caminho, config):
 def prever_python(imagem, caminho, config):
     modulo, separador, funcao = config.adaptador.partition(":")
     if not separador:
-        raise ErroProjeto("Indica o adaptador Python como modulo:funcao em configs/cnn.yaml.")
+        raise ErroProjeto("Indicar o adaptador Python como modulo:funcao em configs/cnn.yaml.")
     try:
         prever = getattr(importlib.import_module(modulo), funcao)
         return prever(imagem, caminho)
     except NotImplementedError as erro:
-        raise ErroProjeto("Preenche src/cnn_colega.py com a inferência do teu colega.") from erro
+        raise ErroProjeto("O adaptador Python configurado não implementa a inferência da CNN.") from erro
     except Exception as erro:
         raise ErroProjeto(f"O adaptador da CNN falhou. {erro}") from erro
 
@@ -160,8 +160,8 @@ def analisar_cnn(imagem, checkpoint=None):
     caminho = Path(checkpoint) if checkpoint else RAIZ / config.checkpoint
     if not caminho.is_file():
         raise ErroProjeto(
-            f"A CNN ainda não está ligada. Coloca o modelo em {caminho.name} "
-            "conforme runs/checkpoints/README.md ou escolhe um modo VLM."
+            f"A CNN ainda não está ligada. Colocar o modelo em {caminho.name} "
+            "conforme runs/checkpoints/README.md ou selecionar um modo VLM."
         )
     if config.backend == "onnx":
         resultado = prever_onnx(imagem, caminho, config)

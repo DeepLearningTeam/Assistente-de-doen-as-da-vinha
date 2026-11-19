@@ -5,17 +5,18 @@ import platform
 import re
 import subprocess
 import sys
+from collections import Counter
 from pathlib import Path
 from time import perf_counter
 
 from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256
-from .config import EXPERIENCIAS, carregar_config
+from .config import EXPERIENCIAS, MODOS, carregar_config
 from .corpus import CSV_CORPUS, ler_corpus, selecionadas
 from .imagem import analisar_cnn, config_cnn, ler_imagem
 from .indice import descrever_colecao
 from .modelos import ErroFormato, digest_modelo
 from .preparar_cnn import validar_manifesto
-from .rag import responder
+from .rag import atos_mencionados, responder
 from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
 from .vlm import analisar_vlm
 
@@ -59,7 +60,7 @@ def commit_atual():
 
 def caminho_execucao(nome):
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,70}", nome) or nome in {"chats", "checkpoints"}:
-        raise ErroProjeto("Usa letras, números, hífen ou underscore no nome da execução.")
+        raise ErroProjeto("Utilizar letras, números, hífen ou underscore no nome da execução.")
     return RUNS / nome
 
 
@@ -74,7 +75,7 @@ def preparar_execucao(nome, parametros):
     }
     if manifesto.exists():
         if ler_json(manifesto)["parametros"] != parametros:
-            raise ErroProjeto("Esta execução já existe com outros parâmetros. Usa outro nome.")
+            raise ErroProjeto("Esta execução já existe com outros parâmetros. Utilizar outro nome.")
     else:
         gravar_json(manifesto, {"execucao": nome, "criado": agora(), "parametros": parametros})
     return pasta
@@ -114,7 +115,7 @@ def avaliar_texto(args):
                 except ErroProjeto:
                     raise
                 except Exception:
-                    raise ErroProjeto("Não foi possível validar o Qdrant. Executa src.indice info.") from None
+                    raise ErroProjeto("Não foi possível validar o Qdrant. Executar src.indice info.") from None
 
     pasta = preparar_execucao(args.execucao, {
         "tipo": "texto", "split": args.split, "ids": [p["id"] for p in linhas],
@@ -191,7 +192,7 @@ def avaliar_imagem(args):
             for item in imagens[seed]:
                 foto = (raiz_imagens / item["id"]).resolve()
                 if not foto.is_relative_to(raiz_imagens) or not foto.is_file() or sha256(foto) != item["sha256"]:
-                    raise ErroProjeto(f"Ficheiro em falta ou alterado: {item['id']}. Confirma a pasta FieldVitis.")
+                    raise ErroProjeto(f"Ficheiro em falta ou alterado: {item['id']}. Verificar a pasta FieldVitis.")
                 chave = f"{motor}_s{seed}_{item['sha256'][:12]}_{Path(item['id']).stem}"
                 dados = {
                     "tipo": "imagem", "split": args.split, "modo": motor, "seed": seed,
@@ -217,31 +218,56 @@ def mostrar_dados():
         rec = sum(p["split"] == split and p["expected_action"] == "recusar" for p in perguntas)
         resp = sum(p["split"] == split and p["expected_action"] == "responder" for p in perguntas)
         print(f"{split}: {resp} para responder, {rec} para recusar.")
-    print(f"Documentos para o índice: {', '.join(selecionadas(ler_corpus()))}")
+    corpus = ler_corpus()
+    fontes = selecionadas(corpus)
+    print(f"Documentos para o índice: {', '.join(fontes)}")
+    condicionais = [doc for doc, f in fontes.items() if f["indexar"] == "condicional"]
+    print(f"Fontes condicionais cuja confirmação deve ser registada pelo grupo: {', '.join(condicionais)}")
+    recusas = [p for p in perguntas if p["expected_action"] == "recusar"]
+    disponiveis = atos_mencionados("\n".join(f["titulo"] for f in fontes.values()))
+    abrangidas = [p["id"] for p in recusas if atos_mencionados(p["pergunta"]) - disponiveis]
+    print(f"Recusas abrangidas pela regra de atos ausentes: {len(abrangidas)}/{len(recusas)} {abrangidas}.")
+    print("Cobertura estática da regra de metadados; não são recusas observadas nem uma medida de recuperação.")
+    print(f"Tipos das perguntas de recusa: {dict(Counter(p['tipo'] for p in recusas))}")
+    manifesto = ler_json(FICHEIRO_SPLITS)
+    for seed in manifesto["seeds"]:
+        for split in ("treino", "validacao", "teste", "holdout"):
+            classes = Counter(i["classe"] for i in manifesto["imagens"] if i["splits"][str(seed)] == split)
+            print(f"CNN seed {seed}, {split}: {sum(classes.values())} imagens; classes {dict(classes)}.")
 
 
 def avaliar_respostas_imagem(args):
-    """Par VLM/VLM+RAG com a mesma fotografia/pergunta e histórico vazio."""
+    """Comparar respostas dos modos escolhidos com a mesma foto e sem histórico."""
     imagem = ler_imagem(args.foto)
-    configs = {m: carregar_config(m) for m in ("vlm", "vlm_rag")}
-    try:
-        indice = descrever_colecao(configs["vlm_rag"])
-    except ErroProjeto:
-        raise
-    except Exception:
-        raise ErroProjeto("Não foi possível validar o Qdrant. Executa src.indice info.") from None
+    configs = {m: carregar_config(m) for m in args.condicoes}
+    cnn = config_cnn() if any(c.gerador == "llm" for c in configs.values()) else None
+    if cnn:
+        checkpoint = checkpoint_cnn(cnn.checkpoint, cnn.seed_treino)
+        if not checkpoint.is_file():
+            raise ErroProjeto(f"Falta o checkpoint da CNN: {checkpoint}. Consultar runs/checkpoints/README.md.")
+    indice = None
+    for config in configs.values():
+        if config.rag and indice is None:
+            try:
+                indice = descrever_colecao(config)
+            except ErroProjeto:
+                raise
+            except Exception:
+                raise ErroProjeto("Não foi possível validar o Qdrant. Executar src.indice info.") from None
     pasta = preparar_execucao(args.execucao, {
         "tipo": "resposta_imagem", "pergunta": args.pergunta,
         "imagem_sha256": sha256(args.foto), "imagem": args.foto.name,
         "configuracoes": {m: c.model_dump() for m, c in configs.items()},
-        "modelo_digest": digest_modelo(configs["vlm"], configs["vlm"].modelo),
-        "indice_qdrant": indice, "itens_previstos": 2,
+        "modelos_digest": {m: digest_modelo(c, c.modelo) for m, c in configs.items()},
+        "config_cnn": cnn.model_dump(mode="json") if cnn else None,
+        "checkpoint_cnn_sha256": sha256(checkpoint) if cnn else None,
+        "indice_qdrant": indice, "itens_previstos": len(configs),
     })
     for modo, config in configs.items():
         dados = {
             "tipo": "resposta_imagem", "modo": modo, "pergunta": args.pergunta,
             "imagem_sha256": sha256(args.foto), "historico": [],
-            "imagem_na_geracao_final": not config.rag,
+            "imagem_na_geracao_final": config.gerador == "vlm" and not config.rag,
         }
         def calcular():
             return responder(args.pergunta, modo, imagem=imagem, historico=(),
@@ -254,7 +280,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="acao", required=True)
     texto = sub.add_parser("texto", help="Executar perguntas, sem mostrar referências ao modelo.")
-    texto.add_argument("--condicoes", choices=EXPERIENCIAS, nargs="+", default=["llm_cnn", "llm_cnn_rag"])
+    texto.add_argument("--condicoes", choices=EXPERIENCIAS, nargs="+", default=list(CONDICOES_TEXTO))
     texto.add_argument("--repeticoes", type=int, default=3)
     texto.add_argument("--temperaturas", nargs="+", type=float, default=[0.0, 0.7])
     imagem = sub.add_parser("imagem", help="Comparar CNN e VLM no mesmo split de imagens.")
@@ -263,13 +289,14 @@ def main():
     imagem.add_argument("--imagens", type=Path, default=PASTA_IMAGENS)
     imagem.add_argument("--seeds", type=int, nargs="+")
     imagem.add_argument("--cnn-checkpoint", help="Caminho dos pesos, com {seed} se houver um modelo por seed.")
-    respostas = sub.add_parser("respostas-imagem", help="Comparar qualidade das respostas VLM e VLM+RAG.")
+    respostas = sub.add_parser("respostas-imagem", help="Comparar respostas dos quatro modos à mesma fotografia.")
+    respostas.add_argument("--condicoes", choices=MODOS, nargs="+", default=["llm_cnn", "llm_cnn_rag", "vlm", "vlm_rag"])
     respostas.add_argument("--foto", type=Path, required=True)
     respostas.add_argument("--pergunta", required=True)
     respostas.add_argument("--execucao", required=True)
     for cmd in (texto, imagem):
         cmd.add_argument("--split", choices=["validacao", "teste", "holdout"] if cmd is imagem else ["validacao", "teste"], default="validacao")
-        cmd.add_argument("--execucao", required=True, help="Nome da pasta em runs/. Repete para retomar.")
+        cmd.add_argument("--execucao", required=True, help="Nome da pasta em runs/. Repetir para retomar.")
         cmd.add_argument("--limite", type=int, help="Número de itens para um ensaio curto de validação.")
     sub.add_parser("dados", help="Validar IDs, páginas e divisão das perguntas.")
     args = parser.parse_args()
@@ -281,9 +308,11 @@ def main():
         or len(set(args.temperaturas)) != len(args.temperaturas)
         or len(set(args.condicoes)) != len(args.condicoes)
     ):
-        parser.error("Indica repetições positivas, condições distintas e temperaturas distintas entre 0 e 2.")
+        parser.error("Indicar repetições positivas, condições distintas e temperaturas distintas entre 0 e 2.")
     if args.acao == "imagem" and len(set(args.modelos)) != len(args.modelos):
-        parser.error("Indica modelos distintos.")
+        parser.error("Indicar modelos distintos.")
+    if args.acao == "respostas-imagem" and len(set(args.condicoes)) != len(args.condicoes):
+        parser.error("Indicar condições distintas.")
     try:
         if args.acao == "texto":
             avaliar_texto(args)

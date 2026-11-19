@@ -29,13 +29,13 @@ def titulo_chat(chat):
 
 def caminho_chat(identificador):
     if not identificador or not re.fullmatch(r"[0-9a-f]{32}", identificador):
-        raise ErroProjeto("Seleciona uma conversa guardada.")
+        raise ErroProjeto("Selecionar uma conversa guardada.")
     return PASTA_CHATS / f"{identificador}.json"
 
 
 def guardar(chat):
     if not chat["turnos"]:
-        raise ErroProjeto("Escreve uma mensagem antes de guardar a conversa.")
+        raise ErroProjeto("Introduzir uma mensagem antes de guardar a conversa.")
     guardado = {**chat, "titulo": titulo_chat(chat), "guardado": agora()}
     gravar_json(caminho_chat(chat["id"]), guardado)
     return guardado
@@ -96,7 +96,7 @@ def exportar_texto(chat):
         linhas.append("Modelos: " + (json.dumps(modelos, ensure_ascii=False) if modelos else "Não registados nesta conversa antiga"))
         if turno.get("criado"):
             linhas.append(f"Data: {turno['criado']}")
-        linhas += ["", "Tu:", turno["pergunta"]]
+        linhas += ["", "Utilizador:", turno["pergunta"]]
         if turno.get("com_foto"):
             linhas.append("[Fotografia anexada; os bytes da imagem não são incluídos nesta cópia.]")
         linhas += ["", "Assistente:", resposta["texto"], "", f"Estado: {resposta['estado']}"]

@@ -1,4 +1,4 @@
-"""Adaptar as divisões originais do colega, sem gerar novas amostragens."""
+"""Adaptar as divisões originais da CNN, sem gerar novas amostragens."""
 import argparse
 import csv
 import hashlib
@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 from .apoio import ErroProjeto, RAIZ, gravar_json, ler_json, sha256
-from .cnn_colega import MAPEAMENTO, SPLITS_ORIGINAIS, carregar_classes
+from .cnn_resnet import MAPEAMENTO, SPLITS_ORIGINAIS, carregar_classes
 from .imagem import config_cnn
 from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
 
@@ -74,7 +74,7 @@ def preparar(pasta):
             raise ErroProjeto(f"Imagem em falta: {identificador}. As classes devem ficar diretamente em data/imagens/.")
         conteudo = foto.read_bytes()
         if hashlib.md5(conteudo).hexdigest() != item["md5"]:
-            raise ErroProjeto(f"A imagem difere do manifesto do colega: {identificador}.")
+            raise ErroProjeto(f"A imagem difere do manifesto original da CNN: {identificador}.")
         digest = hashlib.sha256(conteudo).hexdigest()
         hashes[identificador] = digest
         por_bytes[digest].append(identificador)

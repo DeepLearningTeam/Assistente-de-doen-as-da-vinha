@@ -91,7 +91,7 @@ DL_P2_TP2_G2-F1/
 └── README.md
 ```
 
-Os ficheiros `.keras` e `preds_*.csv` são produzidos pelo notebook de treino. A pasta `runs/` contém resultados gerados e não é necessária para guardar o código-fonte. Confirma os nomes e a presença dos ficheiros na tua cópia local do repositório; a estrutura acima representa os componentes usados/documentados neste projeto.
+Os ficheiros `.keras` e `preds_*.csv` são produzidos pelo notebook de treino. A pasta `runs/` contém resultados gerados e não é necessária para guardar o código-fonte. Verificar os nomes e a presença dos ficheiros na cópia local do repositório; a estrutura acima representa os componentes usados/documentados neste projeto.
 
 ### Ficheiros de dados
 
@@ -369,7 +369,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-A instalação de TensorFlow com suporte GPU depende da versão de Python, do sistema operativo e das versões compatíveis de CUDA/cuDNN. Consulta a documentação oficial do TensorFlow para configurar a GPU no ambiente utilizado.
+A instalação de TensorFlow com suporte GPU depende da versão de Python, do sistema operativo e das versões compatíveis de CUDA/cuDNN. Consultar a documentação oficial do TensorFlow para configurar a GPU no ambiente utilizado.
 
 Para testar a inferência:
 

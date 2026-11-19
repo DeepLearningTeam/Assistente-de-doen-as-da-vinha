@@ -16,11 +16,11 @@ class ErroFormato(ErroProjeto):
 def erro_ollama(erro, modelo, url):
     if isinstance(erro, ResponseError):
         if erro.status_code == 404:
-            return ErroProjeto(f"Instala o modelo no Ollama com: ollama pull {modelo}")
-        return ErroProjeto(f"O Ollama devolveu um erro ao usar {modelo}. Consulta o terminal.")
+            return ErroProjeto(f"Instalar o modelo no Ollama com: ollama pull {modelo}")
+        return ErroProjeto(f"O Ollama devolveu um erro ao usar {modelo}. Consultar o terminal.")
     if isinstance(erro, httpx.TimeoutException):
-        return ErroProjeto(f"O modelo {modelo} excedeu o tempo de espera. Tenta novamente.")
-    return ErroProjeto(f"Não foi possível ligar ao Ollama em {url}. Abre o Ollama ou executa ollama serve.")
+        return ErroProjeto(f"O modelo {modelo} excedeu o tempo de espera. Tentar novamente.")
+    return ErroProjeto(f"Não foi possível ligar ao Ollama em {url}. Abrir o Ollama ou executar ollama serve.")
 
 
 @lru_cache(maxsize=24)
@@ -64,7 +64,7 @@ def conversar(config, mensagens, esquema, *, limite=None, deterministico=False, 
     try:
         return esquema.model_validate_json(resposta)
     except (ValidationError, TypeError) as erro:
-        raise ErroFormato("O modelo devolveu uma resposta incompleta. Tenta reformular a pergunta.") from erro
+        raise ErroFormato("O modelo devolveu uma resposta incompleta. Tentar reformular a pergunta.") from erro
 
 
 @lru_cache(maxsize=8)
@@ -93,4 +93,4 @@ def digest_modelo(config, modelo):
     for item in modelos:
         if item.model == nome:
             return item.digest
-    raise ErroProjeto(f"O modelo {modelo} não está instalado. Executa: ollama pull {modelo}")
+    raise ErroProjeto(f"O modelo {modelo} não está instalado. Executar: ollama pull {modelo}")

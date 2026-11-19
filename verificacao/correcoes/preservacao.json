@@ -1,0 +1,35 @@
+{
+  "fonte": "Assistente-de-doen-as-da-vinha-RuiTeixeiraMaisRagLucasMaisCNNJoao(1).zip",
+  "fonte_sha256": "8042e23d8ec7b9e4d30d2abf3bdd6c3f9c78782cac929d3383846d8769fd9070",
+  "alterados": [
+    "AI_LOG.md",
+    "PROTOCOLO.md",
+    "README.md",
+    "paper/fidelidade/README.md",
+    "src/avaliar.py",
+    "src/metricas.py",
+    "src/rag.py"
+  ],
+  "novos": [
+    "CORRECOES.md",
+    "src/analise.py",
+    "tests/test_avaliacao.py",
+    "verificacao/correcoes/dados.txt",
+    "verificacao/correcoes/testes.txt",
+    "verificacao/correcoes/preservacao.json"
+  ],
+  "removidos": [],
+  "originais_inalterados": 127,
+  "csv_inalterados": true,
+  "splits_yamls_dependencias_preservados": true,
+  "testes": {
+    "executados": 75,
+    "aprovados": 73,
+    "ignorados": 2,
+    "motivo_ignorados": "Keras/TensorFlow ausente",
+    "python": "3.12.14",
+    "servicos_remotos": false,
+    "pesos_reais": false,
+    "figura_ensaio_sintetico": true
+  }
+}

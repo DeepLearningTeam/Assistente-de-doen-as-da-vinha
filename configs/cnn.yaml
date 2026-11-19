@@ -1,7 +1,7 @@
-# ResNet50 completa recebida do colega; sem conversão nem novo treino.
+# ResNet50 completa da implementação original; sem conversão nem novo treino.
 backend: python
 checkpoint: runs/checkpoints/resnet50_seed1.keras
-adaptador: src.cnn_colega:prever
+adaptador: src.cnn_resnet:prever
 seed_treino: 1
 saida: probabilidades
 # Ordem de data/originais/cnn/splits.json, com identificadores da aplicação.

@@ -1,4 +1,4 @@
-"""Inferência adaptada de inference/predict.py do colega (ResNet50, seed 1).
+"""Inferência adaptada de inference/predict.py da implementação original (ResNet50, seed 1).
 
 Mantém o pré-processamento e os pesos originais. A aplicação fornece uma PIL;
 a ordem dos neurónios continua a vir do splits.json original do treino.
@@ -32,7 +32,7 @@ def obter_keras():
         return keras
     except (ImportError, OSError) as erro:
         raise ErroProjeto(
-            "A CNN precisa de TensorFlow/Keras. Na raiz do projeto executa "
+            "A CNN precisa de TensorFlow/Keras. Na raiz do projeto executar "
             r".\.venv\Scripts\python.exe -m pip install -r requirements.txt"
         ) from erro
 
@@ -57,7 +57,7 @@ def _carregar_modelo(caminho, modificacao_ns):
 
 def carregar_modelo(caminho):
     if not caminho.is_file():
-        raise ErroProjeto(f"Falta o modelo CNN: {caminho.name}. Consulta runs/checkpoints/README.md.")
+        raise ErroProjeto(f"Falta o modelo CNN: {caminho.name}. Consultar runs/checkpoints/README.md.")
     # Evita dois carregamentos simultâneos no primeiro pedido.
     with _CARREGAMENTO:
         return _carregar_modelo(str(caminho.resolve()), caminho.stat().st_mtime_ns)
@@ -74,7 +74,7 @@ def preparar_imagem(imagem):
 def prever(imagem, checkpoint):
     modelo = carregar_modelo(checkpoint)
     classes = carregar_classes()
-    # training=False desativa augmentation e dropout, como model.predict do colega.
+    # training=False desativa augmentation e dropout, como model.predict da implementação original.
     valores = np.asarray(modelo(preparar_imagem(imagem), training=False))
     if valores.shape != (1, len(classes)) or not np.isfinite(valores).all():
         raise ErroProjeto("A CNN devolveu uma forma inesperada ou valores não finitos.")

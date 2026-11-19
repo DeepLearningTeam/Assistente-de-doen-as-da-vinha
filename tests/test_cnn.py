@@ -10,7 +10,7 @@ from unittest.mock import patch
 import numpy as np
 from PIL import Image
 
-from src import cnn_colega, rag
+from src import cnn_resnet, rag
 from src.apoio import ErroProjeto, RAIZ, ler_json
 from src.config import carregar_config
 from src.imagem import analisar_cnn, config_cnn
@@ -21,7 +21,7 @@ class ContratoCNN(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec("keras"), "Requer requirements.txt")
     def test_preprocessamento_rgb_bgr_float32_sem_dividir_255(self):
         imagem = Image.new("RGB", (20, 30), (10, 20, 30))
-        x = cnn_colega.preparar_imagem(imagem)
+        x = cnn_resnet.preparar_imagem(imagem)
         self.assertEqual(x.shape, (1, 224, 224, 3))
         self.assertEqual(x.dtype, np.float32)
         np.testing.assert_allclose(x[0, 0, 0], [30 - 103.939, 20 - 116.779, 10 - 123.68], atol=1e-5)
@@ -33,16 +33,16 @@ class ContratoCNN(unittest.TestCase):
             for x in range(20):
                 imagem.putpixel((x, y), 210)
         imagem.getexif()[274] = 3  # rotação 180 graus
-        tensor = cnn_colega.preparar_imagem(imagem)
+        tensor = cnn_resnet.preparar_imagem(imagem)
         np.testing.assert_allclose(tensor[0, 0, 0], [30-103.939, 30-116.779, 30-123.68], atol=1e-5)
         np.testing.assert_allclose(tensor[0, -1, -1], [210-103.939, 210-116.779, 210-123.68], atol=1e-5)
 
     def test_ordem_neuronios_e_probabilidades_sem_segunda_softmax(self):
         valores = np.array([[0.1, 0.2, 0.3, 0.4]], dtype=np.float32)
-        with patch.object(cnn_colega, "carregar_modelo") as modelo, \
-             patch.object(cnn_colega, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3))):
+        with patch.object(cnn_resnet, "carregar_modelo") as modelo, \
+             patch.object(cnn_resnet, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3))):
             modelo.return_value.return_value = valores
-            resultado = cnn_colega.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
+            resultado = cnn_resnet.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
         probs = resultado["probabilidades"]
         self.assertEqual(list(probs), ["black_rot", "esca", "saudavel", "leaf_blight"])
         np.testing.assert_allclose(list(probs.values()), valores[0])
@@ -59,27 +59,27 @@ class ContratoCNN(unittest.TestCase):
         self.assertEqual(resultado.confianca, 0.26)
 
     def test_cache_carrega_apenas_uma_vez(self):
-        cnn_colega._carregar_modelo.cache_clear()
-        self.addCleanup(cnn_colega._carregar_modelo.cache_clear)
-        with tempfile.NamedTemporaryFile() as f, patch.object(cnn_colega, "obter_keras") as keras:
+        cnn_resnet._carregar_modelo.cache_clear()
+        self.addCleanup(cnn_resnet._carregar_modelo.cache_clear)
+        with tempfile.NamedTemporaryFile() as f, patch.object(cnn_resnet, "obter_keras") as keras:
             modelo = keras.return_value.models.load_model.return_value
             modelo.input_shape, modelo.output_shape = (None, 224, 224, 3), (None, 4)
             modelo.layers[-1].get_config.return_value = {"activation": "softmax"}
-            self.assertIs(cnn_colega.carregar_modelo(Path(f.name)), cnn_colega.carregar_modelo(Path(f.name)))
+            self.assertIs(cnn_resnet.carregar_modelo(Path(f.name)), cnn_resnet.carregar_modelo(Path(f.name)))
             keras.return_value.models.load_model.assert_called_once()
 
     def test_ficheiro_ausente_e_dependencia_ausente_dao_mensagem_util(self):
         with self.assertRaisesRegex(ErroProjeto, "Falta o modelo CNN"):
-            cnn_colega.carregar_modelo(Path("modelo_inexistente.keras"))
+            cnn_resnet.carregar_modelo(Path("modelo_inexistente.keras"))
         with patch.dict("sys.modules", {"keras": None}), self.assertRaisesRegex(ErroProjeto, "requirements.txt"):
-            cnn_colega.obter_keras()
+            cnn_resnet.obter_keras()
 
     def test_probabilidades_invalidas_sao_rejeitadas(self):
         for valores in ([[float("nan"), 0, 0, 1]], [[0.1, 0.1, 0.1, 0.1]], [[1, 2]]):
-            with self.subTest(valores=valores), patch.object(cnn_colega, "carregar_modelo") as m, \
-                 patch.object(cnn_colega, "preparar_imagem"), self.assertRaises(ErroProjeto):
+            with self.subTest(valores=valores), patch.object(cnn_resnet, "carregar_modelo") as m, \
+                 patch.object(cnn_resnet, "preparar_imagem"), self.assertRaises(ErroProjeto):
                 m.return_value.return_value = np.array(valores)
-                cnn_colega.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
+                cnn_resnet.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
 
 
 class DivisoesCNN(unittest.TestCase):

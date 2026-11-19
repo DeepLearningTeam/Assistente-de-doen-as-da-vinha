@@ -152,6 +152,8 @@ def resumo_visual(visual):
     if visual.estado == "ok":
         info["hipotese"] = CLASSES.get(visual.classe)
     if visual.motor == "CNN":
+        info["motor"] = "CNN"
+        info["sinais_observados"] = None
         info["confianca_softmax"] = visual.confianca
         info["probabilidades"] = visual.probabilidades
     return info
@@ -204,6 +206,14 @@ def mensagens_resposta(config, pergunta, historico, visual, imagem, candidatos, 
                 " O programa já apresenta a hipótese visual em separado. Explica "
                 "apenas os sinais descritos nos documentos para essa hipótese; "
                 "não afirmes que observaste esses sinais nesta fotografia."
+            )
+        if visual.motor == "CNN":
+            instrucao += (
+                "\nNão recebes a fotografia: a CNN fornece apenas classe e probabilidades, "
+                "não uma descrição de sintomas observados. Não afirmes que vês manchas, "
+                "cores, necroses ou outros sinais nesta folha. Se explicares sintomas "
+                "da hipótese, apresenta-os como sinais gerais a procurar ou confirmar "
+                "no campo, nunca como observações desta fotografia."
             )
     mensagens = [SystemMessage(content=f"{config.prompt.strip()}\n\n{instrucao}")]
     # A hipótese substituída continua no chat guardado, mas não volta a ser
@@ -380,7 +390,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
     config = config or carregar_config(modo)
     pergunta = (pergunta or "").strip()
     if not pergunta and imagem is None:
-        raise ErroProjeto("Escreve uma pergunta ou anexa uma fotografia.")
+        raise ErroProjeto("Introduzir uma pergunta ou anexar uma fotografia.")
     if len(pergunta) > 2000:
         raise ErroProjeto("A pergunta pode ter até 2000 carateres.")
 
@@ -392,16 +402,16 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
         return Resposta(estado="fora_tema", texto=FORA_TEMA, motivo="ambito", chamadas=chamadas or [])
     if ambito.tema == "dependente":
         return Resposta(
-            estado="esclarecimento", texto="A que doença ou assunto da vinha te referes? Preciso de esclarecer isso para procurar a informação certa.",
+            estado="esclarecimento", texto="A que doença ou assunto da vinha se refere a pergunta? É necessário esclarecer o tema para procurar a informação adequada.",
             motivo="referencia_ambigua", chamadas=chamadas or [],
         )
     if ambito.tema == "social" and imagem is None:
-        return Resposta(estado="social", texto="Queres explorar algum assunto sobre a vinha?", chamadas=chamadas or [])
+        return Resposta(estado="social", texto="Que assunto sobre a vinha pretende explorar?", chamadas=chamadas or [])
     if ambito.correcao.strip() and imagem is None:
         correcao = ambito.correcao.strip()
         return Resposta(
             estado="correcao", correcao=correcao, motivo="correcao_utilizador",
-            texto=(f"Obrigado pela correção. Vou usar «{correcao}» como a identificação que indicaste "
+            texto=(f"Obrigado pela correção. Vou usar «{correcao}» como a identificação indicada "
                    "para as próximas perguntas, em vez da hipótese visual anterior. "
                    "Não a confirmei pela fotografia."), chamadas=chamadas or [],
         )
@@ -412,7 +422,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
                   else analisar_cnn(imagem))
         if visual.estado == "rejeitada":
             return Resposta(
-                estado="imagem_rejeitada", texto=f"{visual.descricao} Envia uma fotografia nítida de uma folha de videira.",
+                estado="imagem_rejeitada", texto=f"{visual.descricao} Enviar uma fotografia nítida de uma folha de videira.",
                 motivo="imagem_fora", visual=visual, chamadas=chamadas or [],
             )
 
@@ -459,6 +469,11 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
             fontes = selecionadas(ler_corpus())
             disponiveis = atos_mencionados("\n".join(f["titulo"] for f in fontes.values()))
             fonte_ausente = bool(pedidos - disponiveis)
+            if chamadas is not None:
+                chamadas.append({
+                    "etapa": "verificar_documento", "origem": "metadados_corpus",
+                    "documento_ausente": fonte_ausente, "pesquisa_omitida": fonte_ausente,
+                })
         if not fonte_ausente:
             recuperadas = recuperar(config, consulta)
             candidatos = {
@@ -502,7 +517,7 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
         partes_geradas, motivo = gerar_partes(config, mensagens, candidatos, chamadas, etapa="completar_resposta")
     if not partes_geradas:
         if motivo == "incompleta":
-            mensagem = "Não consegui concluir uma resposta útil a esta pergunta. Tenta reformulá-la."
+            mensagem = "Não consegui concluir uma resposta útil a esta pergunta. Reformular a pergunta."
         elif config.rag and motivo in {"citacoes_ausentes", "citacoes_invalidas", "formato"}:
             mensagem = "Não consegui produzir uma resposta devidamente sustentada pelas fontes consultadas."
         elif motivo == "formato":

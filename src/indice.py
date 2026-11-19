@@ -1,4 +1,4 @@
-﻿"""Pesquisa híbrida e reranking do colega, ligados à configuração da aplicação."""
+"""Pesquisa híbrida e reranking integrados na configuração da aplicação."""
 import argparse
 import hashlib
 import json
@@ -59,7 +59,7 @@ def obter_cliente():
 
 
 def validar_colecao(client, config):
-    """Confirma o esquema por leitura; não prova a origem dos embeddings."""
+    """Verificar o esquema por leitura; não prova a origem dos embeddings."""
     info = client.get_collection(config.qdrant_colecao)
     parametros = info.config.params
     densos = parametros.vectors
@@ -139,7 +139,7 @@ def pesquisar_query_qdrant(pergunta, client, modo="hibrida", usar_reranker=True,
 def normalizar_passagem(r):
     obrigatorios = ("doc_id", "texto", "pagina", "titulo", "entidade", "data", "url")
     if any(k not in r for k in obrigatorios):
-        raise ErroProjeto("Payload incompatível: faltam campos documentais. Executa src.indice info.")
+        raise ErroProjeto("Payload incompatível: faltam campos documentais. Executar src.indice info.")
     if not isinstance(r["pagina"], int) or r["pagina"] < 1 or not r["texto"].strip():
         raise ErroProjeto("Payload incompatível: página ou texto inválido.")
     return {**r, "doc": r["doc_id"], "contexto": r.get("cabecalhos", ""),
@@ -160,7 +160,7 @@ def recuperar(config, consulta):
         raise
     except Exception:
         # Exceções HTTP podem conter o URL privado; não as passar para UI/logs.
-        raise ErroProjeto("Falhou a recuperação RAG. Confirma modelos, rede e src.indice info.") from None
+        raise ErroProjeto("Falhou a recuperação RAG. Verificar modelos, rede e src.indice info.") from None
 
 
 def descrever_colecao(config):
@@ -212,7 +212,7 @@ def main():
         resultado = descrever_colecao(config) if args.acao == "info" else recuperar(config, args.pergunta)
         print(json.dumps(resultado, ensure_ascii=False, indent=2))
     except Exception as erro:
-        mensagem = str(erro) if isinstance(erro, ErroProjeto) else "Ligação/coleção indisponível. Confirma o .env e a rede; credenciais omitidas."
+        mensagem = str(erro) if isinstance(erro, ErroProjeto) else "Ligação/coleção indisponível. Verificar o .env e a rede; credenciais omitidas."
         sys.exit(mensagem)
 
 

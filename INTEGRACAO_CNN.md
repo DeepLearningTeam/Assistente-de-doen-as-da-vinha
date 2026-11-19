@@ -18,7 +18,7 @@ O modelo foi copiado byte a byte para `runs/checkpoints/resnet50_seed1.keras`. O
 
 ## Contrato confirmado
 
-ResNet50 com 23 595 908 parâmetros, cabeça de quatro classes, augmentation e dropout desativados na inferência. Os metadados do arquivo indicam Keras 3.15.1. A associação à seed 1 vem do nome/README/notebook do colega; não se voltou a executar o treino para a demonstrar.
+ResNet50 com 23 595 908 parâmetros, cabeça de quatro classes, augmentation e dropout desativados na inferência. Os metadados do arquivo indicam Keras 3.15.1. A associação à seed 1 vem do nome, README e notebook de treino originais; não se voltou a executar o treino para a demonstrar.
 
 - Entrada `(None, 224, 224, 3)`, float32, NHWC.
 - EXIF, RGB, resize bilinear direto 224 × 224, `keras.applications.resnet50.preprocess_input` (BGR e médias ImageNet). Sem divisão por 255 ou normalização PyTorch.
@@ -28,13 +28,13 @@ ResNet50 com 23 595 908 parâmetros, cabeça de quatro classes, augmentation e d
 - `compile=False` dispensa o estado do otimizador. Cache por caminho/alteração do ficheiro, com exclusão mútua no primeiro carregamento. Foram observados um miss e cinco hits na verificação real do modelo.
 - Quatro classes fechadas: sem limiar inventado, sem rejeição validada de imagens fora do domínio, sem afirmar que softmax é certeza de diagnóstico. O estado `ok` indica contrato técnico válido. A nota de hipótese acompanha a saída.
 
-O pré-processamento foi adaptado diretamente do colega para receber a imagem PIL usada pela aplicação. No teste de paridade executou-se também o pré-processamento original e `model.predict` com os pesos recebidos: arrays de entrada exatamente iguais e saídas iguais dentro de `atol=1e-6` nas quatro imagens indicadas em `verificacao/cnn/modelo_real.json`.
+O pré-processamento foi adaptado diretamente da implementação original para receber a imagem PIL usada pela aplicação. No teste de paridade executou-se também o pré-processamento original e `model.predict` com os pesos recebidos: arrays de entrada exatamente iguais e saídas iguais dentro de `atol=1e-6` nas quatro imagens indicadas em `verificacao/cnn/modelo_real.json`.
 
 ## Alterações de código
 
 | Ficheiros | Motivo |
 |---|---|
-| `src/cnn_colega.py` | Implementar o adaptador existente, carregar Keras tardiamente, reutilizar o modelo, manter o pré-processamento e mapear classes |
+| `src/cnn_resnet.py` | Implementar o adaptador existente, carregar Keras tardiamente, reutilizar o modelo, manter o pré-processamento e mapear classes |
 | `configs/cnn.yaml`, `src/imagem.py` | Ativar o backend Python/Keras, seed 1, probabilidades já normalizadas e ausência de limiar; manter o contrato Visual |
 | `src/rag.py` | Entregar hipótese e probabilidades ao LLM, acrescentar a classe CNN atual à consulta e impedir reinjeção automática da CNN anterior sem foto |
 | `app/app.py` | CNN recebe a nova imagem antes do JPEG usado no histórico; legenda «Valor softmax da CNN» |
@@ -83,7 +83,7 @@ A verificação completa de 76 imagens foi iniciada e interrompida após seis it
 
 ## Ambiente e limitações
 
-Windows 11 x64, Python **3.14.0**, TensorFlow **2.22.0rc1**, módulo Keras **3.16.0.dev2026111703** da distribuição `keras-nightly`. A RC declara dependência de `keras-nightly`; instalar também `keras` cria sobreposição de ficheiros. O ambiente foi corrigido para manter só `keras-nightly` fixado. O modelo guardado com Keras 3.15.1 carregou e manteve paridade numérica. O `tensorflow[and-cuda]` do colega foi adaptado à execução CPU em Windows, sem o extra CUDA. Não foi necessário mudar de Python; GPU não foi testada. [Distribuição oficial](https://pypi.org/project/tensorflow/2.22.0rc1/) e [instruções TensorFlow](https://www.tensorflow.org/install/pip).
+Windows 11 x64, Python **3.14.0**, TensorFlow **2.22.0rc1**, módulo Keras **3.16.0.dev2026111703** da distribuição `keras-nightly`. A RC declara dependência de `keras-nightly`; instalar também `keras` cria sobreposição de ficheiros. O ambiente foi corrigido para manter só `keras-nightly` fixado. O modelo guardado com Keras 3.15.1 carregou e manteve paridade numérica. O `tensorflow[and-cuda]` da configuração original foi adaptado à execução CPU em Windows, sem o extra CUDA. Não foi necessário mudar de Python; GPU não foi testada. [Distribuição oficial](https://pypi.org/project/tensorflow/2.22.0rc1/) e [instruções TensorFlow](https://www.tensorflow.org/install/pip).
 
 Os ensaios BGE-M3/reranker usaram pesos já existentes na cache, com `HF_HUB_OFFLINE=1`; os modelos não foram substituídos. Num computador novo, o percurso normal precisa de descarregar os modelos RAG já configurados. As versões diretas restantes foram mantidas. Nas duas pequenas corridas finais do avaliador e no servidor Gradio de teste usaram-se `TF_NUM_INTRAOP_THREADS=2` e `TF_NUM_INTEROP_THREADS=1` apenas no processo; não foram alterados os valores de produção. Os tempos dependem dessa configuração, do aquecimento e da execução concorrente, e não são benchmarks.
 
@@ -93,7 +93,7 @@ Não se executaram OCR/Tesseract ou reconstrução documental nesta tarefa: os P
 
 ## Utilização rápida no PowerShell
 
-Na pasta do projeto, confirma `python --version` (3.14). No Windows desta sessão `python` estava disponível, mas o launcher `py -3.14` não enumerava instalações:
+Na pasta do projeto, verificar `python --version` (3.14). No Windows desta sessão `python` estava disponível, mas o launcher `py -3.14` não enumerava instalações:
 
 ```powershell
 python -m venv .venv
@@ -102,10 +102,10 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m app.app
 ```
 
-O `.env` privado está configurado na pasta de trabalho, mas não no ZIP. Ao usar o ZIP, coloca-o na raiz ao lado do README; não substituas valores reais pelo exemplo fictício. Coloca também `fieldvitis.zip` na raiz do projeto; extrai `.\fieldvitis.zip` para `data/imagens/` e executa `src.preparar_cnn`, conforme README.
+O `.env` privado está configurado na pasta de trabalho, mas não no ZIP. Ao usar o ZIP, colocar na raiz ao lado do README; preservar os valores reais em vez de os substituir pelo exemplo fictício. Colocar também `fieldvitis.zip` na raiz do projeto; extrair `.\fieldvitis.zip` para `data/imagens/` e executar `src.preparar_cnn`, conforme README.
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao cnn-ensaio-rui --modelos cnn --seeds 1 --split validacao --limite 4
+.\.venv\Scripts\python.exe -m src.avaliar imagem --execucao cnn-ensaio --modelos cnn --seeds 1 --split validacao --limite 4
 .\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-teste-seed1 --modelos cnn vlm --seeds 1 --split teste
 ```
 

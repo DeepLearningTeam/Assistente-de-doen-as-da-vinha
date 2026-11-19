@@ -9,7 +9,7 @@ from .indice import obter_cliente, pesquisar_query_qdrant, descrever_colecao
 from .config import carregar_config
 from .apoio import RAIZ, ErroProjeto
 
-# Avaliação de recuperação do colega, ligada aos mesmos parâmetros da aplicação.
+# Avaliação de recuperação documental integrada, ligada aos mesmos parâmetros da aplicação.
 
 
 def carregar_perguntas(caminho, split):
@@ -95,7 +95,7 @@ def main():
             ap.error("--limite exige um número positivo e --split validacao.")
         perguntas = perguntas[:args.limite]
     if not 1 <= args.k <= 10 or args.candidatos < args.k:
-        ap.error("Usa 1 <= k <= 10 e candidatos >= k.")
+        ap.error("Utilizar 1 <= k <= 10 e candidatos >= k.")
     config = carregar_config().model_copy(update={"top_k": args.k, "pesquisa": args.modo,
                                                   "k_candidatos": args.candidatos})
     client = obter_cliente()
@@ -206,4 +206,4 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as erro:
-        raise SystemExit(str(erro) if isinstance(erro, ErroProjeto) else "Falhou a avaliação de recuperação. Confirma src.indice info e os modelos.") from None
+        raise SystemExit(str(erro) if isinstance(erro, ErroProjeto) else "Falhou a avaliação de recuperação. Verificar src.indice info e os modelos.") from None

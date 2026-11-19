@@ -99,7 +99,7 @@ def descarregar():
                 print(f"{doc}: {erro}")
                 falhas.append(doc)
     if falhas:
-        raise ErroProjeto(f"Usa o ZIP do grupo para os documentos: {', '.join(falhas)}.")
+        raise ErroProjeto(f"Utilizar o ZIP do grupo para os documentos: {', '.join(falhas)}.")
 
 
 def verificar(fontes, exigir_todos=True):
@@ -130,7 +130,7 @@ def escolher_ocr(opcao):
         if "por" in langs.stdout.splitlines():
             return executavel
     if opcao == "por":
-        raise ErroProjeto("Instala o Tesseract com o idioma português (por) ou usa --ocr off.")
+        raise ErroProjeto("Instalar o Tesseract com o idioma português (por) ou utilizar --ocr off.")
     return None
 
 

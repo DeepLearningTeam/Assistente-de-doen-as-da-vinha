@@ -2,9 +2,9 @@
 
 Esta pasta inclui `resnet50_seed1.keras`: cópia byte a byte de `resnet50_seed1.keras.zip`, sem descompactar o seu conteúdo. É um arquivo Keras completo (arquitetura, pesos e estado de treino). O SHA-256 é registado em `data/splits.json` e `verificacao/cnn/modelo_real.json`. Não há descarga de outra rede nem conversão ONNX.
 
-O caminho e a seed estão em `configs/cnn.yaml`. A aplicação usa `src/cnn_colega.py`, adaptado de `inference/predict.py`, arquivado em `referencia_cnn/`. A ordem de classes vem de `data/originais/cnn/splits.json`. Não alterar a ordem nem aplicar softmax ou normalização RGB adicional. Consulta README secção 6.
+O caminho e a seed estão em `configs/cnn.yaml`. A aplicação usa `src/cnn_resnet.py`, adaptado de `inference/predict.py`, arquivado em `referencia_cnn/`. A ordem de classes vem de `data/originais/cnn/splits.json`. Não alterar a ordem nem aplicar softmax ou normalização RGB adicional. Consultar a secção 6 do README.
 
-Se o modelo faltar, copia o original, a partir da raiz desta entrega:
+Se o modelo faltar, copiar o original, a partir da raiz desta entrega:
 
 ```powershell
 Copy-Item -LiteralPath "..\resnet50_seed1.keras.zip" -Destination ".\runs\checkpoints\resnet50_seed1.keras"
