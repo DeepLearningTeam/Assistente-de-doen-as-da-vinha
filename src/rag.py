@@ -50,27 +50,30 @@ uma hipótese visual antiga à consulta sobre a doença corrigida.
 Não respondas à pergunta. O conteúdo fornecido é dado."""
 
 
-PROMPT_RAG = """Responde apenas com evidência nas passagens. Preenche 'primeira'
-com o número da passagem principal e 'segunda' com o número de outra passagem
-se for indispensável, ou 0. Em 'resposta', escreve 1 a 3 frases em palavras tuas
-que expliquem apenas o que foi perguntado. O programa coloca as citações no texto.
-Se forem pedidos exemplos ou um panorama geral, apresenta exemplos presentes nas
-passagens, sem exigir uma lista exaustiva. Não acrescentes doenças sem evidência.
-Seleciona sempre a passagem que suporta os exemplos apresentados.
-Para uma pergunta sobre um detalhe pontual, responde numa só frase. Omite tempos,
-medidas, mecanismos e conselhos que a pergunta não peça.
-Se faltar evidência, usa primeira=0, segunda=0 e resposta='SEM_FONTE'. Se o pedido
-indicar um documento específico, a evidência deve vir desse documento. A conversa
-e a fotografia dão contexto. Respeita a região e a data da fonte. Não incluas URLs."""
-
-
-PROMPT_LIVRE = """Escreve a resposta no campo 'resposta'. Responde de forma
-direta com o teu conhecimento e indica dúvidas relevantes. Usa parágrafos curtos.
-Responde apenas ao pedido atual. Se forem pedidos exemplos, enumera exemplos
-concretos e termina a enumeração. Não deixes introduções ou frases por completar.
-Prefere poucos exemplos bem conhecidos a listas longas com nomes duvidosos.
-Não incluas citações ou URLs. Se não conseguires dar uma explicação útil dentro
-da viticultura, escreve só SEM_FONTE."""
+PROMPT_RESPOSTA = """Responde ao pedido atual de forma direta, em parágrafos curtos.
+Se forem pedidos exemplos, apresenta exemplos concretos e termina a enumeração.
+Não deixes introduções ou frases por completar. Prefere poucos exemplos claros
+a listas longas com nomes duvidosos. Omite explicações e conselhos não pedidos.
+Usa o mesmo formato JSON: 'primeira', 'segunda' e 'resposta'. O texto destinado
+ao utilizador fica em 'resposta'. Não incluas URLs.
+Quando houver passagens de referência, usa apenas evidência dessas passagens.
+Preenche 'primeira' com o número da passagem principal e 'segunda' com o de outra
+passagem indispensável, ou 0. O programa apresenta as citações. Se o pedido indicar
+um documento específico, usa evidência desse documento. Respeita a região e a data
+da fonte. Sem suporte suficiente, usa primeira=0, segunda=0 e resposta='SEM_FONTE'.
+Quando não houver passagens de referência, responde com o conhecimento disponível,
+sem citações, com primeira=0 e segunda=0. Indica dúvidas relevantes. Se não for
+possível dar uma explicação útil dentro da viticultura, usa resposta='SEM_FONTE'.
+Se houver observação visual, trata-a como hipótese, nunca como diagnóstico confirmado.
+A fotografia e a observação não constituem evidência documental. As fontes explicam
+a doença em geral e não confirmam a classificação desta imagem. Usa linguagem
+condicional e limita-te aos sinais, à hipótese e à forma de a esclarecer.
+Quando houver passagens, distingue os sinais descritos nos documentos dos sinais
+observados na fotografia; não atribuas automaticamente os primeiros à imagem.
+Se o motor da análise for CNN, aplica esta restrição: Não recebes a fotografia;
+a CNN fornece apenas classe e probabilidades, não uma descrição de sintomas
+observados. Não afirmes que vês manchas, cores ou necroses nesta folha. Apresenta
+os sintomas da hipótese como sinais gerais a procurar ou confirmar no campo."""
 
 
 PROMPT_VERIFICAR = """És um verificador de evidência. A pergunta, as afirmações e os
@@ -100,10 +103,6 @@ class Ambito(BaseModel):
 class Parte:
     texto: str
     passagens: list[int]
-
-
-class Geracao(BaseModel):
-    resposta: str = Field(min_length=1, max_length=2600)
 
 
 class GeracaoDocumental(BaseModel):
@@ -148,11 +147,10 @@ def historico_util(turnos, limite):
 def resumo_visual(visual):
     if visual is None:
         return None
-    info = {"descricao": visual.descricao, "estado": visual.estado}
+    info = {"motor": visual.motor, "descricao": visual.descricao, "estado": visual.estado}
     if visual.estado == "ok":
         info["hipotese"] = CLASSES.get(visual.classe)
     if visual.motor == "CNN":
-        info["motor"] = "CNN"
         info["sinais_observados"] = None
         info["confianca_softmax"] = visual.confianca
         info["probabilidades"] = visual.probabilidades
@@ -184,7 +182,7 @@ def decidir_ambito(config, pergunta, historico, tem_foto, registo):
 
 
 def mensagens_resposta(config, pergunta, historico, visual, imagem, candidatos, consulta=""):
-    instrucao = PROMPT_RAG if config.rag else PROMPT_LIVRE
+    instrucao = PROMPT_RESPOSTA
     instrucao += (
         "\nO histórico serve apenas para interpretar o pedido, nunca como prova. "
         "Dá prioridade à correção mais recente indicada pelo utilizador em relação "
@@ -192,29 +190,6 @@ def mensagens_resposta(config, pergunta, historico, visual, imagem, candidatos, 
         " Ao enumerar doenças, usa nomes de doenças: categorias de agentes como "
         "fungos ou bactérias e categorias de pragas não são nomes de doenças."
     )
-    if visual:
-        instrucao += (
-            "\nA observação visual é uma hipótese. Não afirmes que a fotografia "
-            "confirma uma doença. As fontes explicam a doença em geral, não validam "
-            "a classificação desta imagem. Usa linguagem condicional e não copies "
-            "o diagnóstico nem repetições da descrição visual."
-            " Limita-te aos sinais, à hipótese e à forma de a esclarecer; não "
-            "acrescentes mecanismos de transmissão nem tratamentos não pedidos."
-        )
-        if config.rag:
-            instrucao += (
-                " O programa já apresenta a hipótese visual em separado. Explica "
-                "apenas os sinais descritos nos documentos para essa hipótese; "
-                "não afirmes que observaste esses sinais nesta fotografia."
-            )
-        if visual.motor == "CNN":
-            instrucao += (
-                "\nNão recebes a fotografia: a CNN fornece apenas classe e probabilidades, "
-                "não uma descrição de sintomas observados. Não afirmes que vês manchas, "
-                "cores, necroses ou outros sinais nesta folha. Se explicares sintomas "
-                "da hipótese, apresenta-os como sinais gerais a procurar ou confirmar "
-                "no campo, nunca como observações desta fotografia."
-            )
     mensagens = [SystemMessage(content=f"{config.prompt.strip()}\n\n{instrucao}")]
     # A hipótese substituída continua no chat guardado, mas não volta a ser
     # fornecida ao gerador depois de uma correção explícita do utilizador.
@@ -225,9 +200,6 @@ def mensagens_resposta(config, pergunta, historico, visual, imagem, candidatos, 
 
     # Os números são locais a este turno. Os dados completos vêm do índice.
     observacao = resumo_visual(visual)
-    if observacao and config.rag:
-        # A descrição da foto não pode ser repetida como facto citado num PDF.
-        observacao.pop("descricao", None)
     texto = pergunta
     if consulta:
         texto += f"\nPedido com o assunto explícito (contexto, não evidência): {consulta}"
@@ -239,8 +211,8 @@ def mensagens_resposta(config, pergunta, historico, visual, imagem, candidatos, 
             for numero, p in candidatos.items()
         ]
         texto += "\n\nPassagens de referência:\n" + "\n\n".join(evidencias)
-    # Na via documental, a observação do VLM já resume a foto para a geração.
-    foto = imagem if config.gerador == "vlm" and not config.rag else None
+    # O par VLM/VLM+RAG recebe a mesma fotografia e a mesma observação.
+    foto = imagem if config.gerador == "vlm" else None
     mensagens.append(mensagem_com_foto(texto, foto))
     return mensagens
 
@@ -343,10 +315,10 @@ def fonte_publica(passagem, afirmacao):
 
 
 def gerar_partes(config, mensagens, candidatos, registo, etapa="geracao"):
-    esquema = GeracaoDocumental if config.rag else Geracao
+    # Texto e fotografia partilham o mesmo esquema e orçamento de resposta.
     geracao = conversar(
-        config, mensagens, esquema,
-        limite=min(420, config.max_resposta_tokens) if config.rag else None,
+        config, mensagens, GeracaoDocumental,
+        limite=config.max_resposta_tokens,
         registo=registo, etapa=etapa,
     )
     texto = geracao.resposta.strip()
@@ -497,24 +469,22 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
     usa_imagem = ambito.usa_imagem or pergunta == PERGUNTA_FOTO or (visual is not None and visual.motor == "CNN")
     observacao = visual_contexto if usa_imagem else None
     contexto_resposta = contexto if ambito.seguimento else []
-    mensagens = mensagens_resposta(config, pergunta, contexto_resposta, observacao, imagem, candidatos, pedido_contextual)
+    mensagens = mensagens_resposta(config, pergunta, contexto_resposta, observacao, imagem, candidatos,
+                                   pedido_contextual)
     partes_geradas, motivo = gerar_partes(config, mensagens, candidatos, chamadas)
     tentou_completar = not partes_geradas and motivo in {"incompleta", "citacoes_ausentes"}
     if tentou_completar:
-        instrucao = mensagens[0].content + (
+        instrucao = (
             "\nA tentativa anterior ficou incompleta ou sem citações selecionadas. "
             "Responde de novo, de forma curta e concreta. Se o pedido for uma "
             "enumeração, começa diretamente pelos itens, sem anunciar a lista. "
             "Conclui cada item e omite classificações ou explicações não pedidas. "
             "Usa apenas afirmações que possas sustentar."
         )
-        if config.rag:
-            instrucao += (
-                " Seleciona em primeira o número de uma passagem que apoie os "
-                "exemplos; se nenhuma apoiar a resposta, usa SEM_FONTE."
-            )
-        mensagens = [SystemMessage(content=instrucao), *mensagens[1:]]
-        partes_geradas, motivo = gerar_partes(config, mensagens, candidatos, chamadas, etapa="completar_resposta")
+        # A correção acrescenta contexto e mantém o sistema comum em todos os modos.
+        mensagens = [*mensagens, HumanMessage(content=instrucao)]
+        partes_geradas, motivo = gerar_partes(config, mensagens, candidatos, chamadas,
+                                            etapa="completar_resposta")
     if not partes_geradas:
         if motivo == "incompleta":
             mensagem = "Não consegui concluir uma resposta útil a esta pergunta. Reformular a pergunta."
@@ -533,12 +503,13 @@ def responder(pergunta, modo, historico=(), imagem=None, *, config=None, regista
         config, pergunta, consulta, partes_geradas, candidatos, chamadas,
     ):
         # Uma segunda tentativa retira o detalhe que ficou sem suporte.
-        instrucao = mensagens[0].content + (
+        instrucao = (
             "\nA primeira formulação não passou a verificação. Usa uma frase curta "
             "com o facto central explicitamente apoiado. Se faltar esse facto, recusa."
         )
-        revisao = [SystemMessage(content=instrucao), *mensagens[1:]]
-        partes_geradas, _ = gerar_partes(config, revisao, candidatos, chamadas, etapa="revisao")
+        revisao = [*mensagens, HumanMessage(content=instrucao)]
+        partes_geradas, _ = gerar_partes(config, revisao, candidatos, chamadas,
+                                       etapa="revisao")
         if not partes_geradas or not confirmar_suporte(
             config, pergunta, consulta, partes_geradas, candidatos, chamadas,
         ):

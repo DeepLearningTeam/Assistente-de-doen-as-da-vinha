@@ -241,7 +241,7 @@ Fontes: [TensorFlow 2.22.0rc1 no PyPI](https://pypi.org/project/tensorflow/2.22.
 
 ### 7.1. Avaliar respostas de texto
 
-A comparação textual principal inclui `llm_cnn`, `llm_rag_sem_limiar` e `llm_cnn_rag`, com as mesmas perguntas, sem fotografia e com histórico vazio em cada item. A CNN não intervém. O CSV de referência fica no registo e não entra no prompt. Para um ensaio curto e para a execução de referência, utilizar nomes diferentes em `--execucao`.
+A comparação textual principal inclui `llm_cnn`, `llm_rag_sem_limiar` e `llm_cnn_rag`, com as mesmas perguntas, sem fotografia e com histórico vazio em cada item. As três condições usam o mesmo LLM, prompt de sistema, instruções gerais, esquema JSON (`primeira`, `segunda`, `resposta`) e limite `max_resposta_tokens` de `configs/base.yaml` (atualmente 1000 tokens). Sem RAG, os dois campos de seleção de passagens são 0; com RAG, identificam as fontes da resposta. As condições diferem na recuperação, nas citações e na recusa. A CNN não intervém. O CSV de referência fica no registo e não entra no prompt. Para um ensaio curto e para a execução de referência, utilizar nomes diferentes em `--execucao`.
 
 **Windows PowerShell**
 
@@ -357,7 +357,7 @@ O comando `imagem` anterior mede **classificação**, não a qualidade da respos
 .\.venv\Scripts\python.exe -m src.avaliar respostas-imagem --execucao respostas-foto-validacao --foto ".\data\imagens\Esca\Esca_0.jpg" --pergunta "Que sinais se veem nesta folha de videira?"
 ```
 
-O ficheiro tem de existir. Cada condição começa sem histórico e guarda o hash da mesma imagem, os prompts e a resposta em `runs/`. No VLM, a foto chega à análise visual e à geração final. No VLM + RAG, a foto chega à análise visual; a geração final recebe a hipótese visual e os excertos documentais, sem voltar a receber os bytes da imagem. Nos modos LLM, a CNN fornece a classe e probabilidades, sem descrição de sinais observados. Para avaliar apenas o par VLM, utilizar `--condicoes vlm vlm_rag`, sem exigir os pesos CNN.
+O ficheiro tem de existir. Cada condição começa sem histórico e guarda o hash da mesma imagem, os prompts e a resposta em `runs/`. Todos os modos partilham o prompt de sistema, as instruções gerais, o esquema JSON e o limite `max_resposta_tokens` descritos na secção 7.1, incluindo reparações e revisões. Nos dois modos VLM, a mesma fotografia chega à análise visual e à geração final, com a mesma observação; o modo RAG acrescenta as passagens documentais. Nos modos LLM, a CNN fornece a mesma hipótese e probabilidades com e sem RAG, sem fotografia nem descrição de sinais observados ao gerador. A classificação CNN e a observação inicial do VLM mantêm os seus contratos próprios. Para avaliar apenas o par VLM, utilizar `--condicoes vlm vlm_rag`, sem exigir os pesos CNN.
 
 Exportar as folhas e resumir as anotações:
 
@@ -385,7 +385,7 @@ O relatório da CNN desta entrega está em [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md
 
 O [protocolo experimental](PROTOCOLO.md) descreve as condições de avaliação e o trabalho pendente. `src.avaliar dados` mostra fontes condicionais, distribuição das imagens e cobertura estática da regra de recusa por documento ausente. Essa regra abrange 9/10 perguntas de recusa atuais; isto não é um resultado experimental. As métricas de recusa são discriminadas por motivo. O Recall existente é de **documento/página**, não de passagem exata.
 
-A anotação opcional `classe_resposta` acrescenta consistência da classe expressa no texto, sem a substituir pela classe visual. Consultar as instruções em [paper/fidelidade/README.md](paper/fidelidade/README.md). Os limites de geração e o percurso VLM/RAG mantêm-se: comparar os sistemas completos não isola o efeito de adicionar documentos.
+A anotação opcional `classe_resposta` acrescenta consistência da classe expressa no texto, sem a substituir pela classe visual. Consultar as instruções em [paper/fidelidade/README.md](paper/fidelidade/README.md). O contrato de geração comum descrito na secção 7.1 aplica-se ao texto e à fotografia. Dentro de cada par com e sem RAG, o modelo e a informação visual são os mesmos; entre CNN/LLM e VLM, os modelos e a forma de analisar a imagem diferem. Após esta alteração, utilizar novos nomes de execução e validar as condições antes da avaliação final; os registos anteriores conservam os prompts e limites usados na altura.
 
 Após obter uma execução de classificação, exportar calibração e erros/abstenções ordenados por confiança:
 

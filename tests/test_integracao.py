@@ -52,10 +52,11 @@ def modelo_ensaio(config, mensagens, esquema, **kwargs):
         return rag.Ambito(tema="viticultura", seguimento=False, usa_imagem=False,
                           consulta=pedido["mensagem"])
     if esquema is rag.GeracaoDocumental:
-        return rag.GeracaoDocumental(primeira=1, segunda=0, resposta="O fungo pode entrar por feridas de poda.")
+        return rag.GeracaoDocumental(primeira=1 if config.rag else 0, segunda=0,
+                                     resposta="O fungo pode entrar por feridas de poda.")
     if esquema is rag.Verificacao:
         return rag.Verificacao(suportada=True)
-    return rag.Geracao(resposta="O fungo pode entrar por feridas de poda.")
+    return rag.GeracaoDocumental(primeira=0, segunda=0, resposta="O fungo pode entrar por feridas de poda.")
 
 
 class Integracao(unittest.TestCase):
@@ -190,11 +191,11 @@ class Integracao(unittest.TestCase):
             finally:
                 client.close()
 
-    def test_imagem_na_geracao_final_conforme_via_existente(self):
+    def test_imagem_na_geracao_final_nos_dois_modos_vlm(self):
         imagem = Image.new("RGB", (8, 8), "green")
         visual = Visual(motor="VLM", estado="ok", classe="esca", confianca=0.8, descricao="Manchas nas folhas.")
         p = indice.normalizar_passagem({**passagem(), "score": 0.95, "id": "1"})
-        for modo, tem_foto in (("vlm", True), ("vlm_rag", False)):
+        for modo, tem_foto in (("vlm", True), ("vlm_rag", True)):
             mensagens = rag.mensagens_resposta(carregar_config(modo), "Que sinais vês?", [], visual, imagem, {1: p})
             self.assertEqual(isinstance(mensagens[-1].content, list), tem_foto)
 

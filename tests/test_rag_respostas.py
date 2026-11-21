@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from src.config import carregar_config
-from src.rag import Ambito, Geracao, GeracaoDocumental, Parte, Resposta, decidir_ambito, gerar_partes, responder
+from src.rag import Ambito, GeracaoDocumental, Parte, Resposta, decidir_ambito, gerar_partes, responder
 
 
 AMBITO = Ambito(tema="viticultura", seguimento=False, usa_imagem=False, consulta="Quais são as doenças da videira?")
@@ -18,7 +18,8 @@ class RespostasTest(unittest.TestCase):
     def test_introducao_sem_lista_nao_e_resposta_valida(self):
         config = carregar_config("llm_cnn")
         for texto in ("Alguns exemplos incluem:", "Exemplos:\n-", "Exemplos:\n1."):
-            with self.subTest(texto=texto), patch("src.rag.conversar", return_value=Geracao(resposta=texto)):
+            geracao = GeracaoDocumental(primeira=0, segunda=0, resposta=texto)
+            with self.subTest(texto=texto), patch("src.rag.conversar", return_value=geracao):
                 partes, motivo = gerar_partes(config, [], {}, None)
             self.assertEqual(partes, [])
             self.assertEqual(motivo, "incompleta")
