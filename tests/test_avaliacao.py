@@ -4,11 +4,12 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from PIL import Image
 
-from src import analise, apoio, avaliar, avaliar_recuperacao, metricas, rag
+from src import analise, apoio, avaliar, avaliar_recuperacao, indice, metricas, rag
 from src.apoio import ErroProjeto, sha256
 from src.config import carregar_config
 from src.imagem import Visual
@@ -139,6 +140,159 @@ class MetricasAvaliacao(unittest.TestCase):
         valores, _ = metricas.pontuacoes_texto({"Q1": [item()]}, {"Q1": linhas}, 5)
         self.assertEqual(metricas.taxa(valores["fidelidade"]), 1)
         self.assertNotIn("consistencia_classe", valores)
+
+
+class PassagemFonte(unittest.TestCase):
+    def setUp(self):
+        self.pergunta = {"id": "Q1", "pergunta": "Por onde entra o fungo?", "passagem_ref": "Entrada por feridas.",
+                         "resposta_ref": "Entra por feridas de poda.", "expected_action": "responder",
+                         "doc_id": "D02", "pagina_pdf": "6", "split": "validacao", "estado_validacao": "pendente",
+                         "tipo": "biologia"}
+        self.texto = "O fungo entra por feridas recentes, incluindo feridas de poda."
+
+    def fonte(self, **alteracoes):
+        return {"id_pergunta": "Q1", "pergunta": self.pergunta["pergunta"], "criterio_evidencia": "Entrada por feridas.",
+                "doc_id": "D02", "pagina_pdf": "6", "passagem_id": "origem",
+                "texto_passagem": self.texto, "passagem_sha256": metricas.hash_passagem(self.texto),
+                "evidencia": "entra por feridas recentes, incluindo feridas de poda", "revisor": "A1",
+                "estado_validacao": "validada", **alteracoes}
+
+    def carregar(self, linhas):
+        with tempfile.TemporaryDirectory() as tmp:
+            caminho = Path(tmp) / "fontes.csv"
+            metricas.csv_gravar(caminho, metricas.COLUNAS_FONTES, linhas)
+            return metricas.carregar_fontes(caminho)
+
+    def test_pagina_certa_com_passagem_errada_nao_acerta_passagem(self):
+        fontes = self.carregar([self.fonte()])
+        errada = {"doc": "D02", "pagina": 6, "id": "origem", "texto": "Esta página inclui várias doenças da madeira."}
+        i = item(rag=True, referencia=self.pergunta, recuperadas=[errada])
+        self.assertTrue(metricas.atingiu_pagina(i))
+        self.assertEqual(metricas.posicao_passagem([errada], self.pergunta, fontes), (True, None))
+        valores, _ = metricas.pontuacoes_texto({"Q1": [i]}, {}, 5, fontes)
+        self.assertEqual(metricas.taxa(valores["recall_pagina@5"]), 1)
+        self.assertEqual(metricas.taxa(valores["recall_passagem@5"]), 0)
+        self.assertEqual(metricas.taxa(valores["cobertura_recall_passagem@5"]), 1)
+
+    def test_equivalentes_so_contam_quando_validadas(self):
+        texto = "As feridas de poda recentes permitem a entrada do fungo."
+        equivalente = self.fonte(doc_id="D03", pagina_pdf="9", texto_passagem=texto,
+                                 passagem_sha256=metricas.hash_passagem(texto), evidencia=texto)
+        passagem = {"doc_id": "D03", "pagina": 9, "texto": texto, "id": "outro-id"}
+        for estado, rank in (("validada", 1), ("pendente_validacao_humana", None), ("rejeitada", None)):
+            with self.subTest(estado=estado):
+                fontes = self.carregar([self.fonte(), {**equivalente, "estado_validacao": estado}])
+                self.assertEqual(metricas.posicao_passagem([passagem], self.pergunta, fontes), (True, rank))
+
+    def test_texto_com_espacos_equivalentes_e_documento_pagina_obrigatorios(self):
+        fontes = self.carregar([self.fonte()])
+        passagem = {"doc": "D02", "pagina": 6, "texto": self.texto.replace(" ", "\n  "), "id": "outro-id"}
+        self.assertEqual(metricas.posicao_passagem([passagem], self.pergunta, fontes), (True, 1))
+        for campo, valor in (("doc", "D03"), ("pagina", 7)):
+            with self.subTest(campo=campo):
+                self.assertEqual(metricas.posicao_passagem([{**passagem, campo: valor}], self.pergunta, fontes), (True, None))
+
+    def test_passagem_certa_fora_das_cinco_nao_conta(self):
+        fontes = self.carregar([self.fonte()])
+        certa = {"doc": "D02", "pagina": 6, "texto": self.texto}
+        i = item(rag=True, referencia=self.pergunta, recuperadas=[{**certa, "texto": "Outro trecho."}] * 5 + [certa])
+        valores, _ = metricas.pontuacoes_texto({"Q1": [i]}, {}, 5, fontes)
+        self.assertEqual(metricas.taxa(valores["recall_passagem@5"]), 0)
+        i["recuperadas"][4] = certa
+        valores, _ = metricas.pontuacoes_texto({"Q1": [i]}, {}, 5, fontes)
+        self.assertEqual(metricas.taxa(valores["recall_passagem@5"]), 1)
+
+    def test_pendentes_e_perguntas_alteradas_nao_sao_avaliaveis(self):
+        for linhas in ([], [self.fonte(estado_validacao="pendente_validacao_humana")],
+                       [self.fonte(pergunta="Uma pergunta antiga.")], [self.fonte(criterio_evidencia="Critério antigo.")]):
+            with self.subTest(linhas=linhas):
+                fontes = self.carregar(linhas)
+                i = item(rag=True, referencia=self.pergunta, recuperadas=[])
+                self.assertEqual(metricas.posicao_passagem([], self.pergunta, fontes), (None, None))
+                valores, _ = metricas.pontuacoes_texto({"Q1": [i]}, {}, 5, fontes)
+                self.assertNotIn("recall_passagem@5", valores)
+                self.assertEqual(metricas.taxa(valores["cobertura_recall_passagem@5"]), 0)
+
+    def test_cobertura_exclui_pendentes_do_denominador_do_recall(self):
+        outra = {**self.pergunta, "id": "Q2"}
+        pendente = {**self.pergunta, "id": "Q3"}
+        fontes = self.carregar([self.fonte(), self.fonte(id_pergunta="Q2")])
+        itens = [item("r1", rag=True, referencia=self.pergunta, recuperadas=[{"doc_id": "D02", "pagina": 6, "texto": self.texto}]),
+                 item("r2", rag=True, referencia=outra, recuperadas=[]),
+                 item("r3", rag=True, referencia=pendente, recuperadas=[])]
+        valores, _ = metricas.pontuacoes_texto({i["referencia"]["id"]: [i] for i in itens}, {}, 5, fontes)
+        self.assertEqual(metricas.taxa(valores["recall_passagem@5"]), 1 / 2)
+        self.assertEqual(metricas.taxa(valores["cobertura_recall_passagem@5"]), 2 / 3)
+        # Sem recuperação, esta métrica não é atribuída à baseline.
+        valores, _ = metricas.pontuacoes_texto({"Q1": [item(referencia=self.pergunta)]}, {}, 5, fontes)
+        self.assertNotIn("recall_passagem@5", valores)
+        self.assertNotIn("cobertura_recall_passagem@5", valores)
+        with patch.object(metricas, "carregar_fontes", side_effect=AssertionError("Referências chamadas na baseline")):
+            metricas.pontuacoes_texto({"Q1": [item(referencia=self.pergunta)]}, {}, 5)
+
+    def test_validacao_exige_evidencia_literal_revisor_e_conteudo_coerente(self):
+        for alteracoes in ({"evidencia": ""}, {"evidencia": "Evidência ausente do texto."},
+                           {"revisor": ""}, {"texto_passagem": "Texto alterado."}, {"pagina_pdf": "0"}):
+            with self.subTest(alteracoes=alteracoes), self.assertRaises(ErroProjeto):
+                self.carregar([self.fonte(**alteracoes)])
+
+    def test_preparacao_le_indice_sem_modelos_e_preserva_ficheiro_existente(self):
+        perguntas = [self.pergunta, {**self.pergunta, "id": "Q2", "pagina_pdf": "8"},
+                     {**self.pergunta, "id": "Q3", "split": "teste"},
+                     {**self.pergunta, "id": "Q4", "expected_action": "recusar"}]
+        ponto = SimpleNamespace(id="id-real", payload={"doc_id": "D02", "pagina": 6, "texto": self.texto})
+        with tempfile.TemporaryDirectory() as tmp, patch.object(avaliar, "ler_perguntas", return_value=perguntas), \
+                patch.object(indice, "descrever_colecao", return_value={"colecao": "ensaio"}), \
+                patch.object(indice, "obter_cliente") as obter, \
+                patch.object(indice, "obter_modelo_bge", side_effect=AssertionError("Embeddings chamados")):
+            obter.return_value.scroll.side_effect = [([ponto], 10), ([], None)]
+            destino = Path(tmp) / "fontes.csv"
+            metricas.preparar_fontes(destino, "validacao")
+            linhas = metricas.csv_ler(destino)
+            self.assertEqual({r["id_pergunta"] for r in linhas}, {"Q1", "Q2"})
+            self.assertTrue(all(r["estado_validacao"] == "pendente_validacao_humana" for r in linhas))
+            self.assertTrue(all(not r["evidencia"] and not r["revisor"] for r in linhas))
+            self.assertEqual(linhas[0]["texto_passagem"], self.texto)
+            self.assertEqual(linhas[1]["texto_passagem"], "")
+            self.assertEqual(obter.return_value.scroll.call_count, 2)
+            self.assertTrue(all(c.kwargs["with_vectors"] is False for c in obter.return_value.scroll.call_args_list))
+            self.assertEqual(metricas.carregar_fontes(destino), {})
+            anterior = destino.read_bytes()
+            with self.assertRaisesRegex(ErroProjeto, "preservado"):
+                metricas.preparar_fontes(destino, "validacao")
+            self.assertEqual(destino.read_bytes(), anterior)
+
+    def test_tabela_exporta_recall_vazio_com_cobertura_zero(self):
+        manifesto = {"execucao": "ensaio", "parametros": {"temperaturas": [0], "split": "validacao"}}
+        i = item(rag=True, referencia=self.pergunta, recuperadas=[], split="validacao", modelo="simulado",
+                 modo="llm_cnn_rag", temperatura=0)
+        with tempfile.TemporaryDirectory() as tmp, patch.object(metricas, "carregar_fontes", return_value={}):
+            pasta = Path(tmp)
+            tabela = metricas.tabela_texto(manifesto, [i], 10, pasta)
+            metricas.csv_gravar(pasta / "tabela.csv", metricas.COLUNAS_TABELA, tabela)
+            tabela = {r["metrica"]: r for r in metricas.csv_ler(pasta / "tabela.csv")}
+        self.assertEqual(tabela["recall_passagem@5"]["valor"], "")
+        self.assertEqual(tabela["recall_passagem@5"]["n_unidades"], "0")
+        self.assertEqual(tabela["cobertura_recall_passagem@5"]["valor"], "0.0")
+        self.assertEqual(tabela["recall_pagina@5"]["valor"], "0.0")
+
+    def test_avaliador_recuperacao_separa_pagina_passagem_e_pendencias(self):
+        for fontes, esperado in ((self.carregar([self.fonte()]), "0"), ({}, "")):
+            with self.subTest(esperado=esperado), tempfile.TemporaryDirectory() as tmp:
+                destino = Path(tmp) / "recall.csv"
+                errada = {"doc_id": "D02", "pagina": 6, "texto": "Trecho sem a evidência.", "score": 0.9,
+                          "nome_documento": "D02.pdf"}
+                with patch("sys.argv", ["recuperacao", "--reranker", "--saida", str(destino)]), \
+                        patch.object(avaliar_recuperacao, "carregar_perguntas", return_value=[self.pergunta]), \
+                        patch.object(avaliar_recuperacao, "obter_cliente"), \
+                        patch.object(avaliar_recuperacao, "descrever_colecao", return_value={"documentos": ["D02"]}), \
+                        patch.object(avaliar_recuperacao, "carregar_fontes", return_value=fontes), \
+                        patch.object(avaliar_recuperacao, "pesquisar_query_qdrant", return_value=[errada]) as buscar:
+                    avaliar_recuperacao.main()
+                linha = metricas.csv_ler(destino)[0]
+                self.assertEqual(linha["rank_pág ±0"], "1")
+                self.assertEqual(linha["hit_passagem"], esperado)
+                self.assertEqual(buscar.call_args.args[0], self.pergunta["pergunta"])
 
 
 class DoencaNaResposta(unittest.TestCase):

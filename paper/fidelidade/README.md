@@ -15,3 +15,19 @@
 Os resumos são exportados por omissão para `runs/<execucao>/metricas/`. A exportação de resultados selecionados para o relatório utiliza `--destino .\paper`. As folhas de anotação permanecem em `paper/fidelidade/<execucao>/`.
 
 Folhas já existentes são preservadas por `anotar`. Para as completar, acrescentar manualmente a coluna `pedido_identificacao` e eventuais linhas em falta para recusas/falhas, mantendo as mesmas chaves nas três folhas. Uma folha antiga sem esta coluna é tratada como marcação de pedido pendente.
+
+## Passagens-fonte
+
+`data/perguntas/passagens_fonte.csv` contém candidatos do índice atual para as perguntas respondíveis, todos inicialmente `pendente_validacao_humana`. A correspondência de documento/página serve apenas para preparar a revisão. Ler a pergunta, o critério, a passagem e o PDF; preencher `evidencia` com um excerto literal suficiente para responder, identificar o `revisor` e só então marcar `estado_validacao` como `validada`. Marcar `rejeitada` quando a passagem não contém a evidência necessária. Não alterar o texto, o hash ou o critério para forçar um acerto.
+
+Podem ser validadas várias passagens equivalentes para a mesma pergunta, incluindo alternativas de documento/página. Cada alternativa deve ter uma linha própria com o texto completo do chunk do índice, o respetivo SHA-256 (`src.metricas.hash_passagem`), evidência e revisão. O cálculo exige documento, página e conteúdo correspondentes; ignora apenas diferenças de espaços e quebras de linha. Um identificador de chunk ou a página certa com outro texto não bastam. Alterar o enunciado ou critério torna as referências anteriores não avaliáveis até nova revisão.
+
+O Recall mede a proporção de perguntas avaliáveis com pelo menos uma passagem validada no top-5 antes do limiar. Perguntas sem nenhuma passagem validada ficam fora do denominador; alternativas ainda pendentes não dão acerto. A cobertura indica a proporção de perguntas respondíveis com referência validada. As referências são usadas apenas na avaliação, separadas das folhas de fidelidade e do gerador; não entram no índice.
+
+Para preparar outra exportação, preservando a folha já revista:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.metricas preparar-fontes --split todos --destino runs/passagens-fonte-revisao.csv
+```
+
+O comando só lê textos/metadados do índice existente e recusa substituir um ficheiro. `--split validacao` ou `--split teste` limita a preparação; não executa perguntas nem modelos. Rever e integrar as alternativas aprovadas na folha central, mantendo os restantes registos. Congelar as referências antes da avaliação final e utilizar a validação para afinação.

@@ -8,7 +8,7 @@ from pathlib import Path
 from .indice import obter_cliente, pesquisar_query_qdrant, descrever_colecao
 from .config import carregar_config
 from .apoio import RAIZ, ErroProjeto
-from .metricas import posicao_fonte
+from .metricas import carregar_fontes, posicao_fonte, posicao_passagem
 
 # Avaliação de recuperação documental integrada, ligada aos mesmos parâmetros da aplicação.
 
@@ -71,6 +71,7 @@ def main():
           f"documentos no índice: {len(indexados)}")
     print("Estado de validação:",
           dict(Counter(q["estado_validacao"] for q in perguntas)))
+    fontes = carregar_fontes()
 
     def buscar(pergunta):
         return pesquisar_query_qdrant(
@@ -96,12 +97,16 @@ def main():
                            "top1_score": top1 and top1["score"]})
             continue
 
+        avaliavel, rank_passagem = posicao_passagem(res, q, fontes)
+        passagem = {"passagem_avaliavel": bool(avaliavel), "rank_passagem": rank_passagem,
+                    "hit_passagem": int(rank_passagem is not None) if avaliavel else None}
         if doc_id not in indexados:
             sem_indice.append(q["id"])
             # Não retirar estas perguntas do denominador: são falhas de recuperação.
             ranks = {"documento": None, "pág ±0": None, "pág ±1": None}
             resp.append((q, ranks, res))
             linhas.append({"id": q["id"], "acao": "responder", "split": q["split"],
+                           **passagem,
                            **{f"rank_{k}": v for k, v in ranks.items()},
                            "top1_doc": top1 and top1["nome_documento"],
                            "top1_pag": top1 and top1["pagina"],
@@ -119,6 +124,7 @@ def main():
             scores_acerto.append(score_hit)
         resp.append((q, ranks, res))
         linhas.append({"id": q["id"], "acao": "responder", "split": q["split"],
+                       **passagem,
                        **{f"rank_{k}": v for k, v in ranks.items()},
                        "top1_doc": top1 and top1["nome_documento"],
                        "top1_pag": top1 and top1["pagina"],
@@ -131,6 +137,11 @@ def main():
     if contaminadas:
         print(f"ATENÇÃO: 'recusar' cujo documento ESTÁ indexado: {contaminadas}")
     if n:
+        avaliadas = [l for l in linhas if l.get("passagem_avaliavel")]
+        cobertura = len(avaliadas) / n
+        recall_passagem = sum(l["hit_passagem"] for l in avaliadas) / len(avaliadas) if avaliadas else None
+        valor = f"{recall_passagem:.1%}" if recall_passagem is not None else "não avaliável"
+        print(f"  passagem   Recall@{args.k}: {valor}; cobertura: {len(avaliadas)}/{n} ({cobertura:.1%})")
         for chave in ["documento", "pág ±0", "pág ±1"]:
             rs = [r[chave] for _, r, _ in resp]
             recall = sum(r is not None for r in rs) / n

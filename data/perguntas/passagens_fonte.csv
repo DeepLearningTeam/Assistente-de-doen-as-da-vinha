@@ -1,0 +1,597 @@
+﻿id_pergunta,split,pergunta,criterio_evidencia,doc_id,pagina_pdf,passagem_id,passagem_sha256,texto_passagem,evidencia,estado_validacao,revisor,colecao
+Q001,validacao,Por onde pode entrar na videira o fungo associado à eutipiose?,"A página descreve Eutypa lata e indica explicitamente a entrada através de feridas recentes, como as feridas da poda.",D02,6,1157319f-74ab-5b78-8f9a-050695cf44bc,19dc542e302773a6e11b8434fb800f3ff76c7177fa334518206a8d87ceffb177,"[Eutipiose]
+A Eutipiose é provocada por um fungo denominado por Eutypa lata, que entra na videira através de feridas recentes, como as feridas da poda.",,pendente_validacao_humana,,videira_fitossanidade
+Q001,validacao,Por onde pode entrar na videira o fungo associado à eutipiose?,"A página descreve Eutypa lata e indica explicitamente a entrada através de feridas recentes, como as feridas da poda.",D02,6,f5df2282-48ba-58ad-bd85-5815f010515c,35bb31d386fd38743885572fe2dfcd8ada2eb03440c08500ed48e9910ce4c459,"[Eutipiose > Sintomatologia e Estragos]
+Os sintomas resultantes da acção do agente patogénico ocorrem:  
+Na cepa (braços e tronco), manifestando-se os sintomas primários que resultam da acção directa do fungo, e que consistem em manchas necróticas e de consistência dura, que em corte transversal têm forma de sector e com coloração acastanhada. Esta morte do lenho dá-se a partir de uma ferida e caminha pelo ramo no sentido descendente (Foto 1, 2, 3 e 4).  Fungos do género Botryosphaeria podem causar sintomas semelhantes. Prospecções realizadas no nosso país (REGO, et al., 2004; OLIVEIRA, et al., 2004) em videiras com sintomas associados às doenças do lenho, revelaram que fungos do género Botryosphaeria são consistentemente identificados.  
+Foto 1, 2, 3 e 4 – Sintomas primários de Eutipiose: mancha sectorial de cor escura e consistência dura",,pendente_validacao_humana,,videira_fitossanidade
+Q002,validacao,"Ao observar um corte transversal de um braço afetado por eutipiose, que padrão de necrose é descrito?","Descrição dos sintomas primários na cepa: necrose dura, sectorial e acastanhada, iniciada numa ferida.",D02,6,1157319f-74ab-5b78-8f9a-050695cf44bc,19dc542e302773a6e11b8434fb800f3ff76c7177fa334518206a8d87ceffb177,"[Eutipiose]
+A Eutipiose é provocada por um fungo denominado por Eutypa lata, que entra na videira através de feridas recentes, como as feridas da poda.",,pendente_validacao_humana,,videira_fitossanidade
+Q002,validacao,"Ao observar um corte transversal de um braço afetado por eutipiose, que padrão de necrose é descrito?","Descrição dos sintomas primários na cepa: necrose dura, sectorial e acastanhada, iniciada numa ferida.",D02,6,f5df2282-48ba-58ad-bd85-5815f010515c,35bb31d386fd38743885572fe2dfcd8ada2eb03440c08500ed48e9910ce4c459,"[Eutipiose > Sintomatologia e Estragos]
+Os sintomas resultantes da acção do agente patogénico ocorrem:  
+Na cepa (braços e tronco), manifestando-se os sintomas primários que resultam da acção directa do fungo, e que consistem em manchas necróticas e de consistência dura, que em corte transversal têm forma de sector e com coloração acastanhada. Esta morte do lenho dá-se a partir de uma ferida e caminha pelo ramo no sentido descendente (Foto 1, 2, 3 e 4).  Fungos do género Botryosphaeria podem causar sintomas semelhantes. Prospecções realizadas no nosso país (REGO, et al., 2004; OLIVEIRA, et al., 2004) em videiras com sintomas associados às doenças do lenho, revelaram que fungos do género Botryosphaeria são consistentemente identificados.  
+Foto 1, 2, 3 e 4 – Sintomas primários de Eutipiose: mancha sectorial de cor escura e consistência dura",,pendente_validacao_humana,,videira_fitossanidade
+Q003,validacao,"Na forma lenta da esca, como se distribuem as alterações de cor nas folhas das castas brancas e tintas?",A página descreve a evolução lenta dos sintomas foliares e distingue a cor das manchas conforme a casta.,D02,8,3fa57987-9d1e-5fcf-b7c6-fbf7da432841,dde6e8c2f084ae7a8bdda15764fa53a24556ec0a4ed25ee98bc8152197498353,"[Esca (Sindroma da Esca) > Sintomatologia e Estragos]
+Os sintomas da Esca são atribuídos à dificuldade de circulação da seiva resultante do desenvolvimento dos fungos. As primeiras manifestações de sintomas aparecem no início do Verão e os estragos vão-se concretizando durante o Verão. Tal como na Eutipiose os sintomas podem aparecer ou não de um ano para o outro, mas a doença progrediu nesse entretanto.  
+Sintomas Sobre Os Órgãos Verdes Os sintomas manifestam-se sobre duas formas:  
+Uma evolução lenta - caracterizada por um necrosamento das margens das folhas estendendo-se para o centro (Fotos 7 e 8), entre as nervuras aparecem manchas (amareladas nas castas brancas e avermelhadas nas castas tintas, Fotos 9, 10 e 11) que acabam por dar origem a uma só mancha alongada.  
+Foto 7, 8 – Sintomas iniciais de Esca nas folhas na casta Malvasia Fina  
+Foto 9, 10 e 11 – Sintomas de Esca nas folhas na casta Malvasia Fina",,pendente_validacao_humana,,videira_fitossanidade
+Q003,validacao,"Na forma lenta da esca, como se distribuem as alterações de cor nas folhas das castas brancas e tintas?",A página descreve a evolução lenta dos sintomas foliares e distingue a cor das manchas conforme a casta.,D02,8,da62c19c-1f20-5fe4-a8d7-7edecd437640,e140a259ac2413aafe10b05dca7524e14ecdacad463d7b40e89104c8d5329db7,"[Esca (Sindroma da Esca)]
+Ao contrário da Eutipiose, a Esca é causada por um complexo de fungos, cuja actuação ainda hoje é mal conhecida. Alguns dos quais são: Phae0moniella chlamydospora, Phaeoacremonium aleophilum, Phaeoacremonium inflatipes e outras espécies do género Phaeoacremonium, Eutypa lata, Botryosphaeria spp., e os basidiomicetas Fomitioporia spp. e Stereum hirsutum.  
+Considera-se actualmente que existem dois processos responsáveis pela degradação da madeira característica da Esca, onde estão envolvidos os “fungos percursores” que abrem caminho para a actuação dos “fungos da Esca” propriamente ditos.  
+Esta doença deverá assim ser encarada como resultado final do ataque de um complexo de fungos, que actuam em concordância e complementaridade, devendo ter-se em conta este aspecto na luta a empreender.",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,11504d20-a666-5620-8981-f75772d57ada,5a2d44cc08a266e412ce9db95be775404c4219f7eb64e0ec7ac36487bacccb07,"► Folhas – pequenas manchas, com 2 a 3 mm de diâmetro, caraterísticas e inconfundíveis, vagamente circulares ou poligonais, acastanhadas, com rebordo escuro e repletas de pontos negros minúsculos no seu interior (as frutificações do fungo). Pode aparecer apenas uma ou várias manchas em cada folha, agrupadas. Algumas, maiores, podem atingir 40 X 20 mm. As manchas necrosam e parte do tecido da folha afetada acaba por se desprender e cair.  
+► Pecíolos das folhas – podem apresentar necroses alongadas e negras, capazes de provocar o dessecamento da folha.  
+► Pâmpanos e varas – são mais raramente atingidos. Podem apresentar manchas semelhantes às das folhas, mas alongadas, por vezes deprimidas ou fendilhadas. Não têm influência sobre a vegetação, mas, ficando na vinha, servem de inóculo (foco de contaminação) na primavera seguinte. ► Pedúnculos dos cachos e gavinhas – por vezes, apresentam manchas parecidas com as dos pâmpanos, mas mais pequenas.  
+► Inflorescências – pouco afetadas.",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,681f5d58-de0e-5813-8907-c0eae1e80a30,5432a10ff18d2cdfbea07bbd2e636f6016cde3507a76278440feb24058bb3e9a,"#### <mark>ESTRAGOS E PREJUÍZOS</mark>  
+As folhas são os primeiros órgãos atingidos pelo black-rot, no início do desenvolvimento da Vinha, cerca de três semanas a um mês antes dos outros órgãos verdes. No entanto, estes ataques não provocam a queda das folhas, a não ser excepcionalmente e não causam prejuízos diretos.  
+O black-rot é fundamentalmente, uma doença dos cachos e pode, em casos graves, levar à perda de toda a colheita.  
+#### <mark>MEDIDAS PREVENTIVAS E LUTA QUIMICA</mark>  
+► Destruição das fontes de inóculo – Durante a poda, recolher e queimar varas, cachos secos, bagos afetados caídos no solo, gavinhas enroladas nos arames.  
+► Tratamento cuidadoso dos focos primários da doença – procurar as primeiras manchas nas folhas, recolher as folhas com manchas, se possível e tratar a zona afetada cuidadosamente. Os tratamentos anti-míldio também podem combater o black-rot, se forem usados fungicidas de ação simultânea contra as duas doenças.  
+##### Adaptado do “Textos de divulgação técnica da Estação de Avisos de Entre Douro e Minho nº 04/ 2015”",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,8d2f0476-432d-52a1-95ed-4d147fc6322b,4ddbfaf07ef0a54879676562876c866c6dab89ed3eae061af5c5174368b89b1e,"► Inflorescências – pouco afetadas.  
+► Cachos – são atacados a seguir à floração-alimpa, no início do desenvolvimento dos bagos, até ao pintor. São contaminados frequentemente a partir de manchas de blackrot nas folhas das proximidades. O primeiro sintoma nos bagos é uma pequena mancha circular, descorada, com poucos mm de diâmetro, que de seguida se alarga e torna avermelhada, mais escura no centro e clara nos bordos. A infeção progride rapidamente em extensão e profundidade. Ao fim de um a dois dias, todo o bago fica alterado, parecendo escaldado. De seguida, começa a enrugar-se, secando completamente, com tempo seco, ao fim de alguns dias e tomando uma cor negra carregada com reflexos azulados. A película dos bagos secos cobre-se de pequenas pústulas negras, tomando um aspeto caraterístico “encortiçado”. Estes bagos destruídos ficam presos ao cangaço durante algum tempo e acabam por cair.  
+O black-rot não ataca, normalmente, todos os cachos da mesma cepa, nem todos os bagos do mesmo cacho. Aparece isolado sobre um ou mais bagos e invade de seguida os outros, de modo bastante irregular.  
+#### <mark>CONSERVAÇÃO DO PARASITA DURANTE O INVERNO</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,a1d0c5e7-7d76-5e41-8bef-2627d5767d64,37d010a647dc127763f78e9d3d69fda8358bf9bdd00965397a50998bebf2ea81,"#### <mark>CONSERVAÇÃO DO PARASITA DURANTE O INVERNO</mark>  
+- Nos bagos infetados caídos no solo  
+- Nas varas, em necroses causadas pelo fungo  
+#### <mark>CONDIÇÕES DE DESENVOLVIMENTO</mark>  
+► Condições geográficas - Regiões com elevada pluviosidade, sobretudo de influência atlântica, como é o Entre Douro e Minho.  
+► Recetividade da Vinha – os porta-enxertos americanos e seus híbridos são pouco sensíveis ou mesmo resistentes; (no entanto, a doença pode ser propagada através de material  
+de enxertia); a videira europeia ( Vitis vinifera ) é mais sensível à doença.  
+► Circunstâncias favoráveis – O black-rot propaga-se a partir de focos que se expandem de forma bastante lenta. Cada invasão do fungo corresponde sempre a um período chuvoso. O clima favorável ao desenvolvimento do black-rot é caracterizado por períodos chuvosos longos e frequentes na primavera.  
+Vales estreitos, encaixados, de atmosfera húmida, fundos de vales com fraca circulação do ar e nevoeiros persistentes e as margens dos rios são muito favoráveis ao desenvolvimento da doença. Encostas viradas a nascente e a norte são menos favoráveis.",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,c1254054-c2cc-5225-86f4-351162d3a757,6914d3736f0a0af32952f577a43bf1d69e05cf94a6f643a1da672cc73e1a875e,"Os focos de infeção são as lenhas de poda deixadas nas vinhas, os bagos infetados caídos no solo, restos de cachos infetados presos às videiras e gavinhas infetadas enroladas nos arames.  
+Vinhas abandonadas são focos de infeção que contaminam as vinhas das proximidades, sobretudo os cachos, mesmo a centenas de metros de distância.  
+A evolução do fungo, embora possa ser lenta, pode começar com temperaturas médias de 9<sup>o</sup> C, mesmo durante primaveras frescas.  
+As infeções primárias podem dar-se muito cedo, à saída das folhas, no decurso de períodos de chuva ou de atmosfera saturada de água e suceder-se durante cerca de três meses.  
+As infeções secundárias provocam a expansão da doença pela vinha.  
+O black-rot tem uma grande resistência às temperaturas elevadas e, ao contrário do míldio, não é destruído pelas temperaturas altas no Verão, continuando a desenvolver-se. Também resiste bem às temperaturas baixas, até oito graus negativos.  
+#### <mark>ESTRAGOS E PREJUÍZOS</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q004,validacao,Que características visuais distinguem as pequenas manchas de black rot nas folhas?,"Secção “Sintomas” do folheto: dimensão, forma, cor, rebordo escuro e pontos negros das manchas.",D03,2,d823784f-f7a2-5677-a0f4-c79435ca1487,b361a29b34f4035a74e98f089b3eacbf8c9ea9e6134d34f4821b9a4eb385b6d4,"##### Adaptado do “Textos de divulgação técnica da Estação de Avisos de Entre Douro e Minho nº 04/ 2015”  
+Ministério da Agricultura, das Florestas e do Desenvolvimento Rural/ DRAP-Norte/ Divisão de Apoio ao Setor Agroalimentar / Rua da República, 133 5370-347 MIRANDELA � Estação de Avisos do Douro  
+Fonte: Les maladies et les parasites de la Vigne, Pierre Galet, tome I, Montpellier, 1977 . Tradução, adaptação e fotos: C. Coutinho; revisão: Eng.º J. F. Guerner Moreira.",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,11504d20-a666-5620-8981-f75772d57ada,5a2d44cc08a266e412ce9db95be775404c4219f7eb64e0ec7ac36487bacccb07,"► Folhas – pequenas manchas, com 2 a 3 mm de diâmetro, caraterísticas e inconfundíveis, vagamente circulares ou poligonais, acastanhadas, com rebordo escuro e repletas de pontos negros minúsculos no seu interior (as frutificações do fungo). Pode aparecer apenas uma ou várias manchas em cada folha, agrupadas. Algumas, maiores, podem atingir 40 X 20 mm. As manchas necrosam e parte do tecido da folha afetada acaba por se desprender e cair.  
+► Pecíolos das folhas – podem apresentar necroses alongadas e negras, capazes de provocar o dessecamento da folha.  
+► Pâmpanos e varas – são mais raramente atingidos. Podem apresentar manchas semelhantes às das folhas, mas alongadas, por vezes deprimidas ou fendilhadas. Não têm influência sobre a vegetação, mas, ficando na vinha, servem de inóculo (foco de contaminação) na primavera seguinte. ► Pedúnculos dos cachos e gavinhas – por vezes, apresentam manchas parecidas com as dos pâmpanos, mas mais pequenas.  
+► Inflorescências – pouco afetadas.",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,681f5d58-de0e-5813-8907-c0eae1e80a30,5432a10ff18d2cdfbea07bbd2e636f6016cde3507a76278440feb24058bb3e9a,"#### <mark>ESTRAGOS E PREJUÍZOS</mark>  
+As folhas são os primeiros órgãos atingidos pelo black-rot, no início do desenvolvimento da Vinha, cerca de três semanas a um mês antes dos outros órgãos verdes. No entanto, estes ataques não provocam a queda das folhas, a não ser excepcionalmente e não causam prejuízos diretos.  
+O black-rot é fundamentalmente, uma doença dos cachos e pode, em casos graves, levar à perda de toda a colheita.  
+#### <mark>MEDIDAS PREVENTIVAS E LUTA QUIMICA</mark>  
+► Destruição das fontes de inóculo – Durante a poda, recolher e queimar varas, cachos secos, bagos afetados caídos no solo, gavinhas enroladas nos arames.  
+► Tratamento cuidadoso dos focos primários da doença – procurar as primeiras manchas nas folhas, recolher as folhas com manchas, se possível e tratar a zona afetada cuidadosamente. Os tratamentos anti-míldio também podem combater o black-rot, se forem usados fungicidas de ação simultânea contra as duas doenças.  
+##### Adaptado do “Textos de divulgação técnica da Estação de Avisos de Entre Douro e Minho nº 04/ 2015”",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,8d2f0476-432d-52a1-95ed-4d147fc6322b,4ddbfaf07ef0a54879676562876c866c6dab89ed3eae061af5c5174368b89b1e,"► Inflorescências – pouco afetadas.  
+► Cachos – são atacados a seguir à floração-alimpa, no início do desenvolvimento dos bagos, até ao pintor. São contaminados frequentemente a partir de manchas de blackrot nas folhas das proximidades. O primeiro sintoma nos bagos é uma pequena mancha circular, descorada, com poucos mm de diâmetro, que de seguida se alarga e torna avermelhada, mais escura no centro e clara nos bordos. A infeção progride rapidamente em extensão e profundidade. Ao fim de um a dois dias, todo o bago fica alterado, parecendo escaldado. De seguida, começa a enrugar-se, secando completamente, com tempo seco, ao fim de alguns dias e tomando uma cor negra carregada com reflexos azulados. A película dos bagos secos cobre-se de pequenas pústulas negras, tomando um aspeto caraterístico “encortiçado”. Estes bagos destruídos ficam presos ao cangaço durante algum tempo e acabam por cair.  
+O black-rot não ataca, normalmente, todos os cachos da mesma cepa, nem todos os bagos do mesmo cacho. Aparece isolado sobre um ou mais bagos e invade de seguida os outros, de modo bastante irregular.  
+#### <mark>CONSERVAÇÃO DO PARASITA DURANTE O INVERNO</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,a1d0c5e7-7d76-5e41-8bef-2627d5767d64,37d010a647dc127763f78e9d3d69fda8358bf9bdd00965397a50998bebf2ea81,"#### <mark>CONSERVAÇÃO DO PARASITA DURANTE O INVERNO</mark>  
+- Nos bagos infetados caídos no solo  
+- Nas varas, em necroses causadas pelo fungo  
+#### <mark>CONDIÇÕES DE DESENVOLVIMENTO</mark>  
+► Condições geográficas - Regiões com elevada pluviosidade, sobretudo de influência atlântica, como é o Entre Douro e Minho.  
+► Recetividade da Vinha – os porta-enxertos americanos e seus híbridos são pouco sensíveis ou mesmo resistentes; (no entanto, a doença pode ser propagada através de material  
+de enxertia); a videira europeia ( Vitis vinifera ) é mais sensível à doença.  
+► Circunstâncias favoráveis – O black-rot propaga-se a partir de focos que se expandem de forma bastante lenta. Cada invasão do fungo corresponde sempre a um período chuvoso. O clima favorável ao desenvolvimento do black-rot é caracterizado por períodos chuvosos longos e frequentes na primavera.  
+Vales estreitos, encaixados, de atmosfera húmida, fundos de vales com fraca circulação do ar e nevoeiros persistentes e as margens dos rios são muito favoráveis ao desenvolvimento da doença. Encostas viradas a nascente e a norte são menos favoráveis.",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,c1254054-c2cc-5225-86f4-351162d3a757,6914d3736f0a0af32952f577a43bf1d69e05cf94a6f643a1da672cc73e1a875e,"Os focos de infeção são as lenhas de poda deixadas nas vinhas, os bagos infetados caídos no solo, restos de cachos infetados presos às videiras e gavinhas infetadas enroladas nos arames.  
+Vinhas abandonadas são focos de infeção que contaminam as vinhas das proximidades, sobretudo os cachos, mesmo a centenas de metros de distância.  
+A evolução do fungo, embora possa ser lenta, pode começar com temperaturas médias de 9<sup>o</sup> C, mesmo durante primaveras frescas.  
+As infeções primárias podem dar-se muito cedo, à saída das folhas, no decurso de períodos de chuva ou de atmosfera saturada de água e suceder-se durante cerca de três meses.  
+As infeções secundárias provocam a expansão da doença pela vinha.  
+O black-rot tem uma grande resistência às temperaturas elevadas e, ao contrário do míldio, não é destruído pelas temperaturas altas no Verão, continuando a desenvolver-se. Também resiste bem às temperaturas baixas, até oito graus negativos.  
+#### <mark>ESTRAGOS E PREJUÍZOS</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q005,validacao,"Onde se conserva o agente de black rot durante o inverno, segundo o folheto da Estação de Avisos do Douro?",Secção de conservação do parasita/inóculo do folheto; resposta limitada ao que o documento afirma.,D03,2,d823784f-f7a2-5677-a0f4-c79435ca1487,b361a29b34f4035a74e98f089b3eacbf8c9ea9e6134d34f4821b9a4eb385b6d4,"##### Adaptado do “Textos de divulgação técnica da Estação de Avisos de Entre Douro e Minho nº 04/ 2015”  
+Ministério da Agricultura, das Florestas e do Desenvolvimento Rural/ DRAP-Norte/ Divisão de Apoio ao Setor Agroalimentar / Rua da República, 133 5370-347 MIRANDELA � Estação de Avisos do Douro  
+Fonte: Les maladies et les parasites de la Vigne, Pierre Galet, tome I, Montpellier, 1977 . Tradução, adaptação e fotos: C. Coutinho; revisão: Eng.º J. F. Guerner Moreira.",,pendente_validacao_humana,,videira_fitossanidade
+Q006,validacao,"Segundo o Manual da DGADR, qual é o intervalo ótimo de temperatura e humidade relativa para o desenvolvimento de Botrytis cinerea?","Parágrafo de epidemiologia da podridão cinzenta, que indica os intervalos de temperatura e humidade relativa.",D01,95,5acc2536-83b1-539d-8bf6-88011188bd09,41a9ce51b160e06a26b48dcb321f5a8ab643b7489c202437a1893fcdd11b2f74,"[DOENÇAS]
+- doença, no sentido de recomendar intervenções fitossanitárias atempadas.  
+###### Selecção dos meios de luta  
+Luta cultural: tendo em vista a redução de inóculo podem ser aconselhadas no aviso as seguintes práticas culturais: instalação da vinha em locais arejados;utilização de garfos e porta-enxertos sãos e certificados; recorrer a castas menos susceptíveis; adopção de sistemas de condução que assegurem o arejamento dos cachos; evitar o excessivo vigor das cepas através de podas e fertilizações racionais; correcta orientação da vegetação; pela poda eliminar varas com necroses; evitar folhagem densa e feridas de poda.  
+Luta química: Tratar com os produtos fitofarmacêuticos referidos nos pontos 3.3 ou 3.4, de acordo com as indicações do Serviço Nacional de Avisos Agrícolas.",,pendente_validacao_humana,,videira_fitossanidade
+Q006,validacao,"Segundo o Manual da DGADR, qual é o intervalo ótimo de temperatura e humidade relativa para o desenvolvimento de Botrytis cinerea?","Parágrafo de epidemiologia da podridão cinzenta, que indica os intervalos de temperatura e humidade relativa.",D01,95,895c9515-49f7-59d1-84f3-836ec6c02e52,82a67c481d60a023288837d6e9335cc1d3e3c7a401a04079f5d1050e1c3bb49e,"[DOENÇAS]
+##### PODRIDÃO CINZENTA ( Botrytis cinerea Pers.)  
+A podridão cinzenta ou podridão dos cachos pode atacar os órgãos da videira, quer na sua forma parasítica, quer na saprofítica.  
+Epidemiologia e sintomatologia : O fungo hiberna sob a forma de esclerotos ou micélio nos sarmentos e, em menor quantidade, nos gomos.  
+Na Primavera quando as condições climáticas se apresentam favoráveis, o micélio, proveniente da germinação dos conídeos ou do desenvolvimento do micélio hibernante, emite os conidióforos com conídeos que, por acção do vento e da chuva, são disseminados e contaminam os órgãos verdes da videira. Inicialmente, estas frutificações são transparentes mas após três a cinco dias adquirem uma coloração acinzentada.  
+- A contaminação pode ocorrer directamente, quer por penetração dos filamentos germinativos provenientes dos conídeos ou do micélio directamente na epiderme, quer através de lesões existentes nos órgãos verdes da planta.  
+No Outono formam-se os esclerotos sobre os ramos e o micélio hiberna, constituindo o inóculo para o ano seguinte.",,pendente_validacao_humana,,videira_fitossanidade
+Q006,validacao,"Segundo o Manual da DGADR, qual é o intervalo ótimo de temperatura e humidade relativa para o desenvolvimento de Botrytis cinerea?","Parágrafo de epidemiologia da podridão cinzenta, que indica os intervalos de temperatura e humidade relativa.",D01,95,8b8e27c3-3e9c-5591-b7b2-2763e41f3c87,172a2c7b0f4879c503c6b56fd054d39ffecbe00343ac00814bd5e6a5091fb7ad,"[DOENÇAS]
+No Outono formam-se os esclerotos sobre os ramos e o micélio hiberna, constituindo o inóculo para o ano seguinte.  
+O patogéneo responsável pela podridão cinzenta é muito polífago, pode atacar todos os órgãos da videira, mas são sobretudo os cachos maduros os mais atacados.  
+Nas Primaveras húmidas e frescas, observa-se nas folhas, manchas acastanhadas que dão um aspecto de ""folha queimada"" na página superior (Fig. 33), e na página inferior aparece uma pulvurulência acinzentada.  
+Nas inflorescências pode originar a dessecação dos botões florais antes da floração e a queda total ou parcial da inflorescência por ataque do ráquis. Nos cachos os bagos adquirem uma coloração acinzentada, escurecem e depois apodrecem.  
+Nos cachos já pintados  começa por se notar uma  coloração  lilás, nas castas tintas,  ou  uma coloração acastanhada nas castas brancas, que aumenta de tamanho até cobrir toda a superfície do bago.  
+Fig. 33 – Sintomas de podridão cinzenta nas folhas (originais de DABSV/DGADR).  
+O fungo de podridão cinzenta apresenta exigências em temperatura e humidade, situando-se o seu óptimo de desenvolvimento entre 20-25ºC de temperatura e 90-100% de humidade relativa.",,pendente_validacao_humana,,videira_fitossanidade
+Q006,validacao,"Segundo o Manual da DGADR, qual é o intervalo ótimo de temperatura e humidade relativa para o desenvolvimento de Botrytis cinerea?","Parágrafo de epidemiologia da podridão cinzenta, que indica os intervalos de temperatura e humidade relativa.",D01,95,ec651323-bca8-5812-822d-6898e207788a,52932bc1ba1fbe74b3867c0b4522f114cc00ea976cfe4a353205a2829e4289db,"[DOENÇAS]
+O fungo de podridão cinzenta apresenta exigências em temperatura e humidade, situando-se o seu óptimo de desenvolvimento entre 20-25ºC de temperatura e 90-100% de humidade relativa.  
+Os maiores prejuízos ocorrem quando ataca os cachos nos estados fenológicos F-G (cachos visíveis-cachos separados) e N (maturação), nas regiões vitícolas do País onde as Primaveras e Outonos são mais húmidas. Para efectuar a monitorização da doença no campo podem ser utilizadas as seguintes metodologias de amostragem:  
+- Inverno: dado que a hibernação do fungo ocorre sob a forma de esclerotos ou micélio nos sarmentos e em menor quantidade nos gomos, a detecção da  
+- doença deve ser efectuada através da observação visual de sintomas nas varas. A confirmação de presença ou não de esclerotos.  
+- desde a saída das folhas até à maturação: observação visual de folhas, pâmpanos e cachos, de modo a detectar o eventual aparecimento de focos da  
+- doença, no sentido de recomendar intervenções fitossanitárias atempadas.  
+###### Selecção dos meios de luta",,pendente_validacao_humana,,videira_fitossanidade
+Q006,validacao,"Segundo o Manual da DGADR, qual é o intervalo ótimo de temperatura e humidade relativa para o desenvolvimento de Botrytis cinerea?","Parágrafo de epidemiologia da podridão cinzenta, que indica os intervalos de temperatura e humidade relativa.",D01,95,f93eeb72-c30d-52a2-8568-31dbc7371148,584711cf30b18261bd667021a9160209debf09c266b17ba2550f36743a3e80d4,Aspectos gerais relativos a pragas e doenças da cultura da vinha e seu combate,,pendente_validacao_humana,,videira_fitossanidade
+Q007,validacao,"Como evolui a cor das frutificações de Botrytis cinerea nos primeiros dias, segundo o Manual da DGADR?","Parágrafo que descreve a emissão e evolução das frutificações/conídios, incluindo a alteração de cor após 3–5 dias.",D01,95,5acc2536-83b1-539d-8bf6-88011188bd09,41a9ce51b160e06a26b48dcb321f5a8ab643b7489c202437a1893fcdd11b2f74,"[DOENÇAS]
+- doença, no sentido de recomendar intervenções fitossanitárias atempadas.  
+###### Selecção dos meios de luta  
+Luta cultural: tendo em vista a redução de inóculo podem ser aconselhadas no aviso as seguintes práticas culturais: instalação da vinha em locais arejados;utilização de garfos e porta-enxertos sãos e certificados; recorrer a castas menos susceptíveis; adopção de sistemas de condução que assegurem o arejamento dos cachos; evitar o excessivo vigor das cepas através de podas e fertilizações racionais; correcta orientação da vegetação; pela poda eliminar varas com necroses; evitar folhagem densa e feridas de poda.  
+Luta química: Tratar com os produtos fitofarmacêuticos referidos nos pontos 3.3 ou 3.4, de acordo com as indicações do Serviço Nacional de Avisos Agrícolas.",,pendente_validacao_humana,,videira_fitossanidade
+Q007,validacao,"Como evolui a cor das frutificações de Botrytis cinerea nos primeiros dias, segundo o Manual da DGADR?","Parágrafo que descreve a emissão e evolução das frutificações/conídios, incluindo a alteração de cor após 3–5 dias.",D01,95,895c9515-49f7-59d1-84f3-836ec6c02e52,82a67c481d60a023288837d6e9335cc1d3e3c7a401a04079f5d1050e1c3bb49e,"[DOENÇAS]
+##### PODRIDÃO CINZENTA ( Botrytis cinerea Pers.)  
+A podridão cinzenta ou podridão dos cachos pode atacar os órgãos da videira, quer na sua forma parasítica, quer na saprofítica.  
+Epidemiologia e sintomatologia : O fungo hiberna sob a forma de esclerotos ou micélio nos sarmentos e, em menor quantidade, nos gomos.  
+Na Primavera quando as condições climáticas se apresentam favoráveis, o micélio, proveniente da germinação dos conídeos ou do desenvolvimento do micélio hibernante, emite os conidióforos com conídeos que, por acção do vento e da chuva, são disseminados e contaminam os órgãos verdes da videira. Inicialmente, estas frutificações são transparentes mas após três a cinco dias adquirem uma coloração acinzentada.  
+- A contaminação pode ocorrer directamente, quer por penetração dos filamentos germinativos provenientes dos conídeos ou do micélio directamente na epiderme, quer através de lesões existentes nos órgãos verdes da planta.  
+No Outono formam-se os esclerotos sobre os ramos e o micélio hiberna, constituindo o inóculo para o ano seguinte.",,pendente_validacao_humana,,videira_fitossanidade
+Q007,validacao,"Como evolui a cor das frutificações de Botrytis cinerea nos primeiros dias, segundo o Manual da DGADR?","Parágrafo que descreve a emissão e evolução das frutificações/conídios, incluindo a alteração de cor após 3–5 dias.",D01,95,8b8e27c3-3e9c-5591-b7b2-2763e41f3c87,172a2c7b0f4879c503c6b56fd054d39ffecbe00343ac00814bd5e6a5091fb7ad,"[DOENÇAS]
+No Outono formam-se os esclerotos sobre os ramos e o micélio hiberna, constituindo o inóculo para o ano seguinte.  
+O patogéneo responsável pela podridão cinzenta é muito polífago, pode atacar todos os órgãos da videira, mas são sobretudo os cachos maduros os mais atacados.  
+Nas Primaveras húmidas e frescas, observa-se nas folhas, manchas acastanhadas que dão um aspecto de ""folha queimada"" na página superior (Fig. 33), e na página inferior aparece uma pulvurulência acinzentada.  
+Nas inflorescências pode originar a dessecação dos botões florais antes da floração e a queda total ou parcial da inflorescência por ataque do ráquis. Nos cachos os bagos adquirem uma coloração acinzentada, escurecem e depois apodrecem.  
+Nos cachos já pintados  começa por se notar uma  coloração  lilás, nas castas tintas,  ou  uma coloração acastanhada nas castas brancas, que aumenta de tamanho até cobrir toda a superfície do bago.  
+Fig. 33 – Sintomas de podridão cinzenta nas folhas (originais de DABSV/DGADR).  
+O fungo de podridão cinzenta apresenta exigências em temperatura e humidade, situando-se o seu óptimo de desenvolvimento entre 20-25ºC de temperatura e 90-100% de humidade relativa.",,pendente_validacao_humana,,videira_fitossanidade
+Q007,validacao,"Como evolui a cor das frutificações de Botrytis cinerea nos primeiros dias, segundo o Manual da DGADR?","Parágrafo que descreve a emissão e evolução das frutificações/conídios, incluindo a alteração de cor após 3–5 dias.",D01,95,ec651323-bca8-5812-822d-6898e207788a,52932bc1ba1fbe74b3867c0b4522f114cc00ea976cfe4a353205a2829e4289db,"[DOENÇAS]
+O fungo de podridão cinzenta apresenta exigências em temperatura e humidade, situando-se o seu óptimo de desenvolvimento entre 20-25ºC de temperatura e 90-100% de humidade relativa.  
+Os maiores prejuízos ocorrem quando ataca os cachos nos estados fenológicos F-G (cachos visíveis-cachos separados) e N (maturação), nas regiões vitícolas do País onde as Primaveras e Outonos são mais húmidas. Para efectuar a monitorização da doença no campo podem ser utilizadas as seguintes metodologias de amostragem:  
+- Inverno: dado que a hibernação do fungo ocorre sob a forma de esclerotos ou micélio nos sarmentos e em menor quantidade nos gomos, a detecção da  
+- doença deve ser efectuada através da observação visual de sintomas nas varas. A confirmação de presença ou não de esclerotos.  
+- desde a saída das folhas até à maturação: observação visual de folhas, pâmpanos e cachos, de modo a detectar o eventual aparecimento de focos da  
+- doença, no sentido de recomendar intervenções fitossanitárias atempadas.  
+###### Selecção dos meios de luta",,pendente_validacao_humana,,videira_fitossanidade
+Q007,validacao,"Como evolui a cor das frutificações de Botrytis cinerea nos primeiros dias, segundo o Manual da DGADR?","Parágrafo que descreve a emissão e evolução das frutificações/conídios, incluindo a alteração de cor após 3–5 dias.",D01,95,f93eeb72-c30d-52a2-8568-31dbc7371148,584711cf30b18261bd667021a9160209debf09c266b17ba2550f36743a3e80d4,Aspectos gerais relativos a pragas e doenças da cultura da vinha e seu combate,,pendente_validacao_humana,,videira_fitossanidade
+Q008,validacao,Que fungos são associados à escoriose americana e à escoriose europeia no Manual da DGADR?,Início da secção “Escoriose”: distinção dos dois fungos e das designações americana/europeia.,D01,96,101794df-0092-52ae-9e90-1de7edaebdcb,584711cf30b18261bd667021a9160209debf09c266b17ba2550f36743a3e80d4,Aspectos gerais relativos a pragas e doenças da cultura da vinha e seu combate,,pendente_validacao_humana,,videira_fitossanidade
+Q008,validacao,Que fungos são associados à escoriose americana e à escoriose europeia no Manual da DGADR?,Início da secção “Escoriose”: distinção dos dois fungos e das designações americana/europeia.,D01,96,1e3df72f-dc64-5cbb-8fe8-12350fd1d60e,49f179d2b82c91a4c95ce26a16d9224361f0947a378132ad09103ee801687267,"[DOENÇAS]
+###### Selecção dos meios de luta  
+Luta cultural: utilizar material certificado nas enxertias; fertilização racional; recorrer a castas menos susceptíveis; correcta orientação da vegetação e eliminar pela poda as varas infectadas, que posteriormente deverão ser destruídas.  
+Luta química: Tratar com os produtos fitofarmacêuticos referidos nos pontos 3.3 ou 3.4, de acordo com as indicações do Serviço Nacional de Avisos Agrícolas.",,pendente_validacao_humana,,videira_fitossanidade
+Q008,validacao,Que fungos são associados à escoriose americana e à escoriose europeia no Manual da DGADR?,Início da secção “Escoriose”: distinção dos dois fungos e das designações americana/europeia.,D01,96,a57e3cfc-ddfb-503a-9415-f5fece54d012,bc99d06d570a8b061f62d86722f9c5a2317437e978ae38939094a44ec6fa015c,"[DOENÇAS]
+Para efectuar a monitorização da doença no campo podem ser utilizadas as seguintes metodologias de amostragem:  
+• Inverno: dado que a hibernação do fungo ocorre sob a forma de micélio nos gomos e de picnídeos nos sarmentos e, ainda, no tronco e ramos a detecção da doença deve ser efectuada através da observação visual de sintomas nas varas (fendilhamento e escoriação nas varas, pontuações negras (picnídeos e peritecas) e de estrangulamentos dos sarmentos). As observações devem incidir sobre os quatro primeiros entre-nós de cada pâmpano, fazendo-se, assim, uma determinação da intensidade do ataque da doença e da sua distribuição na vinha.  
+• Primavera/Verão: observação visual de folhas, pâmpanos e cachos, de modo a detectar o eventual aparecimento de focos da doença, no sentido de recomendar intervenções atempadas. A avaliação da intensidade de ataque deve ter início após o abrolhamento, devendo continuar até ao atempamento das varas, com particular incidência nos estados fenológicos de maior susceptibilidade.  
+###### Selecção dos meios de luta",,pendente_validacao_humana,,videira_fitossanidade
+Q008,validacao,Que fungos são associados à escoriose americana e à escoriose europeia no Manual da DGADR?,Início da secção “Escoriose”: distinção dos dois fungos e das designações americana/europeia.,D01,96,af365a27-0527-5e07-be36-44854bab6f79,bae9fe715958c4eccfe592620fca98342f3dacfb344dac6222eaf9eabf6640e9,"[DOENÇAS]
+A enxertia de varas doentes e a poda parecem ser as principais causas de propagação da doença. As infecções ocorrem nos estados fenológicos D (saída das folhas) e E (folhas livres), com temperatura favoráveis (8-10 ºC) e precipitação durante pelo menos 12 horas. Na Primavera este fungo é, facilmente, identificável pelo aparecimento de pequenas lesões negras, arredondadas ou lineares, mais ou menos profundas nos entrenós da base dos pâmpanos (Fig. 34).  
+Fig. 34 – Ataque de escoriose nos sarmentos (originais de DABSV/DGADR).  
+podem ser confundidas com os sintomas de acariose.  
+Os cachos podem, também, ser atacados, apresentando manchas castanhas claras e depois escuras com pontuações (frutificações), no pedúnculo e ráquis, podendo ocorrer a seca dos cachos.  
+A escoriose é responsável pela diminuição da produção, especialmente pela quebra de sarmentos e pâmpanos (desnoca) e consequente dificuldade da poda no(s) ano(s) seguinte(s), bem como, destruição dos tecidos do lenho nos sarmentos e ramos, conduzindo à morte progressiva destes. Os maiores prejuízos são causados pela inviabilização dos gomos na base dos sarmentos.",,pendente_validacao_humana,,videira_fitossanidade
+Q008,validacao,Que fungos são associados à escoriose americana e à escoriose europeia no Manual da DGADR?,Início da secção “Escoriose”: distinção dos dois fungos e das designações americana/europeia.,D01,96,c712760d-ff3b-52a9-9381-464d0b739b70,92bab1e16db85a360d9ebda966e3fa779fa9d55c912edec6dcda7da5c82b73fb,"[DOENÇAS]
+ESCORIOSE ( Phomopsis viticola (Sacc.) Sacc.)  
+Em Portugal a escoriose é causada por dois fungos, Phomopsis viticola , responsável pela “escoriose americana” e Macrophoma flaccida pela “escoriose europeia”. Na região norte do País predomina a espécie P. viticola .  
+Epidemiologia e sintomatologia: Este fungo hiberna sob a forma de micélio nos gomos, protegido pelas escamas e de picnídeos nos sarmentos e, ainda, no tronco e ramos. Em condições de grande humidade, os picnídeos emitem cirros de esporos brancos gelatinosos que são disseminados e podem penetrar nos órgãos herbáceos.  
+As infecções primárias são favorecidas pelo tempo fresco e chuvoso. A água é essencial, mas não indispensável, à germinação dos esporos, a qual ocorre quando os pâmpanos têm entre dois e 25 centímetros e se verifica uma humidade relativa superior a 95%. A incubação dura cerca de três a quatro semanas, período a partir do qual se começam a observar os sintomas de escoriose.",,pendente_validacao_humana,,videira_fitossanidade
+Q009,validacao,Que condições de desenvolvimento dos pâmpanos e de humidade são indicadas como favoráveis à infeção por Phomopsis viticola?,"Parágrafo de epidemiologia da escoriose americana, com dimensão dos pâmpanos, humidade e condições meteorológicas.",D01,96,101794df-0092-52ae-9e90-1de7edaebdcb,584711cf30b18261bd667021a9160209debf09c266b17ba2550f36743a3e80d4,Aspectos gerais relativos a pragas e doenças da cultura da vinha e seu combate,,pendente_validacao_humana,,videira_fitossanidade
+Q009,validacao,Que condições de desenvolvimento dos pâmpanos e de humidade são indicadas como favoráveis à infeção por Phomopsis viticola?,"Parágrafo de epidemiologia da escoriose americana, com dimensão dos pâmpanos, humidade e condições meteorológicas.",D01,96,1e3df72f-dc64-5cbb-8fe8-12350fd1d60e,49f179d2b82c91a4c95ce26a16d9224361f0947a378132ad09103ee801687267,"[DOENÇAS]
+###### Selecção dos meios de luta  
+Luta cultural: utilizar material certificado nas enxertias; fertilização racional; recorrer a castas menos susceptíveis; correcta orientação da vegetação e eliminar pela poda as varas infectadas, que posteriormente deverão ser destruídas.  
+Luta química: Tratar com os produtos fitofarmacêuticos referidos nos pontos 3.3 ou 3.4, de acordo com as indicações do Serviço Nacional de Avisos Agrícolas.",,pendente_validacao_humana,,videira_fitossanidade
+Q009,validacao,Que condições de desenvolvimento dos pâmpanos e de humidade são indicadas como favoráveis à infeção por Phomopsis viticola?,"Parágrafo de epidemiologia da escoriose americana, com dimensão dos pâmpanos, humidade e condições meteorológicas.",D01,96,a57e3cfc-ddfb-503a-9415-f5fece54d012,bc99d06d570a8b061f62d86722f9c5a2317437e978ae38939094a44ec6fa015c,"[DOENÇAS]
+Para efectuar a monitorização da doença no campo podem ser utilizadas as seguintes metodologias de amostragem:  
+• Inverno: dado que a hibernação do fungo ocorre sob a forma de micélio nos gomos e de picnídeos nos sarmentos e, ainda, no tronco e ramos a detecção da doença deve ser efectuada através da observação visual de sintomas nas varas (fendilhamento e escoriação nas varas, pontuações negras (picnídeos e peritecas) e de estrangulamentos dos sarmentos). As observações devem incidir sobre os quatro primeiros entre-nós de cada pâmpano, fazendo-se, assim, uma determinação da intensidade do ataque da doença e da sua distribuição na vinha.  
+• Primavera/Verão: observação visual de folhas, pâmpanos e cachos, de modo a detectar o eventual aparecimento de focos da doença, no sentido de recomendar intervenções atempadas. A avaliação da intensidade de ataque deve ter início após o abrolhamento, devendo continuar até ao atempamento das varas, com particular incidência nos estados fenológicos de maior susceptibilidade.  
+###### Selecção dos meios de luta",,pendente_validacao_humana,,videira_fitossanidade
+Q009,validacao,Que condições de desenvolvimento dos pâmpanos e de humidade são indicadas como favoráveis à infeção por Phomopsis viticola?,"Parágrafo de epidemiologia da escoriose americana, com dimensão dos pâmpanos, humidade e condições meteorológicas.",D01,96,af365a27-0527-5e07-be36-44854bab6f79,bae9fe715958c4eccfe592620fca98342f3dacfb344dac6222eaf9eabf6640e9,"[DOENÇAS]
+A enxertia de varas doentes e a poda parecem ser as principais causas de propagação da doença. As infecções ocorrem nos estados fenológicos D (saída das folhas) e E (folhas livres), com temperatura favoráveis (8-10 ºC) e precipitação durante pelo menos 12 horas. Na Primavera este fungo é, facilmente, identificável pelo aparecimento de pequenas lesões negras, arredondadas ou lineares, mais ou menos profundas nos entrenós da base dos pâmpanos (Fig. 34).  
+Fig. 34 – Ataque de escoriose nos sarmentos (originais de DABSV/DGADR).  
+podem ser confundidas com os sintomas de acariose.  
+Os cachos podem, também, ser atacados, apresentando manchas castanhas claras e depois escuras com pontuações (frutificações), no pedúnculo e ráquis, podendo ocorrer a seca dos cachos.  
+A escoriose é responsável pela diminuição da produção, especialmente pela quebra de sarmentos e pâmpanos (desnoca) e consequente dificuldade da poda no(s) ano(s) seguinte(s), bem como, destruição dos tecidos do lenho nos sarmentos e ramos, conduzindo à morte progressiva destes. Os maiores prejuízos são causados pela inviabilização dos gomos na base dos sarmentos.",,pendente_validacao_humana,,videira_fitossanidade
+Q009,validacao,Que condições de desenvolvimento dos pâmpanos e de humidade são indicadas como favoráveis à infeção por Phomopsis viticola?,"Parágrafo de epidemiologia da escoriose americana, com dimensão dos pâmpanos, humidade e condições meteorológicas.",D01,96,c712760d-ff3b-52a9-9381-464d0b739b70,92bab1e16db85a360d9ebda966e3fa779fa9d55c912edec6dcda7da5c82b73fb,"[DOENÇAS]
+ESCORIOSE ( Phomopsis viticola (Sacc.) Sacc.)  
+Em Portugal a escoriose é causada por dois fungos, Phomopsis viticola , responsável pela “escoriose americana” e Macrophoma flaccida pela “escoriose europeia”. Na região norte do País predomina a espécie P. viticola .  
+Epidemiologia e sintomatologia: Este fungo hiberna sob a forma de micélio nos gomos, protegido pelas escamas e de picnídeos nos sarmentos e, ainda, no tronco e ramos. Em condições de grande humidade, os picnídeos emitem cirros de esporos brancos gelatinosos que são disseminados e podem penetrar nos órgãos herbáceos.  
+As infecções primárias são favorecidas pelo tempo fresco e chuvoso. A água é essencial, mas não indispensável, à germinação dos esporos, a qual ocorre quando os pâmpanos têm entre dois e 25 centímetros e se verifica uma humidade relativa superior a 95%. A incubação dura cerca de três a quatro semanas, período a partir do qual se começam a observar os sintomas de escoriose.",,pendente_validacao_humana,,videira_fitossanidade
+Q010,validacao,Quais são as três condições da chamada “regra dos três 10” para infeções primárias de míldio?,"Diagrama “Ciclo do míldio” que apresenta explicitamente T > 10 °C, chuva > 10 mm em 24 h e pâmpanos > 10 cm.",D04,29,6ad55e5a-b787-51ae-b302-4d6d0b8b8554,005c0dc559d65b2cb1d45e3e197d4e50e3bb9e7a2434415a9b207db821741b5a,"Ciclo do míldio
+(Gobbin & Gessler, 2005)
+Infecções
+25% lesões
+secundárias
+zoósporos zoósporos
+zoósporos 75% lesões
+Sobrevivência
+N Infecções primárias
+T > 10ºC; R> 10 mm (24 h); Viáveis por
+Oósporos
+pâmpanos > 10 cm vários anos 29",,pendente_validacao_humana,,videira_fitossanidade
+Q011,teste,"Segundo a tabela dos diapositivos do ISA, quantos dias demora aproximadamente o período de incubação do míldio a 20 °C?",Tabela “Período de incubação do míldio”: à temperatura de 20 °C corresponde o valor de 5 dias.,D04,30,a13b4998-f14a-5009-93de-ee339f0f1886,c536b2c12bc26edb4001a5a407ec6428bbaf9a8251723757911ae3078ed4bd78,"###### Período de incubação do míldio  
+Temperatura ( º C) dias
+12 14
+14 10
+16 8
+18 6
+20 5
+22 4
+Temperaturas
+24 4
+críticas
+26 4
+28 4",,pendente_validacao_humana,,videira_fitossanidade
+Q012,teste,Que fatores são enumerados nos diapositivos do ISA para estimar o risco de míldio numa vinha?,Lista “Fatores de nocividade” na página de estimativa do risco do míldio.,D04,33,805febb1-abfe-5647-9317-37cc7a759cf0,65cb95cd79dcea62479449444e597bcbb16ff307b4f55e9ee1dc72ba9ab77867,"[Míldio – Estimativa do risco]
+Intensidade de ataque:  
+- 0 – ausência de ataque 1 – presença incipiente 2 – ataque médio 3 – ataque intenso  
+- Fatores de nocividade: - história da parcela, da vinha e da região - temperatura, R (mm), humectação foliar  
+- crescimentos  vegetativos  
+- casta  
+- sistema de condução  
+- natureza do solo  
+Contagens cepa a cepa, em toda a vinha (escolhidas aleatoriamente)  
+- enrelvamento",,pendente_validacao_humana,,videira_fitossanidade
+Q013,teste,Que duas medidas relativas ao revestimento do solo são recomendadas na Circular n.º 04/2026 para reduzir condições favoráveis ao míldio?,"Bloco “Medidas preventivas” da secção do míldio, na Circular n.º 04, de 07/04/2026.",D05,1,0e6bd248-cbc9-5cdc-9efd-5f28099f67e5,226d5a98c98c2e01ac1ebd71235e70ece757f63e9d4696e803bb25ab33797cf4,"[_____________________________ <mark>AVISOS AGRÍCOLAS</mark>]
+~~<mark>ESTAÇÃO DE AVISOS DE ENTRE DOURO E MINHO</mark>~~  
+CONTEÚDO VINHA – MÍLDIO, ESCORIOSE AMERICANA, BOTRIOSFERIOSE, TRAÇADA-UVA ACTINÍDEA – PSA, PERCEVEJO ASIÁTICO PEQUENOS FRUTOS – CONSERVAÇÃO DE POLINIZADORES POMÓIDEAS – PEDRADO, ENTOMOSPORIOSE DO MARMELEIRO PRUNÓIDEAS – LEPRA DO PESSEGUEIRO CITRINOS -  CUIDADOS NA FLORAÇÃO ORNAMENTAIS -  TRAÇADO-BUXO, PODRIDÃO DA CAMÉLIA  
+CUIDADOS NA APLICAÇÃO DOS FITOFÁRMACOS UTILIZADOS NA PROTEÇÃO DAS CULTURAS NOTAS SOBRE A UTILIZAÇÃO DE FUNGICIDAS À BASE DE COBRE  
+Elaboração e redação: Carlos Gonçalves Bastos (Eng.º Agrícola) Débora Neves de Sousa (Engª Agrícola) Carlos Coutinho (Agente Técnico Agrícola) Fotografia: Carlos Bastos, Carlos  
+Coutinho  
+Monitorização de pragas, doenças e desenvolvimento das  
+culturas:  
+Carlos Bastos Carlos Coutinho Débora Neves Sousa  
+Produtos fitofarmacêuticos, compilação, tratamento e interpretação de dados meteorológicos Carlos Bastos  
+Expedição da edição impressa:  
+Licínio Monteiro  
+Rede Meteorológica e Informática António Seabra Rocha (Eng.º Agrícola) João Paulo Constantino Fernandes (Engº Zootécnico) Fertilidade e conservação do  
+solo:  
+Maria Manuela Costa  
+ó",,pendente_validacao_humana,,videira_fitossanidade
+Q013,teste,Que duas medidas relativas ao revestimento do solo são recomendadas na Circular n.º 04/2026 para reduzir condições favoráveis ao míldio?,"Bloco “Medidas preventivas” da secção do míldio, na Circular n.º 04, de 07/04/2026.",D05,1,546e593b-f139-577e-b06a-72b4d32509b5,98e225a07721e62d48fba2b14535e7f8b371e8813235165613a1111413550f72,"[_____________________________ <mark>AVISOS AGRÍCOLAS</mark> > VINHA > <mark>MEDIDAS PREVENTIVAS</mark>]
+Cortar a vegetação do revestimento do solo da vinha , para permitir uma melhor circulação do ar e evitar a manutenção de um ambiente húmido favorável ao míldio.  
+Cortar ladrões e rebentos muito baixos e inúteis, que, sendo infetados primeiro, servem de “escada do míldio” para a vegetação situada mais acima.  
+Evite a existência de poças de água no interior da vinha. Não mobilize o solo nesta altura , para reduzir os salpicos da chuva que venha a ocorrer e que transportam os esporos do míldio para as folhas e pâmpanos da videira. Pelo contrário, o revestimento do solo com vegetação rasteira, bem cortada, absorve o impacto da chuva e  
+reduz ou anula os salpicos.  
+<mark>Figura 1. Sintomas de míldio na folha (“manchas de óleo”)</mark>  
+CCDR-NORTE, IP – UNIDADE DE DESENVOLVIMENTO RURAL, AGROALIMENTAR E PESCAS - ESTAÇÃO DE AVISOS DE ENTRE DOURO E MINHO  Estrada Exterior da Circunvalação, 11846         4460-281 SENHORA DA HORA (MTS)  229 574 010/049  avisos.edm@ccdr-n.pt https://agrodigital.ccdr-n.pt/sia/Circulares ; https://snaa.dgav.pt/snaa/",,pendente_validacao_humana,,videira_fitossanidade
+Q013,teste,Que duas medidas relativas ao revestimento do solo são recomendadas na Circular n.º 04/2026 para reduzir condições favoráveis ao míldio?,"Bloco “Medidas preventivas” da secção do míldio, na Circular n.º 04, de 07/04/2026.",D05,1,766fe13b-3502-5704-8fe2-de4b1bf43825,27be31f4d162cc49b78009203b37c57cb3ca58c289a47a0e86ef8afdd7e2eafa,"[_____________________________ <mark>AVISOS AGRÍCOLAS</mark> > VINHA > ______________________________ MÍLDIO Plasmopara viticola]
+Para que ocorram as infeções primárias de míldio, é necessário reunir três condições básicas:  
+<mark> vegetação (pâmpanos) com 10 cm de comprimento ou mais;</mark>  
+<mark> 10 mm de chuva, seguidos ou acumulados, num período de 24 a 48 horas;</mark>  
+<mark> pelo menos 10</mark><sup>o</sup> <mark>C de temperatura mínima nesse período.</mark>  
+Nas visitas que fizemos esta semana, observámos algumas parcelas, com fenologia dominante F – G e pâmpanos que já alcançavam 10 a 30 cm.  
+A chuva caída e as temperaturas registadas em 6 e 7 de abril , podem ter dado origem a algumas infeções primárias .  
+Nas vinhas que estão em condições de serem infetadas, nos locais onde a queda de chuva tenha sido superior a 10 mm (10 litros/m<sup>2</sup> ) em 48 horas , recomendamos a aplicação de um fungicida sistémico de ação curativa, logo que possível.  
+<mark>Produtos autorizados no combate ao míldio em viticultura no Modo de Produção Biológico e Convencional : consulte os Quadros 1 a 1-7.</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q013,teste,Que duas medidas relativas ao revestimento do solo são recomendadas na Circular n.º 04/2026 para reduzir condições favoráveis ao míldio?,"Bloco “Medidas preventivas” da secção do míldio, na Circular n.º 04, de 07/04/2026.",D05,1,e2dc973b-7094-5023-b195-4066eeac5b50,6fc1c02e6fa4598897edf988a0544467c240c7302cc6480feaa4017ab78c0c93,"Circular nº 04 Senhora da Hora, 07 de abril de 2026",,pendente_validacao_humana,,videira_fitossanidade
+Q014,teste,"Segundo a Circular n.º 04/2026, em que situação se considera o tratamento da escoriose americana?","Secção “Escoriose americana” da Circular n.º 04/2026. É um limiar referido num aviso regional datado, não uma regra universal atual.",D05,2,158c6e37-0ab4-5786-81c3-5e266943ce78,d6f6821884112a7bd12f095c12e539aaac56d4da6433741b472447ea60fe6c78,"[<mark>PERCEVEJO MARMOREADO CASTANHO/ PERCEVEJO ASIÁTICO</mark>]
+#### <mark>Halyomorpha Halys</mark>  
+O percevejo asiático ( Halyomorpha halys ) é um inseto nativo da Ásia oriental (China, Japão, oriente russo). Foi detetado pela primeira vez em Portugal em 2018.  
+Esta praga invasora afeta mais de 300 espécies diferentes de plantas, incluindo, entre outras fruteiras, a actinídea .  
+O percevejo asiático é um inseto picador-sugador fitófago, o que significa que se alimenta por sucção de seiva das plantas . Conforme a sua fase de vida, ataca as folhas, as flores e os frutos, causando descoloração, deformação, podridão e queda precoce dos frutos em caso de ataques severos. Leva também, mais tarde, ao aparecimento de podridões em frutos armazenados nas câmaras frigoríficas, causando elevados prejuízos.  
+A praga tem-se expandido, conhecendo-se agora populações fixas em vastas áreas da nossa Região.  
+A saída dos insetos do período de hibernação e a sua entrada em atividade alimentar está a ocorrer desde o início de março , pelo que, deverão agora ser colocadas armadilhas nas imediações dos pomares de Kiwi (e não no  
+Página 2 de 7",,pendente_validacao_humana,,videira_fitossanidade
+Q014,teste,"Segundo a Circular n.º 04/2026, em que situação se considera o tratamento da escoriose americana?","Secção “Escoriose americana” da Circular n.º 04/2026. É um limiar referido num aviso regional datado, não uma regra universal atual.",D05,2,47cbac17-63a5-5c77-8785-c733aa8fa3a5,7b2d7a72003cd85cf4c84897587f9cc096e4a88b844fa4973dace3bd5fc1dc91,"[_____________________________________ ESCORIOSE AMERICANA Phomopsis viticola]
+O tratamento deve ser feito nas vinhas ou parcelas afetadas, sobretudo naquelas em que mais de 15% das videiras apresentem sintomas de escoriose. Consulte aqui a circular anterior.",,pendente_validacao_humana,,videira_fitossanidade
+Q014,teste,"Segundo a Circular n.º 04/2026, em que situação se considera o tratamento da escoriose americana?","Secção “Escoriose americana” da Circular n.º 04/2026. É um limiar referido num aviso regional datado, não uma regra universal atual.",D05,2,9f402fab-3bfd-5a91-bb42-d1524b7f19ed,ce52989a49f534c470832a730f06f5948dfd7fe4942ca01bae7026781a78b447,"[<mark>BACTERIOSE DA ACTINÍDEA (PSA)</mark> <mark>Pseudomonas syringae</mark> <mark>pv.</mark> <mark>actinidiae</mark>]
+A actinídea está em fase de rebentação e desenvolvimento. Nos pomares infetados pela PSA é indispensável retirar a lenha de poda.  
+O destroçamento da lenha de poda é recomendado e preferível à queima , pois devolve matéria orgânica e nutrientes ao solo e protege-o da erosão. Nos pomares afetados pela PSA, deve destroçar apenas a lenha das plantas sãs, queimando a das plantas infetadas.  
+A partir da rebentação, os pomares infetados pela PSA devem ser tratados com uma calda à base de qualquer dos produtos homologados . Não aplicar cobre com temperaturas inferiores a 8 - 10°C.  
+<mark>No controlo da PSA em Modo de Produção Biológico, são autorizados fungicidas à base de</mark> Bacillus amyloliquefaciens, cobre e laminarina .",,pendente_validacao_humana,,videira_fitossanidade
+Q014,teste,"Segundo a Circular n.º 04/2026, em que situação se considera o tratamento da escoriose americana?","Secção “Escoriose americana” da Circular n.º 04/2026. É um limiar referido num aviso regional datado, não uma regra universal atual.",D05,2,a1308835-2e3b-57ef-9c10-4cd1f845caba,3131b96d7d0b6c79019d9f311fb5e61e8757c337b0fbbe6f571c5fc1a1e40d9a,"[<mark>BOTRIOSFERIOSE / ESCORIOSE EUROPEIA / BLACK DEAD ARM (BDA)</mark>]
+#### <mark>Botryosphaeria</mark> <mark>spp</mark> <mark>.</mark>  
+Se ainda não o fez, pode aplicar um único tratamento preventivo, nas vinhas que ainda estejam no estado fenológico C - D (ponta verde - saída das folhas), só nas parcelas onde a doença tenha sido confirmada (Quadro 6) .  
+_______________________",,pendente_validacao_humana,,videira_fitossanidade
+Q014,teste,"Segundo a Circular n.º 04/2026, em que situação se considera o tratamento da escoriose americana?","Secção “Escoriose americana” da Circular n.º 04/2026. É um limiar referido num aviso regional datado, não uma regra universal atual.",D05,2,cb920309-8ffd-5960-8a8b-99a1974b5fa2,d7b47b82c294039e5d5125af7be3eb098bc0723edcb5b16df678092a04e883c5,"[TRAÇA-DA-UVA (Lobesia botrana) MONITORIZAÇÃO]
+O 1º voo da traça teve início há alguns dias. No entanto, este voo não tem significado económico.  
+Não faça tratamento contra a traça-da-uva nesta altura.  
+____________________ ACTINÍDEA (KIWI)",,pendente_validacao_humana,,videira_fitossanidade
+Q015,teste,Entre que fases fenológicas a Circular n.º 08/2026 situa o período de ataque aos cachos por black rot?,"Secção “Podridão negra (Black rot)” da Circular n.º 08/2026, PDF local com nome enganador “Circular_05-2026”.",D06,2,2570e645-6ad5-53ca-ad8e-7769a4b690ef,55809f0a975941ab376ff6c28350222c7392258b8e96c6c87441fb13c0f2a963,"Apesar disso, tendo em conta a precipitação do dia 19 e as “manchas de óleo” observadas, recomenda-se, manter a vinha protegida, de forma a impedir possíveis infeções secundárias.  
+Consulte os Quadros anexos 1 a 1.7 , com os produtos homologados para combate ao míldio da videira.  
+Fig. 2.  Manchas de óleo na folha
+Carlos Bastos",,pendente_validacao_humana,,videira_fitossanidade
+Q015,teste,Entre que fases fenológicas a Circular n.º 08/2026 situa o período de ataque aos cachos por black rot?,"Secção “Podridão negra (Black rot)” da Circular n.º 08/2026, PDF local com nome enganador “Circular_05-2026”.",D06,2,8786448b-e1ce-536f-841c-c6b5c94ae6ff,fc405d0a03dd11be4bab42dc4f0192fff16558c8520a304eb70f931feb6e911d,"[<mark>PODRIDÃO NEGRA (BLACK ROT)</mark> <mark>Phyllosticta ampelicida (= Guignardia bidwellii )</mark>]
+Na maioria dos locais visitados, temos observado manchas (pústulas) de black rot nas folhas. Salvo algumas exceções, os ataques são de muito baixa incidência e severidade.  
+O black rot é, sobretudo, uma doença dos bagos. O período de ataque aos cachos decorre do vingamento (ou mesmo da queda das caliptras) ao fecho do cacho. No entanto, se o período que  
+decorre entre a infeção e o aparecimento de sintomas nos cachos se prolongar no tempo, poderse-ão verificar manifestações da doença até ao pintor.  
+Carlos Bastos  
+Fig. 3.  Pústulas de black rot na folha  
+Nos locais onde se observem manchas nas folhas e habitualmente haja ataques significativos, e tendo em consideração o aumento da temperatura e a queda de chuva, embora fraca, durante vários dias seguidos, escolha um fungicida anti-míldio que tenha ação simultânea contra o black rot.  
+Como medida preventiva , onde tal for possível, aproveite os trabalhos de despampa, desfolha e orientação da vegetação, para retirar as folhas com pústulas de black rot (estas folhas devem ser cortadas e retiradas da vinha).  
+Consulte os quadros de fungicidas enviados em circulares anteriores.",,pendente_validacao_humana,,videira_fitossanidade
+Q015,teste,Entre que fases fenológicas a Circular n.º 08/2026 situa o período de ataque aos cachos por black rot?,"Secção “Podridão negra (Black rot)” da Circular n.º 08/2026, PDF local com nome enganador “Circular_05-2026”.",D06,2,b362624f-049b-58d2-8c71-826edc547d4c,2046ed2ed6380f456d88f6066989f18937ff97ffac8a140ad9dffc09c00f9f38,"[<mark>PODRIDÃO NEGRA (BLACK ROT)</mark> <mark>Phyllosticta ampelicida (= Guignardia bidwellii )</mark>]
+Consulte os quadros de fungicidas enviados em circulares anteriores.  
+______________________________________________ <mark>PODRIDÃO CINZENTA</mark>  
+#### <mark>Botrytis cinerea</mark>  
+<mark>Consulte</mark> <mark>aqui</mark> <mark>a Circular anterior.</mark>  
+Página 2 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q016,teste,Que operação de saneamento é recomendada na Circular n.º 08/2026 para folhas com pústulas de black rot?,Parágrafo de medida preventiva na secção black rot da Circular n.º 08/2026.,D06,2,2570e645-6ad5-53ca-ad8e-7769a4b690ef,55809f0a975941ab376ff6c28350222c7392258b8e96c6c87441fb13c0f2a963,"Apesar disso, tendo em conta a precipitação do dia 19 e as “manchas de óleo” observadas, recomenda-se, manter a vinha protegida, de forma a impedir possíveis infeções secundárias.  
+Consulte os Quadros anexos 1 a 1.7 , com os produtos homologados para combate ao míldio da videira.  
+Fig. 2.  Manchas de óleo na folha
+Carlos Bastos",,pendente_validacao_humana,,videira_fitossanidade
+Q016,teste,Que operação de saneamento é recomendada na Circular n.º 08/2026 para folhas com pústulas de black rot?,Parágrafo de medida preventiva na secção black rot da Circular n.º 08/2026.,D06,2,8786448b-e1ce-536f-841c-c6b5c94ae6ff,fc405d0a03dd11be4bab42dc4f0192fff16558c8520a304eb70f931feb6e911d,"[<mark>PODRIDÃO NEGRA (BLACK ROT)</mark> <mark>Phyllosticta ampelicida (= Guignardia bidwellii )</mark>]
+Na maioria dos locais visitados, temos observado manchas (pústulas) de black rot nas folhas. Salvo algumas exceções, os ataques são de muito baixa incidência e severidade.  
+O black rot é, sobretudo, uma doença dos bagos. O período de ataque aos cachos decorre do vingamento (ou mesmo da queda das caliptras) ao fecho do cacho. No entanto, se o período que  
+decorre entre a infeção e o aparecimento de sintomas nos cachos se prolongar no tempo, poderse-ão verificar manifestações da doença até ao pintor.  
+Carlos Bastos  
+Fig. 3.  Pústulas de black rot na folha  
+Nos locais onde se observem manchas nas folhas e habitualmente haja ataques significativos, e tendo em consideração o aumento da temperatura e a queda de chuva, embora fraca, durante vários dias seguidos, escolha um fungicida anti-míldio que tenha ação simultânea contra o black rot.  
+Como medida preventiva , onde tal for possível, aproveite os trabalhos de despampa, desfolha e orientação da vegetação, para retirar as folhas com pústulas de black rot (estas folhas devem ser cortadas e retiradas da vinha).  
+Consulte os quadros de fungicidas enviados em circulares anteriores.",,pendente_validacao_humana,,videira_fitossanidade
+Q016,teste,Que operação de saneamento é recomendada na Circular n.º 08/2026 para folhas com pústulas de black rot?,Parágrafo de medida preventiva na secção black rot da Circular n.º 08/2026.,D06,2,b362624f-049b-58d2-8c71-826edc547d4c,2046ed2ed6380f456d88f6066989f18937ff97ffac8a140ad9dffc09c00f9f38,"[<mark>PODRIDÃO NEGRA (BLACK ROT)</mark> <mark>Phyllosticta ampelicida (= Guignardia bidwellii )</mark>]
+Consulte os quadros de fungicidas enviados em circulares anteriores.  
+______________________________________________ <mark>PODRIDÃO CINZENTA</mark>  
+#### <mark>Botrytis cinerea</mark>  
+<mark>Consulte</mark> <mark>aqui</mark> <mark>a Circular anterior.</mark>  
+Página 2 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q017,teste,"Segundo a Circular n.º 08/2026, desde que fase até que referência de maturação se prolonga o período de maior risco de oídio?","Secção “Oídio da videira” da Circular n.º 08/2026; inclui a referência à alimpa, pintor e 8% de açúcares.",D06,3,362bca74-d410-5889-b7eb-6824cec946bd,46a0090b8e6785d68df4b93de8ca1e3010f5e125ecd93421ef300b3bad09d43f,"[<mark>TRAÇA-DA-UVA</mark> <mark>Lobesia botrana</mark>]
+Observámos já alguns ninhos (glomérulos) de traça nos cachos em floração, mas longe de atingir o NEA.  
+Carlos Coutinho Carlos Coutinho  
+<mark>Fig. 5. Glomérulo de traça numa inflorescência</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q017,teste,"Segundo a Circular n.º 08/2026, desde que fase até que referência de maturação se prolonga o período de maior risco de oídio?","Secção “Oídio da videira” da Circular n.º 08/2026; inclui a referência à alimpa, pintor e 8% de açúcares.",D06,3,5ea7fd08-7cbc-522f-b00f-3d82da21f882,fab3c01ebf6bec67a18949dbe79467dc90894d1a7f01faa28a57b0ba3a7dbc73,"[ESTIMATIVA DO RISCO E NÍVEL ECONÓMICO DE ATAQUE]
+#### OBSERVAR E CONTAR  
+QUE ESTADO DO QUE ÓRGÃOS? INSETO? 100 inflorescências (2 Todos os cachinhos floridos ou em glomérulos início de alimpa por videira, (“ninhos”) em 50 videiras, bem presentes em distribuídas pela vinha ou cada parcela) , de preferência, no inflorescência. interior da vegetação.  
+#### O QUE TER EM CONTA ?  
+O total de glomérulos nas 100 inflorescências  
+#### QUAL É O NÍVEL ECONÓMICO DE ATAQUE ?  
+100 a 200 glomérulos nas 100 inflorescências, conforme o tamanho e compacidade dos cachos  
+As capturas nas armadilhas com feromonas nos nossos postos de observação biológica têm sido muito baixas. No entanto, as capturas nas armadilhas não servem de orientação direta para o  
+Página 3 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q017,teste,"Segundo a Circular n.º 08/2026, desde que fase até que referência de maturação se prolonga o período de maior risco de oídio?","Secção “Oídio da videira” da Circular n.º 08/2026; inclui a referência à alimpa, pintor e 8% de açúcares.",D06,3,883c4e16-e6e4-5738-84e1-f55ac77cf400,a234773b50679f186124102809ba898749ae45d26d22dcec7bc4f15c0b29cac7,"[OÍDIO DA VIDEIRA]
+#### <mark>Erysiphe necator</mark>  
+Em termos práticos, o período de maior risco começa a seguir à alimpa (J) e prolonga-se até ao pintor (M), até os bagos atingirem uma concentração de açúcares de 8%.  
+Os ataques são mais graves em anos secos . O oídio desenvolve-se logo que haja uma humidade do ar de 25%, o que na Região dos Vinhos Verdes é raro não acontecer. Dias quentes e nublados, sem vento e sem chuva ou com chuva fraca , como previsto até ao final do mês, são-lhe também muito favoráveis .  
+São mais vulneráveis ao oídio as vinhas pouco arejadas e com excesso de vigor.  
+Pelo contrário, a chuva intensa prejudica e impede o desenvolvimento do oídio , lavando e destruindo o micélio ( pó branco ou cinzeiro ).  
+À deteção dos primeiros sintomas, aconselhamos a aplicação de um fungicida antioídio. Na atual fase de desenvolvimento , são recomendados fungicidas anti-oídio do grupo dos IBE.  
+Fig. 4.  Sintomatologia do ataque de oídio na folha
+Carlos Bastos",,pendente_validacao_humana,,videira_fitossanidade
+Q018,teste,Que condições meteorológicas a Circular n.º 11/2026 associa a condições ótimas para ataques de oídio?,"Secção “Oídio” da Circular n.º 11/2026, de 17/07/2026.",D09,2,25dcab77-a498-5158-bd37-08313438b932,017d5ec8f14ba238d1bcc7dcced0b2f3cb43ea331fae068bf06d3f2d29b202e2,"<mark>Fig. 2. Manchas de oídio na página superior da folha</mark> <mark>(13/07/2026), videira não tratada</mark>  
+<mark>Fig. 3. Oídio nos bagos</mark> <mark>(13/07), videira não tratada</mark>  
+___________________________________",,pendente_validacao_humana,,videira_fitossanidade
+Q018,teste,Que condições meteorológicas a Circular n.º 11/2026 associa a condições ótimas para ataques de oídio?,"Secção “Oídio” da Circular n.º 11/2026, de 17/07/2026.",D09,2,277e46da-d85b-5c97-8f2d-470e9bf8a3e0,7a1f057172900e20f15ed00197009b13998275b5e101ef19c04eaa54d9555320,"[<mark>PODRIDÃO NEGRA (BLACK ROT)</mark>]
+#### Phyllosticta ampelicida (= Guignardia bidwellii)  
+O black rot é uma doença dos bagos, em que são a sensibilidade a esta doença diminui a partir do fecho do cacho, No entanto, os ataques de Black Rot podem manifestar-se, até ao Pintor Sendo a fenologia predominante na região o cacho fechado (BBCH 79 ), havendo já relatos do início do pintor.  
+<mark>Não se tem observado sintomatologia da presença desta doença</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q018,teste,Que condições meteorológicas a Circular n.º 11/2026 associa a condições ótimas para ataques de oídio?,"Secção “Oídio” da Circular n.º 11/2026, de 17/07/2026.",D09,2,86d09d1d-485f-5f99-99b0-609f91d7e1cc,855882ec82877459c03605da0308bc1cf7d755b8a12bc9b9d179645a35a88aaf,"[<mark>OÍDIO</mark>]
+#### <mark>Erysiphe necator</mark>  
+<mark>Tempo enevoado, quente e com luz difusa, reúne condições ótimas para ataques de oídio.</mark>  
+<mark>Em vinhas não tratadas contra o oídio, temos visto ataques aos bagos e folhas.</mark>  
+<mark>ativas, enxofre e/ ou metildinocap. Tendo em atenção o aumento do risco de fitotoxidade, causado por estas substancias ativas, quando o as temperaturas ultrapassam os 32ºC .(Consulte</mark> <mark>aqui</mark> <mark>a meteorologia).</mark>  
+<mark>A vinha é suscetível a esta doença até ao pintor. Com o aumento da concentração de açucares, os bagos tornam-se resistentes.</mark>  
+<mark>Consulte os quadros dos fitofármacos enviados em circulares anteriores.</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q018,teste,Que condições meteorológicas a Circular n.º 11/2026 associa a condições ótimas para ataques de oídio?,"Secção “Oídio” da Circular n.º 11/2026, de 17/07/2026.",D09,2,e957fcec-f2cd-55c0-a71e-9f7d6df9a624,3628764bb53e7de13ac1badc42cf97fd30ebb3c614ac954a7fd722e165b91932,"[<mark>FLAVESCÊNCIA DOURADA DA VIDEIRA</mark>]
+#### <mark>Grapevine flavescence dorée</mark> <mark>phytoplasma (FD)</mark>  
+<mark>Nas vinhas infetadas, continuam visíveis os sintomas desta grave doença da videira.</mark>  
+<mark>Para se poder considerar suspeita de ser portadora de FD, a videira deve apresentar simultaneamente todos os sintomas da doença  varas por atempar e prostradas (pendentes)</mark>  
+<mark> folhas cloróticas, amareladas nas castas brancas, avermelhadas nas tintas, encortiçadas e enroladas para a face inferior. No entanto, estes sintomas podem também ser associados a outras doenças, nomeadamente aos sintomas provocados pelo vírus do enrolamento</mark>  
+<mark>Recomenda-se a proteção das vinhas contra o oídio, utilizando entre outras substâncias</mark>  
+Página 2 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q019,teste,Como classifica a Circular n.º 11/2026 o risco de Botrytis em função do histórico de ataques da parcela?,Quadro 1 “Avaliação do risco de Botrytis” da Circular n.º 11/2026.,D09,4,2e8c8c95-8938-5f3f-a304-721b6c84499c,5d3a7e3453a690b57e9ee4012c102c9ce158e7d1600bb8ca4126bd341798909c,"As videiras afetadas pela flavescência dourada (FD) não têm recuperação e não voltarão a produzir. O seu declínio acentuar-se-á, ano após ano, até à morte das plantas.  
+A permanência de videiras com FD nas vinhas é um risco elevado e desnecessário de contaminação das videiras sãs. Por isso, se recomenda o seu arranque imediato.",,pendente_validacao_humana,,videira_fitossanidade
+Q019,teste,Como classifica a Circular n.º 11/2026 o risco de Botrytis em função do histórico de ataques da parcela?,Quadro 1 “Avaliação do risco de Botrytis” da Circular n.º 11/2026.,D09,4,669ab684-3911-5bd5-a505-8f14097c58f8,271a927601847376d29ac0456d74e12a7e4e00f6d448353332a941128144692f,"[<mark>___________________________________ PODRIDÃO CINZENTA</mark> <mark>Botrytis cinerea</mark>]
+anos|Forte(parcela muito sensível)|  
+<mark>___________________________________ ESCA</mark>  
+#### <mark>(Phaeomoniella chlamydospora, Phaeoacremonium spp., Fomitiporia mediterranea)</mark>  
+<mark>Este ano, tal como aconteceu no ano passado, foram visíveis muito cedo os sintomas secundários da forma lenta desta doença, que pode levar ao declínio prolongado da videira, por vários anos. A “ forma rápida” ou apoplexia é a morte repentina de videiras doentes com esca, sobretudo em dias muito quentes e em</mark> <mark>stress</mark> <mark>hídrico.</mark>  
+<mark>Marque agora 1) as videiras com sintomas de esca, secas ou muito debilitadas e sem cachos viáveis, para as arrancar o mais brevemente possível; 2) as videiras com sintomas, mas que têm ramos sãos e alguma produção, para as arrancar depois da vindima ou para tentar</mark>  
+<mark>recuperá-las durante a poda.</mark>  
+<mark>Fig. 9 Sintomas secundários da esca nas folhas e cachos após a vaga de calor</mark>  
+Fig. 10  Sintomas secundários da esca nas folhas e
+cachos (bago emurchecido)
+Página 4 de 8  
+Página 4 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q019,teste,Como classifica a Circular n.º 11/2026 o risco de Botrytis em função do histórico de ataques da parcela?,Quadro 1 “Avaliação do risco de Botrytis” da Circular n.º 11/2026.,D09,4,ec4829a5-2dc0-5bf7-8cf5-a4c73900c2c9,fa627913a4e3ce82bb0dccc7e88a097cbe7b15339513524364f76836ce778dd7,"[<mark>___________________________________ PODRIDÃO CINZENTA</mark> <mark>Botrytis cinerea</mark>]
+<mark>O 3º tratamento</mark> <mark>standard</mark> <mark>para prevenir esta doença, deve ser efetuado ao início do pintor – M (BBCH 11), que apenas se observa nas castas temporãs de uva de mesa, embora já nos tenha sido comunicado o início do pintor em algumas castas tintas.</mark>  
+<mark>Tenha em conta a necessidade de efetuar o tratamento, conforme a sensibilidade da parcela, de acordo com as indicações genéricas resumidas no Quadro 1 .</mark>  
+|QUADRO 1|. AVALIAÇÃO DO RISCO DE BOTRYTIS|
+|---|---|
+|Ataque de
+Botrytis|Risco|
+|Nunca ou
+raramente|Fraco(parcela pouco ou nada
+sensível)|
+|Uns anos
+por outros|Médio(parcela sensível)|
+|Todos os
+anos|Forte(parcela muito sensível)|  
+<mark>___________________________________ ESCA</mark>  
+#### <mark>(Phaeomoniella chlamydospora, Phaeoacremonium spp., Fomitiporia mediterranea)</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q020,teste,"Que dois destinos possíveis a Circular n.º 11/2026 distingue para videiras com sintomas de esca, consoante o seu estado produtivo?","Secção “Esca” da Circular n.º 11/2026, com distinção entre videiras sem produção viável e videiras com ramos sãos/alguma produção.",D09,4,2e8c8c95-8938-5f3f-a304-721b6c84499c,5d3a7e3453a690b57e9ee4012c102c9ce158e7d1600bb8ca4126bd341798909c,"As videiras afetadas pela flavescência dourada (FD) não têm recuperação e não voltarão a produzir. O seu declínio acentuar-se-á, ano após ano, até à morte das plantas.  
+A permanência de videiras com FD nas vinhas é um risco elevado e desnecessário de contaminação das videiras sãs. Por isso, se recomenda o seu arranque imediato.",,pendente_validacao_humana,,videira_fitossanidade
+Q020,teste,"Que dois destinos possíveis a Circular n.º 11/2026 distingue para videiras com sintomas de esca, consoante o seu estado produtivo?","Secção “Esca” da Circular n.º 11/2026, com distinção entre videiras sem produção viável e videiras com ramos sãos/alguma produção.",D09,4,669ab684-3911-5bd5-a505-8f14097c58f8,271a927601847376d29ac0456d74e12a7e4e00f6d448353332a941128144692f,"[<mark>___________________________________ PODRIDÃO CINZENTA</mark> <mark>Botrytis cinerea</mark>]
+anos|Forte(parcela muito sensível)|  
+<mark>___________________________________ ESCA</mark>  
+#### <mark>(Phaeomoniella chlamydospora, Phaeoacremonium spp., Fomitiporia mediterranea)</mark>  
+<mark>Este ano, tal como aconteceu no ano passado, foram visíveis muito cedo os sintomas secundários da forma lenta desta doença, que pode levar ao declínio prolongado da videira, por vários anos. A “ forma rápida” ou apoplexia é a morte repentina de videiras doentes com esca, sobretudo em dias muito quentes e em</mark> <mark>stress</mark> <mark>hídrico.</mark>  
+<mark>Marque agora 1) as videiras com sintomas de esca, secas ou muito debilitadas e sem cachos viáveis, para as arrancar o mais brevemente possível; 2) as videiras com sintomas, mas que têm ramos sãos e alguma produção, para as arrancar depois da vindima ou para tentar</mark>  
+<mark>recuperá-las durante a poda.</mark>  
+<mark>Fig. 9 Sintomas secundários da esca nas folhas e cachos após a vaga de calor</mark>  
+Fig. 10  Sintomas secundários da esca nas folhas e
+cachos (bago emurchecido)
+Página 4 de 8  
+Página 4 de 8",,pendente_validacao_humana,,videira_fitossanidade
+Q020,teste,"Que dois destinos possíveis a Circular n.º 11/2026 distingue para videiras com sintomas de esca, consoante o seu estado produtivo?","Secção “Esca” da Circular n.º 11/2026, com distinção entre videiras sem produção viável e videiras com ramos sãos/alguma produção.",D09,4,ec4829a5-2dc0-5bf7-8cf5-a4c73900c2c9,fa627913a4e3ce82bb0dccc7e88a097cbe7b15339513524364f76836ce778dd7,"[<mark>___________________________________ PODRIDÃO CINZENTA</mark> <mark>Botrytis cinerea</mark>]
+<mark>O 3º tratamento</mark> <mark>standard</mark> <mark>para prevenir esta doença, deve ser efetuado ao início do pintor – M (BBCH 11), que apenas se observa nas castas temporãs de uva de mesa, embora já nos tenha sido comunicado o início do pintor em algumas castas tintas.</mark>  
+<mark>Tenha em conta a necessidade de efetuar o tratamento, conforme a sensibilidade da parcela, de acordo com as indicações genéricas resumidas no Quadro 1 .</mark>  
+|QUADRO 1|. AVALIAÇÃO DO RISCO DE BOTRYTIS|
+|---|---|
+|Ataque de
+Botrytis|Risco|
+|Nunca ou
+raramente|Fraco(parcela pouco ou nada
+sensível)|
+|Uns anos
+por outros|Médio(parcela sensível)|
+|Todos os
+anos|Forte(parcela muito sensível)|  
+<mark>___________________________________ ESCA</mark>  
+#### <mark>(Phaeomoniella chlamydospora, Phaeoacremonium spp., Fomitiporia mediterranea)</mark>",,pendente_validacao_humana,,videira_fitossanidade
+Q021,validacao,Que fungo é identificado no Manual da Embrapa como agente causal da mancha-das-folhas da videira e qual é a sua forma anamórfica?,Secção “Mancha-das-folhas — Mycosphaerella personata”; explicita a forma anamórfica Pseudocercospora vitis. Documento brasileiro e fonte condicional.,D13,62,212a5e88-b63d-507b-8ebd-e9ea7a85ba53,b52242f6f0c6997220a1459173f2ddc6b936d0b1548d97f16cda405b5c48d8f6,"[MANCHA-DAS-FOLHAS - Mycosphaerella personata]
+Descrição - O agente causal da mancha-das-folhas é o fungo Mycosphaerella personata , que na fase imperfeita (fase anamórfica), corresponde à espécie Pseudocercospora vitis, sinonímia de Isariopsis clavispora.  P.vitis possui conídios alongados (25-99 x 4-8 µm), multisseptados (de 3 a 17 septos), agregados em feixes (sinêmios), de coloração verde oliva. O número de septos dos conídios é influenciado pela umidade relativa. Numerosos esporos são formados em ambas as superfícies da folha, sob condições de umidade, sendo mais abundantes na superfície inferior da folha. A infecção inicia por meio de conídios ou ascósporos do fungo, que penetram a superfície foliar através de hifas ou pelos estômatos. Tufos de conidióforos desenvolvem-se a partir das hifas localizadas abaixo da epiderme. Quando os conidióforos emergem para a superfície foliar produzem conídios. Na fase avançada da infecção, ocorre a colonização intracelular pelo fungo, causando necrose e colapso das células. Na fase sexuada, peritécios são formados em folhas mortas. Ascósporos e conídios servem como inóculo primário e são disseminados pelo vento. O aparecimento da doença é mais frequente em folhas velhas e no final do",,pendente_validacao_humana,,videira_fitossanidade
+Q021,validacao,Que fungo é identificado no Manual da Embrapa como agente causal da mancha-das-folhas da videira e qual é a sua forma anamórfica?,Secção “Mancha-das-folhas — Mycosphaerella personata”; explicita a forma anamórfica Pseudocercospora vitis. Documento brasileiro e fonte condicional.,D13,62,864b5249-dcd1-5a40-ad3a-0e35bf64e649,cbc47d5a7c5262b7f62c13382e978ee6eb32547467889b8ee2aa24b074e244c6,"[MANCHA-DAS-FOLHAS - Mycosphaerella personata]
+Patógeno - Mycosphaerella personata ( anamorfo Pseudocercospora vitis) Classificação - Ascomiceto da Ordem Capnodiales",,pendente_validacao_humana,,videira_fitossanidade
+Q021,validacao,Que fungo é identificado no Manual da Embrapa como agente causal da mancha-das-folhas da videira e qual é a sua forma anamórfica?,Secção “Mancha-das-folhas — Mycosphaerella personata”; explicita a forma anamórfica Pseudocercospora vitis. Documento brasileiro e fonte condicional.,D13,62,d8017854-e32c-5aef-913a-9710a4657108,d1bc88dae808b5bc6d8dc50c2af304beee22d5cbaf813c4622cb857846650422,"[MANCHA-DAS-FOLHAS - Mycosphaerella personata]
+peritécios são formados em folhas mortas. Ascósporos e conídios servem como inóculo primário e são disseminados pelo vento. O aparecimento da doença é mais frequente em folhas velhas e no final do ciclo vegetativo da planta, em variedades americanas ou híbridos, sob condições de alta temperatura e umidade.",,pendente_validacao_humana,,videira_fitossanidade
+Q022,validacao,Que aspeto têm as manchas de mancha-das-folhas descritas no Manual da Embrapa?,Secção “Sintomas” da mancha-das-folhas. Não assumir que esta doença corresponde automaticamente ao rótulo visual FieldVitis “leaf blight”.,D13,63,4f3b1e58-53d2-5e04-97c9-c98ce3d5f4b0,65f6385c741f55d6ef12ab19f8af2ba670bf3f8fd7dfac3ca0ab68a6b76f27f0,"[MANCHA-DAS-FOLHAS - Mycosphaerella personata]
+Sintomas - Nas folhas aparecem manchas bem definidas, de contorno irregular e coloração inicialmente castanho-avermelhada, que mais tarde escurece. As manchas podem atingir até 2 cm de diâmetro e apresentam um halo amarelado ou verde-claro bem visível; na face oposta da folha, no tecido correspondente, ocorre uma coloração parda.  
+Sinais - Conidióforos produzidos em sinêmios e conídios na superfície inferior da folha.",,pendente_validacao_humana,,videira_fitossanidade
+Q023,validacao,"Segundo o estudo da Embrapa sobre mancha-das-folhas, que consequências pode ter a desfolha precoce para a videira?","Introdução, parágrafo sobre as consequências da desfolha precoce. Documento brasileiro; a pergunta limita-se aos efeitos descritos no estudo.",D15,1,2e69807b-8a7f-5e24-8b4f-24056153f54a,4e4a78a46836b7dba4fa0bbf31a6544c5e77932ae1e8bc0d02f86a83521ee9d6,"[Comunicado189 ISSN 1808-6802 Dezembro, 2016 Técnico > Introdução]
+A mancha-da-folha da videira, também conhecida por mancha de Isariopsis é causada por Mycosphaerella personata Higgins, anamorfo Pseudocercospora vitis (Lév.) Speg., e ocorre, geralmente no final do ciclo vegetativo, principalmente nas cultivares americanas e algumas híbridas, sendo que a cultivar Bordô é extremamente suscetível, enquanto que as cultivares viníferas ou europeias são resistentes a esta doença.  
+O patógeno ataca diferentes gêneros de Vitaceae ( Ampelopsis, Cissus, Parthenocissus ) e diferentes espécies de Vitis. Tendo sido relatada no Brasil, Europa, India, Japão, América do Norte, Coreia do Sul, Paquistão, Arábia Saudita e África do Sul e mais recentemente na Argentina em cultivares americanas (SISTERNA; RONCO, 2005).  
+A ocorrência da mancha-das-folhas está ligada à ausência de tratamentos com fungicidas; à utilização de produtos inadequados para controle ou à descontinuidade das aplicações, o que contribui para a infecção das folhas pelo patógeno e a consequente queda. No Brasil, muito pouca atenção tem sido dada por parte dos viticultores no controle da mancha-",,pendente_validacao_humana,,videira_fitossanidade
+Q023,validacao,"Segundo o estudo da Embrapa sobre mancha-das-folhas, que consequências pode ter a desfolha precoce para a videira?","Introdução, parágrafo sobre as consequências da desfolha precoce. Documento brasileiro; a pergunta limita-se aos efeitos descritos no estudo.",D15,1,88a8cc41-058d-5b7e-bda3-0f356f6caf74,6baa7700a08819398be99a163a51d009ed8120b393c221019d05a05742b9c7cd,"[Comunicado189 ISSN 1808-6802 Dezembro, 2016 Técnico > Introdução]
+1 Engenheiro-agrônomo, Dr., Pesquisador, Embrapa Uva e Vinho, Bento Gonçalves, RS. E-mail: lucas.garrido@embrapa.br",,pendente_validacao_humana,,videira_fitossanidade
+Q023,validacao,"Segundo o estudo da Embrapa sobre mancha-das-folhas, que consequências pode ter a desfolha precoce para a videira?","Introdução, parágrafo sobre as consequências da desfolha precoce. Documento brasileiro; a pergunta limita-se aos efeitos descritos no estudo.",D15,1,a393b0a6-656a-5816-995a-f73c0593b356,208681e83f891399d307f11ef32bf2b6c7e8e0aefcb27c28eb3446e7db86f545,"[Comunicado189 ISSN 1808-6802 Dezembro, 2016 Técnico]
+ISSN 1808-6802 Dezembro, 2016 Bento Gonçalves, RS  
+Lucas da Ressurreição Garrido<sup>1</sup>",,pendente_validacao_humana,,videira_fitossanidade
+Q023,validacao,"Segundo o estudo da Embrapa sobre mancha-das-folhas, que consequências pode ter a desfolha precoce para a videira?","Introdução, parágrafo sobre as consequências da desfolha precoce. Documento brasileiro; a pergunta limita-se aos efeitos descritos no estudo.",D15,1,da1add26-82d1-556f-85c6-f7876132bd43,a8419a06319712244a83d18467994458460ddd59f73def08302722bb282e2041,"[Comunicado189 ISSN 1808-6802 Dezembro, 2016 Técnico > Introdução]
+das-folhas. De um modo geral, muita atenção com os tratamentos fitossanitários é dada até a colheita da uva e a partir daí, no máximo, é realizada alguma aplicação com calda bordalesa, que não apresenta boa eficácia no controle dessa doença. Consultando a literatura internacional, observam-se poucos trabalhos conduzidos em outros países vitivinícolas, pois a grande maioria cultiva a espécie Vitis vinifera L., que é resistente.  
+A desfolha precoce acarreta o enfraquecimento da planta, a redução na resistência às baixas temperaturas e compromete o vigor e a produção dos anos seguintes. A fotossíntese continuada e a absorção de nutrientes, durante o período pós-colheita, permitem as videiras armazenarem carboidratos e reservas de nutrientes para uso na estação seguinte (SMITH; HOLZAPFEL, 2012). A redução das reservas de carboidratos, pela desfolha parcial ou total, resulta na menor taxa de crescimento e o menor diâmetro das brotações na primavera seguinte. A redução da área foliar pode restringir o acúmulo de carboidratos, tendo como consequências impactos negativos no florescimento e no rendimento da produção nos anos seguintes (BENNETT et al., 2005; ROGIERS et al., 2011).",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,0928082a-da22-56ec-a006-f8359bc1fbc2,2c3ab72df056e7fba5e30195b86e127da63faf044fd985732f95cb97ea550c1a,"[Metodologia]
+Dados de temperatura máxima, temperatura mínima, temperatura média, umidade relativa e precipitação foram coletados de 01 de fevereiro a 08 de abril de 2015, pela estação agrometeorológica da Embrapa Uva e Vinho, instalada na Vinícola Viapiana (-29.004966 e -51.261905) (Figuras 8 a 10).",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,642a3c2c-6d99-5792-9728-24c597a3aa09,e6f9dc57b34aacf91d79f9a6d3860e6e9b5745a483838ebc9c195d6369981531,"[Metodologia]
+teste de Duncan a 5 %, teste de t, área abaixo da curva de progresso da doença (AACPD) e a taxa aparente da doença (r) calculada por meio ln(y/1-y) – ln(y0/1-y0) / t, onde y é a quantidade de doença no tempo t. As análises de variância e teste médias e teste de t foram realizadas utilizando o software SAEG 9.0 (SAEG, 2006). A percentagem de ramos maduros foi avaliada visualmente, em 29/04/2015, nas duas plantas centrais de cada parcela do tratamento, contudo os resultados não foram submetidos a nenhuma análise estatística. Os ramos lignificados de coloração marrom foram considerados maduros e os ramos verdes como imaturos.",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,8718cbbd-db46-5edb-94d5-ef2adc277649,fa6994a70c256971315d3c2266b172e5b5e078036b4d8d8ac4c7605ed5721741,"[Metodologia]
+Os tratamentos realizados para avaliar o controle da mancha-das-folhas utilizaram a dosagem comercial dos produtos por ha. O ensaio 1 apresentou os seguintes tratamentos: 1) calda bordalesa 1%; 2) hidróxido de cobre (Kocide® WDG) 1,8 Kg; 3) oxicloreto de cobre (Recop®) 2,5 Kg; 4) CopperCrop® 0,5 L + SoilSet® 1 L; 5) mancozebe (Manzate® 800) 2 kg; 6) tebuconazol (Folicur® CE) 1 L; 7) enxofre (Kumulus® DF) 3 Kg e 8) testemunha. Os tratamentos do ensaio 2 foram: 1) difeconazol (Score®) 0,08 L; 2) tebuconazol 1 L; 3) metconazol (Caramba®) 1 L e 4) boscalida + cresoxim metílico (Collis®) 0,5 L. Já o ensaio 3 temos a) boscalida + cresoxim metílico 0,5 L; CopperCrop® 0,5 L + SoilSet® 1 L + enxofre 3 Kg e 3) testemunha. As datas de aplicação dos produtos no ensaio 1 foram 20/02/2015, 04/03/2015 e 20/03/2015 e para os ensaios 2 e 3 nos dias 21/02/2015, 06/03/2015 e 20/03/2015.  
+O CopperCrop® apresenta na sua composição nitrogênio (N) 4,09% (54,81 g/L); cobre (Cu)",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,8766f494-09f9-50a6-9752-b41143b4b6ab,2f53a61825d7060d43fce33cf5ce759c9d632001ac6239440fbdc2ba138b760b,"[Metodologia]
+O experimento foi realizado em três vinhedos da propriedade do Sr. Plínio Scortegagna, Flores da Cunha, RS (latitude -28.984598 e longitude -51.259606). No ensaio 1, foi utilizada a cv. Bordô, conduzida em latada, com espaçamento de 2,5 m x 1,5 m. Já nos ensaios 2 e 3, as cultivares utilizadas foram Bordô e Isabel Precoce, respectivamente, também conduzidas em latada, mas com espaçamento 2,0 m x 1,5 m. Todos os ensaios aconteceram na safra 2014/2015, para avaliação do controle da mancha-das-folhas.  
+No ensaio 1, as aplicações foram realizadas com um pulverizador a CO2, ajustado para um volume por hectare de 600L, molhando-se a folhas com os produtos, enquanto que nos ensaios 2 e 3 foi utilizado um pulverizador turbo com capacidade de 200 L, com um volume final de calda de aproximadamente 600 L / ha. As aplicações foram realizadas após a colheita da uva.",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,87c680f8-5eb9-5f74-9b61-6c63480d9bd9,0f9589a5198d5321c328885b4758cb6839f9dc1a7feed359542b7296f8d4040e,"[Metodologia]
+O CopperCrop® apresenta na sua composição nitrogênio (N) 4,09% (54,81 g/L); cobre (Cu)  
+10,0% (134 g/L); carbono orgânico 3,53%. Todos elementos solúveis em água e complexados por aminoácidos 5%. Já o SoilSet é composto de enxofre (S) 3,75% (46,12 g/L); cobre (Cu) 2,00% (24,60 g/L); ferro (Fe) 1,60% (19,68 g/l); manganês (Mn) 0,80% (9,84 g/L) zinco (Zn) 3,20% (39,36 g/L) carbono orgânico 2,13. Todos elementos solúveis em água e complexados por aminoácidos 5%.",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,cbd31661-171c-5df6-907b-3e0f0a1eb3e0,b2ddd5fbba877caefdff775bdfd33e90930f3ed5e86d9865a670b60bdf2389f9,"[Objetivo]
+O objetivo do trabalho foi avaliar a eficácia de fungicidas e produtos alternativos no controle da mancha-das-folhas da videira.",,pendente_validacao_humana,,videira_fitossanidade
+Q024,validacao,"No estudo da Embrapa sobre mancha-das-folhas, como se distinguem “incidência” e “severidade”?","Metodologia de avaliação dos ensaios: definição operacional de incidência e severidade. Aplicável à leitura do estudo, não como resultado experimental do grupo.",D15,3,ef6cc0c2-723a-5d2b-9642-afd17a82b9b8,ac1da3935416b8c03317264b4e1b3a5c20f1f8d1a79b8af52f268c5603e091b3,"[Metodologia]
+O delineamento experimental do ensaio 1 foi em blocos casualizados com quatro repetições com quatro plantas por parcela, enquanto que nos ensaios 2 e 3 cada tratamento (produto) foi pulverizado em 12 fileiras correspondente a 200 L de calda, ou seja 0,33 ha. No primeiro ensaio, a incidência e a severidade das doenças foi avaliada em cada parcela nas duas plantas centrais em 50 folhas. Já no segundo e terceiro ensaio, a doença foi avaliada em cinquenta pontos espalhados pela parcela. A mancha-das-folhas foi avaliada inicialmente antes da instalação dos ensaios em 19/02/2015 e depois a intervalos de aproximadamente 15 dias em 09/03/2015, 26/03/2015, 09/04/2015 e 29/04/2015. A avaliação da incidência foi realizada calculando-se a percentagem de folhas que apresentavam sintomas, indiferente da intensidade da doença. Para avaliação da severidade nas folhas foi utilizada a avaliação visual da percentagem da folha com sintomas da doença. Os valores foram analisados utilizando análise de variância, teste de Duncan a 5 %, teste de t, área abaixo da curva de progresso da doença (AACPD) e a taxa aparente da doença (r) calculada por meio ln(y/1-y) – ln(y0/1-y0) / t, onde y é a quantidade de",,pendente_validacao_humana,,videira_fitossanidade
+Q025,validacao,Quais são os sinais visuais descritos no Caderno Técnico ADVID para o míldio na página superior e na página inferior da folha?,Secção IV “Sintomas e Sinais”: distingue sintoma na página superior e sinal de esporulação na página inferior. Fonte condicional por licença não confirmada.,D16,10,9db9a00c-d5dc-5674-8bc1-d18af70540c8,519afeb7184fed84d6c5ab30784ad6401916c981064a31c85427800be63a1b8e,"[IV. Sintomas e Sinais]
+O míldio manifesta-se em todos os órgãos verdes e jovens da videira (folhas, inflorescências, cachos e pâmpanos), podendo causar necroses e até mesmo a morte dos mesmos.  
+Quando surgem os sintomas de míldio da videira, o pseudofungo já se encontra no interior da planta. Numa fase inicial, a doença manifesta-se através das conhecidas manchas de óleo ( sintomas ), na página superior da folha. Mais tarde, na página inferior da folha, surgem as estruturas características de Plasmopara viticola , com o aspeto de uma pubescência esbranquiçada constituída pelos zoosporangióforos e zoosporângios (esporulação), que constituem o sinal da doença.",,pendente_validacao_humana,,videira_fitossanidade
+Q025,validacao,Quais são os sinais visuais descritos no Caderno Técnico ADVID para o míldio na página superior e na página inferior da folha?,Secção IV “Sintomas e Sinais”: distingue sintoma na página superior e sinal de esporulação na página inferior. Fonte condicional por licença não confirmada.,D16,10,e967d08e-670a-55cf-ae4d-d3d189f28d7a,d2f6569006121ace68fa26b83388dd718b83f2b940fac0bf34a354f759ee7005,"[IV. Sintomas e Sinais]
+Nas folhas , o primeiro sintoma visível na página superior é o aparecimento de manchas descoradas com aspeto oleoso, designadas por manchas de óleo ( Fotografia 4 ), registadas alguns dias após a contaminação pelo pseudofungo. Posteriormente, com humidade elevada na página inferior das folhas (nas zonas correspondentes às manchas) surgem   manchas esbranquiçadas (pubescência branca), resultantes da esporulação de Plasmopara viticola ( Fotografia 5 ). A disseminação dos zoosporângios entretanto formados, com a subsequente libertação de zoósporos, está na origem das infeções secundárias ( Fotografia 6.a e 6.b ).  
+Fotografia 4. Sintomas de míldio na página superior (mancha de óleo)  
+Fotografia 5. Esporulações de míldio (página inferior)  
+Fotografia 6.a (à esquerda)  - Sintomas de infeções secundárias na página superior; 6.b (à direita) - Esporulações na página inferior da folha",,pendente_validacao_humana,,videira_fitossanidade
+Q026,teste,Como caracteriza o Caderno Técnico ADVID o “rot brun” nos cachos com míldio?,Secção de estragos em cachos: descrição do “rot brun”. Fonte condicional por licença não confirmada.,D16,12,7b4fa457-962a-5798-bed4-5ffe592dcbdc,f2e9de81b2702a1f0768033bb96efdcd64258e9cac5054675d5e27a1366d6c01,"[V. Estragos e Prejuízos]
+As epidemias mais graves de míldio ocorrem, geralmente, na sequência de Invernos frios, Primaveras com elevada precipitação, seguindo-se um Verão ameno com chuvas intermitentes a cada 8 a 15 dias. Estas condições asseguram a sobrevivência de Plasmopara viticola (oósporos), bem como a sua elevada germinação na Primavera, permitindo o desenvolvimento da doença e a sua dispersão a nível local, ou eventualmente regional.  
+Na Região Demarcada do Douro (RDD), destacam-se os anos de 1981, 1988, 1993, 1998, 2000, 2014, 2016 e 2018, com grandes quebras de produção devido a ataques severos de míldio.",,pendente_validacao_humana,,videira_fitossanidade
+Q026,teste,Como caracteriza o Caderno Técnico ADVID o “rot brun” nos cachos com míldio?,Secção de estragos em cachos: descrição do “rot brun”. Fonte condicional por licença não confirmada.,D16,12,90346c45-a1ed-52e7-8802-46329fede2fe,a14ef26c35f49e3a41073a0de7accb778e5eb74f0efaaff5ff781adbb37f3f51,"Nos cachos , quando os bagos estão já bem desenvolvidos, podem verificar-se fortes ataques de míldio, apresentando os bagos uma cor castanha, sem frutificações, acabando por murchar e mais tarde secar – “ rot brun ” ( Fotografia 12 ).  
+No final do Verão/Outono, quando as condições deixam de ser favoráveis e os tecidos da videira apresentam uma maior resistência a Plasmopara viticola , as hifas existentes no interior das folhas afetadas por “ míldio mosaico ” diferenciam estruturas sexuadas (oogónios e anterídios), as quais, por conjugação, dão origem aos oósporos que irão assegurar a conservação do pseudofungo para o ciclo seguinte. As manchas de “míldio mosaico” distinguem-se das restantes (manchas de óleo), porque surgem mais tardiamente, são de menor dimensão e têm forma poligonal, delimitadas pelas nervuras.  
+Fotografia 12.a (à esquerda); 12.b (à direita) - Rot brun nos cachos",,pendente_validacao_humana,,videira_fitossanidade
+Q026,teste,Como caracteriza o Caderno Técnico ADVID o “rot brun” nos cachos com míldio?,Secção de estragos em cachos: descrição do “rot brun”. Fonte condicional por licença não confirmada.,D16,12,d2de8b57-a796-58f4-9792-6e858600da95,6a0cfcb440ebcd229b9a89a692a5a8c16619493a41219b952cb6c784f406e701,"[V. Estragos e Prejuízos]
+O míldio é uma das doenças mais graves e com maior impacto na cultura da vinha. Em anos chuvosos e dias com elevada humidade, em conjunto com a ausência de tratamentos ou a falta de oportunidade para os realizar, pode conduzir à destruição parcial ou total da produção. Os danos causados podem ser tanto ao nível da quantidade como da qualidade da colheita. Também o correto atempamento das varas, pode ser afetado, com potencial interferência na poda do ano seguinte, pelos fendilhamentos provocados na base dos lançamentos, podendo ainda refletir-se, mais tarde, na constituição e acumulação de reservas.  
+A quantidade da colheita pode ser em grande parte reduzida, pela seca total ou parcial dos cachos. No que respeita à qualidade , fortes ataques de míldio podem provocar uma redução de área fotossinteticamente ativa das folhas ou até mesmo a desfoliação total, podendo originar uma maturação anormal dos bagos, reduzindo o teor de açúcar.",,pendente_validacao_humana,,videira_fitossanidade
+Q027,teste,"Segundo o Caderno Técnico ADVID sobre oídio, que condições de temperatura e humidade favorecem o início do desenvolvimento do fungo na primavera?",Secção “Biologia e Epidemiologia”. O limiar é o descrito no documento ADVID para o contexto da Região Demarcada do Douro.,D17,7,0ec1187b-018b-5846-8248-bd9a92539b0c,838738c2128f47c571ac8fefd4bf1335ca2f02805adfe7c9140a33842fe05f7a,"[Biologia e Epidemiologia]
+O oídio pode provocar dois tipos de sintomas (manchas isoladas ou “bandeiras”) no momento das primeiras contaminações. Na primavera, quando as condições climáticas são favoráveis (temperatura superior a 15ºC e humidade relativa superior a 25%), inicia-se o desenvolvimento do fungo que pode ter origem tanto pela germinação do micélio hibernante nos gomos, que esporula e produz os conídios que dão origem ao aparecimento das “bandeiras”, quer pela contaminação de ascósporos provenientes das cleistotecas, considerada a principal fonte de inóculo para as infecções primárias na Região do Douro. Após a sua germinação dão origem à formação de conidióforos e conídios (foto 10), dando início às infeções primárias e ciclos de infeções secundárias (aspeto pulverulento).  
+Foto 10 – Conidióforos e conídios de oídio e respetivo pormenor (www.apsnet.org).  
+A ocorrência de dias com forte humidade relativa (40-100%) contribui para a formação de haustórios. Por outro lado, a presença e incidência de luz forte e direta inibem a germinação dos conídios, sendo estes favorecidos por uma luz difusa (dias com nevoeiro).",,pendente_validacao_humana,,videira_fitossanidade
+Q027,teste,"Segundo o Caderno Técnico ADVID sobre oídio, que condições de temperatura e humidade favorecem o início do desenvolvimento do fungo na primavera?",Secção “Biologia e Epidemiologia”. O limiar é o descrito no documento ADVID para o contexto da Região Demarcada do Douro.,D17,7,64daac53-2571-5851-8687-e4f52c39aeac,7822ffdbc062133e2bbb9ee8af3216834da042bff09b0710a56c1aa4ceee58ca,"[Biologia e Epidemiologia]
+O vento também contribui para a libertação e disseminação dos conídios, assim como as pulverizações, pelo efeito mecânico das gotas e do ar projetado, a ocorrência de chuva e qualquer outra operação cultural, que dê origem a vibrações, favorecem a libertação dos conídios.  
+A hibernação do fungo ocorre sob a forma de micélio dormente nos gomos (forma assexuada) e de cleistotecas (forma sexuada) que, quando arrastadas pelo vento e pela chuva, permanecem alojadas no ritidoma das cepas, em folhas caídas no solo e até no próprio solo (figura 1). As cleistotecas, que ficam no solo, parecem ter pouca importância no que se refere aos ataques de oídio na primavera, admitindo-se que estas são destruídas por hiperparasitismo.  
+Ao longo do ciclo vegetativo, a doença reproduz-se e faz a sua disseminação através dos conídios, conservando-se de várias formas, dependendo das regiões e das diferentes castas.",,pendente_validacao_humana,,videira_fitossanidade
+Q028,teste,"Que fatores de nocividade devem ser considerados na estimativa do risco de oídio, segundo o Caderno Técnico ADVID?",Tabela 1 “Fatores de nocividade” na secção “Estimativa do risco”. Fonte condicional por licença não confirmada.,D17,9,4356f5c9-3f7a-5e1d-833d-387e1a54250c,c025d526d7f7c101ed18f9e9754d81cf9b2a313086aca8f47998619b4269a741,"[Estimativa do risco]
+Abióticos  • Acompanhar a evolução das condições
+meteorológicas (temperatura, humidade relativa,
+precipitação e radiação).
+Bióticos • Fase de desenvolvimento do patogénio
+• Resistência do patogénio a fungicidas
+• Inóculo presente nos sarmentos
+Culturais • Sensibilidade da casta (Tinta Roriz, Tinta Amarela,
+Malvasias, Gouveio…)
+• Estado fenológico (cachos visíveis e o período entre
+a pré-floração e o fecho dos cachos)
+• Sistema de condução da videira
+• Controlo de crescimento e vigor
+• Exposição da vinha
+• Drenagem do solo
+• Tipo de sistematização da parcela (patamares, vinha
+ao alto, tradicionais)
+Económicos • Vinha de encosta (declives das parcelas)
+• Fragmentação das parcelas e capacidade
+de intervenção (equipamentos)
+Fatores de nocividade",,pendente_validacao_humana,,videira_fitossanidade
+Q028,teste,"Que fatores de nocividade devem ser considerados na estimativa do risco de oídio, segundo o Caderno Técnico ADVID?",Tabela 1 “Fatores de nocividade” na secção “Estimativa do risco”. Fonte condicional por licença não confirmada.,D17,9,4c081ee3-244a-5d1e-9301-20d3e16e43ed,f3ca26d350afb685b5cc9b2b392027d3d5c693428e1268622e76dee21d6890b2,"[Estimativa do risco]
+A estimativa do risco para a doença é efetuada de acordo com o conhecimento da sua biologia e epidemiologia. Uma abordagem fundamental para a proteção da vinha é fazer, anualmente, o ajuste da estratégia de risco para que os objetivos em termos de qualidade e quantidade sejam alcançados com o menor número de intervenções possível. Para complementar esta tarefa, para além das observações diretas no campo, também a informação emitida pela Estação de Avisos do Douro, é extremamente importante, tendo em conta todas as características ao nível da parcela que é analisada pelo próprio agricultor. O acompanhamento do ciclo da doença e a observação dos primeiros sintomas podem ser utilizados para a previsão do risco, tendo em conta alguns fatores essenciais no apoio à decisão (foto 11 e tabela 1). Estes fatores podem influenciar favorável ou desfavoravelmente o desenvolvimento, multiplicação e nocividade da doença (tabela 1).  
+Foto 11 – Controlo de crescimento e vigor.  
+Tabela 1: Fatores de nocividade a avaliar na estimativa do risco para o oídio.  
+Abióticos  • Acompanhar a evolução das condições
+meteorológicas (temperatura, humidade relativa,
+precipitação e radiação).",,pendente_validacao_humana,,videira_fitossanidade
+Q029,teste,Qual foi a dimensão da prospeção de doenças do lenho apresentada pela ADVID em dezembro de 2021?,"Diapositivo de enquadramento quantitativo da prospeção, datado de 10/12/2021. São valores da amostra/projeto apresentado, não prevalência nacional.",D18,2,b4c2acce-4429-5e39-8745-b6e2c44e99d2,db2b8d681deee4e692c5d8e4722ba401ef3417b0dc64be98ed34aa51ed0da5e5,"Vinhos
+Verdes
+Douro e T.- 9 Regiões
+Algarve
+os-Montes 45 castas
+312 amostras
+Alentejo Dão
+880 isolados
+de fungos DLV
+Península de
+Bairrada
+Setúbal
+Lisboa Tejo
+Vila Real, 10 Dezembro 2021 2",,pendente_validacao_humana,,videira_fitossanidade
+Q030,teste,Que práticas de prevenção indireta são recomendadas nas orientações de produção integrada para reduzir condições favoráveis a doenças como Botrytis?,Secção 9.1 “Prevenção (= proteção indirecta)”. Orientação geral de produção integrada; não constitui autorização atual de produtos em Portugal.,D19,10,287347bf-c530-5810-9871-0223c180c586,c25ec858d792e38db1ee55d1bbae362543c85518a345ced94ece6829fed54fa6,"•
+Selecção de variedades resistentes/tolerantes apropriadas.
+•
+Utilização de métodos para reduzir o inóculo de Inverno dos
+agentes patogénicos como medida para atrasar/reduzir a
+incidência da doença na estação seguinte.
+•
+Uso de bio fumigação (isto é, espécies na cobertura vegetal que
+produzam glucosinolatos) contra pragas específicas (por
+exemplo_Xiphinema_spp.)
+•
+Medidas sanitárias, incluindo, por exemplo:
+• Remoção de cachos afectados nas plantas, sistema de
+condução e da superfície do solo,
+• Remoção do tecido lenhoso afectado através de técnicas de
+poda específicas (“curettage”),
+• Remoção dos resíduos de poda com varas infectadas da
+superfície do solo, utilizar o hiperparasita_Ampelomyces_spp.
+para reduzir a produção/viabilidade dos esporos de inverno
+do oídio.|
+|9.2 Estimativa do risco|Ver ORIENTAÇÕES TÉCNICAS GERAIS|•
+Recomenda‐se a utilização de modelos matemáticos e sistemas
+de apoio à decisão (Decision Support Systems” ‐“DSS”) que
+permitam maximizar a oportunidade da aplicação dos
+pesticidas.
+•
+Estes modelos DSS estão disponíveis em muitos países,
+fornecidos por instituições públicas ou empresas privadas. É
+altamente recomendada a verificação da sua precisão e",,pendente_validacao_humana,,videira_fitossanidade
+Q030,teste,Que práticas de prevenção indireta são recomendadas nas orientações de produção integrada para reduzir condições favoráveis a doenças como Botrytis?,Secção 9.1 “Prevenção (= proteção indirecta)”. Orientação geral de produção integrada; não constitui autorização atual de produtos em Portugal.,D19,10,a293e831-56e6-5c16-bf70-1149054d6cb6,d450a66eb9af26fc2d950c371afe059f71c6330b00e1473671444c7ac1a8d96d,"pesticidas.
+•
+Estes modelos DSS estão disponíveis em muitos países,
+fornecidos por instituições públicas ou empresas privadas. É
+altamente recomendada a verificação da sua precisão e
+robustez, bem como da validação local, antes da sua adopção.
+•
+Quando são utilizadas informações provenientes de
+instrumentos de apoio à decisão em grande escala (por
+exemplo, sistemas de avisos, DSS), recomenda‐se vivamente a
+adaptação dessas informações às condições locais, tendo em
+conta a variabilidade do local, as condições meteorológicas, o
+estado sanitário de atendendo à susceptibilidade varietal, as
+aplicações de pesticidas efectuadas anteriormente, etc.|",,pendente_validacao_humana,,videira_fitossanidade
+Q030,teste,Que práticas de prevenção indireta são recomendadas nas orientações de produção integrada para reduzir condições favoráveis a doenças como Botrytis?,Secção 9.1 “Prevenção (= proteção indirecta)”. Orientação geral de produção integrada; não constitui autorização atual de produtos em Portugal.,D19,10,d686e08c-e8e5-57f3-8dc1-84d29df85d4e,1e5daf84ed4b99f656c6808cbf1cd958d8951d08f6fd2fcc05d16c71a7072f63,"|9.1 Prevenção
+(=protecção indirecta)|A prevenção e/ou supressão das principais pragas e doenças deve ser
+apoiada, entre outras opções, de modo especial por:
+Protecção e reforço dos organismos auxiliares / principais
+inimigos naturais (por exemplo, ácaros fitoseídeos, insectos
+parasitóides ou predadores),
+•
+Utilização de práticas culturais adequadas (por exemplo,
+enrelvamento, corte alternado, desfolha; poda de Verão para
+remover os gomos secundários e/ou terciários, a fim de melhorar
+o arejamento – despampa; qualquer técnica para reduzir o vigor
+da vinha é importante para prevenir pragas e doenças (por
+exemplo,Botrytis),
+•
+Uso de fertilização adequada (idealmente com baixo teor de
+azoto) e práticas de irrigação adequadas
+•
+Infra‐estruturas ecológicas dentro e fora da exploração para
+reforçar a conservação e o controlo biológico das principais
+pragas através de auxiliares.|A prevenção e/ou supressão das principais pragas e doenças deve ser
+apoiada, entre outras opções, em especial por:
+•
+Selecção de variedades resistentes/tolerantes apropriadas.
+•
+Utilização de métodos para reduzir o inóculo de Inverno dos
+agentes patogénicos como medida para atrasar/reduzir a",,pendente_validacao_humana,,videira_fitossanidade

@@ -1,6 +1,7 @@
 """Preparar anotação humana e produzir os CSV de resultados a partir dos JSON."""
 import argparse
 import csv
+import hashlib
 import io
 import random
 from collections import Counter, defaultdict
@@ -15,6 +16,11 @@ from .avaliar import caminho_execucao
 from .imagem import CLASSES
 
 PAPER = RAIZ / "paper"
+FONTES = RAIZ / "data/perguntas/passagens_fonte.csv"
+COLUNAS_FONTES = (
+    "id_pergunta", "split", "pergunta", "criterio_evidencia", "doc_id", "pagina_pdf",
+    "passagem_id", "passagem_sha256", "texto_passagem", "evidencia", "estado_validacao", "revisor", "colecao",
+)
 COLUNAS_ANOTACAO = (
     "id_afirmacao", "chave_resposta", "id_pergunta", "condicao", "temperatura", "repeticao",
     "pergunta", "afirmacao", "fonte_citada", "trechos_no_json", "resposta_ref",
@@ -147,6 +153,86 @@ def atingiu_pagina(item):
     return posicao_fonte(passagens, ref["doc_id"], {int(ref["pagina_pdf"])})[0] is not None
 
 
+def hash_passagem(texto):
+    """Ignora apenas diferenças de espaços e quebras de linha; não aproxima o significado."""
+    return hashlib.sha256(" ".join(texto.split()).encode("utf-8")).hexdigest()
+
+
+def carregar_fontes(caminho=FONTES):
+    fontes = defaultdict(list)
+    for linha in csv_ler(caminho):
+        if linha["estado_validacao"] != "validada":
+            continue
+        texto, evidencia = linha["texto_passagem"], linha["evidencia"]
+        if (not linha["revisor"].strip() or not evidencia.strip() or
+                " ".join(evidencia.split()) not in " ".join(texto.split()) or
+                hash_passagem(texto) != linha["passagem_sha256"]):
+            raise ErroProjeto(f"{linha['id_pergunta']}: referência validada sem revisor, evidência literal ou hash coerente.")
+        if not linha["doc_id"].strip() or int(linha["pagina_pdf"]) < 1:
+            raise ErroProjeto(f"{linha['id_pergunta']}: documento/página da passagem inválidos.")
+        fontes[(linha["id_pergunta"], linha["pergunta"], linha["criterio_evidencia"])].append(linha)
+    return fontes
+
+
+def posicao_passagem(passagens, referencia, fontes):
+    """None significa referência pendente; um rank vazio com referência válida é uma falha."""
+    aceites = fontes.get((referencia.get("id"), referencia.get("pergunta"), referencia.get("passagem_ref", "")), [])
+    if not aceites:
+        return None, None
+    assinaturas = {(r["doc_id"], int(r["pagina_pdf"]), r["passagem_sha256"]) for r in aceites}
+    for rank, passagem in enumerate(passagens, 1):
+        assinatura = (passagem.get("doc", passagem.get("doc_id")), passagem.get("pagina"),
+                      hash_passagem(passagem.get("texto", "")))
+        if assinatura in assinaturas:
+            return True, rank
+    return True, None
+
+
+def preparar_fontes(destino, split):
+    """Exporta candidatos do índice existente, só por leitura e sem os validar."""
+    from .avaliar import ler_perguntas
+    from .config import carregar_config
+    from .indice import descrever_colecao, obter_cliente
+
+    if destino.exists():
+        raise ErroProjeto("O ficheiro de referências já existe; preservado. Usar outro --destino para nova exportação.")
+    perguntas = [p for p in ler_perguntas() if (split == "todos" or p["split"] == split) and p["expected_action"] == "responder"]
+    config = carregar_config()
+    try:
+        info = descrever_colecao(config)
+        client = obter_cliente()
+        paginas = defaultdict(list)
+        offset = None
+        while True:
+            pontos, offset = client.scroll(config.qdrant_colecao, limit=256, offset=offset,
+                                           with_payload=True, with_vectors=False)
+            for ponto in pontos:
+                payload = ponto.payload or {}
+                paginas[(payload.get("doc_id"), payload.get("pagina"))].append({**payload, "id": str(ponto.id)})
+            if offset is None:
+                break
+    except ErroProjeto:
+        raise
+    except Exception:
+        raise ErroProjeto("Não foi possível ler o índice para preparar as referências; verificar src.indice info.") from None
+    linhas = []
+    for pergunta in perguntas:
+        candidatos = paginas[(pergunta["doc_id"], int(pergunta["pagina_pdf"]))]
+        # Uma página ausente mantém uma linha pendente, em vez de desaparecer da revisão.
+        for passagem in sorted(candidatos, key=lambda p: p["id"]) or [{}]:
+            texto = passagem.get("texto", "")
+            linhas.append({
+                "id_pergunta": pergunta["id"], "split": pergunta["split"], "pergunta": pergunta["pergunta"],
+                "criterio_evidencia": pergunta.get("passagem_ref", ""),
+                "doc_id": pergunta["doc_id"], "pagina_pdf": pergunta["pagina_pdf"],
+                "passagem_id": passagem.get("id", ""), "passagem_sha256": hash_passagem(texto) if texto else "",
+                "texto_passagem": texto, "evidencia": "", "estado_validacao": "pendente_validacao_humana",
+                "revisor": "", "colecao": info["colecao"],
+            })
+    csv_gravar(destino, COLUNAS_FONTES, linhas)
+    print(f"{len(linhas)} candidatos de {len(perguntas)} perguntas preparados; todos pendentes em {destino}.")
+
+
 def kappa(a, b):
     n = len(a)
     if n < 2:
@@ -157,7 +243,7 @@ def kappa(a, b):
     return (observado - esperado) / (1 - esperado) if esperado < 1 else None
 
 
-def pontuacoes_texto(grupos, anotacoes, k):
+def pontuacoes_texto(grupos, anotacoes, k, fontes=None):
     por_metrica = defaultdict(list)
     fidelidade = {}
     motivos = sorted({i.get("motivo") or "nao_registado" for itens in grupos.values()
@@ -180,6 +266,13 @@ def pontuacoes_texto(grupos, anotacoes, k):
         com_fonte = [i for i in itens if i["rag"] and i["referencia"]["expected_action"] == "responder"]
         if com_fonte:
             por_metrica[f"recall_pagina@{k}"].append((sum(map(atingiu_pagina, com_fonte)), len(com_fonte)))
+            if fontes is None:
+                fontes = carregar_fontes()
+            passagens = [posicao_passagem(i.get("recuperadas", [])[:k], i["referencia"], fontes) for i in com_fonte]
+            avaliaveis = [rank for valida, rank in passagens if valida]
+            por_metrica[f"cobertura_recall_passagem@{k}"].append((len(avaliaveis), len(com_fonte)))
+            if avaliaveis:
+                por_metrica[f"recall_passagem@{k}"].append((sum(rank is not None for rank in avaliaveis), len(avaliaveis)))
         por_metrica["latencia_media_s"].append((mean(i["latencia_s"] for i in itens), 1))
         por_metrica["falha_formato"].append((sum(i["estado"] == "erro_formato" for i in itens), len(itens)))
         por_metrica["fora_tema"].append((sum(i["estado"] == "fora_tema" for i in itens), len(itens)))
@@ -248,6 +341,10 @@ def tabela_texto(manifesto, itens, bootstrap, pasta_anotacoes):
         for metrica, amostra in metricas.items():
             tabela.append(linha_tabela(base, metrica, taxa(amostra), len(amostra), "pergunta",
                                        intervalo(amostra, taxa, bootstrap)))
+        if any(i["rag"] and i["referencia"]["expected_action"] == "responder" for i in condicao):
+            metrica = f"recall_passagem@{condicao[0]['top_k']}"
+            if metrica not in metricas:
+                tabela.append(linha_tabela(base, metrica, None, 0, "pergunta"))
         a, b = [
             {r["id_afirmacao"]: r["suportada"] for r in dados
              if r["condicao"] == modo and float(r["temperatura"]) == temp and r["suportada"] in VALIDAS}
@@ -490,6 +587,9 @@ def main():
     sub = parser.add_subparsers(dest="acao", required=True)
     anotar = sub.add_parser("anotar", help="Criar as folhas dos dois anotadores e do consenso.")
     anotar.add_argument("--execucao", required=True)
+    fontes = sub.add_parser("preparar-fontes", help="Exportar candidatos do índice para revisão humana da passagem-fonte.")
+    fontes.add_argument("--split", choices=["validacao", "teste", "todos"], default="todos")
+    fontes.add_argument("--destino", type=Path, default=FONTES)
     tabelas = sub.add_parser("resumir", help="Gerar os resultados e as tabelas 1 e 2.")
     tabelas.add_argument("--execucoes", nargs="+", required=True)
     tabelas.add_argument("--destino", type=Path,
@@ -499,6 +599,8 @@ def main():
     try:
         if args.acao == "anotar":
             preparar_anotacao(args.execucao)
+        elif args.acao == "preparar-fontes":
+            preparar_fontes(args.destino, args.split)
         else:
             if args.bootstrap < 1:
                 parser.error("--bootstrap tem de ser positivo.")
