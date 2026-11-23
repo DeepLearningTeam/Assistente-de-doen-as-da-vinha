@@ -1,8 +1,27 @@
-# Integração CNN — 18/11/2026
+# Integração CNN
+
+## Substituição por CNN v2 — 23/11/2026
+
+Integrada a versão fornecida em `cnn_v2/`, mantendo o adaptador e os percursos existentes da aplicação.
+
+- **Modelo:** ResNet50 seed 1, com cinco saídas na ordem Black_rot, Esca, Healthy, Leaf_blight, Outro. SHA-256: `385083d14e04fb23a4bfde46737eae4e06d5f4e9ff731ee36ba5779f946c7d8e`.
+- **Pré-processamento:** EXIF, RGB, padding preto bilinear para 224 × 224 e `preprocess_input` ResNet50, sem divisão por 255.
+- **Rejeição:** `Outro` ou confiança máxima inferior a 0,58, conforme o código e a validação fornecidos. `recognized=False` passa a `Visual.estado="rejeitada"`, sem hipótese de doença, pesquisa RAG ou geração da resposta. A etapa de âmbito continua anterior à CNN.
+- **Dados:** 715 registos, com 454/98/99 imagens de treino/validação/teste e 64 de holdout. As 555 imagens originais mantêm as divisões anteriores. Os manifestos e a referência CNN foram substituídos pelos recebidos.
+- **Avaliação:** a comparação CNN/VLM continua nas quatro classes de folhas, com 76/77/50 imagens de validação/teste/holdout. Não mede a rejeição de `Outro` e mantém as métricas existentes.
+- **Ambiente:** mantidas as dependências da aplicação. O novo modelo, guardado com Keras 3.13.2, carregou no TensorFlow/Keras já instalado.
+
+Passaram os 92 testes automáticos, `pip check`, `compileall` e a validação dos dados. Com os pesos reais, duas entradas sintéticas confirmaram a paridade do pré-processamento, probabilidades e decisão com o código recebido. O ruído foi rejeitado nos dois modos LLM antes de recuperar ou gerar; a etapa de âmbito foi simulada. Uma imagem cinzenta foi aceite como saudável, pelo que a rejeição não garante reconhecer toda a imagem fora do domínio. Estes ensaios não são resultados científicos.
+
+A avaliação em fotografias reais, incluindo a rejeição de `Outro`, não foi executada: faltam as imagens nos caminhos operacionais. Nas 160 entradas adicionais do manifesto, o SHA-256 fica por preencher; conserva-se o MD5 fornecido até executar `src.preparar_cnn` com os ficheiros reais. Não foi feita inferência no teste ou holdout.
+
+Reiniciar a aplicação para utilizar o código e os pesos atualizados. O percurso VLM, os prompts, o RAG e as definições de fidelidade/correção foram preservados.
+
+## Integração anterior — 18/11/2026
 
 > Registo histórico: contratos e resultados observados na integração de 18/11/2026. As referências a ficheiros e caminhos descrevem essa versão. Os relatórios antigos de `verificacao/` foram removidos na limpeza do projeto; as versões commitadas continuam acessíveis no histórico Git. Para instalação, configuração e verificações atuais, consultar [README.md](README.md) e [PROTOCOLO.md](PROTOCOLO.md).
 
-## Entrega e proveniência
+### Entrega e proveniência
 
 Pasta de trabalho: `integrado_cnn/`. Base: `integrado_final.zip`, extraída sem modificar o arquivo. Não existia repositório Git na pasta nem no ZIP; por isso não foi criado um ramo sobre um histórico inexistente. Para verificar a exclusão do `.env` usou-se um repositório temporário exterior à entrega e as regras `.gitignore` do projeto, antes da cópia do segredo.
 
@@ -18,7 +37,7 @@ Materiais identificados:
 
 O modelo foi copiado byte a byte para `runs/checkpoints/resnet50_seed1.keras`. O ZIP da entrega original incluía este ficheiro; os pesos não acompanham o clone atual. Não foram descarregados outros pesos CNN, convertida a arquitetura ou feito novo treino. Os originais permanecem na pasta inicial. `referencia_cnn/` conserva código, documentação e notebooks recebidos; `data/originais/` conserva manifestos e divisões dos dois projetos.
 
-## Contrato confirmado
+### Contrato confirmado
 
 ResNet50 com 23 595 908 parâmetros, cabeça de quatro classes, augmentation e dropout desativados na inferência. Os metadados do arquivo indicam Keras 3.15.1. A associação à seed 1 vem do nome, README e notebook de treino originais; não se voltou a executar o treino para a demonstrar.
 
@@ -32,7 +51,7 @@ ResNet50 com 23 595 908 parâmetros, cabeça de quatro classes, augmentation e d
 
 O pré-processamento foi adaptado diretamente da implementação original para receber a imagem PIL usada pela aplicação. No teste de paridade executou-se também o pré-processamento original e `model.predict` com os pesos recebidos: arrays de entrada exatamente iguais e saídas iguais dentro de `atol=1e-6` nas quatro imagens indicadas em `verificacao/cnn/modelo_real.json`.
 
-## Alterações de código
+### Alterações de código
 
 | Ficheiros | Motivo |
 |---|---|
@@ -50,17 +69,17 @@ Os prompts gerais e específicos do RAG, YAML experimentais, `src/indice.py`, `s
 
 Nos dois modos LLM uma nova foto chama a CNN; sem foto não a chama. A classe atual acrescenta contexto à consulta RAG mesmo que a etapa de âmbito não assinale `usa_imagem`. O gerador recebe a hipótese, o valor softmax e a distribuição. Esses números não alteram scores de pesquisa, reranking ou corte documental. O histórico textual continua a existir, mas a CNN anterior não é reinjetada como análise visual corrente. A opção explícita de voltar a usar a fotografia mantém-se; nesse caso é analisada a versão JPEG conservada no histórico. Nos modos VLM mantém-se o percurso visual anterior.
 
-## Dados e avaliação
+### Dados e avaliação
 
 555 IDs do manifesto limpo correspondem às imagens fornecidas, incluindo MD5. Confirmados nas seeds originais 0/1/2: 352 treino, 76 validação, 77 teste interno e 50 reservadas, sem interseções de IDs ou de conteúdo exato. Não há duplicados SHA-256 nem duplicados exatos após descodificação RGB/EXIF. Esta auditoria não identifica quase duplicados nem prova independência por videira/local de recolha.
 
-Confirmada a fuga da avaliação antiga: **53/84** imagens do teste da seed 42 pertencem ao treino da CNN seed 1. O antigo manifesto fica em `data/originais/splits_projeto_seed42_43_44.json`; não é usado na avaliação atual. O avaliador rejeita-o para estes pesos. O manifesto ativo representa apenas a seed 1 e preserva cada ID. As seeds 0 e 2 ficam arquivadas, mas faltam os respetivos pesos.
+Confirmada a fuga da avaliação antiga: **53/84** imagens do teste da seed 42 pertencem ao treino da CNN seed 1. O manifesto antigo foi removido da pasta de trabalho por não ser utilizado; a versão permanece no histórico Git. O avaliador rejeita essas divisões para estes pesos. O manifesto ativo representa apenas a seed 1 e preserva cada ID. As seeds 0 e 2 ficam arquivadas, mas faltam os respetivos pesos.
 
 Seed de treino/divisão CNN: **1**. Seed de amostragem das 50 reservadas: **2026**. Seed de geração VLM: **42**, conforme configuração existente. As repetições textuais mantêm 42/43/44. Nenhuma destas últimas representa treinos CNN adicionais.
 
 Não foi feita inferência nas 50 reservadas nem nos 77 testes internos nesta integração. A inspeção de ficheiros/hashes do holdout foi apenas uma auditoria de integridade. Os comandos de avaliação oficial estão no README. Os ensaios de funcionamento usam validação e não servem para conclusões sobre Macro-F1 final, fidelidade ou correção das respostas.
 
-## Verificações realizadas
+### Verificações realizadas
 
 | Verificação | Resultado e evidência |
 |---|---|
@@ -83,7 +102,7 @@ Não foi feita inferência nas 50 reservadas nem nos 77 testes internos nesta in
 
 A verificação completa de 76 imagens foi iniciada e interrompida após seis itens, para limitar o ensaio de funcionamento. A pasta exploratória parcial foi preservada na cópia de trabalho, mas não incluída no ZIP. Houve ainda um ensaio inicial de quatro imagens durante a preparação do ambiente; o ZIP usa a execução identificada como final e as verificações do ambiente definitivo. Não se apresenta nenhuma destas corridas como avaliação final.
 
-## Ambiente e limitações
+### Ambiente e limitações
 
 Windows 11 x64, Python **3.14.0**, TensorFlow **2.22.0rc1**, módulo Keras **3.16.0.dev2026111703** da distribuição `keras-nightly`. A RC declara dependência de `keras-nightly`; instalar também `keras` cria sobreposição de ficheiros. O ambiente foi corrigido para manter só `keras-nightly` fixado. O modelo guardado com Keras 3.15.1 carregou e manteve paridade numérica. O `tensorflow[and-cuda]` da configuração original foi adaptado à execução CPU em Windows, sem o extra CUDA. Não foi necessário mudar de Python; GPU não foi testada. [Distribuição oficial](https://pypi.org/project/tensorflow/2.22.0rc1/) e [instruções TensorFlow](https://www.tensorflow.org/install/pip).
 
@@ -93,7 +112,7 @@ O código transporta e apresenta a hipótese corretamente, mas **a geração nã
 
 Não se executaram OCR/Tesseract ou reconstrução documental nesta tarefa: os PDF do corpus não foram fornecidos e a coleção partilhada bastou aos ensaios. As instruções Windows foram preservadas com `--ocr por` como principal e `auto`/`off` como alternativas. Confirmar a apresentação no navegador, as respostas e as fontes com revisão humana; obter os pesos das outras seeds se forem necessários três treinos.
 
-## Utilização rápida no PowerShell
+### Utilização rápida no PowerShell
 
 Na pasta do projeto, verificar `python --version` (3.14). No Windows desta sessão `python` estava disponível, mas o launcher `py -3.14` não enumerava instalações:
 

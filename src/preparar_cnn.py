@@ -60,8 +60,8 @@ def preparar(pasta):
         limpos = list(csv.DictReader(f))
     with (SPLITS_ORIGINAIS.parent / "holdout.csv").open(encoding="utf-8-sig", newline="") as f:
         reservados = list(csv.DictReader(f))
-    if {i["path"] for i in reservados} != set(original["holdout"]) or len(reservados) != 50:
-        raise ErroProjeto("O holdout.csv não corresponde às 50 imagens reservadas em splits.json.")
+    if {i["path"] for i in reservados} != set(original["holdout"]):
+        raise ErroProjeto("O holdout.csv não corresponde às imagens reservadas em splits.json.")
     if len(limpos) != len({i["path"] for i in limpos}):
         raise ErroProjeto("Há IDs duplicados no manifesto limpo.")
     por_bytes, por_pixels, hashes = defaultdict(list), defaultdict(list), {}
@@ -108,7 +108,7 @@ def preparar(pasta):
         raise ErroProjeto("A preparação suporta a seed de treino 1 do checkpoint configurado.")
     modelo = RAIZ / cfg.checkpoint
     manifesto = {
-        "dataset": "FieldVitis v2", "seeds": [SEED_MODELO],
+        "dataset": "FieldVitis v2 + Outro", "seeds": [SEED_MODELO],
         "classes_originais": original["classes"], "imagens": imagens,
         "proveniencia": {"splits_originais_sha256": sha256(SPLITS_ORIGINAIS),
                          "seed_treino": SEED_MODELO, "seed_reserva": original["politica"]["holdout_seed"],
@@ -135,7 +135,8 @@ def main():
         gravar_json(FICHEIRO_SPLITS, manifesto)
         pasta = nova_verificacao("dados-cnn")
         gravar_json(pasta / "divisoes.json", relatorio)
-        print(f"{len(manifesto['imagens'])} imagens verificadas; seed de treino 1: 352/76/77 + 50 reservadas.")
+        print(f"{len(manifesto['imagens'])} imagens verificadas; seed de treino 1: "
+              f"{relatorio['seeds_originais']['1']['contagens']}.")
         print(f"Relatório de integridade em {pasta}.")
     except (ErroProjeto, OSError, ValueError) as erro:
         parser.exit(1, f"{erro}\n")

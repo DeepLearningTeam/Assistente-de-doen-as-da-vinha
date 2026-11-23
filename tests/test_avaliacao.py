@@ -12,6 +12,7 @@ from src import analise, apoio, avaliar, avaliar_recuperacao, metricas, rag
 from src.apoio import ErroProjeto, sha256
 from src.config import carregar_config
 from src.imagem import Visual
+from src.preparar_cnn import validar_manifesto
 
 
 def item(chave="r1", **alteracoes):
@@ -165,6 +166,30 @@ class PercursosAvaliacao(unittest.TestCase):
             self.assertEqual(linha["rank_documento"], "2")
             self.assertEqual(linha["rank_pág ±0"], "3")
             self.assertEqual(linha["rank_pág ±1"], "2")
+
+    def test_comparacao_visual_conserva_as_quatro_classes_de_folhas(self):
+        manifesto = apoio.ler_json(apoio.FICHEIRO_SPLITS)
+        validar_manifesto(manifesto, [1])
+        # Colocar Outro primeiro torna visível uma eventual inclusão indevida na comparação.
+        manifesto["imagens"].sort(key=lambda i: i["classe"] != "outro")
+        folha = next(i for i in manifesto["imagens"]
+                     if i["classe"] != "outro" and i["splits"]["1"] == "validacao")
+        with tempfile.TemporaryDirectory() as tmp:
+            raiz = Path(tmp)
+            foto = raiz / folha["id"]
+            foto.parent.mkdir(parents=True)
+            Image.new("RGB", (8, 8), "green").save(foto)
+            folha["sha256"] = sha256(foto)
+            apoio.gravar_json(raiz / "splits.json", manifesto)
+            args = argparse.Namespace(splits=raiz / "splits.json", seeds=[1], split="validacao",
+                                      limite=1, modelos=["vlm"], imagens=raiz, execucao="folhas")
+            visual = Visual(motor="VLM", estado="ok", classe=folha["classe"], confianca=0.8)
+            with patch.object(avaliar, "RUNS", raiz), patch.object(avaliar, "digest_modelo", return_value="ensaio"), \
+                    patch.object(avaliar, "analisar_vlm", return_value=visual) as classificar:
+                avaliar.avaliar_imagem(args)
+            classificar.assert_called_once()
+            item_guardado = apoio.ler_json(next((raiz / "folhas/itens").glob("*.json")))
+            self.assertEqual(item_guardado["imagem"], folha["id"])
 
     def test_cli_textual_inclui_tres_condicoes(self):
         with patch("sys.argv", ["avaliar", "texto", "--execucao", "ensaio"]), \

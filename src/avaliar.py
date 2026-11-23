@@ -12,7 +12,7 @@ from time import perf_counter
 from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256, FICHEIRO_SPLITS, PASTA_IMAGENS
 from .config import EXPERIENCIAS, MODOS, carregar_config
 from .corpus import CSV_CORPUS, ler_corpus, selecionadas
-from .imagem import analisar_cnn, config_cnn, ler_imagem
+from .imagem import CLASSES, analisar_cnn, config_cnn, ler_imagem
 from .indice import descrever_colecao
 from .modelos import ErroFormato, digest_modelo
 from .preparar_cnn import validar_manifesto
@@ -158,7 +158,9 @@ def avaliar_imagem(args):
     validar_manifesto(manifesto, seeds)
     imagens = {}
     for seed in seeds:
-        itens = [i for i in manifesto["imagens"] if i["splits"][str(seed)] == args.split]
+        # Preserva a comparação CNN/VLM nas quatro classes de folhas; Outro é rejeição.
+        itens = [i for i in manifesto["imagens"]
+                 if i["splits"][str(seed)] == args.split and i["classe"] in CLASSES]
         imagens[seed] = itens[:args.limite] if args.limite else itens
     config = carregar_config("vlm")
     modelos = {}

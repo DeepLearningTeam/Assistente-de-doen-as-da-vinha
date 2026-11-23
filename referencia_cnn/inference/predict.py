@@ -26,6 +26,13 @@ MODEL_PATH = (
 
 SPLITS_PATH = PROJECT_ROOT / "data" / "splits.json"
 
+# Rejeição de imagens que não são folhas de videira:
+#   1) o modelo prevê a classe "Outro", ou
+#   2) a confiança fica abaixo do limiar (apanha o que a classe "Outro" não cobre).
+# O limiar é escolhido na validação (última célula do notebook de treino).
+CLASSE_OUTRO = "Outro"
+LIMIAR_CONFIANCA = 0.58   # substituir pelo valor indicado pelo notebook de treino
+
 
 # --------------------------------------------------
 # Load classes
@@ -101,9 +108,12 @@ def preprocess_image(image_path):
             image = ImageOps.exif_transpose(image)
             image = image.convert("RGB")
 
-            image = image.resize(
+            # Mesmo redimensionamento do treino: mantém a proporção e preenche com barras pretas
+            image = ImageOps.pad(
+                image,
                 (IMG_SIZE, IMG_SIZE),
-                Image.Resampling.BILINEAR
+                method=Image.Resampling.BILINEAR,
+                color=(0, 0, 0)
             )
 
             image_array = np.asarray(
@@ -177,10 +187,16 @@ def predict_image(image_path):
         in zip(classes, probabilities)
     }
 
+    recognized = (
+        predicted_class != CLASSE_OUTRO
+        and confidence >= LIMIAR_CONFIANCA
+    )
+
     return {
         "predicted_class": predicted_class,
         "confidence": confidence,
-        "probabilities": class_probabilities
+        "probabilities": class_probabilities,
+        "recognized": recognized
     }
 
 
@@ -193,6 +209,9 @@ if __name__ == "__main__":
     image_path = PROJECT_ROOT / "test_leaf.jpg"
 
     result = predict_image(image_path)
+
+    if not result["recognized"]:
+        print("Imagem não reconhecida como folha de videira.")
 
     print("Predicted class:", result["predicted_class"])
     print("Confidence:", f"{result['confidence']:.2%}")

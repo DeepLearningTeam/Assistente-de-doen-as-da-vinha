@@ -57,7 +57,7 @@ def verificar_modelo(destino, apenas_modelo=False):
     }
     gravar_json(destino / "modelo_real.json", relatorio)
     print("CNN: carregamento, arquitetura e classes verificados. "
-          + ("Paridade confirmada em quatro imagens de validação." if casos else "Sem inferência em imagens."), flush=True)
+          + (f"Paridade confirmada em {len(casos)} imagens de validação." if casos else "Sem inferência em imagens."), flush=True)
 
 
 def verificar_servicos(destino):

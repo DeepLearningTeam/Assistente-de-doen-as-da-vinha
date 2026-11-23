@@ -18,8 +18,11 @@ MAPEAMENTO = {
     "Esca": "esca",
     "Healthy": "saudavel",
     "Leaf_blight": "leaf_blight",
+    "Outro": "outro",
 }
 IMG_SIZE = 224
+# Valor fornecido com o modelo, escolhido na validação da ResNet50 seed 1.
+LIMIAR_CONFIANCA = 0.58
 _CARREGAMENTO = Lock()
 
 
@@ -48,8 +51,8 @@ def carregar_classes():
 def _carregar_modelo(caminho, modificacao_ns):
     # compile=False dispensa o otimizador de treino; não altera os pesos.
     modelo = obter_keras().models.load_model(caminho, compile=False)
-    if tuple(modelo.input_shape) != (None, IMG_SIZE, IMG_SIZE, 3) or tuple(modelo.output_shape) != (None, 4):
-        raise ErroProjeto("Esperava entrada (None,224,224,3) e saída (None,4).")
+    if tuple(modelo.input_shape) != (None, IMG_SIZE, IMG_SIZE, 3) or tuple(modelo.output_shape) != (None, len(MAPEAMENTO)):
+        raise ErroProjeto("Esperava entrada (None,224,224,3) e saída (None,5).")
     if modelo.layers[-1].get_config().get("activation") != "softmax":
         raise ErroProjeto("Este adaptador espera probabilidades softmax já calculadas pelo modelo.")
     return modelo
@@ -65,7 +68,8 @@ def carregar_modelo(caminho):
 
 def preparar_imagem(imagem):
     imagem = ImageOps.exif_transpose(imagem).convert("RGB")
-    imagem = imagem.resize((IMG_SIZE, IMG_SIZE), Image.Resampling.BILINEAR)
+    # Preserva a proporção e completa a imagem com barras pretas, como no novo treino.
+    imagem = ImageOps.pad(imagem, (IMG_SIZE, IMG_SIZE), Image.Resampling.BILINEAR, color=(0, 0, 0))
     tensor = np.asarray(imagem, dtype=np.uint8).astype("float32")[None, ...]
     # RGB -> BGR e subtração das médias ImageNet; NÃO dividir por 255.
     return obter_keras().applications.resnet50.preprocess_input(tensor)
@@ -81,11 +85,13 @@ def prever(imagem, checkpoint):
     probabilidades = valores[0]
     if np.any(probabilidades < 0) or np.any(probabilidades > 1) or not np.isclose(probabilidades.sum(), 1, atol=1e-5):
         raise ErroProjeto("A saída da CNN não corresponde a probabilidades softmax.")
+    indice = int(np.argmax(probabilidades))
+    recognized = classes[indice] != "Outro" and float(probabilidades[indice]) >= LIMIAR_CONFIANCA
     return {
         "probabilidades": {MAPEAMENTO[c]: float(p) for c, p in zip(classes, probabilidades)},
+        "recognized": recognized,
         "descricao": (
-            "Hipótese entre quatro classes do FieldVitis. As probabilidades softmax "
-            "não são certeza de diagnóstico; o modelo não tem rejeição validada "
-            "de imagens fora destas classes."
+            "Hipótese entre as quatro classes de folhas do FieldVitis, com rejeição "
+            "por Outro ou baixa confiança. As probabilidades softmax não são certeza de diagnóstico."
         ),
     }

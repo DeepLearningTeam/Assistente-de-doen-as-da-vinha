@@ -2,4 +2,4 @@
 checkpoint: runs/checkpoints/resnet50_seed1.keras
 seed_treino: 1
 # Ordem de data/originais/cnn/splits.json, com identificadores da aplicação.
-classes: [black_rot, esca, saudavel, leaf_blight]
+classes: [black_rot, esca, saudavel, leaf_blight, outro]

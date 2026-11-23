@@ -1,5 +1,5 @@
 {
-  "dataset": "FieldVitis v2",
+  "dataset": "FieldVitis v2 + Outro",
   "seeds": [
     1
   ],
@@ -7,7 +7,8 @@
     "Black_rot",
     "Esca",
     "Healthy",
-    "Leaf_blight"
+    "Leaf_blight",
+    "Outro"
   ],
   "imagens": [
     {
@@ -5004,12 +5005,1612 @@
       "splits": {
         "1": "treino"
       }
+    },
+    {
+      "id": "Outro/animal_00011.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00011.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "e40ac706c9b82342ac2e95de07a3d7b2"
+    },
+    {
+      "id": "Outro/animal_00018.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00018.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "30119227bd590557e3f591d8569ff724"
+    },
+    {
+      "id": "Outro/animal_00060.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00060.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "6b3982925e75274f3d81e5245c45fedf"
+    },
+    {
+      "id": "Outro/animal_00069.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00069.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "d5333e1165cdf50b71709bff8dca08d7"
+    },
+    {
+      "id": "Outro/animal_00121.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00121.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "06b995e36270833ad8711927725223b1"
+    },
+    {
+      "id": "Outro/animal_00139.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00139.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "9b2b2c31896934ca96725d87d245f267"
+    },
+    {
+      "id": "Outro/animal_00141.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00141.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "09cd31a1aa604798d8f8b9491725345d"
+    },
+    {
+      "id": "Outro/animal_00146.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00146.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "9d0344b4c711050c4120a07b6a5bc383"
+    },
+    {
+      "id": "Outro/animal_00190.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00190.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c73ae990a223b4cfef8de47e2d4feae4"
+    },
+    {
+      "id": "Outro/animal_00203.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00203.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "ccbdd6ffc1b9d533af14b9249efdb5de"
+    },
+    {
+      "id": "Outro/animal_00235.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00235.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "779a55ec6ab6c02ce94c0a11155d43d8"
+    },
+    {
+      "id": "Outro/animal_00237.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00237.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "b1782ae4fa58facd78005bdf49c65a34"
+    },
+    {
+      "id": "Outro/animal_00243.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00243.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "736a9add74297cb259be1ef580731918"
+    },
+    {
+      "id": "Outro/animal_00265.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00265.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "5b0491155104f3d3aa06138cd71ad578"
+    },
+    {
+      "id": "Outro/animal_00269.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00269.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "597627b54897c562144dae7dd4c5ca7d"
+    },
+    {
+      "id": "Outro/animal_00296.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00296.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "12da30d4a4fe027076b44fb06020e5b6"
+    },
+    {
+      "id": "Outro/animal_00340.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00340.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "4553f4a382334f5946cfbf1e64c8c635"
+    },
+    {
+      "id": "Outro/animal_00375.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00375.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "42f103e8dc225a64cd9a47be62bb813a"
+    },
+    {
+      "id": "Outro/animal_00389.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00389.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "4c2b8358788b737bd08635af3dd4378b"
+    },
+    {
+      "id": "Outro/animal_00480.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00480.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "3d8dd762b55dd3560f59a2b4719d17f2"
+    },
+    {
+      "id": "Outro/animal_00510.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00510.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "867da6a193ce063e136b7bc7fcdf099b"
+    },
+    {
+      "id": "Outro/animal_00511.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00511.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "31c46ed4612e300a9e4018caaaf5fefe"
+    },
+    {
+      "id": "Outro/animal_00519.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00519.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a902375c4e1eda2b12ba95810259c7d4"
+    },
+    {
+      "id": "Outro/animal_00540.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00540.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "9082d7c65d1ab79492c713a21e14c14b"
+    },
+    {
+      "id": "Outro/animal_00551.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00551.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "42559cd37d8c2ae8b1d0c576fdb0950c"
+    },
+    {
+      "id": "Outro/animal_00565.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00565.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a235a251f1d5a1fef55713bf0b199bc3"
+    },
+    {
+      "id": "Outro/animal_00568.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00568.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "6dc7007c4e28650a51fb501f94f363d4"
+    },
+    {
+      "id": "Outro/animal_00573.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00573.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "8bd77755dc7c556d0bbcd2fed4e436cb"
+    },
+    {
+      "id": "Outro/animal_00575.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00575.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "afeef46cfaafef040244f68101c8b1f4"
+    },
+    {
+      "id": "Outro/animal_00589.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00589.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "00271aa59f54260c4bc5d7483a460b0f"
+    },
+    {
+      "id": "Outro/animal_00602.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00602.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "e072bbbf11ff0c1b7a05d19d6cb5bbfa"
+    },
+    {
+      "id": "Outro/animal_00652.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00652.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "85237a1b0858270934ba42884b1e2f05"
+    },
+    {
+      "id": "Outro/animal_00697.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00697.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "1cf1db911b5726d321b11031ccb89986"
+    },
+    {
+      "id": "Outro/animal_00701.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00701.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "b55a0928f30dcc8659c544b2b42befb6"
+    },
+    {
+      "id": "Outro/animal_00722.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00722.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a05db504413d6fd4b0ebbab9f907e5b8"
+    },
+    {
+      "id": "Outro/animal_00793.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00793.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "294a8c8bf489d1153c70054da45a0867"
+    },
+    {
+      "id": "Outro/animal_00796.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00796.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "faf65c6d3be6c75bd23023dcd35f5bee"
+    },
+    {
+      "id": "Outro/animal_00797.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00797.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "87bb0d0be6153eb2602123eda2a578e0"
+    },
+    {
+      "id": "Outro/animal_00805.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00805.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "7810608eb137c407349458c597b87636"
+    },
+    {
+      "id": "Outro/animal_00821.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00821.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "5accd9ab19e14079c0327c990f690c49"
+    },
+    {
+      "id": "Outro/animal_00842.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00842.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "1b97ab79f96f38e029ce27c35d5b1a9f"
+    },
+    {
+      "id": "Outro/animal_00856.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00856.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "24576f6f258762575fbb5a1354cab434"
+    },
+    {
+      "id": "Outro/animal_00863.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00863.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "6dd42869de906ddf13580634d51adb08"
+    },
+    {
+      "id": "Outro/animal_00892.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00892.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "675b8ad7c3bf7dfa34c2f8723b5a3d50"
+    },
+    {
+      "id": "Outro/animal_00895.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00895.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "774022bcb482ddb4e04de5faba5443d3"
+    },
+    {
+      "id": "Outro/animal_00908.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00908.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "3a43dd82d8e2d3a0925b2d9b698f9223"
+    },
+    {
+      "id": "Outro/animal_00927.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00927.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "dcc90c877c180a81d62b29c33ee42a20"
+    },
+    {
+      "id": "Outro/animal_00943.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00943.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "91d50a48cc1868899aea9a1eb2b970d3"
+    },
+    {
+      "id": "Outro/animal_00963.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00963.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "3098eb112ab46c0e6d034dc52e9eed71"
+    },
+    {
+      "id": "Outro/animal_00988.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/animal_00988.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "ea2f3c53216adb67470c59a4c0888d11"
+    },
+    {
+      "id": "Outro/feijao_00001.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00001.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "b305afbf047e223997deb7f16e8cf2d6"
+    },
+    {
+      "id": "Outro/feijao_00026.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00026.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "93f93229876e7c2407b3ee2df45e8fbe"
+    },
+    {
+      "id": "Outro/feijao_00056.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00056.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "ec742410c698100055cfd78b9b4a647c"
+    },
+    {
+      "id": "Outro/feijao_00082.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00082.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "e388a27078aeea28ba7191a798c5ac97"
+    },
+    {
+      "id": "Outro/feijao_00092.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00092.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "5fb85c084ce56ad17dc0d8b2d8c08cc7"
+    },
+    {
+      "id": "Outro/feijao_00103.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00103.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "c802f5e2d765b6b49451e5f2260c1b0e"
+    },
+    {
+      "id": "Outro/feijao_00123.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00123.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "9dfd5432c0505eb79c79ca839f30b480"
+    },
+    {
+      "id": "Outro/feijao_00132.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00132.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "22a6e93b49ddda1c1c4907ab41b1cbe4"
+    },
+    {
+      "id": "Outro/feijao_00134.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00134.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a67af80b0195b425c850498eb0497a8d"
+    },
+    {
+      "id": "Outro/feijao_00145.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00145.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "f9272b586bda384441095e75f8c942ca"
+    },
+    {
+      "id": "Outro/feijao_00159.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00159.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "08a0f5ac785b7743e9911fb4e035a6f5"
+    },
+    {
+      "id": "Outro/feijao_00173.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00173.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "46048f7b0e6c9d5259e9400643097672"
+    },
+    {
+      "id": "Outro/feijao_00237.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00237.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "43f97af854743a8bc1612925191931ef"
+    },
+    {
+      "id": "Outro/feijao_00246.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00246.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "410b9e076e064959ca054ce9dff4218b"
+    },
+    {
+      "id": "Outro/feijao_00251.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00251.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "d8e927eab4bd3fff90fd57e8ccf59dd8"
+    },
+    {
+      "id": "Outro/feijao_00253.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00253.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "3463b55d807d778a1fd7a354373ca1b1"
+    },
+    {
+      "id": "Outro/feijao_00262.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00262.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "32805ca8ebb48bf1d14a1fe731439020"
+    },
+    {
+      "id": "Outro/feijao_00275.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00275.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "8ea9eae107426e864417168a2adb8c89"
+    },
+    {
+      "id": "Outro/feijao_00290.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00290.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "d99d1ce8a154387af7b7a42041be3cb0"
+    },
+    {
+      "id": "Outro/feijao_00349.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00349.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "0792552a0e47fdaaede3fd0611f781f1"
+    },
+    {
+      "id": "Outro/feijao_00431.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00431.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "efb21868558235c7d008e063e53ddb6b"
+    },
+    {
+      "id": "Outro/feijao_00439.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00439.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "88eeec3e577b5c5f5d5d346772f9f56c"
+    },
+    {
+      "id": "Outro/feijao_00468.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00468.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "069e2cddd3a7547c02a31ced5ae95ca3"
+    },
+    {
+      "id": "Outro/feijao_00472.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00472.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "25eb3aa6d85fcb1430ef6be5e6d19e6e"
+    },
+    {
+      "id": "Outro/feijao_00510.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00510.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "b3f7810b16eec6f74b7f01f1efdf67ec"
+    },
+    {
+      "id": "Outro/feijao_00533.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00533.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "af11f02d6ba3a36d3ad9c9693ffb79e3"
+    },
+    {
+      "id": "Outro/feijao_00553.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00553.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "2f6aef06bcfb58ec82f8818c7631644a"
+    },
+    {
+      "id": "Outro/feijao_00577.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00577.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "6a854a052c8dce152fdedb9a1ce60383"
+    },
+    {
+      "id": "Outro/feijao_00578.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00578.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "20eb81058a65c7795d5bb0b82c91ed38"
+    },
+    {
+      "id": "Outro/feijao_00587.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00587.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "3b801c9abbf785f36ab4d3075898c48a"
+    },
+    {
+      "id": "Outro/feijao_00590.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00590.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "f9b9b5a1d98c13224ba336d7d935b7fd"
+    },
+    {
+      "id": "Outro/feijao_00597.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00597.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "cd867ac87045ffd22e742378308046da"
+    },
+    {
+      "id": "Outro/feijao_00598.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00598.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "c53b22e998b78ab63d8792f3f22a0e82"
+    },
+    {
+      "id": "Outro/feijao_00607.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00607.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "d9ad3a96d98c70a019cf162011983cab"
+    },
+    {
+      "id": "Outro/feijao_00621.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00621.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "2ac96acd7a405f9e06fea1fa4bde9000"
+    },
+    {
+      "id": "Outro/feijao_00654.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00654.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "fed72cf774585aad3cde2c46a5b5e9a5"
+    },
+    {
+      "id": "Outro/feijao_00698.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00698.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "5c44786899871452278667d9e4f6bc4d"
+    },
+    {
+      "id": "Outro/feijao_00705.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00705.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "0190453bb74a325f74d7340322fd989e"
+    },
+    {
+      "id": "Outro/feijao_00725.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00725.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "9442c89ce1b9d6d19b56fb1c4e875505"
+    },
+    {
+      "id": "Outro/feijao_00745.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00745.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "fbce0bba79e8c40102e18b43d7b10ff9"
+    },
+    {
+      "id": "Outro/feijao_00746.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00746.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "682309ce20c4eb360bd22f7c997968d2"
+    },
+    {
+      "id": "Outro/feijao_00754.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00754.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "c8740082c78afbc424c927803bc3de34"
+    },
+    {
+      "id": "Outro/feijao_00758.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00758.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "352659cd7ce80a25225ba645087fe452"
+    },
+    {
+      "id": "Outro/feijao_00784.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00784.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "6171a7b7e1bbd9e274340f4be7f218ba"
+    },
+    {
+      "id": "Outro/feijao_00785.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00785.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c604d2dae3911fe11c506f3af0d4937c"
+    },
+    {
+      "id": "Outro/feijao_00796.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00796.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "6beffdca3a2bd979b883be355281a9f5"
+    },
+    {
+      "id": "Outro/feijao_00812.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00812.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "ca1b658e03b495319730481b3260936d"
+    },
+    {
+      "id": "Outro/feijao_00820.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00820.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "d97efddb5d6a121a96b10865fc0a0fc6"
+    },
+    {
+      "id": "Outro/feijao_00827.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00827.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "552fad8a7c4fad22750ba2fba5d24e12"
+    },
+    {
+      "id": "Outro/feijao_00861.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00861.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "52a32c92c8933e3f2168eea94bd4e266"
+    },
+    {
+      "id": "Outro/feijao_00869.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00869.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "9b9a9325948712cbd22e1fe38be53b05"
+    },
+    {
+      "id": "Outro/feijao_00921.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00921.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "ee480d3d53cabc6f316fdee82c6417c3"
+    },
+    {
+      "id": "Outro/feijao_00924.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00924.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "8fe4239ec27a9c73f2a487b0e47ee1de"
+    },
+    {
+      "id": "Outro/feijao_00934.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00934.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "99bacbd8e703e0f92350d2a7f6d76f8b"
+    },
+    {
+      "id": "Outro/feijao_00935.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00935.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "6aa21c248a4a112a17486a4162a2bb1a"
+    },
+    {
+      "id": "Outro/feijao_00947.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00947.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "21df2d1ffce69b35a4a51115fef7f8bc"
+    },
+    {
+      "id": "Outro/feijao_00980.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00980.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "ac2ee70689c5c0361fcabaf4bec316b7"
+    },
+    {
+      "id": "Outro/feijao_00990.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00990.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "f5b8ec349ee0690b805a140e899830c1"
+    },
+    {
+      "id": "Outro/feijao_00997.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00997.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "32338ee6322e1f582fe55d0d0f774831"
+    },
+    {
+      "id": "Outro/feijao_00998.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/feijao_00998.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "8e6b4446c3c97abce0d75666ff183eaa"
+    },
+    {
+      "id": "Outro/flor_00016.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00016.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "b1352086268a1f0a64c66ce1b1569c09"
+    },
+    {
+      "id": "Outro/flor_00026.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00026.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "5ef44aca49901081b8038a23919cc894"
+    },
+    {
+      "id": "Outro/flor_00042.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00042.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "af106c16d0dc2818247f02fe41129f0a"
+    },
+    {
+      "id": "Outro/flor_00058.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00058.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "441f259552e4825106b201e288c99a5e"
+    },
+    {
+      "id": "Outro/flor_00060.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00060.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c4235f8569e5ce63ab0bdcaa28e3ca43"
+    },
+    {
+      "id": "Outro/flor_00070.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00070.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c3aff1975820ee130f8a3d6137fd202c"
+    },
+    {
+      "id": "Outro/flor_00157.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00157.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c640a5686c1bed8152a53351fe95fabd"
+    },
+    {
+      "id": "Outro/flor_00204.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00204.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "b309b7d2cd504198c901c625f93ec1cc"
+    },
+    {
+      "id": "Outro/flor_00224.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00224.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "33951a8184f5055a2feae4000a2b6c5d"
+    },
+    {
+      "id": "Outro/flor_00229.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00229.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a2b2ff1dc22e4f3bdd2c912f52ca6435"
+    },
+    {
+      "id": "Outro/flor_00246.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00246.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "8e1daf2f9f47eb4abe7db8b4af3d28e4"
+    },
+    {
+      "id": "Outro/flor_00275.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00275.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "4b9fd0dd52df9a26076866c7163a2094"
+    },
+    {
+      "id": "Outro/flor_00278.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00278.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "7b3128f4c2c98b16a61c51dbff9e147e"
+    },
+    {
+      "id": "Outro/flor_00285.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00285.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "5b4c9fb8d9109022c13b6d8a19402f37"
+    },
+    {
+      "id": "Outro/flor_00315.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00315.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "7b93dbf8b976146d9abd9ae256668cb6"
+    },
+    {
+      "id": "Outro/flor_00364.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00364.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "362caf059474ce29c032e830452388ff"
+    },
+    {
+      "id": "Outro/flor_00375.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00375.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "6fc43bf261182070eb5cd6c5e7073c35"
+    },
+    {
+      "id": "Outro/flor_00389.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00389.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "aca007a75a098e8e63c6d11b0fb265af"
+    },
+    {
+      "id": "Outro/flor_00470.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00470.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "e47c25ada68bbf0dfe48f75ce8c47e6c"
+    },
+    {
+      "id": "Outro/flor_00478.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00478.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "ff1277fbda2ed3f409ca56233e6e19ac"
+    },
+    {
+      "id": "Outro/flor_00540.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00540.jpg",
+      "splits": {
+        "1": "holdout"
+      },
+      "md5": "385359727a7bfdd0910e6a8bf1f5d548"
+    },
+    {
+      "id": "Outro/flor_00548.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00548.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "948832c13936488b9eb9822b9d413692"
+    },
+    {
+      "id": "Outro/flor_00570.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00570.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "4b1a3d0792a8905e2d4b3ae9b659060b"
+    },
+    {
+      "id": "Outro/flor_00572.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00572.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "c15046da57463e3842dcef872cfa3f23"
+    },
+    {
+      "id": "Outro/flor_00587.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00587.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "8e70007353374be7c4c7a1d65386b35d"
+    },
+    {
+      "id": "Outro/flor_00600.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00600.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "8fe5a3a40a225772f3d7b6b518ebfbcd"
+    },
+    {
+      "id": "Outro/flor_00606.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00606.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "1976868b4a9ef5efecc312abe81c97cc"
+    },
+    {
+      "id": "Outro/flor_00610.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00610.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "1408e1129df42f578ed5261dc69e6081"
+    },
+    {
+      "id": "Outro/flor_00628.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00628.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "d95e0b2bbeccdec48c5c9125291be440"
+    },
+    {
+      "id": "Outro/flor_00633.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00633.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "de4b68f16c416b0475af9702ed29185c"
+    },
+    {
+      "id": "Outro/flor_00653.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00653.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "e6d3fda0d61387fc2e3f88d5e2f73bdc"
+    },
+    {
+      "id": "Outro/flor_00661.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00661.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "ab6bab9005133bda4465862e57487f9c"
+    },
+    {
+      "id": "Outro/flor_00680.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00680.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "77aebb84e4ac449e9fa98070e72fdd50"
+    },
+    {
+      "id": "Outro/flor_00750.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00750.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "986f71c124043554509d0e61e0003dfe"
+    },
+    {
+      "id": "Outro/flor_00796.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00796.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "a1dc624bb126b41f74110b099feade41"
+    },
+    {
+      "id": "Outro/flor_00810.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00810.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "07067bb7ffa6096a9d931b9024bd7e19"
+    },
+    {
+      "id": "Outro/flor_00830.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00830.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "72971ded70cbc57ec983bdfd795129f4"
+    },
+    {
+      "id": "Outro/flor_00832.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00832.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "8e6c18cdf3cb159b613d54eed4bcc04e"
+    },
+    {
+      "id": "Outro/flor_00839.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00839.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "fe0dc4a84d8f69b306168b5a7393a674"
+    },
+    {
+      "id": "Outro/flor_00869.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00869.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "5ae3eccbee27fd53e683ba354b117df1"
+    },
+    {
+      "id": "Outro/flor_00878.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00878.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "006c5d4053d7fab85cb05c9019160867"
+    },
+    {
+      "id": "Outro/flor_00920.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00920.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "d70da28d7c215a9ac71b83f112e7dcfb"
+    },
+    {
+      "id": "Outro/flor_00923.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00923.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "464a6e4f536cb7bc305d02c93d331be0"
+    },
+    {
+      "id": "Outro/flor_00924.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00924.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "4516fc99d088ae1dec37ad8c1daaad37"
+    },
+    {
+      "id": "Outro/flor_00929.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00929.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "89e34a270e40161393dbcefb43fad29e"
+    },
+    {
+      "id": "Outro/flor_00950.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00950.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "fd6182d85079c46e201ef1408c8e00d4"
+    },
+    {
+      "id": "Outro/flor_00971.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00971.jpg",
+      "splits": {
+        "1": "teste"
+      },
+      "md5": "ffaef78a5942c0d6e45acba646b2fdbc"
+    },
+    {
+      "id": "Outro/flor_00974.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00974.jpg",
+      "splits": {
+        "1": "validacao"
+      },
+      "md5": "e73eb0ce1a200d0e323f5b41861e2e20"
+    },
+    {
+      "id": "Outro/flor_00985.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00985.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "a6261badfac7adb7d2001b5174b081b3"
+    },
+    {
+      "id": "Outro/flor_00991.jpg",
+      "classe": "outro",
+      "sha256": null,
+      "grupo": "Outro/flor_00991.jpg",
+      "splits": {
+        "1": "treino"
+      },
+      "md5": "50e6f44256482a3077e2f0a88708724e"
     }
   ],
   "proveniencia": {
-    "splits_colega_sha256": "0553f6c185d5f08a31f325159824216857711b7275cdfd6425453be367029c4e",
+    "splits_originais_sha256": "8e69c20751746722221e56e79d90bc19cd027964624a1b23b77b016d165f5710",
     "seed_treino": 1,
     "seed_reserva": 2026,
-    "checkpoint_sha256": "091ddac1e9b075cdc09b3338e13cc084955ca77483e98663d7f8ed0c5376571c"
+    "checkpoint_sha256": "385083d14e04fb23a4bfde46737eae4e06d5f4e9ff731ee36ba5779f946c7d8e"
   }
 }

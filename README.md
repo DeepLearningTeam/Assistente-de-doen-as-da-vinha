@@ -29,13 +29,17 @@ DL_P2_TP2-G2/
 
 ## 3. Instruções de setup
 
-A configuração habitual utiliza a coleção Qdrant partilhada e não exige PDF locais nem reconstrução do índice. A preparação documental opcional está na secção 8.
+A configuração habitual utiliza a coleção Qdrant partilhada e não exige PDF locais nem reconstrução do índice. A preparação documental opcional está na secção 7.
 
 ### 3.1. Preparar o ambiente
 
 Clonar o repositório ou descompactar o projeto e abrir um terminal na pasta raiz. Instalar o [Python 3.14](https://www.python.org/downloads/) e o [Ollama](https://ollama.com/download).
 
-Os ficheiros `.env` e `resnet50_seed1.keras` estão no **grupo do WhatsApp** e não acompanham o clone. Utilizar o conteúdo do `.env` para preencher a configuração descrita na secção 3.2 e colocar o modelo em `runs/checkpoints/resnet50_seed1.keras`.
+Os ficheiros `.env` e `resnet50_seed1.keras` estão no **grupo do WhatsApp** e não acompanham o clone. Utilizar o conteúdo do `.env` para preencher a configuração descrita na secção 3.2.
+
+Colocar o modelo de cinco classes `resnet50_seed1.keras` em `runs/checkpoints/`, dentro da pasta clonada do projeto. O caminho final deve ser `Assistente-de-doen-as-da-vinha\runs\checkpoints\resnet50_seed1.keras`. O modelo é ignorado pelo Git e tem de ser copiado para cada instalação local.
+
+Se o ficheiro partilhado aparecer como `resnet50_seed1.keras.zip`, **renomear para `resnet50_seed1.keras`, removendo apenas o `.zip` final**. Não descompactar: o ficheiro já é um modelo Keras completo. Após a renomeação, colocar em `runs/checkpoints/`. Se já tiver o nome `resnet50_seed1.keras`, copiar diretamente. `configs/cnn.yaml` centraliza o caminho, a seed de treino e a ordem das classes.
 
 **Windows PowerShell**
 
@@ -115,7 +119,7 @@ Manter o `.env` apenas no computador local. É ignorado pelo Git; partilha-se o 
 
 O primeiro comando deve mostrar a coleção, o número de pontos, os documentos e eventuais documentos em falta. O segundo deve devolver passagens com documento e página. Ambos só leem a coleção. Se a ligação falhar, verificar os valores do `.env`, a ligação à Internet e a disponibilidade do servidor. Após confirmar o acesso, iniciar o Gradio conforme a secção 3.3.
 
-Os modos sem RAG funcionam sem credenciais Qdrant. Sem fotografia, a CNN não é chamada. Para utilizar um índice próprio no computador local, seguir a alternativa da secção 8.2.
+Os modos sem RAG funcionam sem credenciais Qdrant. Sem fotografia, a CNN não é chamada. Para utilizar um índice próprio no computador local, seguir a alternativa da secção 7.2.
 
 A pesquisa documental integrada utiliza `BAAI/bge-m3` por SentenceTransformers, vetores densos normalizados com 1024 dimensões, `Qdrant/bm25` em português, fusão RRF de 30 candidatos, `BAAI/bge-reranker-v2-m3` e cinco passagens finais. Estes modelos são descarregados do Hugging Face na primeira consulta e executados localmente. A primeira execução exige Internet e pode demorar e ocupar vários GB.
 
@@ -148,32 +152,11 @@ Sem fotografia, os quatro modos aceitam texto e não carregam a CNN. Para voltar
 
 As conversas são guardadas automaticamente após cada resposta em `runs/chats/`.
 
-Nos modos RAG, as citações junto à resposta apontam para o URL da fonte com a indicação da página (`#page=N`). O painel lateral mostra o título, a entidade, a data e um excerto curto. A hipótese visual aparece em separado.
+Nos modos RAG, as citações junto à resposta apontam para o URL da fonte com a indicação da página (`#page=N`). O painel lateral mostra o título, a entidade, a data e um excerto curto. A hipótese visual aparece em separado e não confirma um diagnóstico. Nos modos CNN, imagens classificadas como `Outro` ou com baixa confiança são rejeitadas; os detalhes estão no [protocolo](PROTOCOLO.md#9-configuração).
 
-## 4. CNN integrada: ResNet50, seed de treino 1
+## 4. Avaliação
 
-Descarregar o modelo `resnet50_seed1.keras` partilhado no **grupo do WhatsApp** e colocar em `runs/checkpoints/`, dentro da pasta clonada do projeto. O caminho final deve ser `Assistente-de-doen-as-da-vinha\runs\checkpoints\resnet50_seed1.keras`. O modelo é ignorado pelo Git e tem de ser copiado para cada instalação local.
-
-Se o ficheiro partilhado aparecer como `resnet50_seed1.keras.zip`, **renomear para `resnet50_seed1.keras`, removendo apenas o `.zip` final**. Não descompactar: o ficheiro já é um modelo Keras completo. Após a renomeação, colocar em `runs/checkpoints/`. Se já tiver o nome `resnet50_seed1.keras`, copiar diretamente. `configs/cnn.yaml` centraliza o caminho, a seed de treino e a ordem das classes.
-
-A inferência em `src/cnn_resnet.py` preserva a correção EXIF, RGB, redimensionamento bilinear para 224 × 224 e `preprocess_input` da ResNet50, sem divisão por 255. A saída já contém softmax. O contrato técnico completo está no [protocolo](PROTOCOLO.md#9-configuração); os materiais de origem estão em `referencia_cnn/`.
-
-| Índice | Classe do treino | Identificador na aplicação/avaliação | Nome apresentado e usado na pesquisa |
-|---|---|---|---|
-| 0 | `Black_rot` | `black_rot` | Podridão-negra (black rot) |
-| 1 | `Esca` | `esca` | Esca |
-| 2 | `Healthy` | `saudavel` | Saudável |
-| 3 | `Leaf_blight` | `leaf_blight` | Mancha-das-folhas (leaf blight) |
-
-A ordem das classes é lida de `data/originais/cnn/splits.json`. `Leaf_blight` mantém a designação mancha-das-folhas, sem a equiparar a míldio ou atribuir um agente causal não documentado.
-
-A CNN fornece uma hipótese e quatro probabilidades softmax; `estado=ok` indica uma saída válida, não um diagnóstico confirmado. Nos modos RAG, a classe acrescenta contexto à consulta, sem alterar os scores documentais. Sem fotografia, a CNN não é chamada; a reutilização da última imagem é explícita.
-
-A ausência dos pesos ou de TensorFlow/Keras só bloqueia pedidos que precisem da CNN. Os modos VLM e as perguntas sem fotografia continuam independentes dela.
-
-## 5. Avaliação
-
-### 5.1. Avaliar respostas de texto
+### 4.1. Avaliar respostas de texto
 
 A comparação textual principal inclui `llm_cnn`, `llm_rag_sem_limiar` e `llm_cnn_rag`, com as mesmas perguntas, sem fotografia e com histórico vazio em cada item. As três condições usam o mesmo LLM, prompt de sistema, instruções gerais, esquema JSON (`primeira`, `segunda`, `resposta`) e limite `max_resposta_tokens` de `configs/base.yaml` (atualmente 1000 tokens). Sem RAG, os dois campos de seleção de passagens são 0; com RAG, identificam as fontes da resposta. As condições diferem na recuperação, nas citações e na recusa. A CNN não intervém. O CSV de referência fica no registo e não entra no prompt. Para um ensaio curto e para a execução de referência, utilizar nomes diferentes em `--execucao`.
 
@@ -216,14 +199,15 @@ Os testes e os ensaios curtos com serviços reais repetem-se com:
 
 `--sem-rag` usa o Qwen3 real e proíbe qualquer acesso ao Qdrant. `--rag` verifica a recuperação de D02 p. 6, a citação final e a recusa de uma pergunta fictícia sem suporte. `--indice-local` exige os PDF importados e testa uma amostra de D02 numa coleção temporária local. Cada execução cria uma pasta datada em `runs/verificacao/`, com JSON e hashes do código, configuração e protocolo. Estes são ensaios de funcionamento, não resultados científicos.
 
-### 5.2. Preparar o FieldVitis e avaliar imagens
+### 4.2. Preparar o FieldVitis e avaliar imagens
 
-O FieldVitis não acompanha o clone. Para preparar uma cópia local, colocar `fieldvitis.zip` na raiz do projeto, ao lado de `README.md` e `requirements.txt`, e extrair para `data/imagens/`. Executar os comandos a partir dessa raiz:
+O FieldVitis e as imagens `Outro` não acompanham o clone. Para preparar os dados completos, colocar `fieldvitis.zip` e `outro.zip` na raiz e extrair para `data/imagens/`. O segundo arquivo contém as 160 imagens adicionais; a aplicação pode usar os pesos sem estes dados, mas a preparação completa exige ambos os conjuntos. Executar os comandos a partir da raiz:
 
 **Windows PowerShell**
 
 ```powershell
 Expand-Archive -LiteralPath ".\fieldvitis.zip" -DestinationPath ".\data\imagens"
+Expand-Archive -LiteralPath ".\outro.zip" -DestinationPath ".\data\imagens"
 .\.venv\Scripts\python.exe -m src.preparar_cnn
 ```
 
@@ -231,21 +215,23 @@ Expand-Archive -LiteralPath ".\fieldvitis.zip" -DestinationPath ".\data\imagens"
 
 ```bash
 unzip ./fieldvitis.zip -d ./data/imagens
+unzip ./outro.zip -d ./data/imagens
 python -m src.preparar_cnn
 ```
 
-As quatro pastas das classes ficam diretamente dentro de `data/imagens/`, sem uma pasta `fieldvitis/` adicional. Preservar os originais; se outro arquivo tiver uma pasta exterior, copiar as classes para estes destinos. A preparação confere MD5 com o manifesto original, calcula SHA-256 e duplicados exatos de píxeis, verifica as partições e adapta os IDs sem voltar a sortear imagens.
+As cinco pastas das classes ficam diretamente dentro de `data/imagens/`, sem uma pasta `fieldvitis/` adicional. Preservar os originais; se outro arquivo tiver uma pasta exterior, copiar as classes para estes destinos. A preparação confere MD5 com o manifesto original, calcula SHA-256 e duplicados exatos de píxeis, verifica as partições e adapta os IDs sem voltar a sortear imagens.
 
 ```text
 data/imagens/Black_rot/
 data/imagens/Esca/
 data/imagens/Healthy/
 data/imagens/Leaf_blight/
+data/imagens/Outro/
 ```
 
 Por exemplo, `Healthy_10.jpg` fica em `data/imagens/Healthy/Healthy_10.jpg`.
 
-`data/splits.json` adapta apenas a **seed de treino 1**: 352 treino, 76 validação, 77 teste interno e 50 `holdout`. As divisões originais da CNN (0/1/2) e o antigo manifesto da aplicação (42/43/44) ficam em `data/originais/`. **Não utilizar o manifesto antigo para estes pesos:** 53 das suas 84 imagens de teste da seed 42 foram usadas no treino recebido. O avaliador rejeita essa combinação.
+`data/splits.json` adapta a **seed de treino 1**, com 715 registos: 454 de treino, 98 de validação, 99 de teste interno e 64 de `holdout`. As 555 imagens FieldVitis mantêm as divisões anteriores. A comparação `avaliar imagem` continua limitada às quatro classes de folhas: 76 de validação, 77 de teste e 50 de holdout; não mede a rejeição de `Outro`. Os registos adicionais conservam o MD5 fornecido e têm SHA-256 por preencher até à preparação com as imagens reais. Os manifestos recebidos ficam em `data/originais/cnn/`.
 
 Para verificar apenas o carregamento, a arquitetura e as classes, sem fotografias, executar `.\.venv\Scripts\python.exe -m src.verificar_cnn --apenas-modelo`. A paridade e os percursos com fotografia exigem as imagens de validação.
 
@@ -285,7 +271,7 @@ As 50 imagens finais ficaram reservadas nesta integração. Só quando o grupo f
 
 `--limite` só é aceite na validação. O teste interno já consta das análises originais da CNN; não substitui as 50 imagens reservadas. O teste interno tem seis casos de black rot; o holdout tem quatro, abaixo dos seis previstos no D1. As métricas de classificação não medem correção ou fidelidade das respostas. A auditoria de hashes não deteta quase duplicados nem demonstra separação por videira/local de recolha.
 
-### 5.3. Comparar respostas dos quatro modos
+### 4.3. Comparar respostas dos quatro modos
 
 O comando `imagem` anterior mede **classificação**, não a qualidade da resposta à pergunta. Para comparar respostas, fornecer a mesma fotografia e a mesma pergunta aos quatro modos:
 
@@ -293,7 +279,7 @@ O comando `imagem` anterior mede **classificação**, não a qualidade da respos
 .\.venv\Scripts\python.exe -m src.avaliar respostas-imagem --execucao respostas-foto-validacao --foto ".\data\imagens\Esca\Esca_0.jpg" --pergunta "Que sinais se veem nesta folha de videira?"
 ```
 
-O ficheiro tem de existir. Cada condição começa sem histórico e guarda o hash da mesma imagem, os prompts e a resposta em `runs/`. Todos os modos partilham o prompt de sistema, as instruções gerais, o esquema JSON e o limite `max_resposta_tokens` descritos na secção 5.1, incluindo reparações e revisões. Nos dois modos VLM, a mesma fotografia chega à análise visual e à geração final, com a mesma observação; o modo RAG acrescenta as passagens documentais. Nos modos LLM, a CNN fornece a mesma hipótese e probabilidades com e sem RAG, sem fotografia nem descrição de sinais observados ao gerador. A classificação CNN e a observação inicial do VLM mantêm os seus contratos próprios. Para avaliar apenas o par VLM, utilizar `--condicoes vlm vlm_rag`, sem exigir os pesos CNN.
+O ficheiro tem de existir. Cada condição começa sem histórico e guarda o hash da mesma imagem, os prompts e a resposta em `runs/`. Todos os modos partilham o prompt de sistema, as instruções gerais, o esquema JSON e o limite `max_resposta_tokens` descritos na secção 4.1, incluindo reparações e revisões. Nos dois modos VLM, a mesma fotografia chega à análise visual e à geração final, com a mesma observação; o modo RAG acrescenta as passagens documentais. Nos modos LLM, a CNN fornece a mesma hipótese e probabilidades com e sem RAG, sem fotografia nem descrição de sinais observados ao gerador. A classificação CNN e a observação inicial do VLM mantêm os seus contratos próprios. Para avaliar apenas o par VLM, utilizar `--condicoes vlm vlm_rag`, sem exigir os pesos CNN.
 
 Exportar as folhas e resumir as anotações:
 
@@ -305,9 +291,10 @@ Exportar as folhas e resumir as anotações:
 
 A tabela `runs/respostas-foto-validacao/metricas/tabelas/respostas_imagem.csv` fica separada da classificação. Sem anotação, só se calculam latência e proporção de recusas. A execução corresponde a uma pergunta e uma fotografia: repetir com nomes novos para as outras unidades, escolhidas do split adequado. Uma fotografia arbitrária não é automaticamente um teste independente.
 
-## 6. Dados e referências
+## 5. Dados e referências
 
 - **FieldVitis v2** · 555 fotografias, licença CC BY 4.0. A classe podridão-negra tem 39 imagens e o conjunto não foi recolhido especificamente em vinhas portuguesas. [Dataset e citação](https://doi.org/10.5281/zenodo.17307846)
+- **Outro** · 160 imagens de folhas de feijão, flores e animais. A proveniência está em `data/originais/cnn/outro_fontes.csv`.
 - **Corpus** · `data/corpus.csv` conserva os 19 registos, incluindo as licenças e os URLs. A configuração inclui 14 documentos, contando com os sete condicionais mantidos. D07 e D14 ficam excluídos da indexação; D10–D12 ficam reservados para a avaliação da recusa. Os PDF e as imagens são ficheiros locais; o índice pode ser a coleção partilhada ou uma coleção local nova.
 - **Perguntas** · `data/perguntas/perguntas.csv` contém 40 perguntas, com referência, página e indicação de validação humana. Q023 foi substituída por uma pergunta sobre as consequências da desfolha precoce, suportada por D15, página 1, mantendo 15 perguntas respondíveis e cinco de recusa em cada split. As referências bibliográficas estão em [paper/referencias.bib](paper/referencias.bib).
 - **Documentação técnica** · [ChatOllama](https://docs.langchain.com/oss/python/integrations/chat/ollama) · [Gradio](https://www.gradio.app/docs/gradio/blocks)
@@ -316,7 +303,7 @@ A tabela `runs/respostas-foto-validacao/metricas/tabelas/respostas_imagem.csv` f
 
 O registo histórico da integração CNN está em [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md). A comparação e verificação anterior do RAG permanece em [INTEGRACAO_RAG.md](INTEGRACAO_RAG.md).
 
-## 7. Análise dos resultados
+## 6. Análise dos resultados
 
 Após obter uma execução de classificação, exportar calibração e erros/abstenções ordenados por confiança:
 
@@ -329,11 +316,11 @@ Após obter uma execução de classificação, exportar calibração e erros/abs
 
 Os CSV e a figura ficam em `runs/<execucao>/analise/`. O ECE mantém dez intervalos e só usa previsões aceites com confiança; as abstenções aparecem nos casos de erro. A confiança do VLM é declarada pelo modelo, não uma probabilidade calibrada. Este comando não ajusta o modelo. Não utilizar resultados de teste/holdout para afinação.
 
-## 8. Preparação documental opcional
+## 7. Preparação documental opcional
 
 Estas operações permitem importar os PDF e construir um índice local. Para utilizar apenas a coleção partilhada, seguir as instruções da secção 3.
 
-### 8.1. Importar os PDF
+### 7.1. Importar os PDF
 
 Colocar `docs do corpus.zip` na raiz do projeto, ao lado de `README.md` e `requirements.txt`. Manter o ficheiro em formato ZIP. O comando de importação extrai os PDF para `data/docs/` e identifica-os pelo SHA-256. Se o ZIP estiver noutro local, indicar o caminho completo entre aspas.
 
@@ -351,7 +338,7 @@ python -m src.corpus importar "./docs do corpus.zip"
 
 Para tentar obter os PDF pelos URLs registados, utilizar `.\.venv\Scripts\python.exe -m src.corpus descarregar` no PowerShell ou `python -m src.corpus descarregar` em macOS ou Linux.
 
-### 8.2. Construir uma coleção local nova
+### 7.2. Construir uma coleção local nova
 
 Este passo é necessário apenas para reconstruir ou testar o índice. A construção reutiliza a extração Markdown por página, limpeza, divisão por cabeçalhos e chunks de 1200 carateres com sobreposição de 200 da implementação original. Utiliza os PDF importados em `data/docs/`, confirmados por SHA-256, e exclui D07, D10–D12 e D14. Não há escrita no serviço partilhado neste comando.
 
@@ -370,9 +357,9 @@ QDRANT_COLECAO=videira_teste
 
 Em seguida, executar `src.indice info` e iniciar a aplicação. Para voltar à coleção do grupo, remover ou comentar `QDRANT_LOCAL_PATH` e repor `QDRANT_COLECAO=videira_fitossanidade`. Reiniciar a aplicação após alterar o `.env`.
 
-### 8.3. OCR e Tesseract no Windows
+### 7.3. OCR e Tesseract no Windows
 
-O procedimento principal é `--ocr por`, com Tesseract em português. Configurar o OCR antes de executar a construção local da secção 8.2. Como alternativas, `--ocr auto` mantém a seleção automática do PyMuPDF4LLM/RapidOCR e `--ocr off` usa só o texto extraível dos PDF. Instalar o Tesseract e `por.traineddata` e verificar os caminhos:
+O procedimento principal é `--ocr por`, com Tesseract em português. Configurar o OCR antes de executar a construção local da secção 7.2. Como alternativas, `--ocr auto` mantém a seleção automática do PyMuPDF4LLM/RapidOCR e `--ocr off` usa só o texto extraível dos PDF. Instalar o Tesseract e `por.traineddata` e verificar os caminhos:
 
 ```powershell
 $tess = 'C:\Program Files\Tesseract-OCR'

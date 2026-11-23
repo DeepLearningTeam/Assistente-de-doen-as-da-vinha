@@ -19,6 +19,8 @@ CLASSES = {
     "black_rot": "Podridão-negra (black rot)",
 }
 Classe = Literal["saudavel", "esca", "leaf_blight", "black_rot"]
+# Outro é uma saída técnica da CNN, não uma hipótese de doença nem uma classe do VLM.
+ClasseCNN = Classe | Literal["outro"]
 LIMITE_BYTES = 12_000_000
 
 
@@ -41,12 +43,12 @@ class ConfigCNN(BaseModel):
 
     checkpoint: str
     seed_treino: int
-    classes: list[Classe]
+    classes: list[ClasseCNN]
 
     @model_validator(mode="after")
     def validar_config(self):
-        if set(self.classes) != set(CLASSES):
-            raise ValueError("As classes devem corresponder às quatro classes do FieldVitis.")
+        if set(self.classes) != set(CLASSES) | {"outro"}:
+            raise ValueError("As classes devem corresponder ao FieldVitis e à classe Outro.")
         if len(set(self.classes)) != len(self.classes):
             raise ValueError("A ordem das classes da CNN contém repetições.")
         return self
@@ -113,6 +115,14 @@ def analisar_cnn(imagem, checkpoint=None):
 
     classe = max(probabilidades, key=probabilidades.get)
     confianca = probabilidades[classe]
+    if not isinstance(resultado.get("recognized"), bool):
+        raise ErroProjeto("O adaptador CNN deve indicar recognized como verdadeiro ou falso.")
+    if not resultado["recognized"]:
+        return Visual(
+            motor="CNN", estado="rejeitada", confianca=confianca,
+            probabilidades=probabilidades,
+            descricao="A imagem não foi reconhecida como folha de videira pela CNN.",
+        )
     descricao = resultado.get("descricao") or "Classificação baseada nos padrões da folha."
     mapa = resultado.get("mapa_atencao")
     return Visual(
