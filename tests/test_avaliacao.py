@@ -141,6 +141,144 @@ class MetricasAvaliacao(unittest.TestCase):
         self.assertNotIn("consistencia_classe", valores)
 
 
+class DoencaNaResposta(unittest.TestCase):
+    def test_conta_por_resposta_e_publica_cobertura_e_exclusoes(self):
+        casos = [
+            ("resposta", "S", "esca", "conhecida"),
+            ("resposta", "S", "black_rot", "conhecida"),
+            ("resposta", "S", "sem_classe", "conhecida"),
+            ("resposta", "S", "indeterminada", "conhecida"),
+            ("recusa", "S", "esca", "conhecida"),
+            ("imagem_rejeitada", "S", "", "conhecida"),
+            ("resposta", "S", "", "conhecida"),
+            ("resposta", "S", "esca", "desconhecida"),
+            ("resposta", "N", "esca", "conhecida"),
+            ("resposta", "", "esca", "conhecida"),
+            ("erro_formato", "S", "", "conhecida"),
+        ]
+        itens, linhas = [], []
+        for n, (estado, pedido, classe, resumo) in enumerate(casos):
+            itens.append(item(str(n), estado=estado, imagem_sha256=resumo,
+                              visual={"classe": "black_rot" if n == 0 else "esca"}))
+            linhas.append({"chave_resposta": str(n), "pedido_identificacao": pedido, "classe_resposta": classe})
+        # Duas afirmações da mesma resposta não duplicam a unidade avaliada.
+        linhas.extend([dict(linhas[0]), {"chave_resposta": "0"}])
+        valores = metricas.pontuacoes_doenca_resposta(itens, linhas, {"conhecida": "esca"})
+        self.assertEqual(valores["acuracia_doenca_resposta"], (1 / 7, 7))
+        self.assertEqual(valores["cobertura_acuracia_doenca_resposta"], (7 / 9, 9))
+        self.assertEqual(valores["cobertura_pedido_identificacao"], (10 / 11, 11))
+        esperadas = {"acertos": 1, "erros": 1, "recusas": 2, "sem_identificacao": 2, "falhas": 1,
+                     "anotacoes_pendentes": 1, "sem_referencia": 1, "pedidos_pendentes": 1, "fora_identificacao": 1}
+        for nome, n in esperadas.items():
+            self.assertEqual(valores[f"doenca_resposta_n_{nome}"], (n, 11))
+
+    def test_folhas_antigas_e_pendentes_nao_produzem_acuracia_ficticia(self):
+        for linhas in ([], [{"chave_resposta": "r1", "classe_resposta": "esca"}],
+                       [{"chave_resposta": "r1", "pedido_identificacao": None, "classe_resposta": None}]):
+            with self.subTest(linhas=linhas):
+                valores = metricas.pontuacoes_doenca_resposta(
+                    [item(imagem_sha256="foto")], linhas, {"foto": "esca"},
+                )
+                self.assertEqual(valores["acuracia_doenca_resposta"], (None, 0))
+                self.assertEqual(valores["cobertura_acuracia_doenca_resposta"], (None, 0))
+                self.assertEqual(valores["cobertura_pedido_identificacao"], (0, 1))
+        valores = metricas.pontuacoes_doenca_resposta([item(imagem_sha256="foto")], [
+            {"chave_resposta": "r1", "pedido_identificacao": "S"},
+        ], {"foto": "esca"})
+        self.assertEqual(valores["acuracia_doenca_resposta"], (None, 0))
+        self.assertEqual(valores["cobertura_acuracia_doenca_resposta"], (0, 1))
+
+    def test_saudavel_acerta_e_listas_ou_outras_doencas_nao_acertam_por_inclusao(self):
+        for classe, esperado in ((" Saudavel ", 1), ("esca;saudavel", 0), ("mildio", 0)):
+            with self.subTest(classe=classe):
+                valores = metricas.pontuacoes_doenca_resposta([item(imagem_sha256="foto")], [
+                    {"chave_resposta": "r1", "pedido_identificacao": "S", "classe_resposta": classe},
+                ], {"foto": "saudavel"})
+                self.assertEqual(valores["acuracia_doenca_resposta"], (esperado, 1))
+
+    def test_contradicoes_e_marcacao_de_pedido_invalida_sao_recusadas(self):
+        for campo, valores in (("classe_resposta", ("esca", "black_rot")), ("pedido_identificacao", ("S", "N"))):
+            with self.subTest(campo=campo), self.assertRaisesRegex(ErroProjeto, "contraditório"):
+                metricas.pontuacoes_doenca_resposta([item()], [
+                    {"chave_resposta": "r1", campo: v} for v in valores
+                ], {})
+        with self.assertRaisesRegex(ErroProjeto, "exige S, N"):
+            metricas.pontuacoes_doenca_resposta([item()], [
+                {"chave_resposta": "r1", "pedido_identificacao": "talvez"},
+            ], {})
+
+    def test_referencia_exige_hash_conhecido_e_preserva_as_metricas_anteriores(self):
+        manifesto = {"execucao": "ensaio", "parametros": {"configuracoes": {"vlm": {"vlm_modelo": "simulado"}}}}
+        itens = [item("certa", modo="vlm", imagem_sha256="hash-conhecido", visual={"classe": "black_rot"}),
+                 item("externa", modo="vlm", imagem_sha256="hash-externo", imagem="Esca_0.jpg"),
+                 item("sem_hash", modo="vlm", imagem_sha256=None)]
+        linhas = [{"chave_resposta": i["chave"], "pedido_identificacao": "S", "classe_resposta": "esca",
+                   "suportada": "S", "resposta_correta": "N"} for i in itens]
+        with tempfile.TemporaryDirectory() as tmp, patch.object(metricas, "ler_json", return_value={"imagens": [
+            {"sha256": "hash-conhecido", "classe": "esca"}, {"sha256": None, "classe": "esca"},
+        ]}):
+            pasta = Path(tmp)
+            metricas.csv_gravar(pasta / "ensaio/consenso.csv", metricas.COLUNAS_ANOTACAO, linhas)
+            tabela = metricas.tabela_respostas_imagem(manifesto, itens, pasta)
+        valores = {r["metrica"]: r["valor"] for r in tabela}
+        self.assertEqual(valores["acuracia_doenca_resposta"], 1)
+        self.assertEqual(valores["cobertura_acuracia_doenca_resposta"], 1 / 3)
+        self.assertEqual(valores["doenca_resposta_n_sem_referencia"], 2)
+        self.assertEqual(valores["fidelidade"], 1)
+        self.assertEqual(valores["correcao_humana"], 0)
+        self.assertEqual(valores["latencia_media_s"], 1)
+        self.assertEqual(valores["proporcao_recusas"], 0)
+
+    def test_manifesto_com_classes_contraditorias_para_o_mesmo_hash_falha(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(metricas, "ler_json", return_value={"imagens": [
+            {"sha256": "igual", "classe": "esca"}, {"sha256": "igual", "classe": "black_rot"},
+        ]}), self.assertRaisesRegex(ErroProjeto, "classes contraditórias"):
+            metricas.tabela_respostas_imagem({"execucao": "ensaio"}, [], Path(tmp))
+
+    def test_exporta_acuracia_pelos_quatro_modos_com_referencia_do_manifesto(self):
+        # Só metadados de validação: não executa modelos nem produz resultados científicos.
+        referencia = next(i for i in apoio.ler_json(apoio.FICHEIRO_SPLITS)["imagens"]
+                          if i["splits"]["1"] == "validacao" and i["sha256"])
+        modos = ("llm_cnn", "llm_cnn_rag", "vlm", "vlm_rag")
+        manifesto = {"execucao": "ensaio", "parametros": {
+            "tipo": "resposta_imagem", "configuracoes": {m: carregar_config(m).model_dump() for m in modos},
+        }}
+        itens = [item(m, modo=m, imagem_sha256=referencia["sha256"]) for m in modos]
+        linhas = [{"chave_resposta": m, "pedido_identificacao": "S", "classe_resposta": referencia["classe"]}
+                  for m in modos]
+        with tempfile.TemporaryDirectory() as tmp:
+            raiz = Path(tmp)
+            metricas.csv_gravar(raiz / "fidelidade/ensaio/consenso.csv", metricas.COLUNAS_ANOTACAO, linhas)
+            with patch.object(metricas, "PAPER", raiz), \
+                    patch.object(metricas, "carregar", return_value=(manifesto, itens)):
+                metricas.resumir(["ensaio"], raiz / "resultados", 10)
+            tabela = metricas.csv_ler(raiz / "resultados/tabelas/respostas_imagem.csv")
+        acuracias = [r for r in tabela if r["metrica"] == "acuracia_doenca_resposta"]
+        self.assertEqual({r["condicao"] for r in acuracias}, set(modos))
+        self.assertTrue(all(float(r["valor"]) == 1 and r["n_unidades"] == "1" for r in acuracias))
+
+    def test_folhas_incluem_recusas_e_falhas_sem_inventar_anotacoes(self):
+        itens = [item(str(n), estado=estado, imagem_sha256="foto", pergunta="Que doença é esta?", referencia=None,
+                      modo="vlm", texto="Texto final.", partes=[]) for n, estado in enumerate(
+            ("recusa", "imagem_rejeitada", "erro_formato"),
+        )]
+        with tempfile.TemporaryDirectory() as tmp, patch.object(metricas, "carregar", return_value=(
+            {"parametros": {"tipo": "resposta_imagem"}}, itens,
+        )):
+            pasta = Path(tmp)
+            metricas.preparar_anotacao("ensaio", pasta)
+            for nome in ("anotador_1", "anotador_2", "consenso"):
+                linhas = metricas.csv_ler(pasta / f"ensaio/{nome}.csv")
+                self.assertEqual({r["chave_resposta"] for r in linhas}, {"0", "1", "2"})
+                self.assertTrue(all(not r[c] for r in linhas for c in (
+                    "pedido_identificacao", "classe_resposta", "resposta_ref", "suportada", "resposta_correta",
+                )))
+            caminho = pasta / "ensaio/consenso.csv"
+            caminho.write_text("anotacao manual a preservar", encoding="utf-8")
+            metricas.preparar_anotacao("ensaio", pasta)
+            self.assertEqual(caminho.read_text(encoding="utf-8"), "anotacao manual a preservar")
+
+
 class PercursosAvaliacao(unittest.TestCase):
     def test_metricas_exportam_por_execucao_sem_alterar_paper(self):
         with patch("sys.argv", ["metricas", "resumir", "--execucoes", "ensaio_a", "ensaio_b"]), \
@@ -259,6 +397,8 @@ class PercursosAvaliacao(unittest.TestCase):
             chamadas = responder.call_args_list
             self.assertEqual([c.args[1] for c in chamadas], modos)
             for c in chamadas:
+                self.assertEqual(c.args[0], args.pergunta)
+                self.assertEqual(set(c.kwargs), {"historico", "imagem", "config", "registar"})
                 self.assertEqual(c.kwargs["historico"], ())
                 self.assertIs(c.kwargs["imagem"], chamadas[0].kwargs["imagem"])
             ficheiros = list((raiz / "foto/itens").glob("*.json"))

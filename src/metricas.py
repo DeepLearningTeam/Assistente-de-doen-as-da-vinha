@@ -10,7 +10,7 @@ from statistics import mean, stdev
 
 import numpy as np
 
-from .apoio import ErroProjeto, RAIZ, escrever_atomico, ler_json
+from .apoio import ErroProjeto, FICHEIRO_SPLITS, RAIZ, escrever_atomico, ler_json
 from .avaliar import caminho_execucao
 from .imagem import CLASSES
 
@@ -19,7 +19,7 @@ COLUNAS_ANOTACAO = (
     "id_afirmacao", "chave_resposta", "id_pergunta", "condicao", "temperatura", "repeticao",
     "pergunta", "afirmacao", "fonte_citada", "trechos_no_json", "resposta_ref",
     "suportada", "correta_face_referencia", "resposta_correta", "tipo_erro", "anotador",
-    "classe_resposta", "imagem_sha256",
+    "classe_resposta", "imagem_sha256", "pedido_identificacao",
 )
 COLUNAS_RESULTADOS = (
     "execucao", "split", "via", "modelo", "config", "seed", "repeticao",
@@ -68,12 +68,16 @@ def preparar_anotacao(nome, destino=PAPER / "fidelidade"):
         raise ErroProjeto("A anotação de afirmações exige uma execução de respostas.")
     linhas = []
     for item in itens:
-        if item["estado"] != "resposta":
+        if item["estado"] != "resposta" and tipo != "resposta_imagem":
             continue
         ref = item.get("referencia") or {
             "id": item["imagem_sha256"], "pergunta": item["pergunta"], "resposta_ref": "",
         }
-        for numero, parte in enumerate(item["partes"], 1):
+        partes = item.get("partes", [])
+        if tipo == "resposta_imagem" and not partes:
+            # Linha de resposta para anotar também recusas e falhas, sem inventar afirmações.
+            partes = [{"texto": item.get("texto", item.get("erro", "")), "fontes": [], "trechos": []}]
+        for numero, parte in enumerate(partes, 1):
             linhas.append({
                 "id_afirmacao": f"{item['chave']}:{numero}", "chave_resposta": item["chave"],
                 "id_pergunta": ref["id"], "condicao": item["modo"], "temperatura": item.get("temperatura", 0),
@@ -88,7 +92,7 @@ def preparar_anotacao(nome, destino=PAPER / "fidelidade"):
             print(f"Já existe: {caminho}")
         else:
             csv_gravar(caminho, COLUNAS_ANOTACAO, linhas)
-    print(f"{len(linhas)} afirmações a rever em {pasta}.")
+    print(f"{len(linhas)} linhas a rever em {pasta}.")
 
 
 def taxa(grupos):
@@ -367,9 +371,65 @@ def resultados_item(manifesto, item):
     return [{**base, "metrica": chave, "valor": valor} for chave, valor in valores.items()]
 
 
+def pontuacoes_doenca_resposta(itens, anotacoes, referencias):
+    """Compara a identificação no texto, uma vez por resposta, com a referência por hash."""
+    por_resposta = agrupar(anotacoes, lambda r: r["chave_resposta"])
+    contagens = Counter({nome: 0 for nome in (
+        "acertos", "erros", "recusas", "sem_identificacao", "falhas",
+        "anotacoes_pendentes", "sem_referencia", "pedidos_pendentes", "fora_identificacao",
+    )})
+    for item in itens:
+        campos = {}
+        for campo in ("pedido_identificacao", "classe_resposta"):
+            valores = {(r.get(campo) or "").strip().casefold() for r in por_resposta[item["chave"]]}
+            valores.discard("")
+            if len(valores) > 1:
+                raise ErroProjeto(f"{item['chave']}: {campo} contraditório no consenso.")
+            campos[campo] = next(iter(valores), "")
+        pedido, classe = campos["pedido_identificacao"], campos["classe_resposta"]
+        if pedido not in {"", "s", "n"}:
+            raise ErroProjeto(f"{item['chave']}: pedido_identificacao exige S, N ou vazio.")
+        referencia = referencias.get(item.get("imagem_sha256"))
+        if not pedido:
+            estado = "pedidos_pendentes"
+        elif pedido == "n":
+            estado = "fora_identificacao"
+        elif referencia is None:
+            estado = "sem_referencia"
+        elif item["estado"] in {"recusa", "imagem_rejeitada"}:
+            estado = "recusas"
+        elif item["estado"] != "resposta":
+            estado = "falhas"
+        elif not classe:
+            estado = "anotacoes_pendentes"
+        elif classe in {"sem_classe", "indeterminada"}:
+            estado = "sem_identificacao"
+        else:
+            # Uma lista de hipóteses não equivale a acertar numa classe única.
+            estado = "acertos" if classe == referencia else "erros"
+        contagens[estado] += 1
+    total = len(itens)
+    pedidos = total - contagens["pedidos_pendentes"] - contagens["fora_identificacao"]
+    avaliadas = sum(contagens[n] for n in ("acertos", "erros", "recusas", "sem_identificacao", "falhas"))
+    valores = {
+        "acuracia_doenca_resposta": (contagens["acertos"] / avaliadas if avaliadas else None, avaliadas),
+        "cobertura_acuracia_doenca_resposta": (avaliadas / pedidos if pedidos else None, pedidos),
+        "cobertura_pedido_identificacao": ((total - contagens["pedidos_pendentes"]) / total if total else None, total),
+    }
+    valores.update({f"doenca_resposta_n_{nome}": (n, total) for nome, n in contagens.items()})
+    return valores
+
+
 def tabela_respostas_imagem(manifesto, itens, pasta_anotacoes):
-    """Qualidade anotada das respostas; não calcula acurácia de classificação."""
+    """Qualidade anotada e identificação na resposta; separadas da classificação visual."""
     consenso = csv_ler(pasta_anotacoes / manifesto["execucao"] / "consenso.csv")
+    referencias = {}
+    for imagem in ler_json(FICHEIRO_SPLITS)["imagens"]:
+        resumo = imagem.get("sha256")
+        if resumo:
+            if resumo in referencias and referencias[resumo] != imagem["classe"]:
+                raise ErroProjeto("O manifesto contém classes contraditórias para o mesmo SHA-256.")
+            referencias[resumo] = imagem["classe"]
     tabela = []
     for modo, grupo in agrupar(itens, lambda i: i["modo"]).items():
         chaves = {i["chave"] for i in grupo}
@@ -396,6 +456,8 @@ def tabela_respostas_imagem(manifesto, itens, pasta_anotacoes):
         if corretas:
             tabela.append(linha_tabela(base, "correcao_humana", corretas.count("S") / len(corretas),
                                        len(corretas), "resposta"))
+        for metrica, (valor, n) in pontuacoes_doenca_resposta(grupo, anotacoes, referencias).items():
+            tabela.append(linha_tabela(base, metrica, valor, n, "resposta"))
     return tabela
 
 

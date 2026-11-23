@@ -73,7 +73,10 @@ O registo identifica `verificar_documento`, a origem nos metadados e se a pesqui
 | Recusa | Taxa nas perguntas sem suporte e, em separado, nas respondíveis. |
 | Consistência | Acordo de ação/fontes; acordo da classe expressa na resposta anotada em `classe_resposta`; e acordo conjunto. Classe não anotada, `sem_classe` e `indeterminada` não geram acordo de identificação. Publica-se a cobertura de anotação; a classe visual não substitui a classe da resposta. |
 | Visão | Macro-F1, recall por classe, acurácia, cobertura e ECE com dez intervalos entre previsões aceites que têm confiança. Uma abstenção conta como falha para a classe real. |
+| Doença na resposta | Nos pedidos de identificação por fotografia, proporção de classes humanas em `classe_resposta` iguais à classe verdadeira, obtida pelo SHA-256 em `data/splits.json`. Cada resposta conta uma vez; não se utiliza a previsão CNN/VLM como anotação do texto. |
 | Latência | Tempo por item, incluindo as etapas locais chamadas nesse item. |
+
+Nas folhas de respostas com fotografia, `pedido_identificacao` indica se a pergunta pede identificação (`S`/`N`), independentemente da resposta gerada. Nos pedidos com referência conhecida, recusas, imagens rejeitadas, falhas e identificações explicitamente ausentes (`sem_classe`/`indeterminada`) contam como erros. Classes por anotar e imagens sem referência ficam fora do denominador da acurácia, com contagens separadas. A cobertura da acurácia é a proporção de pedidos `S` avaliados; publica-se também a cobertura da marcação `S`/`N` sobre todas as respostas. Sem unidades avaliadas, a acurácia fica vazia. A referência é consultada apenas no resumo, sem entrar no gerador.
 
 Dois anotadores fazem a revisão independente de cada resposta, um por folha, e resolvem as divergências numa folha de consenso. Quem escreveu uma pergunta fica fora da sua verificação de fidelidade. Mede-se a concordância com kappa de Cohen. O catálogo de alucinações regista afirmação, fonte real, tipo de erro, correção e efeito observado.
 

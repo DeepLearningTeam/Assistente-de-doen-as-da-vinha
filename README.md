@@ -289,7 +289,7 @@ Exportar as folhas e resumir as anotações:
 .\.venv\Scripts\python.exe -m src.metricas resumir --execucoes respostas-foto-validacao
 ```
 
-A tabela `runs/respostas-foto-validacao/metricas/tabelas/respostas_imagem.csv` fica separada da classificação. Sem anotação, só se calculam latência e proporção de recusas. A execução corresponde a uma pergunta e uma fotografia: repetir com nomes novos para as outras unidades, escolhidas do split adequado. Uma fotografia arbitrária não é automaticamente um teste independente.
+A tabela `runs/respostas-foto-validacao/metricas/tabelas/respostas_imagem.csv` fica separada da classificação. Para medir a acurácia da doença expressa na resposta, preencher `pedido_identificacao` e `classe_resposta` nas [folhas humanas](paper/fidelidade/README.md); a classe verdadeira é obtida pelo hash em `data/splits.json`, apenas no resumo. Sem anotação, mantêm-se latência, proporção de recusas e contagens de cobertura; a acurácia fica vazia. A execução corresponde a uma pergunta e uma fotografia: repetir com nomes novos para as outras unidades, escolhidas do split adequado. Uma fotografia arbitrária não é automaticamente um teste independente.
 
 ## 5. Dados e referências
 
