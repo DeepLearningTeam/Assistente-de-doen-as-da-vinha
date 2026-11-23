@@ -103,6 +103,31 @@ class MetricasAvaliacao(unittest.TestCase):
         self.assertEqual(metricas.taxa(valores["recusa_indevida"]), 0.5)
         self.assertEqual(metricas.taxa(valores["recusa_indevida_motivo_documento_ausente"]), 0.5)
 
+    def test_recusas_por_tipo_separam_acoes_e_conservam_falhas_no_denominador(self):
+        def caso(tipo, acao, estado):
+            return item(estado=estado, referencia={
+                "tipo": tipo, "expected_action": acao, "doc_id": "D02", "pagina_pdf": "6",
+            })
+
+        grupos = {
+            "Q1": [caso("regulamentacao", "recusar", "recusa")],
+            "Q2": [caso("sintomas", "recusar", estado) for estado in ("recusa", "resposta", "fora_tema")],
+            "Q3": [caso("sintomas", "recusar", "erro_formato")],
+            "Q4": [caso("tratamento", "recusar", "resposta")],
+            "Q5": [caso("sintomas", "responder", estado) for estado in ("recusa", "resposta")],
+        }
+        valores, _ = metricas.pontuacoes_texto(grupos, {}, 5)
+        self.assertAlmostEqual(metricas.taxa(valores["recusa_correta"]), 2 / 6)
+        self.assertEqual(metricas.taxa(valores["recusa_correta_tipo_regulamentacao"]), 1)
+        self.assertEqual(metricas.taxa(valores["recusa_correta_tipo_sintomas"]), 1 / 4)
+        self.assertEqual(metricas.taxa(valores["recusa_correta_tipo_tratamento"]), 0)
+        self.assertEqual(metricas.taxa(valores["recusa_indevida_tipo_sintomas"]), 1 / 2)
+
+    def test_execucoes_antigas_sem_tipo_preservam_taxa_e_assinalam_tipo_ausente(self):
+        valores, _ = metricas.pontuacoes_texto({"Q1": [item(estado="recusa")], "Q2": [item()]}, {}, 5)
+        self.assertEqual(metricas.taxa(valores["recusa_indevida"]), 0.5)
+        self.assertEqual(metricas.taxa(valores["recusa_indevida_tipo_nao_registado"]), 0.5)
+
     def test_hit_pagina_respeita_k(self):
         i = item(recuperadas=[{"doc": "D01", "pagina": 1}] * 5 + [{"doc": "D02", "pagina": 6}])
         self.assertFalse(metricas.atingiu_pagina(i))

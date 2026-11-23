@@ -163,6 +163,11 @@ def pontuacoes_texto(grupos, anotacoes, k):
             relevantes = [i for i in itens if i["referencia"]["expected_action"] == acao]
             if relevantes:
                 por_metrica[nome].append((sum(i["estado"] == "recusa" for i in relevantes), len(relevantes)))
+                por_tipo = agrupar(relevantes, lambda i: i["referencia"].get("tipo") or "nao_registado")
+                for tipo, subgrupo in por_tipo.items():
+                    por_metrica[f"{nome}_tipo_{tipo}"].append((
+                        sum(i["estado"] == "recusa" for i in subgrupo), len(subgrupo),
+                    ))
                 for motivo in motivos:
                     por_metrica[f"{nome}_motivo_{motivo}"].append((
                         sum(i["estado"] == "recusa" and (i.get("motivo") or "nao_registado") == motivo
