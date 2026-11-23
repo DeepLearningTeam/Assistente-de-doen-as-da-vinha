@@ -1,13 +1,12 @@
 """Ensaios reais da CNN, opcionais com Ollama/Qdrant; apenas imagens de validação."""
 import argparse
-import importlib.util
 import platform
 from importlib.metadata import version
 
 import numpy as np
 
 from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256, nova_verificacao
-from .cnn_resnet import _carregar_modelo, carregar_classes, carregar_modelo, preparar_imagem
+from .cnn_resnet import LIMIAR_CONFIANCA, _carregar_modelo, carregar_classes, carregar_modelo, preparar_imagem
 from .config import MODOS, carregar_config
 from .imagem import analisar_cnn, config_cnn, ler_imagem
 from .indice import descrever_colecao
@@ -29,21 +28,22 @@ def verificar_modelo(destino, apenas_modelo=False):
     modelo = carregar_modelo(checkpoint)
     casos = []
     if not apenas_modelo:
-        # A referência original permite verificar a paridade sem duplicar a inferência.
-        spec = importlib.util.spec_from_file_location("predict_original", RAIZ / "referencia_cnn/inference/predict.py")
-        original = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(original)
         for classe, item in imagens_validacao().items():
             foto = RAIZ / "data/imagens" / item["id"]
-            tensor = preparar_imagem(ler_imagem(foto))
-            np.testing.assert_array_equal(tensor, original.preprocess_image(foto))
-            visual = analisar_cnn(ler_imagem(foto))
-            probabilidades_originais = modelo.predict(tensor, verbose=0)[0]
-            np.testing.assert_allclose(list(visual.probabilidades.values()), probabilidades_originais, atol=1e-6)
+            imagem = ler_imagem(foto)
+            tensor = preparar_imagem(imagem)
+            assert tensor.shape == (1, 224, 224, 3) and tensor.dtype == np.float32
+            visual = analisar_cnn(imagem)
+            probabilidades = modelo.predict(tensor, verbose=0)[0]
+            np.testing.assert_allclose(list(visual.probabilidades.values()), probabilidades, atol=1e-6)
+            # Conferir a integração da saída e da rejeição, sem executar código de treino arquivado.
+            indice = int(np.argmax(probabilidades))
+            aceite = cfg.classes[indice] != "outro" and float(probabilidades[indice]) >= LIMIAR_CONFIANCA
+            assert (visual.estado == "ok") == aceite
             casos.append({"imagem": item["id"], "classe_ref": classe,
                           "entrada": list(tensor.shape), "dtype": str(tensor.dtype),
-                          "paridade_preprocessamento_original": True,
-                          "paridade_model_predict_original": True, "visual": visual.model_dump()})
+                          "probabilidades_consistentes": True,
+                          "rejeicao_consistente": True, "visual": visual.model_dump()})
     assert carregar_modelo(checkpoint) is modelo
     relatorio = {
         "data": agora(), "python": platform.python_version(), "plataforma": platform.platform(),
@@ -53,11 +53,11 @@ def verificar_modelo(destino, apenas_modelo=False):
         "saida": list(modelo.output_shape), "ativacao": modelo.layers[-1].get_config()["activation"],
         "parametros": modelo.count_params(), "camadas": [l.name for l in modelo.layers],
         "cache": _carregar_modelo.cache_info()._asdict(), "casos_validacao": casos,
-        "holdout_executado": False, "paridade_em_imagens": "confirmada" if casos else "nao_executada",
+        "holdout_executado": False, "inferencia_em_imagens": bool(casos),
     }
     gravar_json(destino / "modelo_real.json", relatorio)
     print("CNN: carregamento, arquitetura e classes verificados. "
-          + (f"Paridade confirmada em {len(casos)} imagens de validação." if casos else "Sem inferência em imagens."), flush=True)
+          + (f"Inferência verificada em {len(casos)} imagens de validação." if casos else "Sem inferência em imagens."), flush=True)
 
 
 def verificar_servicos(destino):

@@ -17,6 +17,8 @@ A avaliação em fotografias reais, incluindo a rejeição de `Outro`, não foi 
 
 Reiniciar a aplicação para utilizar o código e os pesos atualizados. O percurso VLM, os prompts, o RAG e as definições de fidelidade/correção foram preservados.
 
+Os materiais de origem da CNN v2 estão preservados no commit `14c2618a00b3934a112dfce0516646d2764aa7f3`, na antiga pasta `referencia_cnn/`. Essa pasta foi retirada da aplicação. O verificador atual confirma o contrato de entrada, as probabilidades e a regra de rejeição; os testes automáticos verificam o pré-processamento. A paridade com o código recebido, registada acima, pertence à verificação anterior à remoção.
+
 ## Integração anterior — 18/11/2026
 
 > Registo histórico: contratos e resultados observados na integração de 18/11/2026. As referências a ficheiros e caminhos descrevem essa versão. Os relatórios antigos de `verificacao/` foram removidos na limpeza do projeto; as versões commitadas continuam acessíveis no histórico Git. Para instalação, configuração e verificações atuais, consultar [README.md](README.md) e [PROTOCOLO.md](PROTOCOLO.md).

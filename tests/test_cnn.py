@@ -10,7 +10,7 @@ from unittest.mock import patch
 import numpy as np
 from PIL import Image
 
-from src import cnn_resnet, rag
+from src import cnn_resnet, rag, verificar_cnn
 from src.apoio import ErroProjeto, RAIZ, ler_json
 from src.config import carregar_config
 from src.imagem import analisar_cnn, config_cnn
@@ -111,6 +111,35 @@ class ContratoCNN(unittest.TestCase):
                  patch.object(cnn_resnet, "preparar_imagem"), self.assertRaises(ErroProjeto):
                 m.return_value.return_value = np.array(valores)
                 cnn_resnet.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
+
+    def test_verificador_confere_saida_e_rejeicao_sem_codigo_de_origem(self):
+        for aceite, valores in ((True, [0.05, 0.05, 0.05, 0.8, 0.05]),
+                               (False, [0.05, 0.05, 0.05, 0.05, 0.8])):
+            probabilidades = dict(zip(config_cnn().classes, valores))
+            visual = rag.Visual(motor="CNN", estado="ok" if aceite else "rejeitada",
+                                classe="leaf_blight" if aceite else None, confianca=0.8,
+                                probabilidades=probabilidades)
+            with self.subTest(aceite=aceite), tempfile.TemporaryDirectory() as tmp, \
+                    patch.object(verificar_cnn, "carregar_modelo") as carregar, \
+                    patch.object(verificar_cnn, "imagens_validacao", return_value={"outro": {"id": "ensaio.png"}}), \
+                    patch.object(verificar_cnn, "ler_imagem", return_value=Image.new("RGB", (8, 8))), \
+                    patch.object(verificar_cnn, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3), dtype=np.float32)), \
+                    patch.object(verificar_cnn, "analisar_cnn", return_value=visual), \
+                    patch.object(verificar_cnn, "version", return_value="simulada"), \
+                    patch.object(verificar_cnn, "sha256", return_value="ensaio"):
+                modelo = carregar.return_value
+                modelo.input_shape, modelo.output_shape = (None, 224, 224, 3), (None, 5)
+                modelo.predict.return_value = np.array([valores])
+                modelo.count_params.return_value = 23597957
+                camada = modelo.layers[-1]
+                camada.name = "saida"
+                camada.get_config.return_value = {"activation": "softmax"}
+                modelo.layers = [camada]
+                verificar_cnn.verificar_modelo(Path(tmp))
+                relatorio = ler_json(Path(tmp) / "modelo_real.json")
+                self.assertTrue(relatorio["inferencia_em_imagens"])
+                self.assertTrue(relatorio["casos_validacao"][0]["rejeicao_consistente"])
+                self.assertNotIn("paridade", json.dumps(relatorio))
 
 
 class DivisoesCNN(unittest.TestCase):

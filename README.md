@@ -233,7 +233,7 @@ Por exemplo, `Healthy_10.jpg` fica em `data/imagens/Healthy/Healthy_10.jpg`.
 
 `data/splits.json` adapta a **seed de treino 1**, com 715 registos: 454 de treino, 98 de validação, 99 de teste interno e 64 de `holdout`. As 555 imagens FieldVitis mantêm as divisões anteriores. A comparação `avaliar imagem` continua limitada às quatro classes de folhas: 76 de validação, 77 de teste e 50 de holdout; não mede a rejeição de `Outro`. Os registos adicionais conservam o MD5 fornecido e têm SHA-256 por preencher até à preparação com as imagens reais. Os manifestos recebidos ficam em `data/originais/cnn/`.
 
-Para verificar apenas o carregamento, a arquitetura e as classes, sem fotografias, executar `.\.venv\Scripts\python.exe -m src.verificar_cnn --apenas-modelo`. A paridade e os percursos com fotografia exigem as imagens de validação.
+Para verificar apenas o carregamento, a arquitetura e as classes, sem fotografias, executar `.\.venv\Scripts\python.exe -m src.verificar_cnn --apenas-modelo`. As verificações de inferência e os percursos com fotografia exigem as imagens de validação. O pré-processamento é conferido pelos testes automáticos.
 
 Ensaiar a implementação e comparar CNN/VLM na validação:
 
