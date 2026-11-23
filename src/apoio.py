@@ -2,11 +2,14 @@
 import hashlib
 import json
 import os
+import platform
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+PASTA_IMAGENS = RAIZ / "data/imagens"
+FICHEIRO_SPLITS = RAIZ / "data/splits.json"
 
 
 class ErroProjeto(Exception):
@@ -44,3 +47,19 @@ def gravar_json(caminho, dados):
 
 def ler_json(caminho):
     return json.loads(Path(caminho).read_text(encoding="utf-8"))
+
+
+def nova_verificacao(nome):
+    """Cria um relatório local com data, sem substituir verificações anteriores."""
+    instante = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    pasta = RAIZ / "runs/verificacao" / f"{instante}-{nome}"
+    pasta.mkdir(parents=True, exist_ok=False)
+    gravar_json(pasta / "execucao.json", {
+        "tipo": "verificacao_funcional", "criado": agora(),
+        "python": platform.python_version(), "plataforma": platform.platform(),
+        "protocolo_sha256": sha256(RAIZ / "PROTOCOLO.md"),
+        "codigo_sha256": {p.name: sha256(p) for p in sorted((RAIZ / "src").glob("*.py"))},
+        "configuracoes_sha256": {p.name: sha256(p) for p in sorted((RAIZ / "configs").glob("*.yaml"))},
+        "testes_sha256": {p.name: sha256(p) for p in sorted((RAIZ / "tests").glob("test_*.py"))},
+    })
+    return pasta

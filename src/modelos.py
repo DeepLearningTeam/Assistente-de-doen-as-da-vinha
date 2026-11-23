@@ -1,8 +1,8 @@
-"""Clientes LangChain para chat e embeddings no Ollama local."""
+"""Cliente LangChain para os modelos de conversa do Ollama."""
 from functools import lru_cache
 
 import httpx
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_ollama import ChatOllama
 from ollama import Client, ResponseError
 from pydantic import ValidationError
 
@@ -65,21 +65,6 @@ def conversar(config, mensagens, esquema, *, limite=None, deterministico=False, 
         return esquema.model_validate_json(resposta)
     except (ValidationError, TypeError) as erro:
         raise ErroFormato("O modelo devolveu uma resposta incompleta. Tentar reformular a pergunta.") from erro
-
-
-@lru_cache(maxsize=8)
-def cliente_embeddings(url, modelo, timeout):
-    return OllamaEmbeddings(
-        base_url=url, model=modelo, client_kwargs={"timeout": timeout, "trust_env": False},
-    )
-
-
-def embeddings(config, textos):
-    cliente = cliente_embeddings(config.ollama_url, config.embeddings_modelo, config.timeout_segundos)
-    try:
-        return cliente.embed_documents(textos)
-    except (ConnectionError, httpx.HTTPError, ResponseError) as erro:
-        raise erro_ollama(erro, config.embeddings_modelo, config.ollama_url) from erro
 
 
 def digest_modelo(config, modelo):

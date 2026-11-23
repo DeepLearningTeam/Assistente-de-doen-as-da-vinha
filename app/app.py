@@ -16,7 +16,7 @@ from src.imagem import CLASSES, LIMITE_BYTES, FotoInvalida, codificar_imagem, co
 from src.rag import PERGUNTA_FOTO, responder
 
 PAGINA = Path(__file__).resolve().parent
-SEM_VISUAL = '<p class="painel-vazio">Anexa uma fotografia para ver a hipótese e os sinais observados.</p>'
+SEM_VISUAL = '<p class="painel-vazio">Anexar uma fotografia para obter a hipótese visual.</p>'
 SEM_FONTES = '<p class="painel-vazio">As referências da última resposta aparecem aqui.</p>'
 DGAV = "https://www.dgav.pt/medicamentos/conteudo/produtos-fitofarmaceuticos/divulgacao/"
 EXEMPLOS = {
@@ -33,7 +33,6 @@ def modelos_modo(modo, config=None):
     if config.gerador == "llm":
         cnn = config_cnn()
         modelos["cnn"] = cnn.checkpoint
-        modelos["backend_cnn"] = cnn.backend
     return modelos
 
 

@@ -18,6 +18,12 @@ from src.preparar_cnn import divisoes_originais, validar_manifesto
 
 
 class ContratoCNN(unittest.TestCase):
+    def test_configuracao_limitada_ao_contrato_resnet(self):
+        config = config_cnn()
+        self.assertEqual(set(config.model_dump()), {"checkpoint", "seed_treino", "classes"})
+        with self.assertRaises(ValueError):
+            type(config).model_validate({**config.model_dump(), "opcao_desconhecida": True})
+
     @unittest.skipUnless(importlib.util.find_spec("keras"), "Requer requirements.txt")
     def test_preprocessamento_rgb_bgr_float32_sem_dividir_255(self):
         imagem = Image.new("RGB", (20, 30), (10, 20, 30))
@@ -52,7 +58,7 @@ class ContratoCNN(unittest.TestCase):
     def test_nao_inventa_limiar_nem_rejeicao(self):
         probs = dict(zip(config_cnn().classes, [0.24, 0.25, 0.25, 0.26]))
         with tempfile.NamedTemporaryFile() as f, \
-             patch("src.imagem.prever_python", return_value={"probabilidades": probs}):
+             patch("src.imagem.prever", return_value={"probabilidades": probs}):
             resultado = analisar_cnn(Image.new("RGB", (4, 4)), f.name)
         self.assertEqual(resultado.estado, "ok")
         self.assertEqual(resultado.classe, "leaf_blight")
@@ -92,10 +98,9 @@ class DivisoesCNN(unittest.TestCase):
                          {"treino": 352, "validacao": 76, "teste": 77, "holdout": 50})
         self.assertEqual(self.manifesto["seeds"], [1])
 
-    def test_manifesto_antigo_nao_pode_avaliar_modelo_recebido(self):
-        antigo = ler_json(RAIZ / "data/originais/splits_projeto_seed42_43_44.json")
+    def test_seed_sem_checkpoint_e_recusada(self):
         with self.assertRaisesRegex(ErroProjeto, "seed de treino 1"):
-            validar_manifesto(antigo, [42])
+            validar_manifesto(self.manifesto, [0])
 
     def test_trocar_treino_por_teste_ou_repetir_imagem_falha(self):
         adulterado = copy.deepcopy(self.manifesto)

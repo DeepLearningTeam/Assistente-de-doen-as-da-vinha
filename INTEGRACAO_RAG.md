@@ -1,4 +1,4 @@
-> Relatório histórico da integração RAG de 16/11. Para o estado atual da CNN, consultar [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md).
+> Registo histórico da integração RAG de 16/11/2026. As condições e verificações abaixo referem-se a essa versão. Para a configuração e utilização atuais, consultar [README.md](README.md) e [PROTOCOLO.md](PROTOCOLO.md). A integração CNN posterior está em [INTEGRACAO_CNN.md](INTEGRACAO_CNN.md).
 
 # Integração RAG — revisão e verificação
 
@@ -60,7 +60,7 @@ O schema e os payloads não comprovam a revisão dos pesos, o motor/OCR ou o pro
 
 A passagem esperada de Q001 foi recuperada em primeiro lugar: D02 p. 6, sobre a entrada de Eutypa lata por feridas recentes/de poda, score do reranker 0,99677354. A resposta final citou D02 p. 6 e também p. 7. A presença da passagem/citação foi verificada; a correção integral de todas as frases continua a exigir avaliação humana.
 
-## Condições efetivas da avaliação textual
+## Condições da avaliação na versão de 16/11/2026
 
 - `llm_cnn` sem imagem é a baseline textual: não chama CNN, embeddings ou Qdrant. `llm_cnn_rag` responde às mesmas perguntas com recuperação integrada. Cada item começa com histórico vazio.
 - A linha completa do CSV fica em `referencia`, no JSON; só `pergunta` é passada a `responder`. Os testes e o registo real verificam esta separação.
@@ -70,7 +70,7 @@ A passagem esperada de Q001 foi recuperada em primeiro lugar: D02 p. 6, sobre a 
 
 ## Verificações realizadas
 
-As evidências pequenas estão em `verificacao/`. Os JSON completos das execuções locais permanecem também em `runs/`, fora do ZIP. Não constituem a avaliação oficial do grupo.
+Os caminhos abaixo identificam os artefactos da integração original. Os relatórios antigos de `verificacao/` foram removidos na limpeza do projeto; as versões commitadas continuam acessíveis no histórico Git. A tabela preserva os resultados registados à data, sem os apresentar como validação da versão atual ou avaliação científica. As novas verificações ficam em pastas datadas de `runs/verificacao/`.
 
 | Verificação | Tipo de execução | Resultado |
 |---|---|---|
@@ -84,7 +84,7 @@ As evidências pequenas estão em `verificacao/`. Os JSON completos das execuç�
 | Avaliador de recuperação integrado | Comando normal, híbrida + reranker, uma pergunta de validação | Recall@5 de documento/página e MRR iguais a 1 nesta única pergunta; não é uma estimativa do conjunto completo. |
 | Respostas com fotografia | Qwen2.5-VL e Qdrant reais, mesma pergunta/foto de D02 p. 8 (imagem interna 36) | VLM respondeu; VLM + RAG recuperou cinco passagens, tentou geração/revisão e recusou por evidência insuficiente. |
 | Anotação e resumo | `src.metricas`, execução curta | Criou duas afirmações para revisão; exportou resultados sem inventar anotações humanas. |
-| Arranque Gradio | `python -m app.app --porta 7869`, servidor real | HTTP 200 em `/`, `/config` e `/gradio_api/runs`. Os testes da interface verificaram envio, gravação, reabertura e modos. |
+| Arranque Gradio | `.\.venv\Scripts\python.exe -m app.app --porta 7869`, servidor real | HTTP 200 em `/`, `/config` e `/gradio_api/runs`. Os testes da interface verificaram envio, gravação, reabertura e modos. |
 | Proteção do .env | Git temporário com o .gitignore final | `.env` ignorado e `.env.example` incluível. Valores de credenciais não entram na documentação/configurações/ZIP. |
 
 Na fotografia documental, o VLM classificou como saudável uma folha visivelmente danificada. O modo documental recusou a resposta após a verificação. O ensaio confirma o percurso da fotografia e da recuperação, não a correção da classificação. A fotografia não é FieldVitis nem um novo resultado de benchmark. A evidência inclui o hash idêntico da imagem nos dois itens e os prompts com marcadores de fotografia. A versão integrada conserva os prompts existentes; melhorar a qualidade visual exige trabalho de validação separado.
@@ -93,7 +93,7 @@ O ensaio local de reconstrução foi limitado a uma amostra real. Não foi const
 
 ## Comandos executados e repetição
 
-Executar na raiz de `integrado`, em PowerShell. A primeira instalação usou Python 3.14.0. O launcher `py -3.14` desta máquina não reconheceu o registo do Python; `python -m venv .venv` criou o ambiente com o Python 3.14 disponível. A instalação de dependências exigiu acesso de rede; o estado final passou `pip check`.
+Os comandos seguintes documentam o ensaio original. Para os repetir, executar na raiz do projeto, em PowerShell, com os dados e serviços disponíveis e nomes de execução novos. A primeira instalação usou Python 3.14.0. O launcher `py -3.14` desta máquina não reconheceu o registo do Python; `python -m venv .venv` criou o ambiente com o Python 3.14 disponível. A instalação de dependências exigiu acesso de rede; o estado final passou `pip check`.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip check
@@ -122,4 +122,4 @@ New-Item -ItemType Directory -Force .\runs\verificacao | Out-Null
 
 Na sessão, o corpus foi importado a partir do ZIP existente dentro do snapshot original; o comando acima usa a localização normal descrita no README. A instalação final reproduz-se com `.\.venv\Scripts\python.exe -m pip install -r requirements.txt`. Para repetir avaliações após alterações de código/protocolo, utilizar outro nome em `--execucao`; o manifesto impede misturar configurações.
 
-O README contém os passos completos para credenciais, índice existente/local, OCR, FieldVitis e avaliação. O ZIP final exclui `.env`, ambientes virtuais, caches, PDF, imagens do dataset, índices e pesos. A cópia de trabalho local conserva o `.env` configurado e os PDF importados para permitir a revisão do resultado.
+O README contém os passos para credenciais, índice existente/local, OCR, FieldVitis e avaliação. Na entrega original, o ZIP excluía `.env`, ambientes virtuais, caches, PDF, imagens do dataset, índices e pesos. A cópia de trabalho dessa integração conservava o `.env` configurado e os PDF importados.

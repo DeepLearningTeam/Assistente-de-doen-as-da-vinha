@@ -1,13 +1,13 @@
-# Modelo CNN recebido
+# Modelo CNN
 
-Esta pasta inclui `resnet50_seed1.keras`: cópia byte a byte de `resnet50_seed1.keras.zip`, sem descompactar o seu conteúdo. É um arquivo Keras completo (arquitetura, pesos e estado de treino). O SHA-256 é registado em `data/splits.json` e `verificacao/cnn/modelo_real.json`. Não há descarga de outra rede nem conversão ONNX.
+O modelo necessário é `resnet50_seed1.keras`, disponível no grupo do WhatsApp. Colocar o ficheiro nesta pasta:
 
-O caminho e a seed estão em `configs/cnn.yaml`. A aplicação usa `src/cnn_resnet.py`, adaptado de `inference/predict.py`, arquivado em `referencia_cnn/`. A ordem de classes vem de `data/originais/cnn/splits.json`. Não alterar a ordem nem aplicar softmax ou normalização RGB adicional. Consultar a secção 6 do README.
-
-Se o modelo faltar, copiar o original, a partir da raiz desta entrega:
-
-```powershell
-Copy-Item -LiteralPath "..\resnet50_seed1.keras.zip" -Destination ".\runs\checkpoints\resnet50_seed1.keras"
+```text
+runs/checkpoints/resnet50_seed1.keras
 ```
 
-A ausência do ficheiro ou de TensorFlow/Keras só bloqueia a CNN quando é pedida uma análise com fotografia nos modos LLM. Texto e VLM não a carregam. Só foram fornecidos pesos da seed de treino 1. O avaliador rejeita outras seeds e checkpoints que não correspondam ao hash recebido; integrar novos pesos exige atualizar explicitamente configuração, proveniência e verificações.
+Se aparecer como `resnet50_seed1.keras.zip`, remover apenas o `.zip` final por renomeação, sem descompactar. O ficheiro é um modelo Keras completo e é ignorado pelo Git.
+
+O caminho, a seed de treino e as classes estão em `configs/cnn.yaml`. A inferência é implementada em `src/cnn_resnet.py`, com pré-processamento e ordem de classes descritos no [protocolo](../../PROTOCOLO.md).
+
+A CNN só é carregada quando há fotografia num modo LLM. O avaliador verifica o hash dos pesos e a correspondência com as partições. Os pesos disponíveis correspondem à seed de treino 1.

@@ -1,10 +1,5 @@
-# ResNet50 completa da implementação original; sem conversão nem novo treino.
-backend: python
+# Modelo ResNet50 completo, com o pré-processamento definido em src/cnn_resnet.py.
 checkpoint: runs/checkpoints/resnet50_seed1.keras
-adaptador: src.cnn_resnet:prever
 seed_treino: 1
-saida: probabilidades
 # Ordem de data/originais/cnn/splits.json, com identificadores da aplicação.
 classes: [black_rot, esca, saudavel, leaf_blight]
-# Não existe limiar de rejeição validado para esta rede de quatro classes.
-limiar: null

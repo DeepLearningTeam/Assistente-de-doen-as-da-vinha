@@ -3,7 +3,8 @@ import argparse
 from pathlib import Path
 
 from .apoio import ErroProjeto
-from .metricas import PAPER, agrupar, calibracao_imagem, carregar, csv_gravar, previsao
+from .metricas import agrupar, calibracao_imagem, carregar, csv_gravar, previsao
+from .avaliar import caminho_execucao
 
 
 def analisar(nome, destino, figuras=False):
@@ -59,7 +60,7 @@ def main():
     parser.add_argument("--figuras", action="store_true", help="Requer matplotlib, dependência opcional.")
     args = parser.parse_args()
     try:
-        analisar(args.execucao, args.destino or PAPER / "analise" / args.execucao, args.figuras)
+        analisar(args.execucao, args.destino or caminho_execucao(args.execucao) / "analise", args.figuras)
     except (ErroProjeto, OSError, ValueError) as erro:
         parser.exit(1, f"{erro}\n")
 

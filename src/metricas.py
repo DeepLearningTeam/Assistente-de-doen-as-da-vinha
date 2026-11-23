@@ -127,10 +127,20 @@ def linha_tabela(base, metrica, valor, n, unidade, limites=(None, None)):
     }
 
 
+def posicao_fonte(passagens, doc_id, paginas=None, tolerancia=0):
+    """Posição e score da primeira correspondência de documento e, opcionalmente, página."""
+    for posicao, passagem in enumerate(passagens, 1):
+        if passagem.get("doc", passagem.get("doc_id")) != doc_id:
+            continue
+        if paginas is None or any(abs(passagem["pagina"] - pagina) <= tolerancia for pagina in paginas):
+            return posicao, passagem.get("score", passagem.get("similaridade"))
+    return None, None
+
+
 def atingiu_pagina(item):
     ref = item["referencia"]
-    return any(p["doc"] == ref["doc_id"] and p["pagina"] == int(ref["pagina_pdf"])
-               for p in item.get("recuperadas", [])[:item["top_k"]])
+    passagens = item.get("recuperadas", [])[:item["top_k"]]
+    return posicao_fonte(passagens, ref["doc_id"], {int(ref["pagina_pdf"])})[0] is not None
 
 
 def kappa(a, b):
@@ -415,7 +425,8 @@ def main():
     anotar.add_argument("--execucao", required=True)
     tabelas = sub.add_parser("resumir", help="Gerar os resultados e as tabelas 1 e 2.")
     tabelas.add_argument("--execucoes", nargs="+", required=True)
-    tabelas.add_argument("--destino", type=Path, default=PAPER)
+    tabelas.add_argument("--destino", type=Path,
+                         help="Pasta de exportação; por omissão, runs/<execucao>/metricas para cada execução.")
     tabelas.add_argument("--bootstrap", type=int, default=1000)
     args = parser.parse_args()
     try:
@@ -424,7 +435,11 @@ def main():
         else:
             if args.bootstrap < 1:
                 parser.error("--bootstrap tem de ser positivo.")
-            resumir(args.execucoes, args.destino, args.bootstrap)
+            if args.destino is not None:
+                resumir(args.execucoes, args.destino, args.bootstrap)
+            else:
+                for nome in args.execucoes:
+                    resumir([nome], caminho_execucao(nome) / "metricas", args.bootstrap)
     except (ErroProjeto, OSError, ValueError) as erro:
         parser.exit(1, f"{erro}\n")
 

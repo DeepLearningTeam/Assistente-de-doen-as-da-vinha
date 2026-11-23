@@ -1,5 +1,7 @@
 # Integração CNN — 18/11/2026
 
+> Registo histórico: contratos e resultados observados na integração de 18/11/2026. As referências a ficheiros e caminhos descrevem essa versão. Os relatórios antigos de `verificacao/` foram removidos na limpeza do projeto; as versões commitadas continuam acessíveis no histórico Git. Para instalação, configuração e verificações atuais, consultar [README.md](README.md) e [PROTOCOLO.md](PROTOCOLO.md).
+
 ## Entrega e proveniência
 
 Pasta de trabalho: `integrado_cnn/`. Base: `integrado_final.zip`, extraída sem modificar o arquivo. Não existia repositório Git na pasta nem no ZIP; por isso não foi criado um ramo sobre um histórico inexistente. Para verificar a exclusão do `.env` usou-se um repositório temporário exterior à entrega e as regras `.gitignore` do projeto, antes da cópia do segredo.
@@ -14,7 +16,7 @@ Materiais identificados:
 | `fieldvitis.zip` | 555 imagens nas quatro pastas diretamente na raiz do arquivo |
 | `.env` | `QDRANT_URL` e `QDRANT_API_KEY`, carregadas pelo mecanismo normal; valores omitidos |
 
-O modelo foi copiado byte a byte para `runs/checkpoints/resnet50_seed1.keras`. O ZIP final inclui este ficheiro. Não foram descarregados outros pesos CNN, convertida a arquitetura ou feito novo treino. Os originais permanecem na pasta inicial. `referencia_cnn/` conserva código, documentação e notebooks recebidos; `data/originais/` conserva manifestos e divisões dos dois projetos.
+O modelo foi copiado byte a byte para `runs/checkpoints/resnet50_seed1.keras`. O ZIP da entrega original incluía este ficheiro; os pesos não acompanham o clone atual. Não foram descarregados outros pesos CNN, convertida a arquitetura ou feito novo treino. Os originais permanecem na pasta inicial. `referencia_cnn/` conserva código, documentação e notebooks recebidos; `data/originais/` conserva manifestos e divisões dos dois projetos.
 
 ## Contrato confirmado
 
@@ -42,7 +44,7 @@ O pré-processamento foi adaptado diretamente da implementação original para r
 | `src/avaliar.py`, `src/splits.py` | Validar correspondência entre pesos/divisões, distinguir seeds, permitir holdout explícito e proteger o manifesto contra nova amostragem |
 | `requirements.txt` | Todas as dependências, incluindo CNN, compatíveis com o Windows/Python existente |
 | `src/verificar_cnn.py`, `tests/test_cnn.py` | Verificações repetíveis do contrato, cache, classes, percursos e proteção da avaliação |
-| `README.md`, `PROTOCOLO.md`, `AI_LOG.md`, `runs/checkpoints/README.md`, `INTEGRACAO.md` | Instruções atuais e ligação ao relatório histórico de RAG |
+| `README.md`, `PROTOCOLO.md`, `AI_LOG.md`, `runs/checkpoints/README.md`, `INTEGRACAO_CNN.md` | Instruções atuais e ligação ao relatório histórico de RAG |
 
 Os prompts gerais e específicos do RAG, YAML experimentais, `src/indice.py`, `src/vlm.py` e `src/metricas.py` foram comparados com o ZIP base e preservados. As definições de fidelidade/correção da secção 6 do protocolo também foram preservadas. A pesquisa, limiares documentais, limites de geração, fotografia na geração VLM e condições textuais não foram redesenhados. O `.env.example` existente é compatível e continua apenas com valores fictícios.
 
@@ -102,11 +104,11 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m app.app
 ```
 
-O `.env` privado está configurado na pasta de trabalho, mas não no ZIP. Ao usar o ZIP, colocar na raiz ao lado do README; preservar os valores reais em vez de os substituir pelo exemplo fictício. Colocar também `fieldvitis.zip` na raiz do projeto; extrair `.\fieldvitis.zip` para `data/imagens/` e executar `src.preparar_cnn`, conforme README.
+Os ficheiros `.env` e `resnet50_seed1.keras` estão no grupo do WhatsApp. Preencher a configuração local com o conteúdo do `.env` partilhado e colocar o modelo em `runs/checkpoints/`, conforme o README. Se o modelo aparecer como `.keras.zip`, remover apenas o `.zip` final por renomeação. Colocar `fieldvitis.zip` na raiz do projeto, extrair para `data/imagens/` e executar `src.preparar_cnn`.
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.avaliar imagem --execucao cnn-ensaio --modelos cnn --seeds 1 --split validacao --limite 4
 .\.venv\Scripts\python.exe -m src.avaliar imagem --execucao visao-teste-seed1 --modelos cnn vlm --seeds 1 --split teste
 ```
 
-O segundo comando é uma avaliação do teste interno, para executar após fechar as condições. O README tem o comando separado das 50 imagens finais. O ZIP exclui `.env`, ambientes virtuais, caches, conversas de teste com bytes de imagens e o FieldVitis; inclui código, modelo, divisões, documentação e evidência selecionada de verificação.
+O segundo comando é uma avaliação do teste interno, para executar após fechar as condições. O README tem o comando separado das 50 imagens finais. O ZIP da entrega original excluía `.env`, ambientes virtuais, caches, conversas de teste com bytes de imagens e o FieldVitis; incluía código, modelo, divisões, documentação e evidência selecionada de verificação.

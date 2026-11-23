@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 from PIL import Image
 
-from src import analise, avaliar, metricas, rag
+from src import analise, apoio, avaliar, avaliar_recuperacao, metricas, rag
 from src.apoio import ErroProjeto, sha256
 from src.config import carregar_config
 from src.imagem import Visual
@@ -23,6 +23,19 @@ def item(chave="r1", **alteracoes):
 
 
 class MetricasAvaliacao(unittest.TestCase):
+    def test_correspondencia_de_fontes_usa_id_e_pagina(self):
+        passagens = [
+            {"doc_id": "D01", "pagina": 6, "score": 0.9},
+            {"doc_id": "D02", "pagina": 5, "score": 0.8},
+            {"doc_id": "D02", "pagina": 6, "score": 0.7},
+        ]
+        self.assertEqual(metricas.posicao_fonte(passagens, "D02"), (2, 0.8))
+        self.assertEqual(metricas.posicao_fonte(passagens, "D02", {6}), (3, 0.7))
+        self.assertEqual(metricas.posicao_fonte(passagens, "D02", {6}, tolerancia=1), (2, 0.8))
+        self.assertEqual(metricas.posicao_fonte(passagens, "D03", {6}), (None, None))
+        self.assertFalse(metricas.atingiu_pagina(item(recuperadas=passagens, top_k=2)))
+        self.assertTrue(metricas.atingiu_pagina(item(recuperadas=passagens, top_k=3)))
+
     def test_calibracao_inclui_confianca_um_e_exclui_abstencoes(self):
         itens = [
             {"estado": "ok", "classe_ref": "esca", "visual": {"classe": "esca", "confianca": 1.0}},
@@ -103,6 +116,56 @@ class MetricasAvaliacao(unittest.TestCase):
 
 
 class PercursosAvaliacao(unittest.TestCase):
+    def test_metricas_exportam_por_execucao_sem_alterar_paper(self):
+        with patch("sys.argv", ["metricas", "resumir", "--execucoes", "ensaio_a", "ensaio_b"]), \
+                patch.object(metricas, "resumir") as resumir:
+            metricas.main()
+        self.assertEqual(resumir.call_count, 2)
+        for chamada, nome in zip(resumir.call_args_list, ("ensaio_a", "ensaio_b")):
+            self.assertEqual(chamada.args, ([nome], avaliar.caminho_execucao(nome) / "metricas", 1000))
+
+    def test_exportacao_conjunta_exige_destino_explicito(self):
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch("sys.argv", ["metricas", "resumir", "--execucoes", "ensaio_a", "ensaio_b", "--destino", tmp]), \
+                patch.object(metricas, "resumir") as resumir:
+            metricas.main()
+            resumir.assert_called_once_with(["ensaio_a", "ensaio_b"], Path(tmp), 1000)
+
+    def test_analise_tem_destino_local_a_execucao(self):
+        with patch("sys.argv", ["analise", "--execucao", "ensaio"]), patch.object(analise, "analisar") as analisar:
+            analise.main()
+        analisar.assert_called_once_with("ensaio", avaliar.caminho_execucao("ensaio") / "analise", False)
+
+    def test_verificacoes_nao_substituem_relatorios_anteriores(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(apoio, "RAIZ", Path(tmp)):
+            (Path(tmp) / "PROTOCOLO.md").write_text("Protocolo de ensaio", encoding="utf-8")
+            primeira = apoio.nova_verificacao("ensaio")
+            (primeira / "resultado.txt").write_text("preservar", encoding="utf-8")
+            segunda = apoio.nova_verificacao("ensaio")
+            self.assertNotEqual(primeira, segunda)
+            self.assertEqual(primeira.parent, Path(tmp) / "runs/verificacao")
+            self.assertEqual((primeira / "resultado.txt").read_text(encoding="utf-8"), "preservar")
+            self.assertEqual(json.loads((segunda / "execucao.json").read_text(encoding="utf-8"))["tipo"], "verificacao_funcional")
+
+    def test_avaliador_recuperacao_calcula_por_id_sem_mapeamento_de_nomes(self):
+        pergunta = {"id": "Q1", "pergunta": "Pergunta de ensaio", "doc_id": "D02", "pagina_pdf": "6",
+                    "expected_action": "responder", "split": "validacao", "tipo": "sintomas", "estado_validacao": "ensaio"}
+        passagens = [{"doc_id": doc, "nome_documento": "nome_sem_id.pdf", "pagina": pagina, "score": score}
+                     for doc, pagina, score in (("D01", 6, 0.9), ("D02", 5, 0.8), ("D02", 6, 0.7))]
+        with tempfile.TemporaryDirectory() as tmp:
+            saida = Path(tmp) / "recuperacao.csv"
+            with patch("sys.argv", ["recuperacao", "--reranker", "--saida", str(saida)]), \
+                    patch.object(avaliar_recuperacao, "resolver_caminho", return_value=Path("ensaio.csv")), \
+                    patch.object(avaliar_recuperacao, "carregar_perguntas", return_value=[pergunta]), \
+                    patch.object(avaliar_recuperacao, "obter_cliente", return_value=object()), \
+                    patch.object(avaliar_recuperacao, "descrever_colecao", return_value={"documentos": ["D01", "D02"]}), \
+                    patch.object(avaliar_recuperacao, "pesquisar_query_qdrant", return_value=passagens):
+                avaliar_recuperacao.main()
+            linha = metricas.csv_ler(saida)[0]
+            self.assertEqual(linha["rank_documento"], "2")
+            self.assertEqual(linha["rank_pág ±0"], "3")
+            self.assertEqual(linha["rank_pág ±1"], "2")
+
     def test_cli_textual_inclui_tres_condicoes(self):
         with patch("sys.argv", ["avaliar", "texto", "--execucao", "ensaio"]), \
                 patch.object(avaliar, "avaliar_texto") as executar:
@@ -152,7 +215,7 @@ class PercursosAvaliacao(unittest.TestCase):
             self.assertEqual(len(ficheiros), 4)
             itens = [json.loads(f.read_text()) for f in ficheiros]
             self.assertEqual({i["imagem_sha256"] for i in itens}, {sha256(foto)})
-            self.assertEqual([i["modo"] for i in itens if i["imagem_na_geracao_final"]], ["vlm"])
+            self.assertEqual({i["modo"] for i in itens if i["imagem_na_geracao_final"]}, {"vlm", "vlm_rag"})
             manifesto = json.loads((raiz / "foto/execucao.json").read_text())
             with patch.object(metricas, "carregar", return_value=(manifesto, itens)):
                 metricas.preparar_anotacao("foto", raiz / "anotacoes")

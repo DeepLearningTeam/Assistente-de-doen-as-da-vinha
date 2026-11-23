@@ -3,11 +3,12 @@ import csv
 import json
 import re
 from collections import Counter
+from pathlib import Path
 
-from qdrant_client import QdrantClient
 from .indice import obter_cliente, pesquisar_query_qdrant, descrever_colecao
 from .config import carregar_config
 from .apoio import RAIZ, ErroProjeto
+from .metricas import posicao_fonte
 
 # Avaliação de recuperação documental integrada, ligada aos mesmos parâmetros da aplicação.
 
@@ -19,37 +20,6 @@ def carregar_perguntas(caminho, split):
         linhas = [l for l in linhas if l["split"] == split]
     return linhas
 
-
-def documentos_indexados(client, colecao):
-    nomes, offset = set(), None
-    while True:
-        pontos, offset = client.scroll(
-            colecao, limit=1000, offset=offset,
-            with_payload=["nome_documento"], with_vectors=False,
-        )
-        nomes.update(p.payload["nome_documento"] for p in pontos)
-        if offset is None:
-            return nomes
-
-
-def resolver_doc(doc_id, mapa, indexados):
-    """nome_documento indexado correspondente ao doc_id, ou None."""
-    if doc_id in mapa:
-        return mapa[doc_id] if mapa[doc_id] in indexados else None
-    padrao = re.compile(rf"{re.escape(doc_id)}(?!\d)", re.IGNORECASE)
-    return next((n for n in sorted(indexados) if padrao.match(n)), None)
-
-
-def procurar(res, nome, paginas, tol=0, so_doc=False):
-    """(rank, score) do primeiro resultado correto, ou (None, None)."""
-    for i, c in enumerate(res, 1):
-        if c["nome_documento"] != nome:
-            continue
-        if so_doc or any(abs(c["pagina"] - p) <= tol for p in paginas):
-            return i, c.get("score")
-    return None, None
-
-from pathlib import Path
 
 PASTA_SCRIPT = Path(__file__).resolve().parent
 
@@ -75,19 +45,12 @@ def main():
                     help="tipo de pesquisa a avaliar")
     ap.add_argument("--split", default="validacao",
                     choices=["validacao", "teste", "todos"])
-    ap.add_argument("--mapa", help='JSON {"D09": "ficheiro.pdf"}; sem isto, '
-                                   "procura PDFs que começam pelo doc_id")
     ap.add_argument("-k", type=int, default=5)
     ap.add_argument("--saida", help="CSV com o resultado por pergunta")
     ap.add_argument("--reranker", action="store_true", help="reordena os candidatos com o cross-encoder")
     ap.add_argument("--candidatos", type=int, default=30)
     ap.add_argument("--limite", type=int, help="Ensaio curto apenas na validação.")
     args = ap.parse_args()
-
-    mapa = {}
-    if args.mapa:
-        with open(resolver_caminho(args.mapa), encoding="utf-8") as f:
-            mapa = json.load(f)
 
     perguntas = carregar_perguntas(resolver_caminho(args.csv), args.split)
     if args.limite is not None:
@@ -99,8 +62,9 @@ def main():
     config = carregar_config().model_copy(update={"top_k": args.k, "pesquisa": args.modo,
                                                   "k_candidatos": args.candidatos})
     client = obter_cliente()
-    print(json.dumps(descrever_colecao(config), ensure_ascii=False))
-    indexados = documentos_indexados(client, config.qdrant_colecao)
+    info = descrever_colecao(config)
+    print(json.dumps(info, ensure_ascii=False))
+    indexados = set(info["documentos"])
 
     print(f"Split: {args.split} | modo: {args.modo} | reranker: {args.reranker} | "
           f"candidatos: {args.candidatos} | perguntas: {len(perguntas)} | "
@@ -120,10 +84,10 @@ def main():
     for q in perguntas:
         res = buscar(q["pergunta"])[:args.k]
         top1 = res[0] if res else None
-        nome = resolver_doc(q["doc_id"], mapa, indexados)
+        doc_id = q["doc_id"]
 
         if q["expected_action"] == "recusar":
-            if nome:                                   # holdout indexado por engano
+            if doc_id in indexados:                    # fonte reservada indexada por engano
                 contaminadas.append(q["id"])
             scores_recusar.append(top1["score"] if top1 else float("-inf"))
             linhas.append({"id": q["id"], "acao": "recusar", "split": q["split"],
@@ -132,7 +96,7 @@ def main():
                            "top1_score": top1 and top1["score"]})
             continue
 
-        if nome is None:                               # documento não indexado
+        if doc_id not in indexados:
             sem_indice.append(q["id"])
             # Não retirar estas perguntas do denominador: são falhas de recuperação.
             ranks = {"documento": None, "pág ±0": None, "pág ±1": None}
@@ -146,11 +110,11 @@ def main():
 
         paginas = {int(x) for x in re.findall(r"\d+", q["pagina_pdf"])}
         ranks = {
-            "documento": procurar(res, nome, paginas, so_doc=True)[0],
-            "pág ±0":    procurar(res, nome, paginas, tol=0)[0],
-            "pág ±1":    procurar(res, nome, paginas, tol=1)[0],
+            "documento": posicao_fonte(res, doc_id)[0],
+            "pág ±0":    posicao_fonte(res, doc_id, paginas)[0],
+            "pág ±1":    posicao_fonte(res, doc_id, paginas, tolerancia=1)[0],
         }
-        score_hit = procurar(res, nome, paginas, tol=1)[1]
+        score_hit = posicao_fonte(res, doc_id, paginas, tolerancia=1)[1]
         if score_hit is not None:
             scores_acerto.append(score_hit)
         resp.append((q, ranks, res))

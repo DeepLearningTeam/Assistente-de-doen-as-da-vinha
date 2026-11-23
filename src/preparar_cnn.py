@@ -8,10 +8,9 @@ from pathlib import Path
 
 from PIL import Image, ImageOps
 
-from .apoio import ErroProjeto, RAIZ, gravar_json, ler_json, sha256
+from .apoio import ErroProjeto, RAIZ, gravar_json, ler_json, sha256, FICHEIRO_SPLITS, PASTA_IMAGENS, nova_verificacao
 from .cnn_resnet import MAPEAMENTO, SPLITS_ORIGINAIS, carregar_classes
 from .imagem import config_cnn
-from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
 
 PARTICOES = {"train": "treino", "val": "validacao", "test": "teste"}
 SEED_MODELO = 1
@@ -34,13 +33,13 @@ def divisoes_originais(seed):
 
 
 def validar_manifesto(manifesto, seeds):
-    """Impede usar os antigos testes 42/43/44 ou trocar imagens de treino por teste."""
+    """Confirma a correspondência entre o manifesto e as divisões dos pesos."""
     imagens = manifesto["imagens"]
     if len({i["id"] for i in imagens}) != len(imagens):
         raise ErroProjeto("O manifesto de avaliação contém IDs duplicados.")
     for seed in seeds:
         if seed != SEED_MODELO:
-            raise ErroProjeto("Só foram integrados pesos da seed de treino 1; não uses as seeds 42/43/44 ou outros pesos.")
+            raise ErroProjeto("O checkpoint configurado corresponde à seed de treino 1.")
         conjuntos = divisoes_originais(seed)
         for split, ids in conjuntos.items():
             encontrados = {i["id"] for i in imagens if i["splits"].get(str(seed)) == split}
@@ -104,17 +103,14 @@ def preparar(pasta):
     particao = {i: nome for nome, ids in conjuntos.items() for i in ids}
     imagens = [{"id": i, "classe": MAPEAMENTO[Path(i).parts[0]], "sha256": hashes[i],
                 "grupo": i, "splits": {str(SEED_MODELO): particao[i]}} for i in sorted(hashes)]
-    antigo = ler_json(RAIZ / "data/originais/splits_projeto_seed42_43_44.json")
-    teste42 = {i["id"] for i in antigo["imagens"] if i["splits"]["42"] == "teste"}
-    contaminadas = sorted(teste42 & set(conjuntos["treino"]))
     cfg = config_cnn()
     if cfg.seed_treino != SEED_MODELO:
-        raise ErroProjeto("A preparação desta entrega suporta apenas a seed de treino 1 recebida.")
+        raise ErroProjeto("A preparação suporta a seed de treino 1 do checkpoint configurado.")
     modelo = RAIZ / cfg.checkpoint
     manifesto = {
         "dataset": "FieldVitis v2", "seeds": [SEED_MODELO],
         "classes_originais": original["classes"], "imagens": imagens,
-        "proveniencia": {"splits_colega_sha256": sha256(SPLITS_ORIGINAIS),
+        "proveniencia": {"splits_originais_sha256": sha256(SPLITS_ORIGINAIS),
                          "seed_treino": SEED_MODELO, "seed_reserva": original["politica"]["holdout_seed"],
                          "checkpoint_sha256": sha256(modelo)},
     }
@@ -124,7 +120,6 @@ def preparar(pasta):
         "seeds_originais": auditoria,
         "duplicados_bytes": [g for g in por_bytes.values() if len(g) > 1],
         "duplicados_pixels_rgb_exif": [g for g in por_pixels.values() if len(g) > 1],
-        "teste_antigo_seed42": len(teste42), "intersecao_treino_seed1": contaminadas,
         "holdout_inferencia_executada": False,
         "limite_auditoria": "Hashes exatos; não deteta quase duplicados, a mesma folha ou a mesma videira.",
     }
@@ -138,9 +133,10 @@ def main():
     try:
         manifesto, relatorio = preparar(args.imagens)
         gravar_json(FICHEIRO_SPLITS, manifesto)
-        gravar_json(RAIZ / "verificacao/cnn/divisoes.json", relatorio)
+        pasta = nova_verificacao("dados-cnn")
+        gravar_json(pasta / "divisoes.json", relatorio)
         print(f"{len(manifesto['imagens'])} imagens verificadas; seed de treino 1: 352/76/77 + 50 reservadas.")
-        print(f"Teste antigo seed42: {len(relatorio['intersecao_treino_seed1'])}/{relatorio['teste_antigo_seed42']} usadas no treino recebido.")
+        print(f"Relatório de integridade em {pasta}.")
     except (ErroProjeto, OSError, ValueError) as erro:
         parser.exit(1, f"{erro}\n")
 

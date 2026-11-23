@@ -196,7 +196,7 @@ def descrever_colecao(config):
         "colecao": config.qdrant_colecao, "pontos": info.points_count, "documentos": sorted(docs),
         "documentos_em_falta": sorted(set(selecionadas(fontes)) - docs),
         "payloads_sha256": hashlib.sha256("\n".join(sorted(linhas)).encode()).hexdigest(),
-        "proveniencia": "Confirmar com o autor pesos BGE-M3, revisão, BM25 português e extração; o esquema não prova a proveniência.",
+        "proveniencia": "Confirmar nos registos de construção os pesos BGE-M3, revisão, BM25 português e extração; o esquema não prova a proveniência.",
     }
 
 

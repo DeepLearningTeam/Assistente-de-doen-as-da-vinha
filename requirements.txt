@@ -1,4 +1,4 @@
-# Python 3.14. Dependências diretas usadas e verificadas nesta integração.
+# Python 3.14. Dependências da aplicação e dos comandos de avaliação.
 # CNN em Windows x64 / Python 3.14, sem o extra CUDA.
 tensorflow==2.22.0rc1
 # Esta RC depende de keras-nightly; não instalar também a distribuição keras.
@@ -23,4 +23,5 @@ pymupdf==1.28.0
 pymupdf4llm==1.28.0
 rapidocr-onnxruntime==1.2.3
 tqdm==4.70.1
+# Runtime necessário ao FastEmbed e ao OCR.
 onnxruntime==1.32.0

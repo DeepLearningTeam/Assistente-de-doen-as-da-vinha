@@ -1,18 +1,16 @@
 """Validação de fotografias e integração do classificador CNN do grupo."""
 import base64
-import importlib
 import math
-from functools import lru_cache
 from io import BytesIO
 from pathlib import Path
 from typing import Literal
 
-import numpy as np
 import yaml
 from PIL import Image, ImageOps, UnidentifiedImageError
-from pydantic import BaseModel, Field, PositiveInt, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from .apoio import ErroProjeto, RAIZ
+from .cnn_resnet import prever
 
 CLASSES = {
     "saudavel": "Saudável",
@@ -39,31 +37,18 @@ class Visual(BaseModel):
 
 
 class ConfigCNN(BaseModel):
-    backend: Literal["onnx", "python"]
+    model_config = {"extra": "forbid"}
+
     checkpoint: str
-    adaptador: str
-    seed_treino: int | None = None
-    # Campos ONNX existentes; o adaptador Python faz o seu pré-processamento.
-    largura: PositiveInt = 224
-    altura: PositiveInt = 224
-    redimensionamento: Literal["direto", "centro"] = "direto"
-    layout: Literal["NCHW", "NHWC"] = "NHWC"
-    escala: float = Field(default=1.0, gt=0)
-    media: tuple[float, float, float] = (0, 0, 0)
-    desvio: tuple[float, float, float] = (1, 1, 1)
-    saida: Literal["logits", "probabilidades"] = "probabilidades"
-    nome_saida: str | None = None
-    classes: list[str]
-    limiar: float | None = Field(default=None, ge=0, le=1)
+    seed_treino: int
+    classes: list[Classe]
 
     @model_validator(mode="after")
     def validar_config(self):
-        if set(self.classes) not in (set(CLASSES), set(CLASSES) | {"outra"}):
+        if set(self.classes) != set(CLASSES):
             raise ValueError("As classes devem corresponder às quatro classes do FieldVitis.")
         if len(set(self.classes)) != len(self.classes):
             raise ValueError("A ordem das classes da CNN contém repetições.")
-        if any(d <= 0 or not math.isfinite(d) for d in self.desvio):
-            raise ValueError("Os desvios de normalização devem ser positivos e finitos.")
         return self
 
 
@@ -76,7 +61,7 @@ def ler_imagem(caminho):
             if imagem.format not in {"JPEG", "PNG"}:
                 raise FotoInvalida("Selecionar uma fotografia em JPG ou PNG.")
             if imagem.width * imagem.height > 40_000_000:
-                raise FotoInvalida("A fotografia é demasiado grande. Reduz a resolução.")
+                raise FotoInvalida("A fotografia é demasiado grande. Reduzir a resolução.")
             return ImageOps.exif_transpose(imagem).convert("RGB")
     except (UnidentifiedImageError, Image.DecompressionBombError, OSError, ValueError) as erro:
         raise FotoInvalida("Não foi possível abrir a fotografia. Selecionar um JPG ou PNG válido.") from erro
@@ -101,58 +86,7 @@ def config_cnn():
         texto = (RAIZ / "configs/cnn.yaml").read_text(encoding="utf-8")
         return ConfigCNN.model_validate(yaml.safe_load(texto))
     except (OSError, ValueError, yaml.YAMLError) as erro:
-        raise ErroProjeto(f"Revê configs/cnn.yaml. {erro}") from erro
-
-
-@lru_cache(maxsize=4)
-def sessao_onnx(caminho, modificacao_ns):
-    try:
-        import onnxruntime
-    except ImportError as erro:
-        raise ErroProjeto("Instalar a dependência da CNN com: python -m pip install onnxruntime==1.32.0") from erro
-    try:
-        return onnxruntime.InferenceSession(str(caminho), providers=["CPUExecutionProvider"])
-    except Exception as erro:
-        raise ErroProjeto(f"Não foi possível abrir a CNN ONNX em {caminho.name}. {erro}") from erro
-
-
-def prever_onnx(imagem, caminho, config):
-    tamanho = (config.largura, config.altura)
-    if config.redimensionamento == "centro":
-        imagem = ImageOps.fit(imagem, tamanho, Image.Resampling.BILINEAR)
-    else:
-        imagem = imagem.resize(tamanho, Image.Resampling.BILINEAR)
-    tensor = np.asarray(imagem, dtype=np.float32) / config.escala
-    tensor = (tensor - np.asarray(config.media, dtype=np.float32)) / np.asarray(config.desvio, dtype=np.float32)
-    if config.layout == "NCHW":
-        tensor = tensor.transpose(2, 0, 1)
-    tensor = np.ascontiguousarray(tensor[None, ...])
-    sessao = sessao_onnx(caminho, caminho.stat().st_mtime_ns)
-    try:
-        saidas = [config.nome_saida] if config.nome_saida else None
-        valores = np.asarray(sessao.run(saidas, {sessao.get_inputs()[0].name: tensor})[0]).reshape(-1)
-    except Exception as erro:
-        raise ErroProjeto(f"A entrada ou saída da CNN não corresponde a configs/cnn.yaml. {erro}") from erro
-    if len(valores) != len(config.classes) or not np.isfinite(valores).all():
-        raise ErroProjeto("A CNN devolveu uma saída incompatível com a lista de classes.")
-    if config.saida == "logits":
-        # Softmax transforma os valores do modelo em probabilidades com soma igual a 1.
-        valores = np.exp(valores.astype(np.float64) - valores.max())
-        valores /= valores.sum()
-    return {"probabilidades": dict(zip(config.classes, map(float, valores)))}
-
-
-def prever_python(imagem, caminho, config):
-    modulo, separador, funcao = config.adaptador.partition(":")
-    if not separador:
-        raise ErroProjeto("Indicar o adaptador Python como modulo:funcao em configs/cnn.yaml.")
-    try:
-        prever = getattr(importlib.import_module(modulo), funcao)
-        return prever(imagem, caminho)
-    except NotImplementedError as erro:
-        raise ErroProjeto("O adaptador Python configurado não implementa a inferência da CNN.") from erro
-    except Exception as erro:
-        raise ErroProjeto(f"O adaptador da CNN falhou. {erro}") from erro
+        raise ErroProjeto(f"Verificar configs/cnn.yaml. {erro}") from erro
 
 
 def analisar_cnn(imagem, checkpoint=None):
@@ -163,18 +97,12 @@ def analisar_cnn(imagem, checkpoint=None):
             f"A CNN ainda não está ligada. Colocar o modelo em {caminho.name} "
             "conforme runs/checkpoints/README.md ou selecionar um modo VLM."
         )
-    if config.backend == "onnx":
-        resultado = prever_onnx(imagem, caminho, config)
-    else:
-        resultado = prever_python(imagem, caminho, config)
+    resultado = prever(imagem, caminho)
     if not isinstance(resultado, dict):
         raise ErroProjeto("O adaptador CNN deve devolver um dicionário.")
-    if resultado.get("e_folha") is False:
-        return Visual(motor="CNN", estado="rejeitada", descricao="A CNN rejeitou a fotografia como folha de videira.")
-
     try:
         probabilidades = {k: float(v) for k, v in resultado["probabilidades"].items()}
-        if set(probabilidades) not in (set(CLASSES), set(CLASSES) | {"outra"}):
+        if set(probabilidades) != set(config.classes):
             raise ValueError("classes inesperadas")
         if any(not 0 <= p <= 1 for p in probabilidades.values()) or not math.isclose(
             sum(probabilidades.values()), 1.0, abs_tol=0.01,
@@ -185,14 +113,10 @@ def analisar_cnn(imagem, checkpoint=None):
 
     classe = max(probabilidades, key=probabilidades.get)
     confianca = probabilidades[classe]
-    if classe == "outra":
-        return Visual(motor="CNN", estado="rejeitada", descricao="A CNN identificou uma imagem fora das classes da videira.")
-    # Sem limiar validado, conservar argmax e probabilidades como hipótese.
-    estado = "ok" if config.limiar is None or confianca >= config.limiar else "incerta"
     descricao = resultado.get("descricao") or "Classificação baseada nos padrões da folha."
     mapa = resultado.get("mapa_atencao")
     return Visual(
-        motor="CNN", estado=estado, classe=classe, confianca=confianca,
+        motor="CNN", estado="ok", classe=classe, confianca=confianca,
         probabilidades=probabilidades, descricao=str(descricao)[:500],
         mapa_atencao=codificar_imagem(mapa) if isinstance(mapa, Image.Image) else None,
     )

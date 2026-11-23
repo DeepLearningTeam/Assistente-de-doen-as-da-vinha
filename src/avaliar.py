@@ -9,7 +9,7 @@ from collections import Counter
 from pathlib import Path
 from time import perf_counter
 
-from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256
+from .apoio import ErroProjeto, RAIZ, agora, gravar_json, ler_json, sha256, FICHEIRO_SPLITS, PASTA_IMAGENS
 from .config import EXPERIENCIAS, MODOS, carregar_config
 from .corpus import CSV_CORPUS, ler_corpus, selecionadas
 from .imagem import analisar_cnn, config_cnn, ler_imagem
@@ -17,7 +17,6 @@ from .indice import descrever_colecao
 from .modelos import ErroFormato, digest_modelo
 from .preparar_cnn import validar_manifesto
 from .rag import atos_mencionados, responder
-from .splits import FICHEIRO_SPLITS, PASTA_IMAGENS
 from .vlm import analisar_vlm
 
 PERGUNTAS = RAIZ / "data/perguntas/perguntas.csv"
@@ -267,7 +266,7 @@ def avaliar_respostas_imagem(args):
         dados = {
             "tipo": "resposta_imagem", "modo": modo, "pergunta": args.pergunta,
             "imagem_sha256": sha256(args.foto), "historico": [],
-            "imagem_na_geracao_final": config.gerador == "vlm" and not config.rag,
+            "imagem_na_geracao_final": config.gerador == "vlm",
         }
         def calcular():
             return responder(args.pergunta, modo, imagem=imagem, historico=(),

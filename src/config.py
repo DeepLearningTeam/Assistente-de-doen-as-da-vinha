@@ -68,4 +68,4 @@ def carregar_config(modo="llm_cnn_rag", **alteracoes):
         valores["qdrant_colecao"] = os.environ.get("QDRANT_COLECAO", valores["qdrant_colecao"])
         return Config.model_validate(valores)
     except (OSError, ValueError, TypeError, yaml.YAMLError) as erro:
-        raise ErroProjeto(f"Revê os YAML em configs/. {erro}") from erro
+        raise ErroProjeto(f"Verificar os YAML em configs/. {erro}") from erro
