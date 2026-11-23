@@ -8,12 +8,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageOps
 
 from src import cnn_resnet, rag, verificar_cnn
 from src.apoio import ErroProjeto, RAIZ, ler_json
 from src.config import carregar_config
-from src.imagem import analisar_cnn, config_cnn
+from src.imagem import analisar_cnn, config_cnn, descodificar_imagem
 from src.preparar_cnn import divisoes_originais, validar_manifesto
 
 
@@ -48,7 +48,8 @@ class ContratoCNN(unittest.TestCase):
     def test_ordem_neuronios_e_probabilidades_sem_segunda_softmax(self):
         valores = np.array([[0.05, 0.1, 0.15, 0.65, 0.05]], dtype=np.float32)
         with patch.object(cnn_resnet, "carregar_modelo") as modelo, \
-             patch.object(cnn_resnet, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3))):
+             patch.object(cnn_resnet, "preparar_imagem", return_value=np.zeros((1, 224, 224, 3))), \
+             patch.object(cnn_resnet, "gradcam", return_value=np.zeros((7, 7))):
             modelo.return_value.return_value = valores
             resultado = cnn_resnet.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
         probs = resultado["probabilidades"]
@@ -57,6 +58,7 @@ class ContratoCNN(unittest.TestCase):
         self.assertEqual(max(probs, key=probs.get), "leaf_blight")
         self.assertEqual(config_cnn().classes, list(probs))
         self.assertTrue(resultado["recognized"])
+        self.assertIsInstance(resultado["mapa_atencao"], Image.Image)
 
     def test_rejeicao_nao_transporta_hipotese_de_doenca(self):
         probs = dict(zip(config_cnn().classes, [0.19, 0.2, 0.2, 0.22, 0.19]))
@@ -75,10 +77,14 @@ class ContratoCNN(unittest.TestCase):
         ]
         for probs, esperado in casos:
             with self.subTest(probs=probs), patch.object(cnn_resnet, "carregar_modelo") as modelo, \
-                    patch.object(cnn_resnet, "preparar_imagem"):
+                    patch.object(cnn_resnet, "preparar_imagem"), \
+                    patch.object(cnn_resnet, "gradcam", return_value=np.zeros((7, 7))) as mapa:
                 modelo.return_value.return_value = np.array([probs])
                 resultado = cnn_resnet.prever(Image.new("RGB", (4, 4)), Path("modelo.keras"))
             self.assertEqual(resultado["recognized"], esperado)
+            self.assertEqual(mapa.call_count, int(esperado))
+            if not esperado:
+                self.assertIsNone(resultado["mapa_atencao"])
 
     def test_cache_carrega_apenas_uma_vez(self):
         cnn_resnet._carregar_modelo.cache_clear()
@@ -140,6 +146,84 @@ class ContratoCNN(unittest.TestCase):
                 self.assertTrue(relatorio["inferencia_em_imagens"])
                 self.assertTrue(relatorio["casos_validacao"][0]["rejeicao_consistente"])
                 self.assertNotIn("paridade", json.dumps(relatorio))
+
+
+class GradCAM(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec("keras"), "Requer requirements.txt")
+    def test_gradientes_por_classe_mapa_nulo_e_modelo_inalterado(self):
+        keras = cnn_resnet.obter_keras()
+        entrada = keras.Input((4, 4, 3))
+        conv = keras.layers.Conv2D(2, 1, use_bias=False, kernel_initializer="zeros",
+                                   name="conv5_block3_out")
+        base = keras.Model(entrada, keras.layers.GlobalAveragePooling2D()(conv(entrada)), name="resnet50")
+        foto = keras.Input((4, 4, 3))
+        x = keras.Sequential([keras.layers.Activation("linear")])(foto)
+        x = keras.layers.Dropout(0.3)(base(x))
+        saida = keras.layers.Dense(5, activation="softmax", kernel_initializer="zeros")
+        modelo = keras.Model(foto, saida(x))
+        kernel = np.zeros((1, 1, 3, 2), dtype=np.float32)
+        kernel[0, 0, 0, 0] = kernel[0, 0, 1, 1] = 1
+        conv.set_weights([kernel])
+        conv.trainable = False  # O Grad-CAM também deve funcionar com camadas congeladas.
+        pesos = np.zeros((2, 5), dtype=np.float32)
+        pesos[0, 0] = pesos[1, 1] = 1
+        # Softmax saturada: o cálculo auxiliar deve usar o logit sem alterar a ativação.
+        saida.set_weights([pesos, np.array([100, 0, 0, 0, 0], dtype=np.float32)])
+        tensor = np.zeros((1, 4, 4, 3), dtype=np.float32)
+        tensor[0, :, :2, 0] = tensor[0, :, 2:, 1] = 1
+        previsao = np.asarray(modelo(tensor, training=False))
+        configuracao = modelo.to_json()
+        valores = [w.numpy().copy() for w in modelo.weights]
+        camadas = [(l.trainable, len(l._inbound_nodes)) for l in modelo._flatten_layers()]
+        ativacao = saida.activation
+        esquerdo = cnn_resnet.gradcam(modelo, tensor, 0)
+        direito = cnn_resnet.gradcam(modelo, tensor, 1)
+        nulo = cnn_resnet.gradcam(modelo, tensor, 2)
+        np.testing.assert_array_equal(esquerdo[:, :2], 1)
+        np.testing.assert_array_equal(esquerdo[:, 2:], 0)
+        np.testing.assert_array_equal(direito, 1 - esquerdo)
+        self.assertTrue(np.isfinite(nulo).all())
+        np.testing.assert_array_equal(nulo, 0)
+        self.assertIs(saida.activation, ativacao)
+        self.assertEqual(modelo.to_json(), configuracao)
+        self.assertEqual([(l.trainable, len(l._inbound_nodes)) for l in modelo._flatten_layers()], camadas)
+        for antes, depois in zip(valores, modelo.weights):
+            np.testing.assert_array_equal(antes, depois.numpy())
+        np.testing.assert_array_equal(modelo(tensor, training=False), previsao)
+
+    def test_retira_padding_horizontal_e_vertical_antes_de_redimensionar(self):
+        for tamanho in ((113, 224), (224, 113)):
+            with self.subTest(tamanho=tamanho):
+                imagem = Image.new("RGB", tamanho, (60, 80, 100))
+                mapa = np.ones((224, 224), dtype=np.float32)
+                # Estas margens ímpares reproduzem round(111 / 2) do ImageOps.pad.
+                if tamanho[0] < 224:
+                    mapa[:, 56:169] = 0
+                else:
+                    mapa[56:169, :] = 0
+                sobreposicao = cnn_resnet.sobrepor_gradcam(imagem, mapa)
+                self.assertEqual(sobreposicao.size, tamanho)
+                self.assertEqual(sobreposicao.mode, "RGB")
+                np.testing.assert_array_equal(sobreposicao, imagem)
+
+    def test_mapa_nulo_preserva_fotografia_e_orientacao_EXIF(self):
+        imagem = Image.new("RGB", (12, 8), "green")
+        imagem.putpixel((0, 0), (255, 0, 0))
+        imagem.getexif()[274] = 6
+        resultado = cnn_resnet.sobrepor_gradcam(imagem, np.zeros((7, 7), dtype=np.float32))
+        self.assertEqual(resultado.size, (8, 12))
+        np.testing.assert_array_equal(resultado, ImageOps.exif_transpose(imagem).convert("RGB"))
+
+    def test_mapa_PIL_chega_ao_campo_existente_da_interface(self):
+        imagem = Image.new("RGB", (12, 8), "green")
+        probs = dict(zip(config_cnn().classes, [0.05, 0.1, 0.1, 0.7, 0.05]))
+        with tempfile.NamedTemporaryFile() as f, patch("src.imagem.prever", return_value={
+            "probabilidades": probs, "recognized": True, "mapa_atencao": imagem,
+        }):
+            visual = analisar_cnn(imagem, f.name)
+        self.assertEqual(visual.estado, "ok")
+        self.assertIsNotNone(visual.mapa_atencao)
+        self.assertEqual(descodificar_imagem(visual.mapa_atencao).size, imagem.size)
 
 
 class DivisoesCNN(unittest.TestCase):

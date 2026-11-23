@@ -75,11 +75,54 @@ def preparar_imagem(imagem):
     return obter_keras().applications.resnet50.preprocess_input(tensor)
 
 
+def gradcam(modelo, tensor, indice):
+    """Grad-CAM da classe prevista, sem modificar a softmax ou os pesos em cache."""
+    import tensorflow as tf
+
+    keras = obter_keras()
+    base = modelo.get_layer("resnet50")
+    extrator = keras.Model(base.inputs, [base.get_layer("conv5_block3_out").output, base.output])
+    entrada = modelo.layers[1](tf.convert_to_tensor(tensor), training=False)
+    with tf.GradientTape(watch_accessed_variables=False) as tape:
+        tape.watch(entrada)
+        ativacoes, vetor = extrator([entrada], training=False)
+        vetor = modelo.layers[-2](vetor, training=False)  # Dropout desativado.
+        cabeca = modelo.layers[-1]
+        # Usar o score anterior à softmax apenas neste cálculo auxiliar.
+        scores = tf.matmul(vetor, cabeca.kernel) + cabeca.bias
+        alvo = scores[:, indice]
+    gradientes = tape.gradient(alvo, ativacoes)
+    if gradientes is None:
+        raise ErroProjeto("Não foi possível calcular os gradientes do mapa da CNN.")
+    pesos = tf.reduce_mean(gradientes, axis=(0, 1, 2))
+    mapa = tf.nn.relu(tf.reduce_sum(ativacoes[0] * pesos, axis=-1))
+    # Um mapa sem contribuição positiva mantém-se a zero, sem divisões por zero.
+    return tf.math.divide_no_nan(mapa, tf.reduce_max(mapa)).numpy()
+
+
+def sobrepor_gradcam(imagem, mapa):
+    """Retira o padding do mapa e sobrepõe-o à fotografia com orientação EXIF corrigida."""
+    original = ImageOps.exif_transpose(imagem).convert("RGB")
+    tamanho = (IMG_SIZE, IMG_SIZE)
+    conteudo = ImageOps.contain(original, tamanho, Image.Resampling.BILINEAR)
+    # Reproduzir os arredondamentos do ImageOps.pad, incluindo margens ímpares.
+    esquerda = round((IMG_SIZE - conteudo.width) / 2)
+    topo = round((IMG_SIZE - conteudo.height) / 2)
+    mapa = Image.fromarray(np.asarray(mapa, dtype=np.float32)).resize(tamanho, Image.Resampling.BILINEAR)
+    mapa = mapa.crop((esquerda, topo, esquerda + conteudo.width, topo + conteudo.height))
+    intensidade = mapa.resize(original.size, Image.Resampling.BILINEAR).point(lambda v: v * 255).convert("L")
+    cores = ImageOps.colorize(intensidade, "yellow", "red")
+    # As zonas de contribuição nula ficam transparentes.
+    mascara = intensidade.point(lambda v: round(v * 0.45))
+    return Image.composite(cores, original, mascara)
+
+
 def prever(imagem, checkpoint):
     modelo = carregar_modelo(checkpoint)
     classes = carregar_classes()
     # training=False desativa augmentation e dropout, como model.predict da implementação original.
-    valores = np.asarray(modelo(preparar_imagem(imagem), training=False))
+    tensor = preparar_imagem(imagem)
+    valores = np.asarray(modelo(tensor, training=False))
     if valores.shape != (1, len(classes)) or not np.isfinite(valores).all():
         raise ErroProjeto("A CNN devolveu uma forma inesperada ou valores não finitos.")
     probabilidades = valores[0]
@@ -90,6 +133,7 @@ def prever(imagem, checkpoint):
     return {
         "probabilidades": {MAPEAMENTO[c]: float(p) for c, p in zip(classes, probabilidades)},
         "recognized": recognized,
+        "mapa_atencao": sobrepor_gradcam(imagem, gradcam(modelo, tensor, indice)) if recognized else None,
         "descricao": (
             "Hipótese entre as quatro classes de folhas do FieldVitis, com rejeição "
             "por Outro ou baixa confiança. As probabilidades softmax não são certeza de diagnóstico."

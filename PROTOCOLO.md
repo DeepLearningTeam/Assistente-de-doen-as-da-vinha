@@ -9,7 +9,7 @@ Identificar hipóteses numa folha de videira e responder a perguntas de viticult
 ## 2. Dados e corpus
 
 - **Imagens.** FieldVitis v2, CC BY 4.0, com 158 saudáveis, 200 esca, 158 mancha-das-folhas e 39 podridão-negra, acrescido de 160 imagens `Outro`, com fontes em `data/originais/cnn/outro_fontes.csv`. A seed 1 tem 454 imagens de treino, 98 de validação, 99 de teste e 64 de holdout, com seed de reserva 2026. As 555 imagens originais mantêm as suas divisões: 352/76/77 e 50 reservadas. Só estão disponíveis pesos da ResNet50 seed 1. O manifesto ativo `data/splits.json` adapta as divisões recebidas sem novo sorteio; os originais das seeds 0/1/2 estão em `data/originais/`. A unidade disponível é a imagem. A preparação verifica duplicados exatos e sobreposições; estas verificações não demonstram separação por videira/local nem ausência de quase duplicados. [FieldVitis v2](https://doi.org/10.5281/zenodo.17307846)
-- **Documentos.** `data/corpus.csv` conserva o título, a entidade, a data, o URL, a licença e o SHA-256. Indexam-se 14 documentos, incluindo sete condicionais. D07 e D14 ficam excluídos da indexação; D10, D11 e D12 ficam reservados para avaliar a recusa. Os PDF e o índice ficam fora do Git.
+- **Documentos.** `data/corpus.csv` conserva o título, a entidade, a data, o URL, a licença e o SHA-256. Indexam-se 14 documentos, incluindo sete condicionais. D07 e D14 ficam excluídos da indexação; D10, D11 e D12 ficam reservados para avaliar a recusa. D14 fornece também as referências das seis perguntas de recusa de sintomas e tratamento. Os PDF e o índice ficam fora do Git.
 - **Perguntas.** 20 de validação e 20 de teste, com 15 respondíveis e cinco de recusa em cada conjunto. As referências, páginas e ações esperadas exigem revisão humana, incluindo a confirmação de que não existe evidência equivalente no índice para as perguntas de recusa.
 
 ## 3. Arquitetura e condições
@@ -54,7 +54,7 @@ Na aplicação, uma etapa de âmbito filtra pedidos fora da viticultura e ajuda 
 
 A recusa reforçada também verifica se um edital, despacho ou circular explicitamente pedido pelo número consta dos títulos dos documentos selecionados no corpus para indexação. Uma menção desse ato noutro documento não é evidência do seu conteúdo. A regra consulta os metadados do corpus.
 
-O registo identifica `verificar_documento`, a origem nos metadados e se a pesquisa foi omitida. As taxas de recusa são também discriminadas pelo motivo, mantendo o denominador de todas as perguntas relevantes. A auditoria estática (`src.avaliar dados`) mostra que esta regra abrange nove das dez perguntas de recusa, todas de regulamentação. Não confundir essa cobertura com recusas observadas nem com deteção geral de falta de suporte. Novas perguntas de recusa exigem validação humana antes de integrar a avaliação.
+O registo identifica `verificar_documento`, a origem nos metadados e se a pesquisa foi omitida. As taxas de recusa são também discriminadas pelo motivo e pelo tipo de pergunta, mantendo o denominador de todas as perguntas relevantes. A auditoria estática (`src.avaliar dados`) mostra que esta regra abrange quatro das dez perguntas de recusa, as quatro de regulamentação. As restantes distribuem-se por três de sintomas e três de tratamento, com referências em D14. Não confundir essa cobertura com recusas observadas nem com deteção geral de falta de suporte. Novas perguntas de recusa exigem validação humana antes de integrar a avaliação.
 
 ## 5. Hipóteses
 
@@ -85,7 +85,7 @@ Cada item guarda estado, parâmetros, latência e, quando aplicável, passagens 
 
 ## 8. Validação e teste
 
-Ajustar prompts, tamanho dos chunks, número de passagens, limiares e outras escolhas apenas na validação. Antes de executar o teste, fechar e versionar este protocolo e as configurações. Executar o teste uma vez por condição com os parâmetros fixados e preservar os JSON. O corpus de produção experimental continua a excluir os três documentos reservados.
+Ajustar prompts, tamanho dos chunks, número de passagens, limiares e outras escolhas apenas na validação. Antes de executar o teste, fechar e versionar este protocolo e as configurações. Executar o teste uma vez por condição com os parâmetros fixados e preservar os JSON. O corpus de produção experimental continua a excluir os documentos que fornecem as referências de recusa: D10, D11, D12 e D14.
 
 `src.preparar_cnn` adapta as partições originais e `src.avaliar imagem` verifica a sua correspondência e o hash do checkpoint. A comparação CNN/VLM mantém as quatro classes de folhas: `--split teste` seleciona 77 imagens e `--split holdout` 50. `Outro` é excluído desta comparação; a avaliação específica da rejeição fica pendente das imagens adicionais. `--limite` é exclusivo da validação.
 
